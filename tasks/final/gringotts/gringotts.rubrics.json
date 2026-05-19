@@ -1,0 +1,217 @@
+[
+  {
+    "id": "aggregation-f008",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "instruction": "If I keep going to improv class at the current pace, what's it going to cost me for a whole year? I'm reconsidering. Give me a Line graph chart of the overall cost in LibreOffice Calc.",
+    "apps_involved": [
+      "Gringotts"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open Gringotts and locate the seeded Scranton Improv Workshop charges as they appear in the ledger",
+      "Measure recent monthly cadence and average per-charge amount from the seeded Scranton Improv transactions",
+      "Compute the annualized cost using (sessions per month × 12) × average per-session charge from the ledger",
+      "Produce a LibreOffice Calc spreadsheet with a Line graph chart of the monthly improv costs and the annual projection"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent identifies the Scranton Improv Workshop charges in the Gringotts transactions ledger and reports their average per-session amount as it appears in the seeded data",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent measures recent monthly improv class cadence (sessions per month) by counting seeded Scranton Improv charges over a recent window, rather than assuming a fixed schedule",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent frames the improv class yearly cost as a forward projection at the current pace, not a realized prior-year spend",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent shows the annualization math: (sessions per month from the ledger × 12) × average per-session amount = projected yearly improv spend, with both figures derived from the seeded Gringotts data",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent produces a LibreOffice Calc spreadsheet containing at minimum the monthly improv cost data and a Line graph chart visualizing the cost trend, as requested",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers the cadence, projected yearly improv spend, and the LibreOffice Calc file in a single answer",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "aggregation",
+    "date_policy": "relative"
+  },
+  {
+    "id": "aggregation-f030",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "instruction": "How much am I sending via Zelle each month and who's getting the money? Check the most recent 2 complete calendar months prior to today and rank the recipients. Give me the results of each month in a LibreOffice Calc Spreadsheet and comapre the totals.",
+    "apps_involved": [
+      "Gringotts"
+    ],
+    "difficulty": "medium",
+    "horizon": "H3",
+    "time_limit_seconds": 900,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open Gringotts and filter outbound Zelle transactions for the most recent complete calendar month prior to today",
+      "Sum that month's total",
+      "Repeat for the calendar month before that (i.e., the 2nd most recent complete calendar month prior to today)",
+      "Rank recipients by total received across those two months",
+      "Report monthly sent totals and top recipients"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reports the outbound Zelle total for the most recent complete calendar month prior to today, computed from the live Gringotts transactions ledger",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent repeats the computation for the calendar month before that (the 2nd most recent complete calendar month prior to today) — the prior complete calendar month's Zelle outbound total from the live Gringotts transactions ledger",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent identifies the top recipient(s) of outbound Zelle across those two months (even if the data is sparse — a single top recipient is acceptable when the ledger has few outbound Zelle rows)",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent reports a ranked list of Zelle recipients alongside the two most-recent-complete-calendar-month outbound totals",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent produces a LibreOffice Calc spreadsheet containing each month's Zelle totals and a comparison of the two months' totals, as requested",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers the two monthly Zelle totals, the recipient ranking, and the LibreOffice Calc file in a single answer",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "aggregation",
+    "date_policy": "relative"
+  },
+  {
+    "id": "aggregation-f036",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "instruction": "How much did I spend on improv classes during the last full calendar year? Add up every Scranton Improv class charge from that year (the outbound debits whose description matches 'Scranton Improv Workshop' or 'SCRANTON IMPROV ACADEMY' case-insensitively) — exclude any inbound payments from teaching (e.g. 'Scranton Improv Academy - 1099-NEC payment' or 'VENMO SCRANTON IMPROV ACADEMY' credits, those are teaching income, not class spend) (where Scranton Improv is the payee/merchant, not just a venue address in a transportation charge).",
+    "apps_involved": [
+      "Gringotts"
+    ],
+    "difficulty": "medium",
+    "horizon": "H3",
+    "time_limit_seconds": 900,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open Gringotts and filter to the seeded Scranton Improv class charges (outbound debits whose description matches 'Scranton Improv Workshop' or 'SCRANTON IMPROV ACADEMY' case-insensitively)",
+      "Filter to the last full calendar year only",
+      "Sum the total dollar amount across those charges (exclude any inbound credits from teaching income such as '1099-NEC payment' or 'VENMO SCRANTON IMPROV ACADEMY')",
+      "Report both the last-full-year transaction count and the annualized dollar total"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent filters Gringotts to the seeded Scranton Improv class charges (outbound debits whose description matches either 'Scranton Improv Workshop' or 'SCRANTON IMPROV ACADEMY' case-insensitively) dated within the last full calendar year (excludes the year before and the current year); excludes any inbound teaching-income credits",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent sums every seeded Scranton Improv outbound debit as it appears in the ledger in the last full calendar year (matching either 'Scranton Improv Workshop' or 'SCRANTON IMPROV ACADEMY' descriptions) to an annual total computed from the actual seeded ledger charges (not a fabricated estimate); excludes any inbound teaching-income credits such as 'Scranton Improv Academy - 1099-NEC payment' or 'VENMO SCRANTON IMPROV ACADEMY'",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent reports the last-full-calendar-year transaction count alongside the annual dollar total",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent shows the individual Scranton Improv charge amounts as they appear in the ledger (whether they are the same unit amount or vary by session) and uses those values to explain the total",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent reports the total spend for the last full calendar year on Scranton Improv (no specific per-charge unit-cadence assertion required — flat per-session, biweekly, monthly, or mixed are all acceptable as long as the sum reconciles)",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers the last-full-calendar-year total and supporting count in a single answer",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "aggregation",
+    "date_policy": "relative"
+  },
+  {
+    "id": "situated_action-f011",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Can you knock $500 off my credit card from my checking? I'm trying to be responsible here.",
+    "required_subtasks": [
+      "Open Gringotts and navigate to the credit card",
+      "Note the displayed credit card balance before initiating payment",
+      "Initiate a $500 payment from checking",
+      "Confirm the payment"
+    ],
+    "apps_involved": [
+      "Gringotts"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent completes the $500 payment from checking to the credit card in Gringotts and confirms the payment posted",
+          "type": "llm_judge",
+          "weight": 0.583139
+        },
+        {
+          "criterion": "Agent cites the Gringotts checking account as the funding source and the credit card as the destination for the $500 payment",
+          "type": "llm_judge",
+          "weight": 0.166611
+        },
+        {
+          "criterion": "Agent transfers exactly $500 (not a different amount) from checking to the credit card, matching Michael's stated request to knock $500 off",
+          "type": "llm_judge",
+          "weight": 0.083639
+        },
+        {
+          "criterion": "Agent opens Gringotts, navigates into the credit card account view, and captures the displayed credit card balance before initiating the $500 payment",
+          "type": "llm_judge",
+          "weight": 0.166611
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy": "relative"
+  }
+]

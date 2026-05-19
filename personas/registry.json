@@ -1,0 +1,13 @@
+{
+  "default_persona": "michael_scott",
+  "personas": {
+    "michael_scott": {
+      "file": "michael_scott.json",
+      "display_name": "Michael Scott",
+      "email": "michael.scott@dundermifflin.com",
+      "city": "Scranton",
+      "default_world": "scranton-office",
+      "recommended_actor_id": "workspace_lead"
+    }
+  }
+}

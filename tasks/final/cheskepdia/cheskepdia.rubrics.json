@@ -1,0 +1,105 @@
+[
+  {
+    "id": "preference_inference-f014",
+    "category": "preference_inference",
+    "persona": "michael_scott",
+    "instruction": "Look at my hotel and resort bookings on Cheskepdia. Am I a luxury-hotels guy or a budget-hotels guy, and what's my pattern?",
+    "required_subtasks": [
+      "Open Cheskepdia and list the 4 hotel/resort-type bookings with property names",
+      "Categorize each by tier (luxury / boutique / budget) using the hotel names (Sandals Montego Bay, The Greenwich Hotel, Sandals Royal Barbados, Radisson Blu Warwick)",
+      "Compare hotel totals pulled live from each booking",
+      "Note that 2 of 4 are Sandals luxury resorts as a strong preference signal",
+      "Conclude that Michael's Cheskepdia preference skews Sandals/luxury with Philadelphia Radisson as the obvious business-travel outlier"
+    ],
+    "apps_involved": [
+      "Cheskepdia"
+    ],
+    "difficulty": "medium",
+    "horizon": "H3",
+    "time_limit_seconds": 900,
+    "cua_required": false,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent lists all four Cheskepdia trip bookings with their property names (Jamaica, NYC, Barbados, Philadelphia hotels)",
+          "type": "llm_judge",
+          "weight": 0.210684
+        },
+        {
+          "criterion": "Agent categorizes each of the 4 Cheskepdia hotel bookings as luxury-tier or budget-tier and labels which group the pattern favors",
+          "type": "llm_judge",
+          "weight": 0.210684
+        },
+        {
+          "criterion": "Agent flags Sandals (Montego Bay + Royal Barbados) as the dominant luxury pattern",
+          "type": "llm_judge",
+          "weight": 0.210684
+        },
+        {
+          "criterion": "Agent identifies the Philadelphia Radisson booking from the four hotel trips as the business-travel outlier among Michael's luxury-hotels pattern",
+          "type": "llm_judge",
+          "weight": 0.157863
+        },
+        {
+          "criterion": "Agent lists specific Cheskepdia booking rows (property name, total) from the four trips when stating the luxury-versus-budget verdict",
+          "type": "llm_judge",
+          "weight": 0.105242
+        },
+        {
+          "criterion": "Agent delivers the full luxury-versus-budget guy verdict with the pattern summary, not stopping before answering the four-trip question",
+          "type": "llm_judge",
+          "weight": 0.104842
+        }
+      ]
+    },
+    "date_policy": "relative",
+    "collection": "preference_inference"
+  },
+  {
+    "id": "situated_action-f028",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "I'm feeling nostalgic. Book me an upcoming Scranton weekend, Friday through Sunday. Pick a well-rated property in town and book it.",
+    "required_subtasks": [
+      "Open Cheskepdia and search Scranton for an upcoming Fri-Sun stay",
+      "Browse the Scranton results and pick a well-rated property",
+      "Book the chosen Scranton property for an upcoming Friday check-in / Sunday check-out",
+      "Confirm the booking details (property name, dates, total)"
+    ],
+    "apps_involved": [
+      "Cheskepdia"
+    ],
+    "difficulty": "hard",
+    "horizon": "H4",
+    "time_limit_seconds": 1800,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent books a Scranton property on Cheskepdia with a future check-in date for the nostalgic weekend trip",
+          "type": "llm_judge",
+          "weight": 0.295892
+        },
+        {
+          "criterion": "Agent's booked Scranton stay spans Friday check-in through Sunday check-out as requested for the upcoming weekend",
+          "type": "llm_judge",
+          "weight": 0.236652
+        },
+        {
+          "criterion": "Agent browses the Cheskepdia Scranton search results and picks a well-rated property before booking",
+          "type": "llm_judge",
+          "weight": 0.236652
+        },
+        {
+          "criterion": "Agent confirms the new Cheskepdia Scranton booking details (property, Friday-to-Sunday dates, total) after submitting the reservation for the nostalgic weekend",
+          "type": "llm_judge",
+          "weight": 0.230805
+        }
+      ]
+    },
+    "date_policy": "relative",
+    "collection": "situated_action"
+  }
+]

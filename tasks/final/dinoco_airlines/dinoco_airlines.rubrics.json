@@ -1,0 +1,260 @@
+[
+  {
+    "id": "cua_only-f001",
+    "category": "cua_only",
+    "persona": "michael_scott",
+    "instruction": "Open the Dinoco Airlines app, check in my next upcoming flight and confirm that the boarding pass screen actually renders. Download it locally as well.",
+    "apps_involved": [
+      "Dinoco Airlines"
+    ],
+    "difficulty": "medium",
+    "horizon": "H1",
+    "time_limit_seconds": 240,
+    "cua_required": true,
+    "required_subtasks": [
+      "Open Dinoco Airlines and locate the upcoming flights list",
+      "Identify the next upcoming (non-cancelled) flight by departure_date",
+      "Click the 'Check in' control on that flight's row",
+      "Verify the boarding pass view renders with flight number, route, and gate/seat details visible",
+      "Download the boarding pass locally"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight by departure_date in the live booking list",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent clicks the 'Check in' control on that upcoming flight's row, not on a past or cancelled flight",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent verifies that the boarding pass view actually renders after check-in (flight number, route, and seat/gate details visible)",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent downloads the boarding pass locally (e.g., saves the file to disk or confirms a download action was triggered)",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent reports the boarding pass details (flight number and route) it observed on the rendered pass",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "cua_only",
+    "date_policy": "relative"
+  },
+  {
+    "id": "aggregation-f001",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Give me a spreadsheet of each trip, and the miles for each one with a final row of the cumulative miles. Also include the upcoming trips and their milage.",
+    "apps_involved": [
+      "Dinoco Airlines"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open Dinoco Airlines and pull the flight history",
+      "Filter to flights whose status is completed (not cancelled, not upcoming) within the past 12 months",
+      "Sum miles_flown (or miles_earned) across those completed flights",
+      "Report the total miles flown with the count of contributing flights",
+      "Include upcoming trips and their mileage in the output",
+      "Produce a per-trip table or spreadsheet with a cumulative total row"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent filters Dinoco flight history to flights that are completed (not cancelled and not still-upcoming) within the past 12 months and sums their miles from the live flight history",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent also lists upcoming Dinoco flights and their mileage alongside the completed-flight data, as explicitly requested",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent produces a per-trip table or spreadsheet-style breakdown with each trip and its miles, ending with a cumulative total row",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent reports the count of completed Dinoco flights in the past 12 months and the total miles for that window (even 1-2 flights is a valid result)",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers a single answer covering completed-flight totals, upcoming-flight mileage, and the per-trip breakdown together",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "aggregation",
+    "date_policy": "relative"
+  },
+  {
+    "id": "situated_action-f001",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Book me a one-way Dinoco flight from AVP to JFK in Economy for next Friday with my MasterCard. Make sure you get a seat on the left and a flight in the evening or night. Can you check that the we got a confirmation email for the flight and pull it up?",
+    "apps_involved": [
+      "Dinoco Airlines",
+      "HooliMail"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 600,
+    "cua_required": true,
+    "required_subtasks": [
+      "Open Dinoco Airlines and start a new one-way booking with origin AVP and destination JFK for next Friday",
+      "Pick an Economy fare from an evening or night departure",
+      "Select a seat on the left side of the aircraft",
+      "Pay with Michael's MasterCard",
+      "Complete the booking and capture the new confirmation number",
+      "Open HooliMail and locate the booking confirmation email; pull it up"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent creates a new one-way Dinoco booking with origin AVP and destination JFK in the Economy fare class for next Friday",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent selects an evening or night departure flight (departure time in the evening or after sunset) and picks a seat on the left side of the aircraft",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent pays with Michael's MasterCard (not a different saved card or a new card entry)",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent completes the booking and captures the new Dinoco confirmation number returned by the app",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent confirms a booking confirmation email was received and pulls it up as requested by Michael",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers a single end-to-end answer: new confirmation number plus confirmation that the booking email was found",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy": "relative"
+  },
+  {
+    "id": "retrieval-f001",
+    "category": "retrieval",
+    "persona": "michael_scott",
+    "instruction": "What's my current FlyMiles loyalty tier on Dinoco and how many miles do I have in the bank?",
+    "apps_involved": [
+      "Dinoco Airlines"
+    ],
+    "difficulty": "easy",
+    "horizon": "H1",
+    "time_limit_seconds": 180,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open Dinoco Airlines and navigate to Michael's loyalty profile",
+      "Read the FlyMiles tier label",
+      "Read the current miles balance",
+      "Report both values together"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads Michael's FlyMiles loyalty tier directly from the live Dinoco profile (not inferred from email or other apps)",
+          "type": "llm_judge",
+          "weight": 0.4
+        },
+        {
+          "criterion": "Agent reads Michael's current FlyMiles miles balance directly from the live Dinoco profile",
+          "type": "llm_judge",
+          "weight": 0.4
+        },
+        {
+          "criterion": "Agent reports the loyalty tier and miles balance together in a single answer",
+          "type": "llm_judge",
+          "weight": 0.2
+        }
+      ]
+    },
+    "collection": "retrieval",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f001",
+    "category": "hard_app",
+    "persona": "michael_scott",
+    "instruction": "Cancel my next flight on Dinoco. After cancelling, verify we get an email for the cancellation, and pull it up. Let me know what you cancelled and how much credit we received.",
+    "apps_involved": [
+      "Dinoco Airlines",
+      "HooliMail"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 720,
+    "cua_required": true,
+    "required_subtasks": [
+      "Open Dinoco Airlines and pick the next upcoming cancellable booking",
+      "Cancel that booking through the Dinoco UI",
+      "Open HooliMail and locate the cancellation confirmation email; pull it up",
+      "Open the Dinoco travel-credit ledger and confirm a new credit entry was added for the cancelled fare",
+      "Report what was cancelled and how much travel credit was received"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent picks the next upcoming Dinoco booking that is still cancellable (not already past or cancelled) and cancels it through the Dinoco UI",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent confirms the cancellation confirmation email was received and pulls it up as requested",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent verifies a new travel-credit entry posts in Dinoco for the cancelled fare and reports the credit amount received",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent explicitly reports what flight was cancelled (route and/or flight number) and how much credit was received",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers a single end-to-end answer: cancelled booking details, cancellation email confirmation, and travel-credit amount",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  }
+]

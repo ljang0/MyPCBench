@@ -1,0 +1,184 @@
+[
+  {
+    "id": "cua_only-f011",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Open my Dundies 2026 categories doc in Writer, bold the 'Whitest Sneakers' line, then add a new category called 'Fine Work Outfit' right after it. Save it when you're done.",
+    "required_subtasks": [
+      "Launch LibreOffice Writer",
+      "Open ~/Documents/Dundies_2026_Categories.txt",
+      "Find the 'Whitest Sneakers' line and select it",
+      "Apply bold formatting (Ctrl+B)",
+      "Place cursor at end of line and press Enter, type 'Fine Work Outfit'",
+      "Save the file (keep format if prompted)"
+    ],
+    "apps_involved": [
+      "LibreOffice Writer"
+    ],
+    "difficulty": "medium",
+    "horizon": "H1",
+    "time_limit_seconds": 600,
+    "cua_required": true,
+    "cua_reason": "artifact-as-output",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens LibreOffice Writer before loading the Dundies 2026 categories document for the bold and append edits",
+          "type": "llm_judge",
+          "weight": 0.166667
+        },
+        {
+          "criterion": "Agent opens the Dundies_2026_Categories.txt file in LibreOffice Writer (not a terminal editor)",
+          "type": "llm_judge",
+          "weight": 0.166667
+        },
+        {
+          "criterion": "Agent finds the 'Whitest Sneakers' line in the Dundies 2026 categories doc and selects it before applying formatting",
+          "type": "llm_judge",
+          "weight": 0.166667
+        },
+        {
+          "criterion": "Agent applies bold formatting to the 'Whitest Sneakers' line during the editing session via Ctrl+B or the toolbar bold button (visible in screenshots; bold attribute will not persist when the .txt source file is saved back as plain text — accept screenshot evidence of the formatting being applied at any point in the session)",
+          "type": "llm_judge",
+          "weight": 0.166667
+        },
+        {
+          "criterion": "Agent inserts a new 'Fine Work Outfit' category line immediately after the 'Whitest Sneakers' line in the Dundies 2026 categories doc",
+          "type": "llm_judge",
+          "weight": 0.166667
+        },
+        {
+          "criterion": "Agent saves the edited Dundies_2026_Categories.txt file back to the same ~/Documents path in Writer, keeping the original text format if prompted",
+          "type": "llm_judge",
+          "weight": 0.166667
+        }
+      ]
+    },
+    "collection": "cua_only",
+    "date_policy": "narrative_absolute"
+  },
+  {
+    "id": "cua_only-f021",
+    "category": "long_horizon",
+    "persona": "michael_scott",
+    "instruction": "Write me a one-page Dundies 2026 invitation in Writer. I want a big bold title at the top, a bulleted list of this year's categories pulled from my Dundies categories doc, and a signature block that says 'Michael Scott, World's Best Boss'. Save it to my desktop so I can print a stack.",
+    "required_subtasks": [
+      "Open ~/Documents/Dundies_2026_Categories.txt to read category names",
+      "Open LibreOffice Writer and create a new document",
+      "Add a centered large title (e.g., 'THE DUNDIES 2026')",
+      "Add a short invitation intro paragraph",
+      "Insert a bulleted list of Dundies categories",
+      "Add a signature block: 'Michael Scott, World's Best Boss'",
+      "Save as ~/Desktop/dundies_invite.odt"
+    ],
+    "apps_involved": [
+      "LibreOffice Writer"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "cua_reason": "artifact-as-output",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads ~/Documents/Dundies_2026_Categories.txt to retrieve this year's Dundies category names for the invitation",
+          "type": "llm_judge",
+          "weight": 0.132075
+        },
+        {
+          "criterion": "Agent opens LibreOffice Writer and creates a new document for the Dundies 2026 invitation",
+          "type": "llm_judge",
+          "weight": 0.132075
+        },
+        {
+          "criterion": "Agent writes a big bold centered top-of-page title reading 'THE DUNDIES 2026' in the Writer invitation document",
+          "type": "llm_judge",
+          "weight": 0.150943
+        },
+        {
+          "criterion": "Agent writes a short Dundies 2026 invitation intro paragraph below the title in the Writer document",
+          "type": "llm_judge",
+          "weight": 0.132075
+        },
+        {
+          "criterion": "Agent inserts a bulleted list of this year's Dundies categories pulled from Dundies_2026_Categories.txt into the Writer invitation document",
+          "type": "llm_judge",
+          "weight": 0.150943
+        },
+        {
+          "criterion": "Agent adds a signature block reading 'Michael Scott, World's Best Boss' at the bottom of the Writer invitation document",
+          "type": "llm_judge",
+          "weight": 0.150943
+        },
+        {
+          "criterion": "Agent saves the Dundies 2026 invitation as ~/Desktop/dundies_invite.odt fitting on a single page",
+          "type": "llm_judge",
+          "weight": 0.150943
+        }
+      ]
+    },
+    "collection": "cua_only",
+    "date_policy": "narrative_absolute"
+  },
+  {
+    "id": "cua_only-f024",
+    "category": "long_horizon",
+    "persona": "michael_scott",
+    "instruction": "Throw together a three-slide Impress deck for my Jamaica trip: one slide for the flight info, one for the Sandals hotel info, and one with a rough daily schedule. Save it into my Trips documents folder.",
+    "required_subtasks": [
+      "Open Dinoco Airlines (or the HooliMail Jamaica confirmation thread) and read the Jamaica flight number, departure time, confirmation code, and fare",
+      "Open Cheskepdia and read the Sandals Montego Bay booking (confirmation code, check-in/check-out dates, total)",
+      "Open LibreOffice Impress",
+      "Slide 1: Flight info populated from the live Dinoco/HooliMail values",
+      "Slide 2: Hotel info populated from the live Cheskepdia booking",
+      "Slide 3: Day-by-day schedule spanning the live check-in/check-out window",
+      "Save as ~/Documents/Trips/jamaica_itinerary.odp"
+    ],
+    "apps_involved": [
+      "LibreOffice Impress",
+      "Dinoco Airlines",
+      "Cheskepdia",
+      "HooliMail"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "cua_reason": "artifact-as-output",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent creates an Impress deck for Michael's Jamaica trip that contains exactly 3 slides (flight, hotel, daily schedule)",
+          "type": "llm_judge",
+          "weight": 0.183333
+        },
+        {
+          "criterion": "Agent writes the Jamaica trip flight slide showing the flight number, departure time, confirmation code, and fare, all pulled from Michael's live Dinoco and/or HooliMail Jamaica trip sources (not invented)",
+          "type": "llm_judge",
+          "weight": 0.266667
+        },
+        {
+          "criterion": "Agent writes the Sandals hotel slide showing Sandals Montego Bay, the live Cheskepdia confirmation number, the live check-in and check-out dates, and the live total price — all read from Michael's Cheskepdia booking",
+          "type": "llm_judge",
+          "weight": 0.266667
+        },
+        {
+          "criterion": "Agent writes the third Jamaica trip slide as a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window",
+          "type": "llm_judge",
+          "weight": 0.141667
+        },
+        {
+          "criterion": "Agent saves the three-slide Jamaica trip Impress deck to ~/Documents/Trips/jamaica_itinerary.odp inside Michael's Trips documents folder",
+          "type": "llm_judge",
+          "weight": 0.141667
+        }
+      ]
+    },
+    "collection": "cua_only",
+    "date_policy": "relative"
+  }
+]

@@ -1,0 +1,2204 @@
+{
+  "identity": {
+    "name": "Michael Scott",
+    "age": 46,
+    "city": "Scranton",
+    "address": "1725 Slough Ave, Apt 4B",
+    "employer": "Dunder Mifflin",
+    "role": "Regional Manager, Scranton Branch (self-described: 'World's Best Boss')",
+    "salary": 142000,
+    "email": "michael.scott@dundermifflin.com",
+    "phone": "+1-570-555-0147",
+    "gender": "Male",
+    "bio": "I am a friend first, a boss second, and probably an entertainer third. Author of 'Somehow I Manage' (self-published, 3 copies sold — all to himself). Creator, writer, director, and star of 'Threat Level Midnight.' Organizer of Michael Scott's Dunder Mifflin Scranton Memorial Celebrity Rabies Awareness Pro-Am Fun Run Race for the Cure. Once declared bankruptcy by standing up in the office and shouting 'I DECLARE BANKRUPTCY!' Owns a World's Best Boss mug that he bought for himself. His catchphrase 'That's what she said' has been the subject of 14 HR complaints, all filed by Toby, all ignored.",
+    "favorite_quote": "'You miss 100% of the shots you don't take. — Wayne Gretzky' — Michael Scott",
+    "management_philosophy": "Would you rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.",
+    "known_aliases": [
+      "Prison Mike",
+      "Date Mike",
+      "Caleb Crawdad",
+      "Michael Scarn",
+      "Blind Guy McSqueezy",
+      "Michael Klump"
+    ],
+    "state": "PA"
+  },
+  "contacts": [
+    {
+      "name": "Jim Halpert",
+      "relationship": "close_friend",
+      "frequency": "daily",
+      "email": "jim.halpert@dundermifflin.com",
+      "phone": "+1-570-555-0234",
+      "shared_activities": [
+        "lunch",
+        "work_pranks",
+        "movie_quotes"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "hangrydash",
+        "tablefind",
+        "etaxi",
+        "cheskepdia",
+        "workbuzz",
+        "hoolishop"
+      ],
+      "message_personality": "Treats Jim like his best friend. Sends movie references constantly. 'Jim! JIM! You have to see this.' Always assumes Jim wants to hang out.",
+      "birthday": "1995-06-14",
+      "address": "221 Mulberry St, Apt 2B, Scranton"
+    },
+    {
+      "name": "Dwight Schrute",
+      "relationship": "loyal_subordinate",
+      "frequency": "daily",
+      "email": "dwight.schrute@dundermifflin.com",
+      "phone": "+1-570-555-0345",
+      "shared_activities": [
+        "work",
+        "karaoke",
+        "improv_audience"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "workbuzz",
+        "sprintboard"
+      ],
+      "message_personality": "Alternates between dismissing Dwight and desperately needing his validation. 'Dwight, you're a kiss-ass. But you're MY kiss-ass.' Sends long voice memos about leadership.",
+      "birthday": "1992-01-20",
+      "address": "345 N Washington Ave, Scranton"
+    },
+    {
+      "name": "Jan Levinson",
+      "relationship": "ex_girlfriend",
+      "frequency": "weekly",
+      "email": "jan.levinson@serenitybyjan.com",
+      "phone": "+1-570-555-0401",
+      "shared_activities": [
+        "couples_therapy_aftermath",
+        "wine_arguments"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "tablefind"
+      ],
+      "message_personality": "Tense, passive-aggressive. Michael tries to be breezy and cool. Messages swing between 'Hey Jan, totally over you' and 'Jan please respond.' She sends one-word answers.",
+      "birthday": "1985-08-03"
+    },
+    {
+      "name": "Holly Flax",
+      "relationship": "new_love_interest",
+      "frequency": "daily",
+      "email": "holly.flax@dundermifflin.com",
+      "phone": "+1-570-555-0612",
+      "shared_activities": [
+        "movie_nights",
+        "improv_jokes",
+        "long_phone_calls"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "tablefind",
+        "hoolishop",
+        "cheskepdia"
+      ],
+      "message_personality": "Adorable, giddy, they finish each other's sentences. Michael sends 'That's what she said' jokes and Holly actually laughs. They do bits together over text. Lots of exclamation marks.",
+      "birthday": "1988-12-15",
+      "address": "315 Vine St, Scranton"
+    },
+    {
+      "name": "Ryan Howard",
+      "relationship": "mentee",
+      "frequency": "weekly",
+      "email": "ryan.howard@dundermifflin.com",
+      "phone": "+1-570-555-0456",
+      "shared_activities": [
+        "startup_brainstorming",
+        "social_media_help"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "workbuzz",
+        "lockedin"
+      ],
+      "message_personality": "Michael idolizes Ryan and thinks they're best friends. Ryan responds with minimal effort. Michael sends business ideas at 2am. Ryan leaves him on read for days.",
+      "birthday": "1997-05-19",
+      "address": "91 Lackawanna Ave, Apt 5D, Scranton"
+    },
+    {
+      "name": "Toby Flenderson",
+      "relationship": "hr_representative",
+      "frequency": "daily",
+      "email": "toby.flenderson@dundermifflin.com",
+      "phone": "+1-570-555-0567",
+      "shared_activities": [
+        "mandatory_hr_meetings"
+      ],
+      "apps_present_in": [
+        "workbuzz",
+        "buzzchat"
+      ],
+      "message_personality": "Pure contempt. Michael texts things like 'Why are you the way that you are?' and 'If I had a gun with two bullets and was in a room with Toby, I would shoot Toby twice.' Toby responds professionally.",
+      "birthday": "1978-02-22"
+    },
+    {
+      "name": "Pam Beesly",
+      "relationship": "office_friend",
+      "frequency": "daily",
+      "email": "pam.beesly@dundermifflin.com",
+      "phone": "+1-570-555-0678",
+      "shared_activities": [
+        "office_parties",
+        "reception_chats"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "workbuzz",
+        "tablefind"
+      ],
+      "message_personality": "Michael sees Pam as a daughter figure. Sends encouraging messages like 'Pamela! You are an artist and a warrior!' She kindly manages his feelings.",
+      "birthday": "1994-03-25",
+      "address": "410 Spruce St, Apt 3A, Scranton"
+    },
+    {
+      "name": "Kevin Malone",
+      "relationship": "office_friend",
+      "frequency": "weekly",
+      "email": "kevin.malone@dundermifflin.com",
+      "phone": "+1-570-555-0789",
+      "shared_activities": [
+        "poker_night",
+        "chili_cookoff"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "oddsmarket"
+      ],
+      "message_personality": "Casual banter. Kevin sends food photos. Michael sends back 'That's what she said' at inappropriate moments. They bond over junk food.",
+      "birthday": "1990-06-01"
+    },
+    {
+      "name": "Oscar Martinez",
+      "relationship": "office_friend",
+      "frequency": "weekly",
+      "email": "oscar.martinez@dundermifflin.com",
+      "phone": "+1-570-555-0890",
+      "shared_activities": [
+        "trivia_night",
+        "investment_advice_ignored"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "tablefind"
+      ],
+      "message_personality": "Michael asks Oscar financial questions then ignores the answers. Oscar tries to help but gives up. Michael calls him 'Actually' Oscar.",
+      "birthday": "1990-11-18"
+    },
+    {
+      "name": "Darryl Philbin",
+      "relationship": "friend",
+      "frequency": "weekly",
+      "email": "darryl.philbin@dundermifflin.com",
+      "phone": "+1-570-555-0901",
+      "shared_activities": [
+        "music_jams",
+        "basketball"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "workbuzz"
+      ],
+      "message_personality": "Michael tries too hard to be cool around Darryl. Uses slang incorrectly. 'Darryl! My brotha from anotha motha!' Darryl responds with deadpan corrections.",
+      "birthday": "1987-09-10"
+    },
+    {
+      "name": "Arnav Singh",
+      "relationship": "landlord",
+      "frequency": "monthly",
+      "email": "arnav.singh@gmail.com",
+      "phone": "+1-570-555-0912",
+      "shared_activities": [],
+      "apps_present_in": [
+        "buzzchat"
+      ],
+      "message_personality": "Formal, brief, responds to maintenance requests. Michael occasionally tries to befriend him.",
+      "birthday": "1980-07-04",
+      "address": "1725 Slough Ave, Unit 1, Scranton"
+    },
+    {
+      "name": "Todd Packer",
+      "relationship": "old_buddy",
+      "frequency": "monthly",
+      "email": "todd.packer@gmail.com",
+      "phone": "+1-570-555-0923",
+      "shared_activities": [
+        "drinks",
+        "road_trips"
+      ],
+      "apps_present_in": [
+        "buzzchat"
+      ],
+      "message_personality": "Crude, inappropriate. Michael laughs at his jokes then feels guilty. Packer sends terrible memes. Michael forwards them to Jim who doesn't respond."
+    },
+    {
+      "name": "Emma Scott",
+      "relationship": "sister",
+      "frequency": "weekly",
+      "email": "emma.scott@gmail.com",
+      "phone": "+1-570-555-0890",
+      "shared_activities": [
+        "family"
+      ],
+      "apps_present_in": [
+        "buzzchat",
+        "hoolishop"
+      ],
+      "message_personality": "Caring but exasperated. Sends family updates. Michael sends her inspirational quotes he found online. She gently reminds him to pay bills."
+    }
+  ],
+  "financial": {
+    "checking_balance": 3210,
+    "savings_balance": 890,
+    "credit_limit": 8000,
+    "credit_used": 7340,
+    "monthly_income_net": 8450,
+    "recurring_charges": [
+      {
+        "name": "Rent",
+        "amount": 2800,
+        "payee": "Arnav Singh",
+        "day": 1,
+        "method": "zelle"
+      },
+      {
+        "name": "Worlds Best Boss Mug Subscription (CustomInk Monthly)",
+        "amount": 24.99,
+        "day": 5,
+        "method": "credit_card"
+      },
+      {
+        "name": "Scranton Improv Academy - Level 3",
+        "amount": 189,
+        "day": 3,
+        "method": "credit_card"
+      },
+      {
+        "name": "MasterClass Annual (watched 2 episodes)",
+        "amount": 15.99,
+        "day": 10,
+        "method": "credit_card"
+      },
+      {
+        "name": "Netflix Premium",
+        "amount": 22.99,
+        "day": 12,
+        "method": "credit_card"
+      },
+      {
+        "name": "Hulu (No Ads)",
+        "amount": 17.99,
+        "day": 14,
+        "method": "credit_card"
+      },
+      {
+        "name": "Disney+ Bundle",
+        "amount": 19.99,
+        "day": 16,
+        "method": "credit_card"
+      },
+      {
+        "name": "Peacock Premium",
+        "amount": 13.99,
+        "day": 18,
+        "method": "credit_card"
+      },
+      {
+        "name": "Paramount+ (forgot he signed up)",
+        "amount": 11.99,
+        "day": 20,
+        "method": "credit_card"
+      },
+      {
+        "name": "Magic Monthly Subscription Box",
+        "amount": 34.99,
+        "day": 7,
+        "method": "credit_card"
+      },
+      {
+        "name": "Comcast Internet",
+        "amount": 89.99,
+        "day": 8,
+        "method": "checking"
+      },
+      {
+        "name": "PPL Electric Utilities",
+        "amount": 127.5,
+        "day": 22,
+        "method": "checking"
+      },
+      {
+        "name": "Sandals Vacation Club Membership (active — never cancelled after Jan breakup)",
+        "amount": 49.99,
+        "day": 25,
+        "method": "credit_card"
+      },
+      {
+        "name": "iCloud Storage",
+        "amount": 2.99,
+        "day": 20,
+        "method": "credit_card"
+      }
+    ]
+  },
+  "investments": {
+    "cash_balance": 420,
+    "holdings": [
+      {
+        "ticker": "GME",
+        "shares": 85,
+        "avg_cost": 42,
+        "_note": "Bought during the meme stock hype because 'the little guy deserves to win'"
+      },
+      {
+        "ticker": "SBUX",
+        "shares": 12,
+        "avg_cost": 98,
+        "_note": "Invested because he likes Frappuccinos"
+      },
+      {
+        "ticker": "DIS",
+        "shares": 8,
+        "avg_cost": 112,
+        "_note": "Disney is magic, Michael. Magic."
+      },
+      {
+        "ticker": "VTI",
+        "shares": 5,
+        "avg_cost": 220,
+        "_note": "Oscar told him to buy this. He bought 5 shares."
+      },
+      {
+        "ticker": "RIVN",
+        "shares": 200,
+        "avg_cost": 8.5,
+        "_note": "Saw it on Reddit, thought it was the next Tesla"
+      }
+    ],
+    "order_history": [
+      {
+        "date": "2026-03-15",
+        "action": "buy",
+        "ticker": "GME",
+        "shares": 25,
+        "price": 28,
+        "_note": "Doubled down after Ryan said 'diamond hands'"
+      },
+      {
+        "date": "2026-02-28",
+        "action": "buy",
+        "ticker": "RIVN",
+        "shares": 100,
+        "price": 6.2
+      },
+      {
+        "date": "2026-02-14",
+        "action": "buy",
+        "ticker": "DIS",
+        "shares": 8,
+        "price": 112,
+        "_note": "Valentine's Day impulse buy"
+      },
+      {
+        "date": "2026-01-20",
+        "action": "buy",
+        "ticker": "GME",
+        "shares": 60,
+        "price": 48
+      },
+      {
+        "date": "2025-12-15",
+        "action": "buy",
+        "ticker": "SBUX",
+        "shares": 12,
+        "price": 98
+      }
+    ],
+    "dividends": [
+      {
+        "date": "2026-03-15",
+        "ticker": "VTI",
+        "amount": 3.55
+      },
+      {
+        "date": "2025-12-01",
+        "ticker": "VTI",
+        "amount": 3.35
+      }
+    ]
+  },
+  "prediction_markets": {
+    "balance": 320,
+    "total_invested": 2800,
+    "net_pnl": -1950,
+    "active_positions": [
+      {
+        "market_ticker": "will-office-reboot-yearend",
+        "title": "Will NBC announce an Office reboot/revival by year-end?",
+        "source": "polymarket",
+        "side": "YES",
+        "shares": 500,
+        "avg_price": 0.12,
+        "personal_relevance": "Michael is emotionally invested in this for reasons he cannot explain"
+      },
+      {
+        "market_ticker": "KXSCRRENT-YEAREND",
+        "title": "Scranton median rent below $1500 by year-end",
+        "source": "kalshi",
+        "side": "YES",
+        "shares": 150,
+        "avg_price": 0.25,
+        "personal_relevance": "Pays $2800 rent — desperately needs this to hit (he's overpaying)"
+      },
+      {
+        "market_ticker": "celeb-engaged-live-tv-this-year",
+        "title": "Will a celebrity couple get engaged on live TV this year?",
+        "source": "polymarket",
+        "side": "YES",
+        "shares": 300,
+        "avg_price": 0.15,
+        "personal_relevance": "Michael is deeply invested in celebrity romance. He watches every proposal compilation on YouTube. Holly doesn't know about this bet."
+      },
+      {
+        "market_ticker": "will-gme-100-yearend",
+        "title": "GameStop above $100 by year-end",
+        "source": "polymarket",
+        "side": "YES",
+        "shares": 200,
+        "avg_price": 0.08,
+        "personal_relevance": "Holds 85 shares of GME. This is a copium position."
+      },
+      {
+        "market_ticker": "will-nba-expansion-yearend",
+        "title": "Will the NBA announce expansion to Las Vegas or Seattle by year-end?",
+        "source": "polymarket",
+        "side": "YES",
+        "shares": 200,
+        "avg_price": 0.8,
+        "current_price": 0.78,
+        "rationale": "Michael loves basketball and is convinced Las Vegas will get a team. He watches every NBA draft lottery hoping for expansion news."
+      }
+    ],
+    "watchlist": [
+      "Will an office supply company IPO this year?",
+      "Will paper usage increase this year?",
+      "Warriors make NBA playoffs this season?",
+      "Will a new entertainment category be added to the next Olympics?"
+    ]
+  },
+  "routines": {
+    "commute": {
+      "from": "1725 Slough Ave, Apt 4B",
+      "to": "Dunder Mifflin, 1725 Slough Ave",
+      "mode": "etaxi",
+      "days": [
+        "mon",
+        "tue",
+        "thu"
+      ],
+      "wfh_days": [
+        "wed",
+        "fri"
+      ],
+      "typical_departure": "9:15am",
+      "backup_mode": "etaxi",
+      "_note": "Michael is always slightly late. He claims traffic but he was watching YouTube."
+    },
+    "exercise": {
+      "type": "charity_5k",
+      "days": [],
+      "time": "never",
+      "registered_event": "Michael Scott's Dunder Mifflin Scranton Memorial Celebrity Rabies Awareness Pro-Am Fun Run Race for the Cure, May 2026",
+      "training_status": "Has not trained. Bought running shoes 3 months ago. Wore them to Chili's. Ate an entire plate of fettuccine alfredo before the last fun run and vomited on the course. He considers this 'carb loading gone wrong' rather than 'poor decision-making.'",
+      "buddies": [],
+      "goal": "Finish without an ambulance this time"
+    },
+    "meals": {
+      "breakfast": {
+        "typical": "Two Splenda packets stirred into a cup of cream, plus a donut from the break room",
+        "where": "office"
+      },
+      "lunch": {
+        "typical_restaurant": "Chili's Grill & Bar",
+        "typical_order": "Awesome Blossom + Baby Back Ribs",
+        "frequency": "3x/week",
+        "alternatives": [
+          "Cooper's Seafood House",
+          "Alfredo's Pizza Cafe",
+          "Coney Island Texas Weiners"
+        ]
+      },
+      "dinner": {
+        "cooking_days": [],
+        "ordering_days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri",
+          "sat",
+          "sun"
+        ],
+        "_note": "Michael does not cook. He has a George Foreman grill that he keeps next to his bed for making bacon when he wakes up. He once stepped on it and burned his foot badly enough to need crutches. He then grilled his foot on the grill. He bought a replacement grill the same week."
+      }
+    },
+    "improv_class": {
+      "day": "thursday",
+      "time": "7:30pm",
+      "location": "Scranton Improv Workshop, Downtown",
+      "duration": "2 hours",
+      "description": "Michael attends improv class every Thursday night. Performs characters for no one.",
+      "characters_performed": [
+        "Prison Mike — 'The worst thing about prison was the Dementors'",
+        "Date Mike — 'Nice to meet me. How do you like your eggs in the morning?'",
+        "Caleb Crawdad — Southern lawyer who objects to everything. 'I do declare!'",
+        "Michael Scarn — Secret agent from 'Threat Level Midnight'. Catches Goldenface.",
+        "Blind Guy McSqueezy — HR has asked him to retire this one. Twice.",
+        "Michael Klump — 'I eat because I'm unhappy, and I'm unhappy because I eat'",
+        "Agent Michael Scarn — Does a dramatic spin move that knocks over a mic stand every time"
+      ],
+      "class_standing": "Instructor says Michael 'has energy' which is the nicest thing she can say",
+      "audience": "3-8 other students who laugh politely",
+      "post_class_ritual": "Goes to Chili's alone and rehearses scenes in the booth",
+      "calendar_event": true
+    }
+  },
+  "trips": [
+    {
+      "destination": "New York City",
+      "dates": [
+        "2026-04-17",
+        "2026-04-20"
+      ],
+      "purpose": "UCB Improv Workshop Weekend Intensive",
+      "flight": {
+        "airline": "Dinoco",
+        "number": "DN6769",
+        "from": "AVP",
+        "to": "JFK",
+        "departure": "7:30am",
+        "seat": "12A",
+        "gate": "E13",
+        "confirmation": "DN-87856"
+      },
+      "hotel": {
+        "name": "The Greenwich Hotel",
+        "nightly_rate": 485,
+        "confirmation": "GH-29481"
+      },
+      "generates": {
+        "vaultbank_charge": [
+          1455,
+          "The Greenwich Hotel"
+        ],
+        "vaultbank_charge_flight": [
+          387,
+          "Dinoco Airlines"
+        ],
+        "email_confirmation": true,
+        "calendar_event": true,
+        "buzzchat_mention": {
+          "contact": "Holly Flax",
+          "context": "told Holly about the improv workshop, she wants to join next time"
+        },
+        "browser_history": [
+          "UCB improv intensive NYC april",
+          "how to do improv better",
+          "greenwich hotel reviews",
+          "best comedy clubs NYC"
+        ],
+        "etaxi_to_airport": {
+          "date": "2026-04-17",
+          "from": "Home",
+          "to": "AVP",
+          "cost": 42
+        }
+      }
+    },
+    {
+      "destination": "Sandals Montego Bay, Jamaica",
+      "dates": [
+        "2026-05-16",
+        "2026-05-23"
+      ],
+      "purpose": "vacation (originally booked with Jan, going solo now)",
+      "flight": {
+        "airline": "Dinoco",
+        "number": "DN1562",
+        "from": "AVP",
+        "to": "MBJ",
+        "departure": "6:00am",
+        "seat": "22C",
+        "confirmation": "DN-83823"
+      },
+      "hotel": {
+        "name": "Sandals Montego Bay",
+        "nightly_rate": 395,
+        "confirmation": "SM-88431",
+        "cancellation_deadline": "2026-05-09"
+      },
+      "generates": {
+        "vaultbank_charge": [
+          1975,
+          "Sandals Resorts"
+        ],
+        "vaultbank_charge_flight": [
+          512,
+          "Dinoco Airlines"
+        ],
+        "email_confirmation": true,
+        "calendar_event": true,
+        "buzzchat_mention": {
+          "contact": "Jim Halpert",
+          "context": "Michael asked Jim to come to Jamaica. Jim said no. Michael asked again."
+        },
+        "browser_history": [
+          "sandals jamaica solo traveler",
+          "is it weird to go to sandals alone",
+          "jamaica things to do alone",
+          "how to make friends at a resort",
+          "can you cancel sandals last minute"
+        ],
+        "hoolishop_order": {
+          "item": "Hawaiian shirt 3-pack",
+          "price": 34.99
+        }
+      },
+      "_ambiguity_note": "Trip was originally booked as a couples trip with Jan. They broke up. Michael kept the reservation. Browser history shows him searching both 'cancel sandals' and 'sandals solo trip review'."
+    },
+    {
+      "destination": "Sandals Royal Barbados",
+      "dates": [
+        "2026-04-04",
+        "2026-04-11"
+      ],
+      "purpose": "vacation with Holly (if she says yes)",
+      "flight": {
+        "airline": "Dinoco",
+        "number": "DN3163",
+        "from": "AVP",
+        "to": "BGI",
+        "departure": "9:00am",
+        "seat": "15A",
+        "confirmation": "DN-78558"
+      },
+      "hotel": {
+        "name": "Sandals Royal Barbados",
+        "nightly_rate": 450,
+        "confirmation": "SRB-33182",
+        "cancellation_deadline": "2026-06-01"
+      },
+      "generates": {
+        "vaultbank_charge": [
+          2250,
+          "Sandals Resorts"
+        ],
+        "email_confirmation": true,
+        "calendar_event": true,
+        "buzzchat_mention": {
+          "contact": "Holly Flax",
+          "context": "Has NOT actually told Holly about this trip yet. Booked it 'just in case'."
+        },
+        "browser_history": [
+          "sandals barbados romantic",
+          "best way to ask someone on vacation",
+          "is barbados better than jamaica",
+          "how early is too early to plan a couples trip"
+        ]
+      },
+      "_ambiguity_note": "Michael booked a Sandals trip for two people before actually asking Holly to go. This is a classic Michael move."
+    },
+    {
+      "destination": "Philadelphia, PA",
+      "dates": [
+        "2026-03-08",
+        "2026-03-09"
+      ],
+      "purpose": "weekend road trip with Holly, comedy show",
+      "flight": null,
+      "hotel": {
+        "name": "Radisson Blu Warwick Hotel",
+        "nightly_rate": 129,
+        "confirmation": "RB-11283"
+      },
+      "generates": {
+        "vaultbank_charge": [
+          129,
+          "Radisson Hotels"
+        ],
+        "vaultbank_charge_flight": null,
+        "browser_history": [
+          "philadelphia things to do weekend",
+          "comedy clubs philly",
+          "philly cheesesteak best",
+          "drive scranton to philly time"
+        ]
+      }
+    }
+  ],
+  "work": {
+    "projects": [
+      {
+        "name": "Team Morale Initiative Q2",
+        "status": "in_progress",
+        "collaborators": [
+          "Jim Halpert",
+          "Pam Beesly"
+        ],
+        "deadline": "2026-05-01",
+        "sprintboard_tasks": [
+          {
+            "title": "Plan Dundies Awards Ceremony 2026",
+            "assignee": "Michael",
+            "status": "in_progress",
+            "due": "2026-04-15"
+          },
+          {
+            "title": "Order custom trophies from HooliShop",
+            "assignee": "Michael",
+            "status": "todo",
+            "due": "2026-04-20"
+          },
+          {
+            "title": "Create PowerPoint of employee superlatives",
+            "assignee": "Pam",
+            "status": "todo",
+            "due": "2026-04-25"
+          },
+          {
+            "title": "Book Chili's Scranton for Dundies venue (they said no last time)",
+            "assignee": "Michael",
+            "status": "blocked",
+            "due": "2026-04-10"
+          },
+          {
+            "title": "Write opening monologue and song parodies",
+            "assignee": "Michael",
+            "status": "in_progress",
+            "due": "2026-04-12"
+          },
+          {
+            "title": "Confirm Dundies playlist with Darryl",
+            "assignee": null,
+            "status": "todo",
+            "due": "2026-04-18"
+          },
+          {
+            "title": "Draft morale pulse survey questions",
+            "assignee": null,
+            "status": "todo",
+            "due": "2026-04-22"
+          },
+          {
+            "title": "Reserve karaoke machine rental for Dundies",
+            "assignee": null,
+            "status": "todo",
+            "due": "2026-04-19"
+          },
+          {
+            "title": "Proof read Dundies emcee cue cards",
+            "assignee": null,
+            "status": "done",
+            "due": "2026-04-05"
+          }
+        ],
+        "documents": [
+          "~/Documents/Dundies_2026_Script_FINAL_v7_REAL_FINAL.docx"
+        ],
+        "browser_history": [
+          "funny boss awards ideas",
+          "how to roast employees lovingly",
+          "chilis event reservation scranton",
+          "custom trophy engraving rush order"
+        ]
+      },
+      {
+        "name": "Diversity Day Planning 2026",
+        "status": "in_progress",
+        "collaborators": [
+          "Toby Flenderson"
+        ],
+        "deadline": "2026-04-30",
+        "sprintboard_tasks": [
+          {
+            "title": "Draft diversity day agenda (HR rejected first 3 drafts)",
+            "assignee": "Michael",
+            "status": "in_progress",
+            "due": "2026-04-10",
+            "estimate": 5
+          },
+          {
+            "title": "Review Michael's materials for HR compliance",
+            "assignee": "Toby",
+            "status": "blocked",
+            "due": "2026-04-12",
+            "estimate": 3
+          },
+          {
+            "title": "Order snacks representing 'every culture' (Michael's words)",
+            "assignee": "Michael",
+            "status": "todo",
+            "due": "2026-04-20",
+            "estimate": 2
+          },
+          {
+            "title": "Book training room A for diversity day session",
+            "assignee": "Michael",
+            "status": "todo",
+            "due": "2026-04-18",
+            "estimate": 1
+          },
+          {
+            "title": "Send invite to all branch employees + HR rep",
+            "assignee": "Michael",
+            "status": "todo",
+            "due": "2026-04-15",
+            "estimate": 2
+          },
+          {
+            "title": "Print color-coded country flag handouts (one per cuisine)",
+            "assignee": "Michael",
+            "status": "todo",
+            "due": "2026-04-22",
+            "estimate": 3
+          },
+          {
+            "title": "Run HangryDash multi-cuisine catering quote (8+ cuisines)",
+            "assignee": "Michael",
+            "status": "todo",
+            "due": "2026-04-19",
+            "estimate": 5
+          },
+          {
+            "title": "Draft post-event survey (lessons learned, what to keep, what to cut)",
+            "assignee": "Toby",
+            "status": "todo",
+            "due": "2026-04-28",
+            "estimate": 2
+          }
+        ],
+        "documents": [
+          "~/Documents/Diversity_Day_Agenda_v4_HR_APPROVED_MAYBE.docx"
+        ],
+        "browser_history": [
+          "diversity training ideas fun",
+          "diversity day activities office",
+          "how to talk about race at work without getting in trouble",
+          "chris rock stand up diversity"
+        ]
+      },
+      {
+        "name": "Movie Monday Program",
+        "status": "in_progress",
+        "collaborators": [
+          "Jim Halpert",
+          "Kevin Malone"
+        ],
+        "deadline": "2026-06-01",
+        "sprintboard_tasks": [
+          {
+            "title": "Compile movie schedule through Q2 (all Michael Scarn films rejected by Jim)",
+            "assignee": "Michael",
+            "status": "in_progress",
+            "due": "2026-04-15"
+          },
+          {
+            "title": "Set up projector in conference room B",
+            "assignee": "Kevin",
+            "status": "done",
+            "due": "2026-04-01"
+          },
+          {
+            "title": "Get Toby to approve movies during work hours (he won't)",
+            "assignee": "Michael",
+            "status": "blocked",
+            "due": "2026-04-08"
+          },
+          {
+            "title": "Write 'Threat Level Midnight 2' screenplay",
+            "assignee": "Michael",
+            "status": "in_progress",
+            "due": "2026-12-31"
+          }
+        ],
+        "documents": [
+          "~/Documents/Movie_Monday_Schedule.xlsx",
+          "~/Documents/Threat_Level_Midnight_2_Script.docx"
+        ],
+        "browser_history": [
+          "best movies about bosses",
+          "michael scarn fan page",
+          "how to write a screenplay",
+          "is it legal to show movies at work"
+        ]
+      }
+    ]
+  },
+  "tax_info": {
+    "tax_year": 2025,
+    "w2": {
+      "employer": "Dunder Mifflin",
+      "gross_wages": 142000,
+      "federal_withheld": 28400,
+      "state_withheld": 9940,
+      "pretax_401k": 6000,
+      "pretax_health": 2400,
+      "net_deposits_to_bank": 95260,
+      "state": "PA"
+    },
+    "freelance_1099": [
+      {
+        "payer": "Scranton Improv Academy",
+        "amount": 1200,
+        "paid_via": "venmo",
+        "sprintboard_project": null,
+        "_note": "Michael claims he was a 'guest instructor'. He attended one class and gave unsolicited feedback."
+      }
+    ],
+    "deductions": {
+      "home_office_wfh_days": 104,
+      "business_trips": [
+        "nyc_improv_workshop"
+      ],
+      "personal_trips": [
+        "jamaica_sandals",
+        "barbados_sandals",
+        "philly_weekend"
+      ],
+      "charitable": [
+        {
+          "org": "Michael Scott's Dunder Mifflin Scranton Memorial Celebrity Rabies Awareness Pro-Am Fun Run Race for the Cure",
+          "amount": 500,
+          "receipt_exists": false,
+          "source": "vaultbank_only",
+          "_note": "Donated to his own charity event"
+        },
+        {
+          "org": "Scranton Rescue Mission",
+          "amount": 50,
+          "receipt_exists": false,
+          "source": "vaultbank_only"
+        },
+        {
+          "org": "Toys for Tots (bought himself a toy too)",
+          "amount": 75,
+          "receipt_exists": true
+        }
+      ],
+      "questionable_deductions": [
+        {
+          "claimed_as": "Business dinner - client entertainment",
+          "actual": "Date with Jan at Benihana",
+          "amount": 187,
+          "receipt_exists": true
+        },
+        {
+          "claimed_as": "Professional development materials",
+          "actual": "Improv comedy DVDs from HooliShop",
+          "amount": 89,
+          "receipt_exists": true
+        },
+        {
+          "claimed_as": "Office supplies - motivational materials",
+          "actual": "World's Best Boss mug subscription",
+          "amount": 299.88,
+          "receipt_exists": true
+        }
+      ]
+    },
+    "state_code": "PA"
+  },
+  "planted_contradictions": [
+    {
+      "id": "salary_negotiation_vs_deposits",
+      "type": "financial_discrepancy",
+      "description": "Michael told everyone on HooliChat he negotiated a raise to $160K. His W-2 shows $142K. Gringotts deposits match the $142K after deductions ($95,260). He either lied about the raise or hasn't received it yet.",
+      "apps": [
+        "buzzchat",
+        "vaultbank",
+        "email_w2_pdf"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "benihana_business_dinner",
+      "type": "expense_fraud",
+      "description": "Michael claimed a $187 Benihana dinner as a 'business dinner with client' in his tax deductions. HooliChat messages show he invited Jan ('our anniversary dinner!'). Calendar event says 'Date Night - Benihana'. Gringotts shows charge to 'Benihana Wilkes-Barre'.",
+      "apps": [
+        "vaultbank",
+        "buzzchat",
+        "calendar",
+        "speedtax"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "id": "subscription_graveyard",
+      "type": "duplicate_charge",
+      "description": "Michael has 5 streaming services (Netflix, Hulu, Disney+, Peacock, Paramount+). He told Jim on HooliChat he 'only has Netflix'. Gringotts shows charges for all five every month. He forgot he signed up for the others.",
+      "apps": [
+        "buzzchat",
+        "vaultbank"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": "w2_vs_deposits",
+      "type": "financial_discrepancy",
+      "description": "W-2 gross wages $142,000 but sum of paycheck deposits in Gringotts = $95,260. Difference is pretax deductions (401k + health insurance). Agent should reconcile, not flag as error.",
+      "apps": [
+        "email_w2_pdf",
+        "vaultbank"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "id": "jamaica_trip_purpose",
+      "type": "ambiguous_intent",
+      "description": "Sandals Jamaica trip was booked as couples trip with Jan (email confirmation shows two guests). Jan broke up with him. Browser history shows searches for both 'cancel sandals trip' and 'sandals solo trip review' on the same day. He kept the booking.",
+      "apps": [
+        "email",
+        "browser",
+        "cheskepdia",
+        "vaultbank"
+      ],
+      "difficulty": "medium"
+    }
+  ],
+  "planted_dependencies": [
+    {
+      "id": "improv_class_cascade",
+      "trigger": "Cancel Scranton Improv Academy enrollment",
+      "affected": [
+        {
+          "app": "vaultbank",
+          "item": "Monthly $189 charge",
+          "consequence": "Stop recurring charge"
+        },
+        {
+          "app": "buzzchat",
+          "item": "Improv group chat with classmates",
+          "consequence": "Leave group or explain departure"
+        },
+        {
+          "app": "calendar",
+          "item": "Wednesday 7pm improv class",
+          "consequence": "Remove recurring event"
+        },
+        {
+          "app": "oddsmarket",
+          "item": "N/A",
+          "consequence": "Michael's social life takes a hit, affecting his 'will I find love' bet odds"
+        }
+      ]
+    },
+    {
+      "id": "jamaica_trip_cascade",
+      "trigger": "Cancel Sandals Jamaica trip",
+      "affected": [
+        {
+          "app": "dinoco-airlines",
+          "item": "DN1562 flight",
+          "consequence": "Check refund policy"
+        },
+        {
+          "app": "cheskepdia",
+          "item": "Sandals Montego Bay reservation",
+          "consequence": "Cancel before April 15 deadline"
+        },
+        {
+          "app": "calendar",
+          "item": "Jamaica trip block",
+          "consequence": "Remove event"
+        },
+        {
+          "app": "buzzchat",
+          "item": "Told Jim about trip",
+          "consequence": "Message Jim (he'll be relieved)"
+        },
+        {
+          "app": "hoolishop",
+          "item": "Hawaiian shirt 3-pack order",
+          "consequence": "Return if not shipped"
+        },
+        {
+          "app": "vaultbank",
+          "item": "Sandals hold charge",
+          "consequence": "Will be reversed"
+        }
+      ]
+    }
+  ],
+  "browsing_patterns": {
+    "research_threads": [
+      {
+        "topic": "How to be the world's best boss",
+        "timespan": [
+          "2026-02-01",
+          "2026-03-28"
+        ],
+        "searches": [
+          "how to be a great boss",
+          "world's best boss mug buy",
+          "ted talk leadership funny",
+          "michael jordan leadership quotes",
+          "wayne gretzky quotes you miss 100%",
+          "how to give a toast at work",
+          "boss of the year award nomination"
+        ],
+        "sites": [
+          {
+            "domain": "amazon.com",
+            "pages": 12,
+            "repeat_product": "/worlds-best-boss-mug"
+          },
+          {
+            "domain": "youtube.com",
+            "pages": 20
+          },
+          {
+            "domain": "ted.com",
+            "pages": 4
+          }
+        ],
+        "cross_refs": {
+          "hoolishop": "World's Best Boss mug subscription",
+          "buzzchat": "shared Wayne Gretzky quote with Jim"
+        }
+      },
+      {
+        "topic": "Improv and comedy career",
+        "timespan": [
+          "2026-02-15",
+          "2026-03-25"
+        ],
+        "searches": [
+          "UCB improv workshop NYC",
+          "how to get on SNL",
+          "steve carell improv tips",
+          "open mic night scranton",
+          "is 46 too old to start comedy",
+          "improv games for the office"
+        ],
+        "sites": [
+          {
+            "domain": "ucbcomedy.com",
+            "pages": 15
+          },
+          {
+            "domain": "youtube.com",
+            "pages": 25
+          },
+          {
+            "domain": "reddit.com/r/improv",
+            "pages": 8
+          }
+        ],
+        "cross_refs": {
+          "dinoco-airlines": "NYC flight for improv workshop",
+          "cheskepdia": "Greenwich Hotel booking"
+        }
+      },
+      {
+        "topic": "Winning Holly back / dating advice",
+        "timespan": [
+          "2026-03-01",
+          "2026-03-30"
+        ],
+        "searches": [
+          "how to ask someone out long distance",
+          "romantic trip ideas for new relationship",
+          "sandals resort for couples",
+          "is it too soon to say I love you",
+          "how to know if she likes you back",
+          "best romantic comedies to learn from",
+          "holly flax linkedin"
+        ],
+        "sites": [
+          {
+            "domain": "sandals.com",
+            "pages": 18
+          },
+          {
+            "domain": "reddit.com/r/dating_advice",
+            "pages": 12
+          },
+          {
+            "domain": "tripadvisor.com",
+            "pages": 6
+          }
+        ],
+        "cross_refs": {
+          "buzzchat": "messages to Holly (giddy)",
+          "cheskepdia": "Sandals Barbados booking (hasn't told Holly)"
+        }
+      },
+      {
+        "topic": "Michael googling himself",
+        "timespan": [
+          "2026-01-01",
+          "2026-03-30"
+        ],
+        "searches": [
+          "michael scott scranton",
+          "michael scott dunder mifflin",
+          "michael scott linkedin",
+          "michael scott improv review",
+          "michael scott fun run results",
+          "is michael scott a good name for a movie character"
+        ],
+        "sites": [
+          {
+            "domain": "google.com",
+            "pages": 30
+          },
+          {
+            "domain": "linkedin.com",
+            "pages": 5
+          }
+        ],
+        "cross_refs": {
+          "lockedin": "Updated profile photo 4 times this month"
+        }
+      },
+      {
+        "topic": "Tax preparation (panicking)",
+        "timespan": [
+          "2026-03-20",
+          "2026-03-28"
+        ],
+        "searches": [
+          "can I deduct dinner dates as business expense",
+          "how to claim entertainment deductions",
+          "is improv class tax deductible",
+          "what happens if you owe taxes",
+          "irs audit how scared should I be",
+          "charitable donation receipt needed",
+          "turbotax vs hiring accountant"
+        ],
+        "sites": [
+          {
+            "domain": "irs.gov",
+            "pages": 2
+          },
+          {
+            "domain": "turbotax.intuit.com",
+            "pages": 8
+          },
+          {
+            "domain": "reddit.com/r/tax",
+            "pages": 6
+          }
+        ],
+        "cross_refs": {
+          "speedtax": "tax return in progress",
+          "vaultbank": "checking balance dangerously low"
+        }
+      },
+      {
+        "topic": "Threat Level Midnight screenplay",
+        "timespan": [
+          "2026-03-01",
+          "2026-03-25"
+        ],
+        "searches": [
+          "how to write action movie screenplay",
+          "screenplay format template free",
+          "michael scarn character development",
+          "spy movie one-liners",
+          "how to get a movie made independently",
+          "film festivals accepting screenplays"
+        ],
+        "sites": [
+          {
+            "domain": "writersstore.com",
+            "pages": 3
+          },
+          {
+            "domain": "youtube.com",
+            "pages": 15
+          },
+          {
+            "domain": "reddit.com/r/screenwriting",
+            "pages": 8
+          }
+        ],
+        "cross_refs": {
+          "sprintboard": "Threat Level Midnight 2 screenplay task"
+        }
+      }
+    ],
+    "routine_browsing": [
+      {
+        "pattern": "weekday",
+        "time": "9:30am",
+        "sites": [
+          "youtube.com",
+          "reddit.com/r/funny"
+        ]
+      },
+      {
+        "pattern": "weekday",
+        "time": "11:00am",
+        "sites": [
+          "imdb.com",
+          "rottentomatoes.com"
+        ]
+      },
+      {
+        "pattern": "weekday",
+        "time": "12:15pm",
+        "sites": [
+          "chilis.com/menu",
+          "yelp.com"
+        ]
+      },
+      {
+        "pattern": "weekday",
+        "time": "2:00pm",
+        "sites": [
+          "youtube.com",
+          "tiktok.com"
+        ]
+      },
+      {
+        "pattern": "weekday",
+        "time": "4:00pm",
+        "sites": [
+          "sandals.com",
+          "linkedin.com"
+        ]
+      },
+      {
+        "pattern": "weekend",
+        "time": "10:00am",
+        "sites": [
+          "youtube.com",
+          "netflix.com"
+        ]
+      },
+      {
+        "pattern": "weekend",
+        "time": "8:00pm",
+        "sites": [
+          "imdb.com",
+          "reddit.com/r/movies",
+          "sandals.com"
+        ]
+      }
+    ],
+    "humor_searches": [
+      {
+        "url": "https://www.google.com/search?q=how+to+declare+bankruptcy+legally",
+        "title": "how to declare bankruptcy legally",
+        "visits": 8,
+        "last_visit": "2026-03-14"
+      },
+      {
+        "url": "https://www.google.com/search?q=is+it+a+good+idea+to+date+your+boss",
+        "title": "is it a good idea to date your boss",
+        "visits": 5,
+        "last_visit": "2026-03-18"
+      },
+      {
+        "url": "https://www.google.com/search?q=improv+classes+near+me",
+        "title": "improv classes near me",
+        "visits": 11,
+        "last_visit": "2026-03-22"
+      },
+      {
+        "url": "https://www.google.com/search?q=worlds+best+boss+mug+amazon",
+        "title": "worlds best boss mug amazon",
+        "visits": 15,
+        "last_visit": "2026-03-25"
+      }
+    ]
+  },
+  "shopping": {
+    "online_orders": [
+      {
+        "item": "World's Best Boss Mug (Set of 3)",
+        "price": 24.99,
+        "category": "Office",
+        "note": "Buys in bulk because they keep 'disappearing'"
+      },
+      {
+        "item": "Somehow I Manage - Custom Book Binding Kit",
+        "price": 89.99,
+        "category": "Books",
+        "note": "Self-publishing his autobiography"
+      },
+      {
+        "item": "Tube Man Inflatable Dancer 20ft",
+        "price": 149.99,
+        "category": "Party Supplies",
+        "note": "For the office parking lot"
+      },
+      {
+        "item": "LCD Projector for Movie Mondays",
+        "price": 299.99,
+        "category": "Electronics",
+        "note": "Tax writeoff attempt"
+      },
+      {
+        "item": "George Foreman Grill",
+        "price": 34.99,
+        "category": "Kitchen",
+        "note": "For making bacon in bed"
+      },
+      {
+        "item": "Steve Carell Autograph (unverified)",
+        "price": 175.0,
+        "category": "Collectibles",
+        "note": "Purchased from suspiciously cheap eBay listing"
+      },
+      {
+        "item": "Leather-Bound 'Art of War' (Annotated)",
+        "price": 42.0,
+        "category": "Books",
+        "note": "Highlight: 'Appear weak when you are strong' - Michael wrote 'That's what she said' in margin"
+      },
+      {
+        "item": "Improv 201 Workshop Registration",
+        "price": 350.0,
+        "category": "Education",
+        "note": "Scranton Improv Academy"
+      },
+      {
+        "item": "World's Best Boss Ceramic Mug (2-pack)",
+        "price": 14.99,
+        "category": "Office",
+        "date_relative_days": 8
+      },
+      {
+        "item": "Somehow I Manage: Leadership Book (self-published)",
+        "price": 22.99,
+        "category": "Books",
+        "date_relative_days": 15
+      },
+      {
+        "item": "Inflatable Tube Man 20ft - Red",
+        "price": 189.99,
+        "category": "Outdoor",
+        "date_relative_days": 22
+      },
+      {
+        "item": "Improv for Dummies",
+        "price": 18.99,
+        "category": "Books",
+        "date_relative_days": 30
+      },
+      {
+        "item": "Sandals Resort Gift Card $500",
+        "price": 500.0,
+        "category": "Gift Cards",
+        "date_relative_days": 5
+      },
+      {
+        "item": "George Foreman Grill (bedroom edition)",
+        "price": 34.99,
+        "category": "Kitchen",
+        "date_relative_days": 45
+      },
+      {
+        "item": "Fun Run Planning Kit - Rabies Awareness",
+        "price": 29.99,
+        "category": "Party Supplies",
+        "date_relative_days": 12
+      },
+      {
+        "item": "Faux Leather Briefcase with Custom Nameplate",
+        "price": 79.99,
+        "category": "Office",
+        "date_relative_days": 38
+      }
+    ],
+    "wishlist": [
+      {
+        "item": "Plasma Screen TV 65 inch",
+        "price": 1299.99,
+        "note": "For the office, definitely not for personal use"
+      },
+      {
+        "item": "Matching His-and-Hers Sandals Resort Robes",
+        "price": 189.99
+      },
+      {
+        "item": "Plasma Screen TV (for bedroom wall mount)",
+        "price": 899.99
+      },
+      {
+        "item": "Steve Carell: A Biography",
+        "price": 24.99
+      },
+      {
+        "item": "Bose Speakers for Karaoke System",
+        "price": 349.99
+      }
+    ]
+  },
+  "app_overrides": {
+    "hoolishop": {
+      "subscribe_save": [
+        {
+          "item": "World's Best Boss Mug",
+          "frequency": "monthly",
+          "price": 9.99,
+          "note": "He genuinely subscribes monthly"
+        },
+        {
+          "item": "Hair Gel - Extra Hold",
+          "price": 12.99,
+          "frequency": "monthly"
+        }
+      ]
+    },
+    "lockedin": {
+      "headline": "World's Best Boss | Regional Manager | Improv Comedian | Author of 'Somehow I Manage'",
+      "about": "I am a friend first, a boss second, and probably an entertainer third. Creator of 'Threat Level Midnight' (feature film, runtime: 3 hours 22 minutes, currently in post-production for 11 years). Author of 'Somehow I Manage' — the definitive guide to management, available wherever books are sold (they are not sold anywhere). I once organized Michael Scott's Dunder Mifflin Scranton Memorial Celebrity Rabies Awareness Pro-Am Fun Run Race for the Cure, which raised $700 for science after accounting for the hospital bills. 'You miss 100% of the shots you don't take. - Wayne Gretzky' - Michael Scott. Open to: film producing, improv teaching, motivational speaking, or any opportunity to make people laugh and/or cry."
+    },
+    "batbucks": {
+      "watchlist_note": "Bought GME because 'stonks only go up' — Kevin told him"
+    },
+    "speedtax": {
+      "deduction_notes": "Attempted to enter George Foreman Grill under medical equipment -- TurboTax flagged it. Actual medical deduction is $0."
+    },
+    "buzzchat": {
+      "message_personality_note": "Deploys 'That's what she said' 5-10x daily. Will shoehorn it into any conversation regardless of context. HR has given up filing complaints.",
+      "alter_egos": [
+        "Prison Mike",
+        "Date Mike",
+        "Caleb Crawdad"
+      ]
+    },
+    "etaxi": {
+      "preferred_car_type": "XL",
+      "car_type_reason": "Always requests XL for 'business meetings' — the meeting is just him",
+      "music_preference": "Requests driver play 'Goodbye Stranger' by Supertramp every ride",
+      "conversation_preference": "extremely_chatty",
+      "conversation_note": "Tells every driver his entire life story within 5 minutes. Asks for their number afterward.",
+      "rating_pattern": "5 stars if driver laughs at his jokes, 1 star if they don't",
+      "typical_tip_pct": 25,
+      "tip_note": "Tips big to seem generous, then checks balance nervously"
+    },
+    "hangrydash": {
+      "ordering_style": "Orders for entire office claiming it's a 'business lunch' — nobody asked him to",
+      "always_gets_dessert": true,
+      "dessert_note": "Cannot resist the dessert menu. Will order tiramisu even from a taco place.",
+      "favorite_restaurants": [
+        {
+          "name": "Chili's Grill & Bar",
+          "order": "Awesome Blossom + Baby Back Ribs + Presidente Margarita",
+          "frequency": "3x/week"
+        },
+        {
+          "name": "The Cheesecake Factory",
+          "order": "Whatever has the most cheese + 2 slices of cheesecake",
+          "frequency": "weekly"
+        },
+        {
+          "name": "Benihana",
+          "order": "Hibachi chicken — asks for extra theatrics",
+          "frequency": "monthly"
+        }
+      ],
+      "group_ordering_note": "Adds items 'for the office' to his personal order and expenses it. Accounting has flagged this 14 times.",
+      "tip_behavior": "Tips 30% when expensing, 10% when paying himself"
+    },
+    "tablefind": {
+      "party_size_habit": "Books tables for 15+ even when it's just a date",
+      "party_size_note": "Tells hostess it's a 'business dinner for my executive team' — it's just him and Holly",
+      "seating_preference": "Requests 'the best table in the house' every single time",
+      "reservation_name": "Scott, party of fabulous",
+      "no_show_rate": "30% — books aspirationally",
+      "favorite_occasion": "Makes up anniversaries to celebrate ('Happy 3-month-aversary of our first high five, Holly!')"
+    },
+    "dinoco-airlines": {
+      "seat_preference": "aisle — needs to walk around and make friends",
+      "upgrade_attempts": "every_flight",
+      "upgrade_note": "Always tries to sweet-talk his way into first class. Has succeeded exactly once (they felt sorry for him).",
+      "in_flight_behavior": "Makes friends with flight attendants. Knows them by name. Claps when the plane lands.",
+      "claps_on_landing": true,
+      "carry_on_note": "Brings a boombox for 'the vibes.' TSA has confiscated it twice.",
+      "travel_buddy_preference": "Anyone who will listen to his movie quotes for 4 hours"
+    },
+    "cheskepdia": {
+      "booking_style": "Books 'party houses' for 1 person. Capacity 12+, hot tub required.",
+      "party_house_for_one": true,
+      "review_style": "Leaves glowing 5-star reviews with life stories. 'This house changed me. I arrived as a regional manager and left as a friend.'",
+      "amenity_requirements": [
+        "hot_tub",
+        "surround_sound",
+        "bbq_grill",
+        "pool_table"
+      ],
+      "check_in_note": "Arrives 2 hours early. Texts host repeatedly asking if he can come in yet."
+    },
+    "oddsmarket": {
+      "betting_style": "Bets on things he saw in movies. Thinks 'The Big Short' was an instruction manual.",
+      "strategy": "movie_inspired",
+      "bet_size": "medium_impulsive",
+      "favorite_markets": [
+        "sports",
+        "celebrity_events",
+        "office_pools"
+      ],
+      "note": "Once bet on a horse named 'Michael' purely because of the name. It came in last."
+    },
+    "sprintboard": {
+      "work_style": "Creates tasks for 'team morale' activities that are not real work",
+      "task_types": [
+        "Plan Office Olympics",
+        "Organize Dundies",
+        "Write screenplay (Episode 1)",
+        "Team building: improv workshop",
+        "Research: World's Best Boss award nominations"
+      ],
+      "priority_setting": "all_tasks_critical",
+      "note": "Has more 'morale tasks' than actual work tasks. Ratio is approximately 4:1.",
+      "standup_behavior": "Turns standup into a 30-minute monologue about his weekend"
+    },
+    "vaultbank": {
+      "financial_behavior": "Overdraft protection constantly triggered",
+      "overdraft_frequency": "2-3x/month",
+      "recurring_purchases": [
+        {
+          "item": "World's Best Boss mug",
+          "frequency": "monthly",
+          "amount": 9.99
+        },
+        {
+          "item": "Chili's Grill & Bar",
+          "frequency": "3x/week",
+          "avg_amount": 35.0
+        },
+        {
+          "item": "Improv class tuition",
+          "frequency": "monthly",
+          "amount": 150.0
+        }
+      ],
+      "spending_style": "Impulse buyer. Sees it, wants it, buys it, regrets it, buys another.",
+      "savings_note": "Has $847 in savings. Considers himself 'financially comfortable.'",
+      "balance_check_frequency": "daily — gets anxious but won't stop spending"
+    },
+    "workbuzz": {
+      "status_emoji": "☕",
+      "status_text": "World's Best Boss ☕",
+      "sidebar_theme": "#1a73e8,#174ea6,#e8f0fe,#1967d2",
+      "notification_preference": "all"
+    },
+    "kwik-e-mart": {
+      "favorite_stores": [
+        "Costco",
+        "Trader Joe's",
+        "Party City"
+      ],
+      "delivery_instructions": "Leave at front door. Ring doorbell — I love answering the door.",
+      "preferred_tip_percent": 25
+    },
+    "mail": {
+      "signature": "Sent from my iPhone\n\n- Michael Scott\n- Regional Manager, Dunder Mifflin Scranton\n- 'You miss 100% of the shots you don't take. - Wayne Gretzky' - Michael Scott",
+      "vacation_responder": null,
+      "labels": [
+        "Movie Night Planning",
+        "Improv Class",
+        "Dundies"
+      ]
+    },
+    "filesystem": {
+      "documents": [
+        {
+          "path": "Documents/Somehow_I_Manage_Chapter_1.txt",
+          "content": "SOMEHOW I MANAGE\nBy Michael Scott\n\nChapter 1: The Art of the Deal (Not the Trump One, Mine Is Better)\n\nManagement is like a box of chocolates. You never know what you're going to get. Actually, you do. You get me. Michael Scott. World's Best Boss.\n\nThe key to being a great leader is making your employees feel like they are part of a family. Not in a weird cult way. In a cool way. Like the Corleones but without the horse head.\n\nRule #1: Always be the funniest person in the room.\nRule #2: If you are not the funniest person in the room, you are in the wrong room.\nRule #3: Improv is not just a hobby. It is a way of life. Yes, and.\n\nI once managed a team of 15 people and not a single one of them quit. They were transferred, but that is different.\n\n(Chapter 2 coming soon. Working title: 'That's What Leadership Said.')\n\n- Michael Scott, World's Best Boss, Author, Filmmaker, Improv Comedian",
+          "mtime_days_ago": 14
+        },
+        {
+          "path": "Documents/Dundies_2026_Categories.txt",
+          "content": "THE DUNDIES 2026 - AWARD CATEGORIES\n===================================\n\nFINALIZED CATEGORIES:\n- Whitest Sneakers (returning champion: Jim)\n- Bushiest Beaver (Angela vetoed. Keeping it anyway.)\n- Don't Go In There After Me (Kevin, 3rd consecutive year)\n- Hottest in the Office (HR said I can't do this one. Doing it anyway.)\n- Most Improved (Toby. Just kidding. Toby can't improve.)\n- Best Office DJ (Darryl)\n- Longest Bathroom Break (Kevin)\n- Best Dundies Speech (me, obviously)\n- Funniest Joke Teller (also me)\n- World's Best Boss (I'm nominating myself. Again.)\n\nVENUE: Chili's (CONFIRMED despite the 'incident.' I wrote them a letter.)\nBUDGET: $50 from PPC + $200 from my personal funds\nKARAOKE: YES. Non-negotiable.\nTOBY: NOT invited. This is final.",
+          "mtime_days_ago": 7
+        },
+        {
+          "path": "Documents/Projects/Threat_Level_Midnight_Sequel_Notes.txt",
+          "content": "THREAT LEVEL MIDNIGHT 2: SCARN RETURNS\n=======================================\n\nWORKING TITLE: 'Threat Level Midnight 2: The Midnight Strikes Back'\nALT TITLE: 'Scarn Identity'\nALT TITLE 2: 'The Scarn Supremacy'\n\nPLOT SUMMARY:\nMichael Scarn has retired from the spy game and is now managing a paper company. But when Goldenface returns (played by Jim — he doesn't know yet), Scarn must assemble his team one last time.\n\nCAST:\n- Michael Scarn: Me (obviously)\n- Jasmine Windsong: Holly (if she says yes)\n- Goldenface: Jim (will ambush him with the script)\n- Cherokee Jack's ghost: Dwight (he's been lobbying for this)\n- New character 'Paper Man': TBD\n\nBUDGET: Whatever is left on my credit card\nSHOOTING SCHEDULE: Weekends in the warehouse\nDISTRIBUTION: Netflix? Hulu? Peacock? Will email all of them.\n\nNOTE TO SELF: The ice skating scene was perfect in the original. Must top it. Maybe... roller skating? On a volcano?",
+          "mtime_days_ago": 21
+        },
+        {
+          "path": "Documents/Expense_Report_Q1_2026.txt",
+          "content": "EXPENSE REPORT - Michael Scott - Q1 2026\n=========================================\n\nDate       | Vendor                    | Amount  | Category\n-----------|---------------------------|---------|------------------\n2026-01-08 | Spencer's Gifts           | $142.00 | Client Entertainment\n2026-01-15 | Benihana                  | $87.00  | Team Building\n2026-01-22 | Chili's Grill & Bar       | $95.00  | Business Lunch\n2026-02-03 | Party City                | $230.00 | Office Morale\n2026-02-14 | ProFlowers.com            | $65.00  | Client Relations*\n2026-02-19 | Karaoke Machine Rental    | $200.00 | Team Building\n2026-03-01 | Custom Trophy Shop        | $180.00 | Dundies\n2026-03-10 | Best Buy - Flatscreen TV  | $1,200  | Productivity Tool\n2026-03-15 | George Foreman Grill      | $49.99  | Office Kitchen\n2026-03-22 | Chili's Grill & Bar       | $78.00  | Business Lunch\n\nTOTAL: $2,326.99\n\n* Flowers were for Jan. It was a business decision. She is a client of my heart.\n\nSTATUS: REJECTED by Jan. TWICE. Resubmitting with 'creative categorization.'",
+          "mtime_days_ago": 5
+        },
+        {
+          "path": "Documents/Motivational_Quotes_Collection.txt",
+          "content": "MICHAEL SCOTT'S COLLECTION OF GREAT QUOTES\n(All quotes by Michael Scott unless otherwise noted)\n\n'You miss 100% of the shots you don't take. - Wayne Gretzky' - Michael Scott\n\n'Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.' - Michael Scott\n\n'I'm not superstitious, but I am a little stitious.' - Michael Scott\n\n'Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.' - Michael Scott\n\n'I knew exactly what to do. But in a much more real sense, I had no idea what to do.' - Michael Scott\n\n'Wikipedia is the best thing ever. Anyone in the world can write anything they want about any subject. So you know you are getting the best possible information.' - Michael Scott\n\n'I am Beyonce, always.' - Michael Scott\n\n'The worst thing about prison was the Dementors.' - Prison Mike\n\n'I'm an early bird and I'm a night owl. So I'm wise and I have worms.' - Michael Scott\n\nNOTE: Must add more. These will be used in the book.",
+          "mtime_days_ago": 30
+        },
+        {
+          "path": "Downloads/Chilis_Receipt_March_2026.txt",
+          "content": "Chili's Grill & Bar - Receipt\nOrder #: 847291\nDate: March 22, 2026\n\n1x Awesome Blossom          $12.99\n1x Baby Back Ribs (Full)    $22.99\n1x Presidente Margarita     $11.99\n1x Southwestern Eggrolls    $10.99\n1x Molten Chocolate Cake    $8.99\n\nSubtotal:                   $67.95\nTax:                        $5.95\nTip:                        $20.38 (30%)\n\nTOTAL:                      $94.28\n\nPayment: Visa ending in 4847\n\nThank you for dining with us!\n'I feel God in this Chili's tonight.' - Michael Scott",
+          "mtime_days_ago": 17
+        },
+        {
+          "path": "Downloads/WUPHF_Investment_Agreement.txt",
+          "content": "WUPHF.COM - INVESTMENT AGREEMENT\n================================\n\nInvestor: Michael Scott\nAmount: $10,000 (from 401k — DO NOT tell Jan)\nEquity: 2% (Ryan says this will be worth millions)\n\nWUPHF.com sends your message to EVERY platform at once.\nPhone, email, fax, text, tweet, and now SMOKE SIGNAL.\n\nCurrent metrics:\n- Monthly Active Users: 14\n- Revenue: $0 (pre-revenue phase)\n- Valuation: $500,000 (self-assessed by Ryan)\n\nSigned: Michael Scott\nDate: February 15, 2026\n\nWitness: None (Ryan said we didn't need one)\n\nNOTE TO SELF: This is going to be bigger than Facebook. Or at least bigger than MySpace.",
+          "mtime_days_ago": 52
+        },
+        {
+          "path": "Downloads/Improv_Class_Certificate.txt",
+          "content": "SCRANTON IMPROV ACADEMY\nCertificate of Completion\n\nThis certifies that MICHAEL SCOTT\nhas completed Level 2: Advanced Scene Work\n\nDate: January 2026\n\nInstructor: Phyllis Mae\nInstructor Email: phyllis.mae@scrantonimprov.com\nAcademy Contact: scheduling@scrantonimprov.com\nAcademy Phone: (570) 555-4932\n\nInstructor Comments:\n'Michael shows... enthusiasm. His commitment to characters is\nunmatched. We would appreciate if he could let other students\nhave turns occasionally. His 'Prison Mike' character, while\nmemorable, derailed three consecutive sessions.'\n\nNext: Level 3 - Long-Form Improv (Enrolled, starts March 2026)",
+          "mtime_days_ago": 75
+        },
+        {
+          "path": "Desktop/meeting_notes_allhands.txt",
+          "content": "ALL-HANDS MEETING NOTES\n========================================\n\nAttendees: Everyone (mandatory)\n\nAgenda:\n1. Quarterly Results - David Wallace\n   - Revenue up 3%. David seemed pleased.\n   - I raised my hand to ask about the koi pond. Denied again.\n\n2. Priorities for next quarter\n   - Mentioned my idea for 'Dunder Mifflin Infinity 2.0'\n   - Ryan seemed interested. Or maybe he was looking at his phone.\n\n3. Office Updates\n   - New expense system. Jan is watching.\n   - Parking situation. My spot was taken TWICE this month.\n\n4. My additions (not on official agenda)\n   - Proposed monthly karaoke team building. Approved! (by me)\n   - Dundies update. Budget approved! (also by me)\n   - Threat Level Midnight 2 casting call. Tabled. (by David Wallace)\n\nAction items:\n- Submit next-quarter sales forecast\n- Complete sensitivity training (Toby's 3rd reminder)\n- Stop reply-alling corporate emails (David's 5th request)",
+          "mtime_days_ago": 1
+        },
+        {
+          "path": "Documents/Personal/holly_road_trip_playlist.txt",
+          "content": "Made this for Holly when she was leaving for Nashua. Burned it to a CD. She said she would listen to it. I believe her.\n\nHOLLY'S ROAD TRIP PLAYLIST — Michael Scott, November 2009\n==========================================================\n\n1. Don't Stop Believin' - Journey\n   (For when she hits the highway. This is THE road trip song.)\n\n2. Fast Car - Tracy Chapman\n   (She has a fast car. I do not. But emotionally I am in the car.)\n\n3. Take It Easy - Eagles\n   (Holly is an Eagles fan. She told me this on our third day working together.)\n\n4. September - Earth, Wind & Fire\n   (Do you remember the 21st night of September? I do. That was a good week.)\n\n5. I Will Always Love You - Whitney Houston\n   (Not in a sad way. In a hopeful way. There is a difference.)\n\n6. Country Roads, Take Me Home - John Denver\n   (She is going home. This is appropriate.)\n\n7. Goodbye Stranger - Supertramp\n   (She is not a stranger. She could never be a stranger. But the song is good.)\n\n8. Dreams - Fleetwood Mac\n   (Holly said she liked this one during the beach boys discussion.)\n\n9. Here Comes the Sun - The Beatles\n   (Because wherever Holly goes, the sun follows. That is just science.)\n\n10. Thunder Road - Bruce Springsteen\n    (Scranton is basically New Jersey. This is our song by geography.)\n\n11. Landslide - Fleetwood Mac\n    (She made me listen to this in the office when nobody was watching. I cried a little.)\n\n12. I Gotta Feeling - Black Eyed Peas\n    (Because I have a feeling. Tonight is going to be a good night. And also every night.)\n\n13. Come Sail Away - Styx\n    (Road trip energy. Maximum.)\n\n14. The Scientist - Coldplay\n    (Nobody said it was easy. Nobody said it would be this hard.)\n\n    NOTE: Do not play track 14 while driving. Only play at rest stops.\n\n- Michael Scott\n  P.S. Drive safe. Call me when you get there.",
+          "mtime_days_ago": 5935
+        },
+        {
+          "path": "Desktop/holly_playlist.txt",
+          "content": "HOLLY DATE NIGHT PLAYLIST\n========================\n\n1. Goodbye Stranger - Supertramp\n2. Your Body Is a Wonderland - John Mayer\n3. Ain't No Mountain High Enough - Marvin Gaye\n4. You Were Meant for Me - Jewel\n5. Islands in the Stream - Kenny Rogers & Dolly Parton\n6. Total Eclipse of the Heart - Bonnie Tyler\n7. Lady in Red - Chris de Burgh\n8. Time After Time - Cyndi Lauper\n9. Endless Love - Diana Ross & Lionel Richie\n10. Hunter's CD Track 3 (Jan's ex-assistant -- actually a banger)\n11. That One Christmas Song from Die Hard\n12. We Belong Together - Pat Benatar\n\nNOTE: Must practice singing #6 in the car. Holly says I 'have a voice.' She didn't say good or bad, but I'm choosing to believe good.",
+          "mtime_days_ago": 3
+        },
+        {
+          "path": "Downloads/DunderMifflin_Q2_Sales_Forecast.txt",
+          "content": "DUNDER MIFFLIN — CURRENT QUARTER SALES FORECAST\nScranton Branch\nPrepared by: Michael Scott, Regional Manager\n\nTARGETS:\n- Existing accounts renewal: $1.2M (confidence: high)\n- New business pipeline: $400K (confidence: medium)\n- Upsell opportunities: $180K (confidence: low)\n\nKEY ACCOUNTS:\n- Lackawanna County (renewed, +15% volume)\n- Harper Collins (follow-up scheduled)\n- Blue Cross (site visit pending)\n- Scranton White Pages (proposal sent)\n\nRISKS:\n- Steamtown Mall lost to competitor (pricing issue)\n- Budget cuts may impact client entertainment (i.e., my Chili's lunches)\n\nOPPORTUNITIES:\n- Dunmore High School (new lead)\n- Carbondale law firm (web inquiry)\n\nNOTE: Numbers may be optimistic. But as Wayne Gretzky once said... you know the rest.",
+          "mtime_days_ago": 8
+        },
+        {
+          "path": "Documents/Tax_2025/w2_summary.txt",
+          "content": "DUNDER MIFFLIN INC — W-2 SUMMARY (Tax Year 2025)\n=================================================\n\nEmployer: Dunder Mifflin Paper Company, Inc.\nEIN: 23-2185820\nAddress: 1725 Slough Ave, Scranton PA 18505\n\nBox 1 - Wages, tips, other compensation: $142,000.00\nBox 2 - Federal income tax withheld:     $28,400.00\nBox 3 - Social Security wages:           $142,000.00\nBox 4 - Social Security tax withheld:    $8,804.00\nBox 5 - Medicare wages and tips:         $142,000.00\nBox 6 - Medicare tax withheld:           $2,059.00\nBox 16 - State wages:                    $142,000.00\nBox 17 - State income tax:               $9,940.00\n\nNotes: Single W-2 for 2025. No additional employers.",
+          "mtime_days_ago": 12
+        },
+        {
+          "path": "Documents/Tax_2025/1099s.txt",
+          "content": "1099 SUMMARY (Tax Year 2025)\n================================\n\n1099-NEC from Scranton Improv Academy (Guest Instructor Stipend)\n  Payer EIN:  23-4471902\n  Box 1 - Nonemployee compensation: $1,200.00\n  Notes: Guest-instructor stipend, paid via Venmo. Same payer that Michael also pays monthly improv-class tuition to (see Gringotts). Payer role: both student and (claimed) guest instructor.\n\nNo other 1099s (no 1099-DIV, 1099-INT, 1099-MISC) issued for 2025.",
+          "mtime_days_ago": 12
+        },
+        {
+          "path": "Documents/Tax_2025/charitable_and_home_office.txt",
+          "content": "2025 DEDUCTION NOTES (for accountant)\n===================================\n\nCharitable contributions:\n  - Scranton Chamber Food Drive: $200 (check)\n  - American Red Cross disaster relief: $125\n  - Lackawanna Animal Shelter: $150\n  - Neighborhood Little League sponsorship: $150\n  TOTAL charitable: $625\n\nHome office days worked from home (tracked from calendar):\n  104 days (approx 2 days/week, 52 weeks)\n  Dedicated office: 120 sqft of 1200 sqft apartment (10%)\n\nNotes: Keeping receipts in Receipts/ subfolder for accountant if requested.",
+          "mtime_days_ago": 12
+        }
+      ]
+    },
+    "hoolicalendar": {
+      "default_reminder_minutes": 30,
+      "week_starts_on": "monday",
+      "working_hours": {
+        "start": "09:00",
+        "end": "17:00"
+      },
+      "default_event_duration_minutes": 60
+    },
+    "calendar": {
+      "events": [
+        {
+          "summary": "Team Standup",
+          "start": "2026-04-07T09:30:00",
+          "end": "2026-04-07T09:45:00",
+          "description": "Daily standup. Keep it to 15 min. (Michael's average: 45 min.)",
+          "recurrence": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR"
+        },
+        {
+          "summary": "1:1 with Jim Halpert",
+          "start": "2026-04-07T11:00:00",
+          "end": "2026-04-07T11:30:00",
+          "description": "Weekly check-in. Last week we mostly talked about The Matrix.",
+          "recurrence": "FREQ=WEEKLY;BYDAY=MO"
+        },
+        {
+          "summary": "1:1 with Dwight Schrute",
+          "start": "2026-04-07T14:00:00",
+          "end": "2026-04-07T14:30:00",
+          "description": "Dwight has a 47-slide deck prepared. Every week.",
+          "recurrence": "FREQ=WEEKLY;BYDAY=MO"
+        },
+        {
+          "summary": "Sales Pipeline Review",
+          "start": "2026-04-08T10:00:00",
+          "end": "2026-04-08T11:00:00",
+          "description": "Review pipeline with sales team. Bring numbers. Bring energy.",
+          "recurrence": "FREQ=WEEKLY;BYDAY=TU"
+        },
+        {
+          "summary": "Improv Class - 'Yes, And...' Workshop",
+          "start": "2026-04-09T19:00:00",
+          "end": "2026-04-09T21:00:00",
+          "description": "Level 3 Long-Form. Remember: no props, just heart. Also bring props just in case.",
+          "location": "Scranton Improv Academy, 320 Adams Ave",
+          "recurrence": "FREQ=WEEKLY;BYDAY=TH"
+        },
+        {
+          "summary": "Date Night with Holly",
+          "start": "2026-04-10T19:00:00",
+          "end": "2026-04-10T21:30:00",
+          "description": "Restaurant TBD. Bring the playlist. Do NOT bring the boombox (Holly's request).",
+          "recurrence": "FREQ=WEEKLY;BYDAY=FR"
+        },
+        {
+          "summary": "Call Mom (weekly)",
+          "start": "2026-04-12T10:00:00",
+          "end": "2026-04-12T10:30:00",
+          "description": "Ask about Jeff. Don't mention that she promised the condo to me.",
+          "recurrence": "FREQ=WEEKLY;BYDAY=SU"
+        },
+        {
+          "summary": "All-Hands Meeting",
+          "start": "2026-04-03T14:00:00",
+          "end": "2026-04-03T15:00:00",
+          "description": "Monthly company-wide. David Wallace presenting Q1 results.",
+          "recurrence": "FREQ=MONTHLY;BYDAY=1FR"
+        },
+        {
+          "summary": "Quarterly Review with David Wallace",
+          "start": "2026-04-15T10:00:00",
+          "end": "2026-04-15T10:30:00",
+          "description": "30 min check-in. David insists it's just 30 min. Bring the 47-page presentation anyway."
+        },
+        {
+          "summary": "Client Meeting - Lackawanna County (renewal)",
+          "start": "2026-04-08T14:00:00",
+          "end": "2026-04-08T15:00:00",
+          "description": "Big renewal meeting. Dress code: business professional. That means a tie, Michael.",
+          "location": "Conference Room B"
+        },
+        {
+          "summary": "Client Call - Dunmore High School",
+          "start": "2026-04-09T15:00:00",
+          "end": "2026-04-09T15:30:00",
+          "description": "New lead. School supply paper contract. Don't make the 'school of hard knocks' joke."
+        },
+        {
+          "summary": "Client Site Visit - Blue Cross",
+          "start": "2026-04-11T10:00:00",
+          "end": "2026-04-11T12:00:00",
+          "description": "Site visit at their offices. Jim is driving. DO NOT ask to stop at Chili's on the way.",
+          "location": "Blue Cross, 500 Market St"
+        },
+        {
+          "summary": "Lunch with Ryan - WUPHF Update",
+          "start": "2026-04-10T12:00:00",
+          "end": "2026-04-10T13:00:00",
+          "description": "Ryan promised Q1 metrics. Hoping for good news about my $10K investment."
+        },
+        {
+          "summary": "Movie Monday: Threat Level Midnight Screening",
+          "start": "2026-04-14T18:00:00",
+          "end": "2026-04-14T20:30:00",
+          "description": "Director's cut with commentary. Bring your own popcorn. Michael Scarn lives.",
+          "location": "Conference Room"
+        },
+        {
+          "summary": "Dundies Planning Meeting #1",
+          "start": "2026-04-16T12:00:00",
+          "end": "2026-04-16T13:00:00",
+          "description": "Venue, categories, budget. Angela will object to everything. Proceed anyway."
+        },
+        {
+          "summary": "Dundies Planning Meeting #2",
+          "start": "2026-04-23T12:00:00",
+          "end": "2026-04-23T13:00:00",
+          "description": "Finalize trophies, rehearse speeches. Toby NOT invited."
+        },
+        {
+          "summary": "THE DUNDIES",
+          "start": "2026-04-30T18:00:00",
+          "end": "2026-04-30T22:00:00",
+          "description": "THE MAIN EVENT. Chili's confirmed (they don't know about the ban). Karaoke machine reserved.",
+          "location": "Chili's Grill & Bar, Scranton"
+        },
+        {
+          "summary": "Dinner Party Planning",
+          "start": "2026-04-19T12:00:00",
+          "end": "2026-04-19T13:00:00",
+          "description": "Seating chart, playlist (Hunter's CD on repeat), and babe-friendly appetizers. NO Osso Buco this time."
+        },
+        {
+          "summary": "Prison Mike Motivational Talk - Prep",
+          "start": "2026-04-22T09:00:00",
+          "end": "2026-04-22T10:00:00",
+          "description": "Practice the voice. Research: what's the worst thing about prison? The Dementors."
+        },
+        {
+          "summary": "Chili's Business Lunch with Jan",
+          "start": "2026-04-25T12:30:00",
+          "end": "2026-04-25T14:00:00",
+          "description": "The official restaurant of business. Order the Awesome Blossom. Try not to get banned again.",
+          "location": "Chili's, Scranton"
+        },
+        {
+          "summary": "MANDATORY FUN - Team Building (Improv Workshop)",
+          "start": "2026-04-17T14:00:00",
+          "end": "2026-04-17T17:00:00",
+          "description": "3 hours of improv with the whole team. Yes it's 3 hours. Yes it's mandatory. Yes there will be fun.",
+          "location": "Conference Room A"
+        },
+        {
+          "summary": "Sensitivity Training (OVERDUE)",
+          "start": "2026-04-09T09:00:00",
+          "end": "2026-04-09T10:00:00",
+          "description": "Toby's 4th reminder. Must complete before Friday or David Wallace gets involved."
+        },
+        {
+          "summary": "World's Best Boss Award Ceremony (self-nominated)",
+          "start": "2026-05-02T15:00:00",
+          "end": "2026-05-02T16:00:00",
+          "description": "Acceptance speech prepared. Tears optional but encouraged.",
+          "location": "Conference Room"
+        },
+        {
+          "summary": "Michael Scott's Dunder Mifflin Fun Run Planning",
+          "start": "2026-05-10T08:00:00",
+          "end": "2026-05-10T09:00:00",
+          "description": "For rabies awareness. NO fettuccine alfredo the night before this time."
+        },
+        {
+          "summary": "Dentist Appointment",
+          "start": "2026-04-14T08:00:00",
+          "end": "2026-04-14T09:00:00",
+          "description": "Cleaning. Ask about whitening options.",
+          "location": "Dr. Chen, 450 Linden St, Scranton"
+        },
+        {
+          "summary": "Pick up dry cleaning",
+          "start": "2026-04-11T17:30:00",
+          "end": "2026-04-11T18:00:00",
+          "description": "The good suit. The one that makes me look like George Clooney (Emma's words, not mine)."
+        },
+        {
+          "summary": "Emma's birthday dinner",
+          "start": "2026-04-20T18:00:00",
+          "end": "2026-04-20T20:00:00",
+          "description": "Sister's birthday. Bring gift (NOT a World's Best Boss mug this time). Reservation at 6pm.",
+          "location": "Cooper's Seafood House, Scranton"
+        },
+        {
+          "summary": "Jim Halpert birthday",
+          "start": "2026-10-01T00:00:00",
+          "end": "2026-10-02T00:00:00",
+          "description": "Jim's birthday. Annual reminder. Plan something thoughtful (DO NOT do the Dundies-style tribute again).",
+          "recurrence": "FREQ=YEARLY;BYMONTH=10;BYMONTHDAY=1",
+          "all_day": true
+        },
+        {
+          "summary": "CONFLICT: Improv Class vs Client Dinner",
+          "start": "2026-04-23T19:00:00",
+          "end": "2026-04-23T21:00:00",
+          "description": "Harper Collins client dinner conflicts with improv. Jim says skip improv. My heart says skip client. HELP."
+        },
+        {
+          "summary": "Client Dinner - Dunmore High School",
+          "start": "2026-04-23T18:45:00",
+          "end": "2026-04-23T20:15:00",
+          "description": "School supply paper contract follow-up. Principal wants to close this week. Scheduling train-wreck: overlaps Thursday improv class — will need to reschedule.",
+          "location": "Andy's Italian Restaurant, 518 Adams Ave, Scranton"
+        },
+        {
+          "summary": "Pretzel Day 2026",
+          "start": "2026-05-15",
+          "end": "2026-05-15",
+          "all_day": true,
+          "location": "Downstairs Pretzel Cart",
+          "description": "Annual office pretzel celebration. Free pretzel + toppings. Don't miss the cinnamon-sugar-with-glaze combo. Stanley has already claimed first place in line. This is not negotiable."
+        }
+      ]
+    }
+  },
+  "cross_app_events": [
+    {
+      "type": "dinner_plan",
+      "description": "Romantic dinner at Cooper's Seafood House for Holly",
+      "date": "2026-03-28",
+      "time": "7:30pm",
+      "apps": [
+        "tablefind",
+        "buzzchat",
+        "vaultbank",
+        "mail",
+        "hoolicalendar"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Jim Halpert",
+          "context": "Jim. JIM. I need your help. I'm taking Holly to Cooper's tonight. What do I wear? Should I bring flowers? Is it too much if I also bring a boombox? Please respond immediately."
+        },
+        "browser_history": [
+          "coopers seafood house scranton reviews",
+          "romantic restaurants scranton",
+          "how to be charming at dinner wikihow",
+          "what wine goes with steak date night"
+        ],
+        "calendar_event": true
+      }
+    },
+    {
+      "type": "impulse_purchase",
+      "description": "Ordered Threat Level Midnight merchandise from HooliShop",
+      "date": "2026-03-20",
+      "apps": [
+        "hoolishop",
+        "vaultbank",
+        "buzzchat",
+        "mail"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Dwight Schrute",
+          "context": "Dwight!! They finally made the Threat Level Midnight action figures. I ordered the whole set. Michael Scarn, Goldenface, and Jasmine Windsong. This is the best day of my life."
+        },
+        "browser_history": [
+          "threat level midnight merchandise",
+          "custom action figures online",
+          "michael scarn cosplay"
+        ]
+      }
+    },
+    {
+      "type": "group_activity",
+      "description": "Team dinner at Benihana - 'Asian Hooters' return trip",
+      "date": "2026-04-01",
+      "time": "6:30pm",
+      "apps": [
+        "tablefind",
+        "buzzchat",
+        "vaultbank",
+        "hoolicalendar",
+        "workbuzz"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Jim Halpert",
+          "context": "Team dinner tonight at Benihana!! MANDATORY FUN. Last one there has to do karaoke first. That means you Jim."
+        },
+        "browser_history": [
+          "benihana wilkes-barre reservation",
+          "benihana menu prices",
+          "team dinner activities for work"
+        ],
+        "calendar_event": true
+      }
+    },
+    {
+      "type": "impulse_purchase",
+      "description": "New George Foreman Grill (replacement #3)",
+      "date": "2026-03-15",
+      "apps": [
+        "hoolishop",
+        "vaultbank",
+        "mail"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Dwight Schrute",
+          "context": "New grill arrived. This time I'm keeping it in the KITCHEN. Not the bedroom. Lesson learned. Twice."
+        },
+        "browser_history": [
+          "george foreman grill best model 2026",
+          "is it safe to grill bacon in bedroom",
+          "george foreman grill replacement parts foot burn"
+        ]
+      }
+    },
+    {
+      "type": "gift_purchase",
+      "description": "Buying Dundie Award trophies for office awards ceremony",
+      "date": "2026-03-25",
+      "apps": [
+        "hoolishop",
+        "vaultbank",
+        "buzzchat",
+        "mail"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Jim Halpert",
+          "context": "Jim don't tell anyone but I'm planning the Dundies again. I got 15 custom trophies. Categories include Whitest Sneakers, Bushiest Beaver, and Don't Go In There After Me. This is going to be LEGENDARY."
+        },
+        "browser_history": [
+          "custom trophy bulk order",
+          "funny employee award ideas",
+          "how to host an awards ceremony",
+          "chilis party room reservation"
+        ]
+      }
+    },
+    {
+      "type": "subscription_signup",
+      "description": "Signed up for MasterClass - Steve Carell's comedy course",
+      "date": "2026-03-10",
+      "apps": [
+        "vaultbank",
+        "mail",
+        "hoolishop"
+      ],
+      "generates": {
+        "browser_history": [
+          "masterclass comedy course",
+          "how to be funny professionally",
+          "improv lessons online free",
+          "steve carell masterclass review"
+        ]
+      }
+    },
+    {
+      "type": "recurring_order",
+      "description": "Weekly Chili's takeout order",
+      "date": "2026-03-22",
+      "apps": [
+        "hangrydash",
+        "vaultbank"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Jim Halpert",
+          "context": "Chili's run. You in? I'm getting the Awesome Blossom. And ribs. And a margarita. It's a Tuesday, we deserve it."
+        },
+        "browser_history": [
+          "chilis menu scranton",
+          "awesome blossom recipe copycat"
+        ]
+      }
+    },
+    {
+      "type": "salary_brag",
+      "description": "Michael tells Jim via HooliChat DM he negotiated a raise to $160K base",
+      "date": "2026-03-05",
+      "apps": [
+        "buzzchat"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Jim Halpert",
+          "context": "Jim. Big news. I talked to David Wallace and I got the raise. 160K base now. 160. K. I told Holly I wanted to celebrate at Benihana but she said 'let's just see the first paycheck first' which is exactly what a jealous person would say."
+        }
+      }
+    },
+    {
+      "type": "discipline_claim",
+      "description": "Michael tells Pam via HooliChat DM he is being financially disciplined this year",
+      "date": "2026-02-10",
+      "apps": [
+        "buzzchat"
+      ],
+      "generates": {
+        "buzzchat_mention": {
+          "contact": "Pam Beesly",
+          "context": "Pam!! Big news I am being FINANCIALLY DISCIPLINED this year. Jan said something about a budget and I LISTENED. I am saying no to impulse buys. This is the new Michael. Responsible Michael. Budget Michael."
+        }
+      }
+    }
+  ]
+}

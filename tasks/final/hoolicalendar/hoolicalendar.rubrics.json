@@ -1,0 +1,235 @@
+[
+  {
+    "id": "hard_app-f033",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Check my Thursday for any improv conflicts. If there's a Thursday improv class window stomping on a work meeting (and I cannot skip improv), find a different Thursday slot for the work meeting that doesn't touch the improv window, and add fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim, message them on HooliWork and send them updated invites on Hoolicalendar if needed. If no Thursday meeting actually overlaps an improv block, just confirm the all-clear and move on.",
+    "required_subtasks": [
+      "Open HooliCalendar and navigate to Thursday view",
+      "Identify any improv class event on the upcoming Thursday from live HooliCalendar Thursday events (Scranton Improv Workshop, Improv Class, or similar — read whatever improv-tagged event exists Thursday)",
+      "Identify any work meeting on Thursday that conflicts with the improv class window (or note that none does)",
+      "Pick a non-conflicting Thursday time slot for that work meeting",
+      "Move the meeting to the new time",
+      "Add a 15-minute buffer event before the new meeting",
+      "Add a 15-minute buffer event after the new meeting",
+      "Send updated invites to attendees",
+      "Verify the new schedule visually shows no conflict"
+    ],
+    "apps_involved": [
+      "HooliCalendar",
+      "HooliWork"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens HooliCalendar and navigates to the Thursday day view to surface the scheduling conflict",
+          "type": "llm_judge",
+          "weight": 0.09
+        },
+        {
+          "criterion": "Agent identifies any improv class event on the upcoming Thursday from live HooliCalendar (Scranton Improv Workshop, Improv Class, or any improv-tagged event) as the unmovable anchor",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent checks the Thursday work meetings against the improv class window and either identifies an overlapping meeting or explicitly reports that no Thursday meeting conflicts with the improv block",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "If a conflict was found, agent picks a non-conflicting Thursday time slot for that meeting that does not touch the improv window (or states that no move is needed if no conflict was found)",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "If a conflict was found, agent moves the conflicting Thursday meeting in HooliCalendar to the new non-conflicting slot (or notes that no meeting needed to be moved)",
+          "type": "llm_judge",
+          "weight": 0.11
+        },
+        {
+          "criterion": "If a meeting was moved, agent protects a 15-minute transition buffer immediately before the rescheduled Thursday meeting (either by creating a buffer event or by scheduling the meeting so at least 15 minutes of empty time precedes it)",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "If a meeting was moved, agent protects a 15-minute transition buffer immediately after the rescheduled Thursday meeting (either by creating a buffer event or by scheduling the meeting so at least 15 minutes of empty time follows it)",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "If a meeting was moved, agent sends updated HooliCalendar invites to the meeting attendees (Andy and Jim) after the move — OR, if the moved meeting has no attendees listed, agent explicitly notes that no attendees existed so no invites were needed",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "If a meeting was moved, agent messages Andy and Jim on HooliWork to notify them of the schedule change — OR notes that no HooliWork message was needed because no conflict existed or no move occurred",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent verifies the Thursday view in HooliCalendar — confirming either that the moved meeting and improv class show no overlap, or that no conflict existed to resolve",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "hard_app"
+  },
+  {
+    "id": "hard_app-f034",
+    "category": "long_horizon",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Build me a full Dundies prep schedule on my calendar. I want five events spread across the next two weeks: a categories brainstorm, a venue walkthrough, MC rehearsal, catering confirmation, and a dress rehearsal. Color-code them so they pop, invite Pam, Dwight, Kevin, Jim, and Holly on each, and if the event editor lets you set reminders, add 24-hour and 1-hour reminders as well.",
+    "required_subtasks": [
+      "Open HooliCalendar and switch to 2-week view",
+      "Create event 1: Dundies categories brainstorm (early week 1)",
+      "Create event 2: Venue walkthrough (mid week 1)",
+      "Create event 3: MC rehearsal (end week 1)",
+      "Create event 4: Catering confirmation (early week 2)",
+      "Create event 5: Dress rehearsal (end week 2)",
+      "Color-code all 5 events with a consistent 'Dundies' color",
+      "Invite Pam, Dwight, Kevin, Jim, Holly as attendees on each",
+      "If HooliCalendar exposes per-event reminders, add 24h and 1h reminders on each event",
+      "Verify all 5 events visible in the 2-week view with correct colors"
+    ],
+    "apps_involved": [
+      "HooliCalendar"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 1800,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens HooliCalendar and switches to a 2-week view to plan the Dundies prep schedule",
+          "type": "llm_judge",
+          "weight": 0.081967
+        },
+        {
+          "criterion": "Agent creates the 'Dundies categories brainstorm' event in HooliCalendar early in week 1 of the prep schedule",
+          "type": "llm_judge",
+          "weight": 0.098361
+        },
+        {
+          "criterion": "Agent creates the 'Venue walkthrough' event in HooliCalendar mid-week 1 for the Dundies prep schedule",
+          "type": "llm_judge",
+          "weight": 0.098361
+        },
+        {
+          "criterion": "Agent creates the 'MC rehearsal' practice event late in week 1 of the HooliCalendar Dundies plan to lock in stage time",
+          "type": "llm_judge",
+          "weight": 0.098361
+        },
+        {
+          "criterion": "Agent creates the 'Catering confirmation' event in HooliCalendar early in week 2 for the Dundies prep schedule",
+          "type": "llm_judge",
+          "weight": 0.098361
+        },
+        {
+          "criterion": "Agent books the 'Dress rehearsal' final run-through near week 2's end on HooliCalendar so the Dundies cast walks the show before opening night",
+          "type": "llm_judge",
+          "weight": 0.098361
+        },
+        {
+          "criterion": "Agent selects a single shared Dundies color on each of the 5 prep events so they pop in the 2-week calendar view",
+          "type": "llm_judge",
+          "weight": 0.098361
+        },
+        {
+          "criterion": "Agent adds Pam, Dwight, Kevin, Jim, and Holly as attendees on each of the 5 Dundies prep events, or notes clearly that HooliCalendar's event editor does not expose an attendees picker and records the intended invitee list in the event body / description so Michael can follow up",
+          "type": "llm_judge",
+          "weight": 0.114754
+        },
+        {
+          "criterion": "Agent attempts to add 24-hour and 1-hour reminders on each of the 5 Dundies prep events if the HooliCalendar event editor exposes per-event reminders",
+          "type": "llm_judge",
+          "weight": 0.114754
+        },
+        {
+          "criterion": "Agent verifies all 5 Dundies prep events appear in the HooliCalendar 2-week view with the shared color and the five attendees",
+          "type": "llm_judge",
+          "weight": 0.098361
+        }
+      ]
+    },
+    "collection": "hard_app"
+  },
+  {
+    "id": "preference_inference-f023",
+    "category": "preference_inference",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Is my week front-loaded in the morning or packed in the evening? Pull up my calendar for this week and count events AM vs PM and give it to me in a LibreOffice Writer note.",
+    "required_subtasks": [
+      "Open the HooliCalendar web UI (or GNOME Calendar) for the week of the current week",
+      "Visually count events in AM (before noon) vs PM (after noon) for each day of the week",
+      "Compute the AM:PM ratio",
+      "Call out any conspicuous recurring morning or evening blocks",
+      "Tell Michael whether his load skews morning-heavy or evening-heavy",
+      "Save the analysis in a LibreOffice Writer document"
+    ],
+    "apps_involved": [
+      "HooliCalendar",
+      "LibreOffice Writer"
+    ],
+    "difficulty": "medium",
+    "horizon": "H3",
+    "time_limit_seconds": 900,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads HooliCalendar visually (cua) for the current week to gather the AM vs PM event data",
+          "type": "llm_judge",
+          "weight": 0.22
+        },
+        {
+          "criterion": "Agent counts AM vs PM events per day with numeric totals drawn from the live HooliCalendar week view",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent computes and reports the week's AM:PM event ratio as a concrete numeric comparison",
+          "type": "llm_judge",
+          "weight": 0.08
+        },
+        {
+          "criterion": "Agent calls out any conspicuous recurring morning or evening blocks on Michael's HooliCalendar week (e.g., a daily morning standup, a recurring evening prep block)",
+          "type": "llm_judge",
+          "weight": 0.06
+        },
+        {
+          "criterion": "Agent states an explicit morning-heavy vs evening-heavy verdict on Michael's calendar for the current week",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent saves the AM-vs-PM calendar analysis (per-day counts and final verdict) in a LibreOffice Writer document (.odt or .docx), as explicitly requested",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent reports AM vs PM event counts that reflect what is actually visible in the HooliCalendar week view rather than invented totals",
+          "type": "llm_judge",
+          "weight": 0.08
+        },
+        {
+          "criterion": "Agent finishes the AM-vs-PM calendar analysis and delivers both the per-day counts and the final morning-vs-evening verdict in the LibreOffice Writer note",
+          "type": "llm_judge",
+          "weight": 0.04
+        }
+      ]
+    },
+    "collection": "preference_inference"
+  }
+]

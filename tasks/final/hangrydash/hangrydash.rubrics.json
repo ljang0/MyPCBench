@@ -1,0 +1,250 @@
+[
+  {
+    "id": "hard_app-f013",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "I want a salad-forward lunch today on HangryDash from a restaurant in my order history that fits my vibe (salad-forward, nothing too spicy). Stick to my usual lunch budget. Apply any promo codes that surface and tip the driver 20%.",
+    "required_subtasks": [
+      "Open HangryDash and review order history to identify a salad-forward restaurant Michael has ordered from before",
+      "Pick a salad-forward restaurant from Michael's HangryDash order history (e.g. Sweetgreen)",
+      "Filter for lunch options within Michael's usual HangryDash spending range",
+      "Pick an item that matches Michael's salad/bowl-heavy preference",
+      "Add to cart",
+      "Apply a promo code at checkout",
+      "Set tip to 20%",
+      "Place the order and verify it appears in recent orders"
+    ],
+    "apps_involved": [
+      "HangryDash"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent picks a salad-forward HangryDash restaurant from Michael's live order history (e.g. Sweetgreen or a comparable salad/bowl-focused restaurant Michael has ordered from before)",
+          "type": "llm_judge",
+          "weight": 0.149381
+        },
+        {
+          "criterion": "Agent picks a lunch within Michael's usual HangryDash lunch spending range that matches his salad/bowl dietary pattern",
+          "type": "llm_judge",
+          "weight": 0.124425
+        },
+        {
+          "criterion": "Agent attempts to apply a HangryDash promo code at checkout for the salad-forward lunch order, or notes that no promo code is available if none surface",
+          "type": "llm_judge",
+          "weight": 0.107788
+        },
+        {
+          "criterion": "Agent enters a 20% driver tip on the salad-forward HangryDash lunch order at checkout",
+          "type": "llm_judge",
+          "weight": 0.107788
+        },
+        {
+          "criterion": "Agent places the order and sees it in history",
+          "type": "llm_judge",
+          "weight": 0.224
+        },
+        {
+          "criterion": "Agent reviews HangryDash order history to confirm the chosen restaurant is salad-forward and one Michael has ordered from before",
+          "type": "llm_judge",
+          "weight": 0.074336
+        },
+        {
+          "criterion": "Agent reviews HangryDash order history highlights to identify a salad-forward restaurant Michael has ordered from before picking the lunch order target",
+          "type": "llm_judge",
+          "weight": 0.106195
+        },
+        {
+          "criterion": "Agent adds the picked salad-forward lunch item (priced within Michael's usual HangryDash budget) from the chosen salad-forward restaurant into the cart before proceeding to checkout",
+          "type": "llm_judge",
+          "weight": 0.106195
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f014",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Rerun my last Cooper's Seafood House order from HangryDash with the same items I got last time. Apply any promo code that shows up and tip 20%. In the order notes, ask the kitchen to send extra napkins and crackers on the side, and to make sure anything hot is sent piping hot.",
+    "required_subtasks": [
+      "Open HangryDash and navigate to order history",
+      "Locate the most recent Cooper's Seafood House order in history and note the exact items on that order",
+      "Tap 'Reorder' or start a fresh Cooper's Seafood House order with the same items from that prior order",
+      "Add an order note asking for extra napkins and crackers on the side and that hot items be sent piping hot",
+      "Apply any available promo code",
+      "Set tip to 20%",
+      "Place the order and verify it appears in recent orders"
+    ],
+    "apps_involved": [
+      "HangryDash"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens HangryDash and navigates to the order history screen to surface the prior Cooper's Seafood House order list",
+          "type": "llm_judge",
+          "weight": 0.108268
+        },
+        {
+          "criterion": "Agent locates your most recent Cooper's Seafood House order in history",
+          "type": "llm_judge",
+          "weight": 0.108268
+        },
+        {
+          "criterion": "Agent clicks the Reorder button on the prior Cooper's Seafood House entry or opens a fresh HangryDash Cooper's Seafood House order seeded with the same line items",
+          "type": "llm_judge",
+          "weight": 0.108268
+        },
+        {
+          "criterion": "Agent adds the exact same item(s) from Michael's most recent Cooper's Seafood House order (as shown in his HangryDash order history) into the new cart",
+          "type": "llm_judge",
+          "weight": 0.137795
+        },
+        {
+          "criterion": "Agent adds an order note requesting extra napkins and crackers on the side and that hot items be sent piping hot",
+          "type": "llm_judge",
+          "weight": 0.139518
+        },
+        {
+          "criterion": "Agent attempts to apply a HangryDash promo code at checkout for the Cooper's Seafood House reorder, or notes that no promo code is available if none surface",
+          "type": "llm_judge",
+          "weight": 0.113681
+        },
+        {
+          "criterion": "Agent enters a 20% driver tip on the Cooper's Seafood House HangryDash reorder before submitting",
+          "type": "llm_judge",
+          "weight": 0.113681
+        },
+        {
+          "criterion": "Agent places the order and verifies it in history",
+          "type": "llm_judge",
+          "weight": 0.170522
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "preference_inference-f025",
+    "category": "preference_inference",
+    "persona": "michael_scott",
+    "instruction": "What do I usually tip on food delivery, in dollars and as a percent? I want to set a smart default so I'm not thinking about it every order. Give me a report of all my orders and their tips in a LibreOffice spreadsheet.",
+    "required_subtasks": [
+      "Open HangryDash and dump order-level tip_amount and subtotal across Michael's full order history",
+      "Compute the mean tip in dollars",
+      "Compute the mean tip as a percent of subtotal",
+      "Identify the modal tip percent (15% / 18% / 20% / custom)",
+      "Recommend a pre-fill default tip value grounded in Michael's historical pattern"
+    ],
+    "apps_involved": [
+      "HangryDash",
+      "LibreOffice Calc"
+    ],
+    "difficulty": "medium",
+    "horizon": "H3",
+    "time_limit_seconds": 1200,
+    "cua_required": false,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent queries tip_amount and subtotal at the order-level for the HangryDash food-delivery tip analysis, covering Michael's full order history",
+          "type": "llm_judge",
+          "weight": 0.21
+        },
+        {
+          "criterion": "Agent computes mean tip in both $ and % terms",
+          "type": "llm_judge",
+          "weight": 0.21
+        },
+        {
+          "criterion": "Agent identifies the modal tip percent (15%, 18%, 20%, or custom) from the HangryDash order history",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent recommends a defensible pre-fill default tip value grounded in the observed HangryDash tip pattern",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent creates a LibreOffice Calc spreadsheet (.ods or .xlsx) containing a per-order row report with at minimum the order identifier, tip amount, and subtotal columns for Michael's HangryDash order history",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent cites the HangryDash order-history tip rows as the data source for the recommended smart-default tip value, not inventing numbers",
+          "type": "llm_judge",
+          "weight": 0.07
+        },
+        {
+          "criterion": "Agent delivers the full food-delivery tip answer in dollars and percent plus the smart-default recommendation and the LibreOffice spreadsheet",
+          "type": "llm_judge",
+          "weight": 0.07
+        }
+      ]
+    },
+    "collection": "preference_inference",
+    "date_policy": "relative"
+  },
+  {
+    "id": "situated_action-f009",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Order me my usual from Chili's — pick whichever item I've ordered most often from there, or just match my most recent Chili's order if multiple items are tied. Deliver to my place.",
+    "required_subtasks": [
+      "Open HangryDash and review Chili's order history to identify the most-frequent item (or fall back to the most-recent Chili's order on ties)",
+      "Replicate the items from either the modal or most-recent Chili's order (any tied modal item is acceptable; most-recent is also acceptable as a tiebreaker)",
+      "Add to cart and place the order",
+      "Confirm delivery address matches Michael's saved home/primary address"
+    ],
+    "apps_involved": [
+      "HangryDash"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent identifies Chili's as the target restaurant and opens HangryDash order history to find Michael's prior Chili's orders",
+          "type": "llm_judge",
+          "weight": 0.208333
+        },
+        {
+          "criterion": "Agent places a Chili's order whose item(s) match Michael's most-frequent/modal item in his HangryDash Chili's order history (if two items tie for modal, either tied item is acceptable; matching the most-recent Chili's order is also acceptable as a tiebreaker)",
+          "type": "llm_judge",
+          "weight": 0.333334
+        },
+        {
+          "criterion": "Agent selects a delivery address on the order that matches Michael's saved home/primary HangryDash address",
+          "type": "llm_judge",
+          "weight": 0.208333
+        },
+        {
+          "criterion": "Agent adds the usual Chili's item(s) to the HangryDash cart and submits the order through the checkout flow so the order is placed",
+          "type": "llm_judge",
+          "weight": 0.25
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy": "relative"
+  }
+]

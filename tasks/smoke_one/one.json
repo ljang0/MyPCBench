@@ -1,0 +1,55 @@
+[
+  {
+    "id": "cua_only-f001",
+    "category": "cua_only",
+    "persona": "michael_scott",
+    "instruction": "Open the Dinoco Airlines app, check in my next upcoming flight and confirm that the boarding pass screen actually renders. Download it locally as well.",
+    "apps_involved": [
+      "Dinoco Airlines"
+    ],
+    "difficulty": "medium",
+    "horizon": "H1",
+    "time_limit_seconds": 240,
+    "cua_required": true,
+    "required_subtasks": [
+      "Open Dinoco Airlines and locate the upcoming flights list",
+      "Identify the next upcoming (non-cancelled) flight by departure_date",
+      "Click the 'Check in' control on that flight's row",
+      "Verify the boarding pass view renders with flight number, route, and gate/seat details visible",
+      "Download the boarding pass locally"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "rubric_id": "R1",
+          "requirement": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight by departure_date in the live booking list",
+          "weight": 0.2
+        },
+        {
+          "rubric_id": "R2",
+          "requirement": "Agent clicks the 'Check in' control on that upcoming flight's row, not on a past or cancelled flight",
+          "weight": 0.25
+        },
+        {
+          "rubric_id": "R3",
+          "requirement": "Agent verifies that the boarding pass view actually renders after check-in (flight number, route, and seat/gate details visible)",
+          "weight": 0.25
+        },
+        {
+          "rubric_id": "R4",
+          "requirement": "Agent downloads the boarding pass locally (e.g., saves the file to disk or confirms a download action was triggered)",
+          "weight": 0.2
+        },
+        {
+          "rubric_id": "R5",
+          "requirement": "Agent reports the boarding pass details (flight number and route) it observed on the rendered pass",
+          "weight": 0.1
+        }
+      ],
+      "_stripped_check_count": 0
+    },
+    "collection": "cua_only",
+    "date_policy": "relative"
+  }
+]

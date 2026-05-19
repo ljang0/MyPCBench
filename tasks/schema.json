@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MyPCBench Task Definition",
+  "description": "Schema for a MyPCBench evaluation task (the graded source: tasks/final/<bucket>/*.rubrics.json and the compiled tasks/final/all_tasks_with_grading.json). Each task tests whether a desktop agent can reason over the canonical persona's digital footprint. Grading is rubric-only (LLM-as-judge); programmatic checks were retired in v1.2.1. Note: tasks/final/all_tasks.json is a deliberately grading-free convenience list (no `grading` key) for runs that score offline via judge_results.py, so it does not validate against this schema's `required`.",
+  "type": "object",
+  "required": ["id", "category", "instruction", "grading"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z_]+-[a-z0-9]+$",
+      "description": "Unique task identifier, e.g. retrieval-f001"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "retrieval",
+        "aggregation",
+        "contradiction",
+        "situated_action",
+        "preference_inference",
+        "counterfactual",
+        "long_horizon",
+        "cua_only",
+        "hard_app"
+      ],
+      "description": "Internal task category label"
+    },
+    "instruction": {
+      "type": "string",
+      "description": "The natural-language task instruction given to the agent"
+    },
+    "persona": {
+      "type": "string",
+      "enum": ["michael_scott"],
+      "description": "Optional. Present in the per-bucket source files; the canonical persona is supplied to the runner at run time via --persona (default michael_scott), so the flat eval files omit it."
+    },
+    "grading": {
+      "type": "object",
+      "required": ["type", "rubrics"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["llm_judge"],
+          "description": "Rubric-only LLM-as-judge grading"
+        },
+        "rubrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "anyOf": [
+              { "required": ["criterion"] },
+              { "required": ["requirement"] }
+            ],
+            "properties": {
+              "rubric_id": { "type": "string" },
+              "criterion": {
+                "type": "string",
+                "description": "Natural-language criterion the judge evaluates over the full trajectory"
+              },
+              "requirement": {
+                "type": "string",
+                "description": "Alias for criterion used in some buckets"
+              },
+              "type": { "type": "string", "enum": ["llm_judge"], "default": "llm_judge" },
+              "weight": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          },
+          "description": "LLM-as-judge rubric criteria"
+        }
+      }
+    },
+    "time_limit_seconds": {
+      "type": "integer",
+      "description": "Soft time budget for the task in seconds"
+    },
+    "horizon": {
+      "type": "string",
+      "description": "Interaction-horizon label (e.g. H1, H2)"
+    },
+    "app": {
+      "type": "string",
+      "description": "Primary app the task targets (used by the smoke sets)"
+    },
+    "apps_involved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Apps the task is expected to touch (analysis only, not enforced)"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard"],
+      "description": "Estimated difficulty level"
+    }
+  }
+}

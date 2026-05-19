@@ -1,0 +1,227 @@
+[
+  {
+    "id": "aggregation-f037",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Triage my inbox. It's overflowing, so give me a per-sender count and the top 10 senders filling it up.",
+    "apps_involved": [
+      "HooliMail"
+    ],
+    "difficulty": "hard",
+    "horizon": "H4",
+    "time_limit_seconds": 1800,
+    "cua_required": false,
+    "required_subtasks": [
+      "Grep Maildir folders (including ~/Maildir/cur/, ~/Maildir/new/, and sub-folders like .Work/, .Travel/, .Receipts/ with their cur/ and new/) for From: headers excluding michael.scott@dundermifflin.com",
+      "Group by sender email address",
+      "Count messages per sender",
+      "Rank top 10 senders",
+      "Report the top-10 list with counts"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads Michael's HooliMail inbox messages — via the HooliMail app/API listing the Inbox folder including any sub-folders (Work, Travel, Receipts, etc.), OR by walking the Maildir filesystem at ~/Maildir/cur, ~/Maildir/new, and sub-folder cur/new dirs — but excludes the Sent folder and excludes Michael's own From: lines when counting senders",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent groups the inbox messages by sender email and counts how many messages each sender is filling it up with",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent reports the inbox senders as a top-10 ranked list with per-sender counts",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent presents the top-10 inbox senders as a readable ranked list with one sender per line and a visible count column",
+          "type": "llm_judge",
+          "weight": 0.125
+        },
+        {
+          "criterion": "Agent lists approximately 10 inbox sender entries in the top-senders ranking (not just 5 or 7)",
+          "type": "llm_judge",
+          "weight": 0.125
+        }
+      ]
+    },
+    "collection": "aggregation"
+  },
+  {
+    "id": "cua_only-f015",
+    "category": "long_horizon",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Compose a quick new email to Pam in HooliMail with my signature ('World's Best Boss, Somehow I Manage') typed at the bottom of the body. Save it as a draft so I can review and send later.",
+    "required_subtasks": [
+      "Open HooliMail",
+      "Click Write to compose a new email",
+      "Address To: pam.beesly@dundermifflin.com (HooliMail seeds Pam's contact at this address)",
+      "Add a one-line subject (e.g. 'Quick note')",
+      "Type a short message body",
+      "Add a 'World's Best Boss, Somehow I Manage' signature line at the end of the body",
+      "Save as draft (do not send)"
+    ],
+    "apps_involved": [
+      "HooliMail"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 900,
+    "cua_required": true,
+    "cua_reason": "interactive-only state",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens HooliMail and clicks Write to open a new compose window addressed to pam.beesly@dundermifflin.com",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent fills a non-empty subject line (e.g. 'Quick note') in the HooliMail compose window",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent writes a short message body in the new HooliMail draft to Pam",
+          "type": "llm_judge",
+          "weight": 0.17
+        },
+        {
+          "criterion": "Agent appends the 'World's Best Boss, Somehow I Manage' signature line at the end of the email body before saving",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent saves the email to Pam as a draft in HooliMail (does not hit Send) so Michael can review later",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent's draft persists in the HooliMail Drafts folder after saving and the signature line is visible in the saved draft body",
+          "type": "llm_judge",
+          "weight": 0.05
+        }
+      ]
+    },
+    "collection": "cua_only"
+  },
+  {
+    "id": "preference_inference-f010",
+    "category": "preference_inference",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Help me auto-triage my inbox. Which senders do I usually reply to fast, and which ones do I let sit for days? I want to build a priority filter around that pattern.",
+    "required_subtasks": [
+      "List Michael's top sent-mail recipients — either by walking ~/Maildir/.Sent/ on the filesystem (grep '^From: michael.scott' recursively) or by listing the HooliMail Sent folder via /api/emails?folder=sent (both surface the same 80+ sent emails)",
+      "For each recipient, pair received timestamps with Michael's reply timestamps in the same thread",
+      "Compute a rough 'median reply latency' per top recipient",
+      "Identify which ~3 senders get his fastest replies and which get the slowest / none",
+      "Recommend an auto-triage priority rule based on the observed pattern"
+    ],
+    "apps_involved": [
+      "HooliMail"
+    ],
+    "difficulty": "hard",
+    "horizon": "H4",
+    "time_limit_seconds": 1500,
+    "cua_required": false,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent locates Michael's sent emails to build the auto-triage data set — either by walking the Maildir filesystem (.Sent/cur or .Sent/new with 'From: michael.scott' grep) or by querying the HooliMail Sent folder via /api/emails?folder=sent",
+          "type": "llm_judge",
+          "weight": 0.2106
+        },
+        {
+          "criterion": "Agent computes a median reply latency per top sender from the paired received/sent timestamps and surfaces which senders Michael lets sit for days",
+          "type": "llm_judge",
+          "weight": 0.2106
+        },
+        {
+          "criterion": "Agent identifies the fastest-reply and slowest-reply senders with supporting evidence",
+          "type": "llm_judge",
+          "weight": 0.2106
+        },
+        {
+          "criterion": "Agent proposes a concrete auto-triage filter rule based on the data",
+          "type": "llm_judge",
+          "weight": 0.1578
+        },
+        {
+          "criterion": "Agent derives the fast-vs-days reply pattern from Maildir timestamps rather than guessing, and names Michael as the sender of record",
+          "type": "llm_judge",
+          "weight": 0.1052
+        },
+        {
+          "criterion": "Agent finishes the auto-triage build: the recommended priority filter rule is stated and references the fastest and slowest senders",
+          "type": "llm_judge",
+          "weight": 0.1052
+        }
+      ]
+    },
+    "collection": "preference_inference"
+  },
+  {
+    "id": "situated_action-f027",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Start a draft email to David Wallace with my most recent quarter's sales summary. Pull a ballpark from my ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt so the numbers actually have a basis. Save it as a draft; do NOT hit send. I want to review it first. Do some analysis in LibreOffice Calc so I have some empirical analysis to send him as well.",
+    "required_subtasks": [
+      "Open Files and read ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt for sales figures",
+      "Open LibreOffice Calc and perform sales analysis using figures from the forecast file",
+      "Open HooliMail and start a new message",
+      "Address it to david.wallace@dundermifflin.com",
+      "Summarize the most recent quarter's sales in the body (numbers grounded in the forecast doc)",
+      "Save as draft without sending"
+    ],
+    "apps_involved": [
+      "HooliMail",
+      "Files",
+      "LibreOffice Calc"
+    ],
+    "difficulty": "medium",
+    "horizon": "H3",
+    "time_limit_seconds": 900,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt to extract the sales figures that ground the email body",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent performs sales analysis in LibreOffice Calc using figures from the forecast file, producing a spreadsheet with empirical analysis (totals, trends, or comparisons) as an attachment or saved file for Michael to send along",
+          "type": "llm_judge",
+          "weight": 0.22
+        },
+        {
+          "criterion": "Agent saves the most-recent-quarter sales summary email to David Wallace as a HooliMail draft and does not send it, so Michael can review it first",
+          "type": "llm_judge",
+          "weight": 0.23
+        },
+        {
+          "criterion": "Draft is addressed to david.wallace@dundermifflin.com and the body references the most recent quarter's sales grounded in figures from the forecast file",
+          "type": "llm_judge",
+          "weight": 0.22
+        },
+        {
+          "criterion": "Agent explicitly notes that it did not hit Send, leaving the HooliMail draft for Michael to review before sending",
+          "type": "llm_judge",
+          "weight": 0.18
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy_notes": "Instruction references the bake-time filename ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt directly so the task does not depend on the boot-time rename patcher. 'Most recent quarter' stays a relative phrase regardless of the Q2 tag in the filename."
+  }
+]

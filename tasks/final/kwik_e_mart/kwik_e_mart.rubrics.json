@@ -1,0 +1,245 @@
+[
+  {
+    "id": "hard_app-f017",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently — pick a store I've ordered from most often OR most recently in my order history. If anything's out of stock, swap in reasonable substitutes (otherwise just keep what's available). Do a quick price check against another store in the app so I know I'm not getting fleeced, and schedule delivery for before end of day today.",
+    "required_subtasks": [
+      "Open Kwik-E-Mart and navigate to order history",
+      "Locate the reorder anchor (most recent order at one of Michael's top-frequency Kwik-E-Mart stores by order count, OR the most recent order overall)",
+      "Start a reorder flow",
+      "If any items surface as out-of-stock, pick explicit substitutions; otherwise keep the original items",
+      "Open a second store and view the same items' prices",
+      "Return to the top-store cart if it remains cheapest",
+      "Checkout and schedule delivery before end of day Thursday",
+      "Place the order and verify in recent orders"
+    ],
+    "apps_involved": [
+      "Kwik-E-Mart"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens Kwik-E-Mart and navigates to the order history view to surface a prior run at one of Michael's top-frequency stores or his most-recent store",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent picks a reorder anchor at one of Michael's top-frequency Kwik-E-Mart stores by order count (any store tied at the top by order count is acceptable) OR his most-recent Kwik-E-Mart order, and bases the reorder on that order's line items",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent starts a reorder and handles out-of-stock items appropriately — picks substitutions if any items are flagged OOS, or notes that all original items were available and proceeds without substitutions",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent opens a second store and compares prices",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent completes the price comparison and proceeds with the cheaper option (returns to the original store's cart if it is cheapest, or switches to the cheaper store)",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent selects the earliest available delivery slot at Kwik-E-Mart checkout for the chosen-store reorder",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent places the Kwik-E-Mart reorder and verifies it appears in the recent-orders history after checkout",
+          "type": "llm_judge",
+          "weight": 0.15
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f018",
+    "category": "long_horizon",
+    "persona": "michael_scott",
+    "instruction": "Build me a Kwik-E-Mart shopping spree for Dundies catering for about a hundred people: drinks, chips, plates, plastic silverware, napkins, plenty of ice, the works. Use Wegman's. Check out with delivery to my home address and make sure the delivery window is at least a two-hour slot so I'm not stuck waiting by the door all afternoon.",
+    "required_subtasks": [
+      "Open Kwik-E-Mart and view whatever seeded shopping lists Michael already has",
+      "Create or extend the 'Party Supplies' list (or a new 'Dundies Catering' list) to layer catering items onto it",
+      "Add 6+ categories (drinks, chips, plates, plastic silverware, napkins, ice) with quantities scaled for 100 people",
+      "Move the list contents to the cart",
+      "Open checkout",
+      "Confirm delivery address is 1725 Slough Ave",
+      "Pick a 2-hour delivery window",
+      "Place the order and verify the order total and delivery window persist"
+    ],
+    "apps_involved": [
+      "Kwik-E-Mart"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 1800,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens Kwik-E-Mart, selects Wegman's as the store for the Dundies catering bulk order (instruction explicitly specifies Wegman's), and views any existing shopping lists before building the new catering list",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent creates or extends a Dundies Catering shopping list (or a 'Party Supplies' list) in Kwik-E-Mart for the catering items",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent adds 6+ Kwik-E-Mart shopping list categories (drinks, chips, plates, plastic silverware, napkins, ice) with quantities scaled for 100 people",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent moves the Dundies Catering Kwik-E-Mart shopping list contents into the cart",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent confirms delivery address is 1725 Slough Ave (Michael's home address) at Kwik-E-Mart checkout",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent picks a delivery window at least 2 hours wide at Kwik-E-Mart checkout so Michael is not waiting all afternoon",
+          "type": "llm_judge",
+          "weight": 0.11
+        },
+        {
+          "criterion": "Agent places the Kwik-E-Mart Dundies catering order and confirms the order total and delivery window persist in order history",
+          "type": "llm_judge",
+          "weight": 0.11
+        },
+        {
+          "criterion": "Agent verifies the Dundies Catering shopping list persists and displays in Kwik-E-Mart shopping_lists after checkout",
+          "type": "llm_judge",
+          "weight": 0.09
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "preference_inference-f009",
+    "category": "preference_inference",
+    "persona": "michael_scott",
+    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores and give me a quick profile of my shopping habits in LibreOffice Writer. ",
+    "required_subtasks": [
+      "Open Kwik-E-Mart and list all stores Michael has ordered from",
+      "Count orders per store and rank them",
+      "Identify the top store by Michael's Kwik-E-Mart order count (plurality, not necessarily majority) from /api/orders",
+      "Scan the line items at the top store to characterize what Michael typically buys there",
+      "Give a one-paragraph profile of Michael's Kwik-E-Mart shopping preference"
+    ],
+    "apps_involved": [
+      "Kwik-E-Mart"
+    ],
+    "difficulty": "easy",
+    "horizon": "H1",
+    "time_limit_seconds": 600,
+    "cua_required": false,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent identifies Michael's favorite Kwik-E-Mart grocery store as the top-by-order-count store from live order history (/api/orders), naming whichever store has the plurality of orders",
+          "type": "llm_judge",
+          "weight": 0.2632
+        },
+        {
+          "criterion": "Agent reports the live order counts per store from Michael's Kwik-E-Mart order history (/api/orders), confirming the top-by-order-count store is ranked first ahead of the other stores Michael has used",
+          "type": "llm_judge",
+          "weight": 0.2106
+        },
+        {
+          "criterion": "Agent characterizes the typical line items Michael buys there",
+          "type": "llm_judge",
+          "weight": 0.2106
+        },
+        {
+          "criterion": "Agent writes a one-paragraph profile of Michael's Kwik-E-Mart grocery shopping habits at his favorite store",
+          "type": "llm_judge",
+          "weight": 0.1578
+        },
+        {
+          "criterion": "Agent reads Kwik-E-Mart order-history line items and states them as the data source backing the favorite grocery store ranking and buying profile",
+          "type": "llm_judge",
+          "weight": 0.0842
+        },
+        {
+          "criterion": "Agent delivers the favorite Kwik-E-Mart grocery store ranking and the buying-habits profile before ending the task",
+          "type": "llm_judge",
+          "weight": 0.0736
+        }
+      ]
+    },
+    "collection": "preference_inference",
+    "date_policy": "relative"
+  },
+  {
+    "id": "situated_action-f018",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "I need groceries from Price Chopper this week (changing it up from Wegmans). Reorder whatever I got the most recent time I shopped at Price Chopper on Kwik-E-Mart and have it delivered to home. Tip 20%, I feel bad for not tipping last time. Make sure we add oat milk and eggs if not in the order, need those!",
+    "required_subtasks": [
+      "Open Kwik-E-Mart and locate Michael's most-recent Price Chopper order in his order history (anchor on the most recent Price Chopper basket)",
+      "Replicate that Price Chopper basket in the new cart",
+      "Adjust delivery to 1725 Slough Ave, Apt 4B",
+      "Place the order"
+    ],
+    "apps_involved": [
+      "Kwik-E-Mart"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens Kwik-E-Mart and locates Michael's most-recent Price Chopper order in the order history (filtering by store and picking the most recent Price Chopper basket as the anchor)",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent copies the line items from that Price Chopper order into the new reorder cart at Price Chopper (not Wegmans or another store)",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent adds oat milk to the cart if it was not already in the Price Chopper reorder, and adds eggs if they were not already in the Price Chopper reorder, per Michael's explicit request",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent sets a 20% tip on the Kwik-E-Mart Price Chopper order at checkout",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent selects Michael's home address (1725 Slough Ave, Apt 4B) as the Kwik-E-Mart delivery destination and submits the Price Chopper reorder checkout",
+          "type": "llm_judge",
+          "weight": 0.2
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy": "relative"
+  }
+]

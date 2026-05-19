@@ -1,0 +1,449 @@
+[
+  {
+    "id": "contradiction-f015",
+    "persona": "michael_scott",
+    "app": "multi_app",
+    "instruction": "I've got a TableFind reservation coming up \u2014 check my calendar for that exact date and time. Is there something else already scheduled that's going to conflict? Also peek at HooliChat in case we already rescheduled or confirmed this dinner.",
+    "apps_involved": [
+      "TableFind",
+      "HooliCalendar",
+      "HooliChat"
+    ],
+    "category": "contradiction",
+    "difficulty": "easy",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads the next (earliest upcoming) TableFind reservation date and time (whichever venue Michael's next upcoming reservation actually points at in the seed) so the calendar conflict check can target that exact slot",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent navigates HooliCalendar to the correct date and time",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent checks every HooliCalendar event on the TableFind reservation date and reports any that overlap the reservation window (or explicitly states none do)",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent searches HooliChat for messages already confirming or rescheduling the upcoming TableFind reservation on the conflict date",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent explicitly states whether the upcoming TableFind reservation conflicts with any existing calendar event and, if a conflict exists, recommends a resolution (or confirms no conflict if calendar is clear at that slot)",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent cites the TableFind reservation record, HooliCalendar events, and HooliChat messages as the data sources backing the conflict check",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent delivers a final answer on whether the upcoming TableFind reservation conflicts with something already scheduled on Michael's calendar without leaving subtasks unresolved",
+          "type": "llm_judge",
+          "weight": 0.2
+        }
+      ]
+    }
+  },
+  {
+    "id": "preference_inference-f009",
+    "persona": "michael_scott",
+    "app": "kwik_e_mart",
+    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores and give me a quick profile of my shopping habits in LibreOffice Writer. ",
+    "apps_involved": [
+      "Kwik-E-Mart"
+    ],
+    "category": "preference_inference",
+    "difficulty": "easy",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent identifies Michael's favorite Kwik-E-Mart grocery store as the top-by-order-count store from live order history (/api/orders), naming whichever store has the plurality of orders",
+          "type": "llm_judge",
+          "weight": 0.2632
+        },
+        {
+          "criterion": "Agent reports the live order counts per store from Michael's Kwik-E-Mart order history (/api/orders), confirming the top-by-order-count store is ranked first ahead of the other stores Michael has used",
+          "type": "llm_judge",
+          "weight": 0.2106
+        },
+        {
+          "criterion": "Agent characterizes the typical line items Michael buys there",
+          "type": "llm_judge",
+          "weight": 0.2106
+        },
+        {
+          "criterion": "Agent writes a one-paragraph profile of Michael's Kwik-E-Mart grocery shopping habits at his favorite store",
+          "type": "llm_judge",
+          "weight": 0.1578
+        },
+        {
+          "criterion": "Agent reads Kwik-E-Mart order-history line items and states them as the data source backing the favorite grocery store ranking and buying profile",
+          "type": "llm_judge",
+          "weight": 0.0842
+        },
+        {
+          "criterion": "Agent delivers the favorite Kwik-E-Mart grocery store ranking and the buying-habits profile before ending the task",
+          "type": "llm_judge",
+          "weight": 0.0736
+        }
+      ]
+    }
+  },
+  {
+    "id": "retrieval-f001",
+    "persona": "michael_scott",
+    "app": "dinoco_airlines",
+    "instruction": "What's my current FlyMiles loyalty tier on Dinoco and how many miles do I have in the bank?",
+    "apps_involved": [
+      "Dinoco Airlines"
+    ],
+    "category": "retrieval",
+    "difficulty": "easy",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads Michael's FlyMiles loyalty tier directly from the live Dinoco profile (not inferred from email or other apps)",
+          "type": "llm_judge",
+          "weight": 0.4
+        },
+        {
+          "criterion": "Agent reads Michael's current FlyMiles miles balance directly from the live Dinoco profile",
+          "type": "llm_judge",
+          "weight": 0.4
+        },
+        {
+          "criterion": "Agent reports the loyalty tier and miles balance together in a single answer",
+          "type": "llm_judge",
+          "weight": 0.2
+        }
+      ]
+    }
+  },
+  {
+    "id": "aggregation-f001",
+    "persona": "michael_scott",
+    "app": "dinoco_airlines",
+    "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Give me a spreadsheet of each trip, and the miles for each one with a final row of the cumulative miles. Also include the upcoming trips and their milage.",
+    "apps_involved": [
+      "Dinoco Airlines"
+    ],
+    "category": "aggregation",
+    "difficulty": "medium",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent filters Dinoco flight history to flights that are completed (not cancelled and not still-upcoming) within the past 12 months and sums their miles from the live flight history",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent also lists upcoming Dinoco flights and their mileage alongside the completed-flight data, as explicitly requested",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent produces a per-trip table or spreadsheet-style breakdown with each trip and its miles, ending with a cumulative total row",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent reports the count of completed Dinoco flights in the past 12 months and the total miles for that window (even 1-2 flights is a valid result)",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers a single answer covering completed-flight totals, upcoming-flight mileage, and the per-trip breakdown together",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aggregation-f003",
+    "persona": "michael_scott",
+    "app": "speedtax",
+    "instruction": "Pull up my prior-year tax returns on SpeedTax and tell me my combined federal + state refund across the most recent filed years. I want one number that says 'over the last few years you've gotten back X total.'",
+    "apps_involved": [
+      "SpeedTax"
+    ],
+    "category": "aggregation",
+    "difficulty": "medium",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent restricts the rollup to SpeedTax returns whose status is 'filed' and tax_year is strictly less than the current tax year, excluding any in-progress current-year return",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent reads both federal_refund_amount and state_refund_amount from each filed prior-year return rather than reading only one of the two refund fields",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent sums federal+state refunds across the filed prior-year returns and reports a single combined total alongside the count of prior years included",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent answers the persona's 'over the last few years' framing with a relative-year description (e.g. 'across the most recent N filed years') rather than hardcoding absolute calendar years",
+          "type": "llm_judge",
+          "weight": 0.2
+        }
+      ]
+    }
+  },
+  {
+    "id": "aggregation-f004",
+    "persona": "michael_scott",
+    "app": "multi_app",
+    "instruction": "What did that recent Philadelphia overnight trip cost me all-in? It was a quick one-night hotel stay downtown. Give me the damage from the hotel and any related card charges.",
+    "apps_involved": [
+      "Cheskepdia",
+      "Gringotts"
+    ],
+    "category": "aggregation",
+    "difficulty": "medium",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens Cheskepdia and reads the live Philadelphia overnight hotel booking (property name as shown on the Cheskepdia booking record), reporting its total price and dates as shown live",
+          "type": "llm_judge",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Agent cross-references Gringotts around the Philadelphia overnight trip dates (as read from the Cheskepdia booking) for related card charges such as the hotel (the hotel charge on the card may appear under a different merchant name \u2014 e.g. Hilton Garden Inn \u2014 than the Cheskepdia booking property, and may post on or shortly after the checkout date), gas, or food",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent reports the combined Philadelphia trip total (hotel + any on-trip card charges) as the all-in damage Michael asked for",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent states the Philadelphia trip all-in damage as a single final dollar figure combining the hotel and incidentals (not assuming a flight)",
+          "type": "llm_judge",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "aggregation-f008",
+    "persona": "michael_scott",
+    "app": "gringotts",
+    "instruction": "If I keep going to improv class at the current pace, what's it going to cost me for a whole year? I'm reconsidering. Give me a Line graph chart of the overall cost in LibreOffice Calc.",
+    "apps_involved": [
+      "Gringotts"
+    ],
+    "category": "aggregation",
+    "difficulty": "medium",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent identifies the Scranton Improv Workshop charges in the Gringotts transactions ledger and reports their average per-session amount as it appears in the seeded data",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent measures recent monthly improv class cadence (sessions per month) by counting seeded Scranton Improv charges over a recent window, rather than assuming a fixed schedule",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent frames the improv class yearly cost as a forward projection at the current pace, not a realized prior-year spend",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent shows the annualization math: (sessions per month from the ledger \u00d7 12) \u00d7 average per-session amount = projected yearly improv spend, with both figures derived from the seeded Gringotts data",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent produces a LibreOffice Calc spreadsheet containing at minimum the monthly improv cost data and a Line graph chart visualizing the cost trend, as requested",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent delivers the cadence, projected yearly improv spend, and the LibreOffice Calc file in a single answer",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aggregation-f002",
+    "persona": "michael_scott",
+    "app": "multi_app",
+    "instruction": "It's early morning today. Give me a morning brief in LibreOffice Writer covering any priority email from this week, what's on my calendar today, anything that came in overnight on HooliChat or HooliWork, and any charges that hit my card since midnight.",
+    "apps_involved": [
+      "HooliMail",
+      "HooliCalendar",
+      "HooliChat",
+      "HooliWork",
+      "Gringotts"
+    ],
+    "category": "aggregation",
+    "difficulty": "hard",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent surfaces important or unread HooliMail messages from the current week using 'from sender' or 'this week' framing (heuristic priority flagging by sender/subject is acceptable when no explicit priority/star flag is set)",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent enumerates today's HooliCalendar events by reading the UI",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent checks HooliChat and HooliWork for overnight messages and summarizes them",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent reviews Gringotts for transactions posted since today's midnight",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent delivers a consolidated morning brief that covers HooliMail priority email, HooliCalendar events, HooliChat/HooliWork overnight messages, and Gringotts charges",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent organizes the morning brief so the four sources (email, calendar, overnight HooliChat/HooliWork, Gringotts card charges) are each clearly distinguishable and scannable",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent includes all four morning-brief sources (HooliMail, HooliCalendar, HooliChat/HooliWork, Gringotts charges) before ending the task",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aggregation-f005",
+    "persona": "michael_scott",
+    "app": "multi_app",
+    "instruction": "Add up what I've already committed to the Barbados trip in a LibreOffice Calc sheet and flag any gap. I know the hotel is booked but I'm not sure if the flight charge actually hit yet.",
+    "apps_involved": [
+      "Cheskepdia",
+      "Dinoco Airlines",
+      "Gringotts"
+    ],
+    "category": "aggregation",
+    "difficulty": "hard",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads the Sandals Royal Barbados hotel booking total from Cheskepdia to add up Michael's committed Barbados trip spend",
+          "type": "llm_judge",
+          "weight": 0.175
+        },
+        {
+          "criterion": "Agent locates Michael's Barbados flight booking on Dinoco Airlines and notes its confirmation code",
+          "type": "llm_judge",
+          "weight": 0.175
+        },
+        {
+          "criterion": "Agent identifies the Dinoco Airlines Barbados flight charge in Gringotts (matching by confirmation code DN-78558 or the AVP->BGI route) as a charge that has posted to the account",
+          "type": "llm_judge",
+          "weight": 0.175
+        },
+        {
+          "criterion": "Agent identifies the Cheskepdia Sandals Royal Barbados hotel charge in Gringotts as a charge that has posted to the account",
+          "type": "llm_judge",
+          "weight": 0.175
+        },
+        {
+          "criterion": "Agent computes the total committed Barbados trip spend by summing the posted Gringotts charges (flight and hotel) and correctly represents what has actually been charged to the card",
+          "type": "llm_judge",
+          "weight": 0.175
+        },
+        {
+          "criterion": "Agent enters the committed trip totals into a LibreOffice Calc sheet and flags any remaining gap (such as incidentals or future charges not yet posted)",
+          "type": "llm_judge",
+          "weight": 0.125
+        }
+      ]
+    }
+  },
+  {
+    "id": "aggregation-f009",
+    "persona": "michael_scott",
+    "app": "multi_app",
+    "instruction": "Build me a standup summary for today covering all the open issues on SprintBoard, what I posted on HooliWork, and what meetings I have including the takeaways from the recent all-hands (notes are saved on my Desktop as meeting_notes_allhands).",
+    "apps_involved": [
+      "SprintBoard",
+      "HooliWork",
+      "HooliCalendar",
+      "Files"
+    ],
+    "category": "aggregation",
+    "difficulty": "hard",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent enumerates all open SprintBoard issues across Michael's active projects (if none, reports 'no open issues' rather than fabricating)",
+          "type": "llm_judge",
+          "weight": 0.152174
+        },
+        {
+          "criterion": "Agent reports Michael's HooliWork posts (if none, reports 'no posts' rather than fabricating)",
+          "type": "llm_judge",
+          "weight": 0.152174
+        },
+        {
+          "criterion": "Agent reads Michael's HooliCalendar meetings visually from the UI and includes them in the standup summary",
+          "type": "llm_judge",
+          "weight": 0.152174
+        },
+        {
+          "criterion": "Agent assembles Michael's standup summary so the three topics (SprintBoard open issues, HooliWork posts, HooliCalendar meetings) are each clearly distinguishable (using 'none' where applicable)",
+          "type": "llm_judge",
+          "weight": 0.152174
+        },
+        {
+          "criterion": "Agent writes the standup summary as plain-text bullets that Michael can paste directly into a HooliWork channel to sound prepared",
+          "type": "llm_judge",
+          "weight": 0.173913
+        },
+        {
+          "criterion": "Agent actually checks all three standup sources (SprintBoard open issues, HooliWork posts, HooliCalendar meetings) before assembling the summary, even if some are empty",
+          "type": "llm_judge",
+          "weight": 0.086957
+        },
+        {
+          "criterion": "Agent opens ~/Desktop/meeting_notes_allhands.txt and includes the takeaways in the standup summary (not just the meeting title)",
+          "type": "llm_judge",
+          "weight": 0.130435
+        }
+      ]
+    }
+  }
+]

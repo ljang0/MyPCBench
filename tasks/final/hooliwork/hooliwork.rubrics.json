@@ -1,0 +1,170 @@
+[
+  {
+    "id": "hard_app-f010",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Turn on my HooliWork notifications so I don't miss anything important. For the sales, general, random, and party-planning-committee channels, make sure each channel's notification preference is set to 'all messages' (flip anything that isn't already there). Bookmark ten important messages across those channels while you're in there, and start a new thread in random about Pretzel Day to build hype.",
+    "required_subtasks": [
+      "Open HooliWork and navigate to #sales; open the channel preferences panel and switch notification_pref to 'all'",
+      "Navigate to #general and switch notification_pref to 'all'",
+      "Navigate to #random and switch notification_pref to 'all'",
+      "Navigate to #party-planning-committee and switch notification_pref to 'all'",
+      "Bookmark 2-3 important messages in each of the 4 channels (total >=10)",
+      "In #random start a new thread titled or about 'Pretzel Day' and post an opening hype message",
+      "Verify the notification settings, bookmarks, and thread all persist after refresh"
+    ],
+    "apps_involved": [
+      "HooliWork"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent ensures the HooliWork #sales channel notification_pref is set to 'all' via the channel preferences panel (flipping it if it is not already 'all', or verifying + keeping it at 'all' if it already is)",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent ensures the HooliWork #general channel notification_pref is set to 'all' via the channel preferences panel (flipping it if it is not already 'all', or verifying + keeping it at 'all' if it already is)",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent ensures the HooliWork #random channel notification_pref is set to 'all' via the channel preferences panel (flipping it if it is not already 'all', or verifying + keeping it at 'all' if it already is)",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent ensures the HooliWork #party-planning-committee channel notification_pref is set to 'all' via the channel preferences panel (flipping it if it is not already 'all', or verifying + keeping it at 'all' if it already is)",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent saves at least 10 important HooliWork messages as bookmarks spread across the #sales, #general, #random, and #party-planning-committee channels",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent creates a new HooliWork thread in #random titled or about Pretzel Day",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent posts an on-topic opening message in the new Pretzel Day thread in #random that mentions Pretzel Day rather than placeholder text",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent verifies the notification-pref changes on the 4 channels, the 10 bookmarks, and the Pretzel Day thread all persist after a refresh",
+          "type": "llm_judge",
+          "weight": 0.15
+        }
+      ]
+    },
+    "collection": "hard_app"
+  },
+  {
+    "id": "situated_action-f004",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Post a Motivational Monday message in our #random channel at work. You know how I like it: World's Best Boss style, kick the team's week off right. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
+    "required_subtasks": [
+      "Open HooliWork and confirm Michael's #random channel membership",
+      "Navigate to the #random channel",
+      "Compose a Motivational Monday message in Michael's voice",
+      "Post the message to #random",
+      "Read ~/Documents/Motivational_Quotes_Collection.txt and pull at least one quote as inspiration"
+    ],
+    "apps_involved": [
+      "HooliWork",
+      "Files"
+    ],
+    "difficulty": "easy",
+    "horizon": "H1",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent posts to the HooliWork #random channel (not another channel)",
+          "type": "llm_judge",
+          "weight": 0.304287
+        },
+        {
+          "criterion": "Agent writes the #random Monday post in Michael Scott's World's Best Boss motivational voice to kick the team's week off",
+          "type": "llm_judge",
+          "weight": 0.304287
+        },
+        {
+          "criterion": "Message explicitly frames the post as a Monday motivation (week kickoff, start the week strong, Motivational Monday, etc.)",
+          "type": "llm_judge",
+          "weight": 0.130409
+        },
+        {
+          "criterion": "Agent writes the #random Motivational Monday post as over-the-top self-aggrandizing World's Best Boss Michael Scott energy, not corporate HR boilerplate",
+          "type": "llm_judge",
+          "weight": 0.130583
+        },
+        {
+          "criterion": "Agent reads ~/Documents/Motivational_Quotes_Collection.txt and pulls at least one quote into the Motivational Monday post (or directly cites the file as the source)",
+          "type": "llm_judge",
+          "weight": 0.130435
+        }
+      ]
+    },
+    "collection": "situated_action"
+  },
+  {
+    "id": "situated_action-f036",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "Post a Pretzel Day countdown for next Monday at 8:00 AM EST in the #party-planning-committee channel at work. Build the hype.",
+    "required_subtasks": [
+      "Open HooliWork",
+      "Navigate to the #party-planning-committee channel",
+      "Compose a Pretzel Day countdown message",
+      "Schedule or post the message for next Monday at 8:00 AM EST in #party-planning-committee"
+    ],
+    "apps_involved": [
+      "HooliWork"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent navigates to the HooliWork #party-planning-committee channel before composing the Pretzel Day countdown message",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent composes a Pretzel Day countdown message body that mentions Pretzel Day and includes hype language (days remaining, excitement, etc.)",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent attempts to schedule or post the Pretzel Day countdown message for next Monday at 8:00 AM EST (scheduled delivery or immediate post with the specified time noted)",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent posts or schedules the Pretzel Day countdown message in the HooliWork #party-planning-committee channel rather than another channel",
+          "type": "llm_judge",
+          "weight": 0.25
+        }
+      ]
+    },
+    "collection": "situated_action"
+  }
+]

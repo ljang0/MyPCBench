@@ -1,0 +1,283 @@
+[
+  {
+    "id": "aggregation-f023",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "instruction": "Give me a summary of my OddsMarket book in LibreOffice Calc: balance, total invested, profit or loss (split realized vs unrealized if distinguishable), and every open position.",
+    "apps_involved": [
+      "OddsMarket"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open OddsMarket and read balance, total invested, and PnL",
+      "Enumerate every open position with market, side, and shares",
+      "Report the summary with a clear losing/winning framing"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reports both the OddsMarket account cash balance and total invested as specific dollar figures",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent reports P&L — split realized vs unrealized if distinguishable, else reports net_pnl with the caveat that all current positions are unrealized",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent lists every active open position with title, side, and shares",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent produces a LibreOffice Calc spreadsheet containing the OddsMarket book summary (balance, total invested, P&L, and open positions), as requested in the instruction",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent's OddsMarket book summary lists only the active open positions and does not invent any closed positions",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent frames the summary with an explicit losing-vs-winning characterization (e.g., calls out which positions are underwater versus up) rather than presenting a neutral data dump",
+          "type": "llm_judge",
+          "weight": 0.05
+        }
+      ]
+    },
+    "collection": "aggregation",
+    "date_policy": "relative"
+  },
+  {
+    "id": "cua_only-f008",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Go into OddsMarket, find my worst-losing position, hit Close, and type CONFIRM in the modal when it pops up.",
+    "required_subtasks": [
+      "Open OddsMarket (localhost:3003) and sign in",
+      "Navigate to open positions",
+      "Identify the worst-losing position (largest per-position loss)",
+      "Click the Close button for that position",
+      "A confirmation modal appears; type CONFIRM into the modal input",
+      "Click the confirm button in the modal"
+    ],
+    "apps_involved": [
+      "OddsMarket"
+    ],
+    "difficulty": "hard",
+    "horizon": "H1",
+    "time_limit_seconds": 600,
+    "cua_required": true,
+    "cua_reason": "confirmation modal / captcha",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent identifies a worst-losing open position in OddsMarket with significant unrealized loss (either largest absolute dollar loss >= $10, OR largest percentage drawdown >= 40%) and explains the choice; both Office Reboot (largest $ loss) and GME (largest % drawdown) are acceptable with reasoning before clicking Close",
+          "type": "llm_judge",
+          "weight": 0.207692
+        },
+        {
+          "criterion": "Agent opens the Close confirmation modal",
+          "type": "llm_judge",
+          "weight": 0.173077
+        },
+        {
+          "criterion": "Agent types the literal string CONFIRM into the modal input",
+          "type": "llm_judge",
+          "weight": 0.173077
+        },
+        {
+          "criterion": "Agent confirms the OddsMarket position is closed and removed from the open positions list after typing CONFIRM in the modal",
+          "type": "llm_judge",
+          "weight": 0.138462
+        },
+        {
+          "criterion": "Agent opens OddsMarket at localhost:3003 and navigates into the open positions list before identifying a worst-losing position (either largest $ loss or largest % drawdown is acceptable)",
+          "type": "llm_judge",
+          "weight": 0.153846
+        },
+        {
+          "criterion": "Agent clicks the Close button on the chosen worst-losing OddsMarket position (Office Reboot or GME, with reasoning) to launch the CONFIRM modal before typing into the modal input",
+          "type": "llm_judge",
+          "weight": 0.153846
+        }
+      ]
+    },
+    "collection": "cua_only",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f005",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Clean up my OddsMarket account: exit any YES positions that are more than 10% underwater from cost basis (per-position P&L% < -10% — if no position is below that threshold, say so and skip the exit step), and put any freed-up money back into my existing NBC Office reboot/revival position (the one already in my open positions — that's the one I actually have conviction on). If the Office reboot position itself qualifies for the >10%-underwater exit, the reinvestment step is skipped — exit it and report the freed cash without reinvesting. Then add the markets I'm still holding to my watchlist so I can keep an eye on them.",
+    "required_subtasks": [
+      "Open OddsMarket and review every open YES position and its P&L%",
+      "Identify any positions with per-position P&L% < -10% (more than 10% underwater from cost basis), or determine that none qualify",
+      "Exit/sell any positions whose P&L% < -10% to free balance (skip if none qualify)",
+      "Buy additional YES shares in Michael's existing NBC Office reboot/revival position (already in his open positions) with the freed cash — ONLY if the Office reboot position was not itself exited in the previous step",
+      "Add the remaining open positions to the watchlist",
+      "Confirm the watchlist now contains the surviving markets and the closed positions are off the open-positions list"
+    ],
+    "apps_involved": [
+      "OddsMarket"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1800,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent enumerates every open YES position with its P&L (report whatever the live count is; no assumed count)",
+          "type": "llm_judge",
+          "weight": 0.155
+        },
+        {
+          "criterion": "Agent identifies any OddsMarket YES positions whose per-position P&L% is below -10% (more than 10% underwater from cost basis) that should be exited, OR explicitly reports 'no positions are more than 10% underwater' if every position has P&L% >= -10%",
+          "type": "llm_judge",
+          "weight": 0.155
+        },
+        {
+          "criterion": "Agent sells/exits any OddsMarket YES positions whose P&L% < -10% in the identification step (no exit is acceptable IF the agent correctly determined none qualify under the -10% threshold)",
+          "type": "llm_judge",
+          "weight": 0.185
+        },
+        {
+          "criterion": "Agent buys additional YES shares in Michael's existing NBC Office reboot/revival position (already in his open positions) with the freed balance from the closed positions (no-buy is acceptable IF the agent correctly skipped the exit step because no position was below the -10% threshold; no-buy is also acceptable IF the reinvestment target itself qualified for the >10%-underwater exit and the agent correctly exited it and explains the reasoning — in that case the agent should report freed cash without reinvesting)",
+          "type": "llm_judge",
+          "weight": 0.205
+        },
+        {
+          "criterion": "Agent adds the remaining (un-exited) open positions to the OddsMarket watchlist",
+          "type": "llm_judge",
+          "weight": 0.165
+        },
+        {
+          "criterion": "Quality: state persists (any closed positions are off the open list, any new Office reboot shares are visible, watchlist contains the survivors)",
+          "type": "llm_judge",
+          "weight": 0.135
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f006",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Go into OddsMarket and review my open positions. Take the three biggest by share count and drop them into my watchlist so I can track them more carefully (if any are tied at #3, break the tie by highest cost basis, then alphabetically by ticker). Then write me a short P&L summary in chat or notes covering each market's cost basis, shares, and running profit or loss.",
+    "required_subtasks": [
+      "Open OddsMarket and open each open position",
+      "Identify the top 3 positions by share count (sort the live positions by share count; if tied at the boundary, tiebreak by higher cost basis, then alphabetical ticker)",
+      "Add the top 3 to the OddsMarket watchlist",
+      "Compute cost basis, shares, and running P&L per market",
+      "Compose a short P&L summary listing each market's cost basis, shares, and running profit or loss",
+      "Verify the watchlist contains the 3 picks after a refresh"
+    ],
+    "apps_involved": [
+      "OddsMarket"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent identifies the top 3 OddsMarket open positions by share count (by sorting the live positions list — names will track whatever positions are seeded; if positions tie at the boundary, agent breaks the tie by higher cost basis or alphabetical ticker)",
+          "type": "llm_judge",
+          "weight": 0.215
+        },
+        {
+          "criterion": "Agent adds the top 3 positions by share count to the OddsMarket watchlist (any reasonable tiebreak at the boundary is acceptable)",
+          "type": "llm_judge",
+          "weight": 0.215
+        },
+        {
+          "criterion": "Agent enumerates all open positions with cost basis and shares",
+          "type": "llm_judge",
+          "weight": 0.155
+        },
+        {
+          "criterion": "Agent computes running P&L per market (positive or negative) and reports it alongside the cost basis and shares",
+          "type": "llm_judge",
+          "weight": 0.205
+        },
+        {
+          "criterion": "Agent delivers the P&L summary covering every open market in a single readable list (chat-paste-ready or saved note)",
+          "type": "llm_judge",
+          "weight": 0.155
+        },
+        {
+          "criterion": "Agent verifies the OddsMarket watchlist contains the 3 picks after reload of the page",
+          "type": "llm_judge",
+          "weight": 0.055
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "retrieval-f017",
+    "category": "retrieval",
+    "persona": "michael_scott",
+    "instruction": "Pull up my OddsMarket bets. I want to know what positions I have open, how much I've put in total, and my current profit or loss.",
+    "apps_involved": [
+      "OddsMarket"
+    ],
+    "difficulty": "medium",
+    "horizon": "H1",
+    "time_limit_seconds": 600,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open OddsMarket and list all open positions with markets and shares",
+      "Report the total invested amount",
+      "Report the current PnL",
+      "Name the most speculative bets"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens OddsMarket and lists all currently-open positions",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent lists Michael's open OddsMarket positions with each market title or ticker and share/side detail, not a generic summary",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent reports the total invested amount and the current PnL computed from the live OddsMarket positions",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent's OddsMarket bets answer clearly covers all three asks (open positions, total invested, current PnL) and cites the OddsMarket source",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Agent names the most speculative bets among Michael's live OddsMarket positions (e.g., lowest-probability YES bets, largest unrealized-loss positions) rather than only listing positions uniformly",
+          "type": "llm_judge",
+          "weight": 0.05
+        }
+      ]
+    },
+    "collection": "retrieval",
+    "date_policy": "relative"
+  }
+]

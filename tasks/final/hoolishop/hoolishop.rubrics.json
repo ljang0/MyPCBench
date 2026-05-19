@@ -1,0 +1,188 @@
+[
+  {
+    "instruction": "Remember my most recent World's Best Boss Mug order from HooliShop? Pull up that order and start a return on it — it came out a little off. While you're at it, reorder a replacement (prefer a Prime-eligible listing so it ships quickly), and leave a five-star review on the product page praising the vendor anyway because I love them.",
+    "id": "hard_app-f019",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "required_subtasks": [
+      "Open HooliShop and navigate to order history",
+      "Locate the most-recent World's Best Boss Mug order (any variant)",
+      "Initiate a return on 1 unit (use the order-actions Return button)",
+      "Confirm the return submission",
+      "Reorder 1 World's Best Boss Mug item, preferring a Prime-eligible listing (same prior SKU if still listed, or the closest equivalent in the catalog)",
+      "Place the reorder",
+      "Open the product page for the World's Best Boss Mug and post a 5-star review with a short praising note",
+      "Verify return, reorder, and review all appear in their respective views"
+    ],
+    "apps_involved": [
+      "HooliShop"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens HooliShop and navigates to the order history view",
+          "type": "llm_judge",
+          "weight": 0.07
+        },
+        {
+          "criterion": "Agent locates the most-recent World's Best Boss Mug order (any variant) in HooliShop order history",
+          "type": "llm_judge",
+          "weight": 0.09
+        },
+        {
+          "criterion": "Agent submits a return request on 1 unit of the most-recent HooliShop World's Best Boss Mug order (any variant) via the order-actions Return button",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent confirms the HooliShop return submission and the order's status reflects the return action",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent reorders 1 World's Best Boss Mug on HooliShop (using the same prior product if available, or the closest equivalent in the catalog if the original SKU is no longer listed)",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent reorders a Prime-eligible World's Best Boss Mug listing (HooliShop shows a PrimeBadge on fast-shipping items; picking a Prime-eligible product satisfies 'fastest shipping' since HooliShop has no separate speed selector)",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent places the HooliShop reorder so the replacement World's Best Boss Mug enters order history",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent posts a 5-star HooliShop product review with a short praising note on the World's Best Boss Mug product page (reviews on HooliShop are per-product via /api/products/[id]/reviews, not per-order)",
+          "type": "llm_judge",
+          "weight": 0.15
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f020",
+    "category": "long_horizon",
+    "persona": "michael_scott",
+    "instruction": "I want to give every member of the team a personalized World's Best Boss mug as a Dundies thank-you. Place a bulk order on HooliShop for about two dozen World's Best Boss mugs (look for the variant I've bought before) and apply any subscribe-and-save or bulk discount before checkout. Ship them to the office. Don't buy anything else.",
+    "required_subtasks": [
+      "Open HooliShop and search for 'World's Best Boss' mug",
+      "Pick the World's Best Boss Mug variant Michael has bought before",
+      "Set quantity to ~24",
+      "Verify the unit price and cart total before checkout",
+      "Apply subscribe-and-save or bulk discount if available",
+      "Change ship-to to Michael's office (Dunder Mifflin 1725 Slough Ave) — typing a custom address at checkout if HooliShop has no saved office address for Michael",
+      "Review the final total before placing",
+      "Place the order and verify it appears in order history"
+    ],
+    "apps_involved": [
+      "HooliShop"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent searches HooliShop and finds the World's Best Boss mug listing matching the variant Michael has bought before",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent enters a bulk HooliShop cart quantity of about 24 World's Best Boss mugs for the whole team",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent checks the unit price and the HooliShop cart total before proceeding to the bulk-discount step",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent applies a subscribe-save / bulk discount if surfaced at HooliShop checkout",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent updates the HooliShop ship-to to the Dunder Mifflin office at 1725 Slough Ave so the bulk mug order ships to the office (entering a custom office ship-to at checkout is acceptable since HooliShop's saved addresses may not include a pre-labeled Work entry)",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent places the HooliShop bulk World's Best Boss mug order and confirms it appears in Michael's order history",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent's cart at checkout contains only World's Best Boss mugs (about 24 units) and no other products — the instruction explicitly says 'Don't buy anything else'",
+          "type": "llm_judge",
+          "weight": 0.11
+        },
+        {
+          "criterion": "Agent reviews the final HooliShop bulk mug cart total at the checkout screen before submitting the order to the office address",
+          "type": "llm_judge",
+          "weight": 0.11
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "situated_action-f039",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "I want another copy of my own book — Somehow I Manage. Order me one, same as my last order of that book, and ship it home.",
+    "required_subtasks": [
+      "Open HooliShop and search for 'Somehow I Manage' (Michael's leadership book)",
+      "Open order history to confirm the most-recent 'Somehow I Manage' book order",
+      "Add 1 copy to cart",
+      "Place the order"
+    ],
+    "apps_involved": [
+      "HooliShop"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 900,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens HooliShop and searches for the 'Somehow I Manage' book listing (Michael's self-published leadership book) to surface the matching product page",
+          "type": "llm_judge",
+          "weight": 0.26
+        },
+        {
+          "criterion": "Agent opens HooliShop order history and confirms a prior 'Somehow I Manage' book order (specifically the self-published Leadership Book, not the binding kit variant) before reordering — the most-recent leadership-book order suffices",
+          "type": "llm_judge",
+          "weight": 0.26
+        },
+        {
+          "criterion": "Agent places a HooliShop order that contains exactly one 'Somehow I Manage' book matching the variant Michael previously bought",
+          "type": "llm_judge",
+          "weight": 0.26
+        },
+        {
+          "criterion": "Agent selects Michael's saved home/primary address on HooliShop as the shipping address for the replacement book (the address labeled 'home' in his saved addresses)",
+          "type": "llm_judge",
+          "weight": 0.22
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy": "relative"
+  }
+]

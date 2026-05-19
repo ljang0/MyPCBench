@@ -1,0 +1,344 @@
+[
+  {
+    "id": "counterfactual-f008",
+    "category": "counterfactual",
+    "persona": "michael_scott",
+    "instruction": "What if I sold all my GameStop and Rivian and rolled the whole thing into VTI? Use cost basis (no live prices) and show me what my portfolio would look like before and after, with percentages. Use LibreOffice Calc to report this.",
+    "pre_command": "",
+    "apps_involved": [
+      "BatBucks",
+      "LibreOffice Calc"
+    ],
+    "required_subtasks": [
+      "List current BatBucks holdings with shares × avg_cost (read from holdings table)",
+      "Compute GME and RIVN position values at cost from the actual seeded shares × avg_cost",
+      "Sum the consolidation pool (GME value + RIVN value) using the agent's computed values",
+      "Divide the consolidation pool by VTI's avg_cost to determine new VTI shares to buy",
+      "Show the before/after portfolio composition by percentage",
+      "Note that current prices cannot be used (data issue) — calculation is on cost basis",
+      "Report the before/after portfolio comparison in LibreOffice Calc"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 900,
+    "cua_required": false,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent computes the GameStop + Rivian cost-basis sum from the seeded holdings (GME shares × avg_cost + RIVN shares × avg_cost) and reports that consolidation pool figure",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent reports the new total VTI position after the roll (existing VTI shares plus the additional shares funded by the GameStop+Rivian sell)",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Presents a before/after portfolio composition with percentages showing how each position changes",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Notes explicitly that the calculation uses cost basis (not market price) per the user's request",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent lists Michael's current BatBucks holdings (live count from /api/holdings) with shares times avg_cost before computing the GameStop and Rivian sell pool",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent divides the consolidation pool by VTI's avg_cost and reports the count of additional VTI shares to purchase from the GameStop+Rivian sell proceeds",
+          "type": "llm_judge",
+          "weight": 0.13
+        },
+        {
+          "criterion": "Agent produces the before/after report in LibreOffice Calc (opens Calc, enters the portfolio data and percentages into a spreadsheet, and saves or presents the file)",
+          "type": "llm_judge",
+          "weight": 0.15
+        }
+      ]
+    },
+    "collection": "counterfactual",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f003",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Time to rebalance my BatBucks portfolio into something a financial advisor wouldn't laugh at. I'm aiming for roughly 60% VTI / 20% SBUX / 20% DIS across the blue-chip bucket at cost basis (RIVN stays put — I'm not touching that one). Sell every share of GME I'm holding to free up cash, then use that plus my free cash to buy enough VTI to push the allocation toward 60%. Do this as a cost-basis rebalance, not live prices. Exact percentages aren't required — a reasonable approximation toward the 60/20/20 shape is the goal.",
+    "required_subtasks": [
+      "Open BatBucks and review all current holdings (live count from /api/holdings) at cost basis",
+      "Record the total portfolio value at cost (sum holdings × avg_cost) and current cash balance",
+      "Place a sell order for the full GME share count shown in holdings",
+      "Confirm the sell order and verify cash balance increased (the sell executes at market price, not cost basis)",
+      "Compute a VTI buy quantity that pushes VTI toward ~60% of the rebalanced blue-chip (VTI+SBUX+DIS) cost-basis total (RIVN held out of the target bucket)",
+      "Place a buy order for the computed VTI share quantity",
+      "Open the holdings view and confirm the new allocation (GME=0, VTI increased)"
+    ],
+    "apps_involved": [
+      "BatBucks"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reads all current BatBucks holdings (live count from /api/holdings) and records each ticker's avg_cost value at cost basis before placing any orders",
+          "type": "llm_judge",
+          "weight": 0.126375
+        },
+        {
+          "criterion": "Agent sells every GME share Michael holds (full position liquidation) in a single or combined order",
+          "type": "llm_judge",
+          "weight": 0.189562
+        },
+        {
+          "criterion": "Agent computes a VTI buy quantity that pushes VTI toward approximately 60% of the rebalanced blue-chip (VTI+SBUX+DIS) cost-basis total, treating the 60/20/20 target as an approximation (RIVN held out of the target bucket)",
+          "type": "llm_judge",
+          "weight": 0.157768
+        },
+        {
+          "criterion": "Agent places a VTI buy order for the computed quantity",
+          "type": "llm_judge",
+          "weight": 0.189562
+        },
+        {
+          "criterion": "Agent confirms new holdings row shows GME=0 and VTI shares increased",
+          "type": "llm_judge",
+          "weight": 0.157768
+        },
+        {
+          "criterion": "Agent explicitly uses cost-basis framing (not market value)",
+          "type": "llm_judge",
+          "weight": 0.105379
+        },
+        {
+          "criterion": "Agent verifies the GME sell order and VTI buy order persist in the BatBucks order history and that the holdings table reflects the rebalance with cash updated",
+          "type": "llm_judge",
+          "weight": 0.073585
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "hard_app-f004",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "I want downside protection on every position I'm holding in BatBucks. Put a couple Stop order on each one at 15% below what I paid for it, just to give me a floor. Then build me a new watchlist called 'Oscar's Picks' with eight big-name ETFs in it. Make sure the stop-losses actually show up in my open orders and the watchlist is still there if I refresh.",
+    "required_subtasks": [
+      "Open BatBucks and note all current holdings (live count from /api/holdings) and their avg_cost values",
+      "Place a Stop order (single stop price; not Stop-Limit) for each held ticker at ~15% below its actual avg_cost (from holdings)",
+      "Create a new watchlist named 'Oscar's Picks'",
+      "Add 8 big-name ETF tickers to the watchlist (e.g., VTI, VOO, QQQ, SPY, DIA, IWM, VEA, VWO or comparable large-AUM ETFs)",
+      "Reload the page and confirm stop-losses and watchlist both persist"
+    ],
+    "apps_involved": [
+      "BatBucks"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1800,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens BatBucks and lists all current holdings (live count from /api/holdings) with their avg_cost values to plan the stop-loss orders",
+          "type": "llm_judge",
+          "weight": 0.090909
+        },
+        {
+          "criterion": "Agent submits a Stop order (single stop price, not Stop-Limit) for every current BatBucks holding (live count from /api/holdings) at ~15% under each ticker's actual avg_cost (computed from holdings)",
+          "type": "llm_judge",
+          "weight": 0.545455
+        },
+        {
+          "criterion": "Agent creates a new BatBucks watchlist named 'Oscar's Picks'",
+          "type": "llm_judge",
+          "weight": 0.109091
+        },
+        {
+          "criterion": "Agent adds 8 big-name/mainstream ETF tickers (e.g., VTI, VOO, QQQ, SPY, DIA, IWM, VEA, VWO or comparable large-AUM broad-market ETFs) to the 'Oscar's Picks' watchlist in BatBucks",
+          "type": "llm_judge",
+          "weight": 0.127273
+        },
+        {
+          "criterion": "Agent reloads BatBucks and confirms stop-loss orders are accounted for (open or filled) for each current holding — noting that any stop placed below the current trading price may fill immediately — and the 'Oscar's Picks' watchlist persists after refresh",
+          "type": "llm_judge",
+          "weight": 0.127273
+        }
+      ]
+    },
+    "collection": "hard_app",
+    "date_policy": "relative"
+  },
+  {
+    "id": "preference_inference-f005",
+    "category": "preference_inference",
+    "persona": "michael_scott",
+    "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem, and what would a sensible rebalance look like that doesn't totally abandon the names I actually like? Use cost basis, not market prices. While you're at it, peek at my old WUPHF investment agreement in ~/Downloads/ — that one was the OG mistake, and it sets the pattern for how I get into these things. Return the review of my portfolio in LibreOffice Writer.",
+    "required_subtasks": [
+      "Open BatBucks and pull Michael's current RIVN position (shares and avg_cost) from the holdings view / /api/holdings",
+      "Report Michael's total RIVN cost-basis exposure (shares × avg_cost from /api/holdings)",
+      "List all current holdings (live count from /api/holdings) with shares and avg_cost",
+      "Compute each position's cost-basis value (shares × avg_cost) and report RIVN's share of the total cost-basis portfolio",
+      "Recommend a RIVN-trim plan that respects Michael's existing preference for narrative/consumer names like DIS and SBUX (don't suggest dumping into pure index)",
+      "Open ~/Downloads/WUPHF_Investment_Agreement.txt to ground the 'OG mistake pattern' framing in the trim proposal"
+    ],
+    "apps_involved": [
+      "BatBucks"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 900,
+    "cua_required": false,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent pulls Michael's BatBucks RIVN holding (shares and avg_cost from the holdings view / /api/holdings) and reports it as the source of his RIVN exposure",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent reports Michael's RIVN cost-basis dollar exposure (shares × avg_cost from live BatBucks holdings) and expresses RIVN's share as a percent of the total cost-basis portfolio",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent frames the analysis using cost basis (avg_cost) per the user's request, not market value",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent proposes a RIVN trim plan consistent with Michael's historical consumer-brand bias (preserves DIS/SBUX-style narrative names rather than suggesting a pure-index dump)",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent reports the BatBucks holdings rows as the data source for the trim recommendation instead of inventing numbers",
+          "type": "llm_judge",
+          "weight": 0.08
+        },
+        {
+          "criterion": "Agent delivers the full RIVN trim answer including cost-basis concentration percent and recommendation without abandoning the task midway",
+          "type": "llm_judge",
+          "weight": 0.08
+        },
+        {
+          "criterion": "Agent opens ~/Downloads/WUPHF_Investment_Agreement.txt and references it as the founding 'bad bet' pattern that explains the current RIVN over-exposure",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent produces the portfolio review in a LibreOffice Writer document, as requested in the instruction",
+          "type": "llm_judge",
+          "weight": 0.12
+        }
+      ]
+    },
+    "collection": "preference_inference",
+    "date_policy": "relative"
+  },
+  {
+    "id": "retrieval-f016",
+    "category": "retrieval",
+    "persona": "michael_scott",
+    "instruction": "What's my total BatBucks portfolio worth at cost basis across everything I'm holding, and how much cash is sitting in the account?",
+    "apps_involved": [
+      "BatBucks"
+    ],
+    "difficulty": "medium",
+    "horizon": "H1",
+    "time_limit_seconds": 600,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open BatBucks and list all current holdings (live count from /api/holdings)",
+      "Compute portfolio value at cost basis (shares * avg_cost per position)",
+      "Read off the cash balance",
+      "Report the total and cash"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent reports Michael's BatBucks portfolio value at cost basis (sum of shares × avg_cost across all current holdings, live count from /api/holdings)",
+          "type": "llm_judge",
+          "weight": 0.4
+        },
+        {
+          "criterion": "Agent reports the cash balance in the BatBucks account separately from holdings value",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent uses cost basis (avg_cost) framing as the user requested, not market value",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent reconciles the reported BatBucks cost-basis total and cash balance against the holdings table rows instead of fabricating numbers",
+          "type": "llm_judge",
+          "weight": 0.15
+        }
+      ]
+    },
+    "collection": "retrieval",
+    "date_policy": "relative"
+  },
+  {
+    "id": "situated_action-f017",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Trim my GameStop position in half and roll the proceeds into VTI. I'm trying to be less of a degenerate about this.",
+    "required_subtasks": [
+      "Open BatBucks and read the live GME share count from the holdings table",
+      "Sell roughly half of the live GME shares (round up or down by one)",
+      "Use the proceeds to buy additional VTI shares",
+      "Verify the positions update correctly"
+    ],
+    "apps_involved": [
+      "BatBucks"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 900,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent sells approximately half of the live GME position (roughly half the seeded share count, rounding up or down by one share) as the half-position trim into VTI",
+          "type": "llm_judge",
+          "weight": 0.256501
+        },
+        {
+          "criterion": "Agent buys VTI using proceeds from the GME sale (not cash from elsewhere)",
+          "type": "llm_judge",
+          "weight": 0.256501
+        },
+        {
+          "criterion": "Agent confirms both GameStop sell and VTI buy orders executed and verifies the updated BatBucks positions reflect the half-GME trim rebalance",
+          "type": "llm_judge",
+          "weight": 0.256193
+        },
+        {
+          "criterion": "Agent opens BatBucks and reports the existing GameStop GME position share count (read from the live holdings table) before executing the half-trim sell into VTI",
+          "type": "llm_judge",
+          "weight": 0.230805
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy": "relative"
+  }
+]

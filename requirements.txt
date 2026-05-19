@@ -1,0 +1,23 @@
+# MyPCBench host-side runtime deps. All in-VM Python deps are pre-baked
+# into the downloadable VM image; this is only what the harness imports
+# on the host.
+#
+# Install:  pip install -r requirements.txt
+
+# ── LLM clients (agents) ────────────────────────────────────────────
+anthropic>=0.39.0     # Claude agents (claude-opus-4-6 / claude-sonnet-4-6)
+openai>=1.55.0        # GPT agents + Qwen via vLLM; needs the Responses API
+
+# ── Rubric judge ────────────────────────────────────────────────────
+google-genai>=1.0.0   # Gemini judge (gemini-3.1-flash-lite-preview); the
+                      # stable Client/types surface lands at 1.0
+
+# ── HTTP + transport ────────────────────────────────────────────────
+httpx>=0.27.0         # default per-step judge HTTP client
+requests>=2.32.0      # Control API calls
+
+# ── Image fetch (no-docker path; used when skopeo is absent) ─────────
+huggingface_hub>=0.20.0  # scripts/get-eval-image.sh --method hf
+
+# ── Screenshot processing ───────────────────────────────────────────
+pillow>=10.0.0        # PIL.Image for screenshot encoding

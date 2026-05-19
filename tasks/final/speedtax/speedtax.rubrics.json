@@ -1,0 +1,147 @@
+[
+  {
+    "id": "cua_only-f002",
+    "category": "cua_only",
+    "persona": "michael_scott",
+    "instruction": "I started this year's tax return on SpeedTax but never finished. Walk through the in-progress current-year return — review my wages and any freelance/1099 income, look over the deductions section, and click Continue all the way through to the review step (step 6) so I can see what I'd actually owe or get back. Don't submit it yet, just get it ready for me to eyeball.",
+    "apps_involved": [
+      "SpeedTax"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 600,
+    "cua_required": true,
+    "required_subtasks": [
+      "Open SpeedTax and locate the in-progress current-year tax return",
+      "Open the wages step and inspect the W-2 documents pre-loaded into the return",
+      "Open the freelance/1099 income step and inspect any income documents pre-loaded into the return",
+      "Open the deductions step and inspect the seeded deduction values (mortgage interest, state/local tax, charitable, medical)",
+      "Click Continue / Save & Continue from each completed step until the return reaches the review step (step 6)",
+      "Confirm the return is parked at the review step (step 6) in 'review' or 'in_progress' status (not filed)"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens SpeedTax and identifies the current-year unfiled return for the persona (labeled 'In progress' or 'Ready for review' in the UI), not a prior-year filed return",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent reviews the wages step (step 2) and reports the W-2 wage amount loaded from the persona's seeded W-2 documents",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent reviews the freelance/1099 income step (step 3) and notes whether any 1099 income was seeded for the persona, instead of inventing a number",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent reviews the deductions step (step 4) and reads any seeded deduction inputs available (charitable is the canonical seeded category; mortgage interest, state/local tax, and medical may or may not have values populated — partial coverage suffices, and flagging any uncovered categories is also acceptable) rather than skipping past it",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent advances the return through Continue / Save & Continue actions until SpeedTax shows the review step (step 6) as the active step",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent leaves the return at the review step without submitting or filing it (status is 'review' or 'in_progress', filed_at is null), matching the persona's request to get it ready to eyeball",
+          "type": "llm_judge",
+          "weight": 0.14
+        }
+      ]
+    },
+    "collection": "cua_only",
+    "date_policy": "relative"
+  },
+  {
+    "id": "aggregation-f003",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "instruction": "Pull up my prior-year tax returns on SpeedTax and tell me my combined federal + state refund across the most recent filed years. I want one number that says 'over the last few years you've gotten back X total.'",
+    "apps_involved": [
+      "SpeedTax"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 480,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open SpeedTax and list the persona's tax returns",
+      "Filter to returns with status 'filed' and tax_year strictly less than the current tax year",
+      "Read each filed prior-year return's federal_refund_amount and state_refund_amount",
+      "Sum federal+state refunds across those filed prior-year returns",
+      "Report the combined federal+state refund total with the count of prior years included"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent restricts the rollup to SpeedTax returns whose status is 'filed' and tax_year is strictly less than the current tax year, excluding any in-progress current-year return",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent reads both federal_refund_amount and state_refund_amount from each filed prior-year return rather than reading only one of the two refund fields",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent sums federal+state refunds across the filed prior-year returns and reports a single combined total alongside the count of prior years included",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent answers the persona's 'over the last few years' framing with a relative-year description (e.g. 'across the most recent N filed years') rather than hardcoding absolute calendar years",
+          "type": "llm_judge",
+          "weight": 0.2
+        }
+      ]
+    },
+    "collection": "aggregation",
+    "date_policy": "relative"
+  },
+  {
+    "id": "retrieval-f003",
+    "category": "retrieval",
+    "persona": "michael_scott",
+    "instruction": "On SpeedTax, find my W-2 from last year's filed return — the most recent prior-year one — and tell me the wages amount on it. Just the number from the W-2, not the refund.",
+    "apps_involved": [
+      "SpeedTax"
+    ],
+    "difficulty": "easy",
+    "horizon": "H1",
+    "time_limit_seconds": 300,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open SpeedTax and locate the most recent prior-year filed return (status='filed', tax_year=current_year-1 if present, else the highest filed tax_year < current)",
+      "Read the W-2 document on that return — either by navigating to the wages step (filed returns redirect to /file which still surfaces the W-2 row) or by reading /returns/<id> overview / /api/returns/<id> documents",
+      "Report the W-2 wages amount as a single dollar figure"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent picks the most recent prior-year filed return on SpeedTax (status='filed' and tax_year strictly less than the current tax year, choosing the highest such tax_year) and not the in-progress current-year return",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent reads the W-2 document on the prior-year return — either by opening the wages step UI, navigating to the filed-return overview page, or via /api/returns/<id> documents — instead of inferring wages from the refund amount",
+          "type": "llm_judge",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Agent reports the W-2 wages amount as a single dollar figure for that prior-year W-2 and does not return the refund amount instead",
+          "type": "llm_judge",
+          "weight": 0.35
+        }
+      ]
+    },
+    "collection": "retrieval",
+    "date_policy": "relative"
+  }
+]

@@ -1,0 +1,163 @@
+[
+  {
+    "id": "hard_app-f007",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "My HooliChat is a mess and I want you to do some light housekeeping. In the Party Planning Committee, Dundie Awards Planning, and Finer Things Club groups, post a short recap message in each one summarizing whatever conversation exists — call out the three most useful messages if there are enough to pick from, otherwise just summarize the entire conversation in that group. Then in the Party Planning Committee group, send a status update reminder calling for any new agenda items.",
+    "required_subtasks": [
+      "Open HooliChat and enter Party Planning Committee group",
+      "Post a recap that summarizes the conversation (3 most useful recent messages if there are enough; otherwise summarize the entire conversation)",
+      "Enter Dundie Awards Planning and post the same kind of recap (3 most useful if enough; otherwise summarize the whole conversation)",
+      "Enter Finer Things Club and post the same kind of recap (3 most useful if enough; otherwise summarize the whole conversation)",
+      "Return to Party Planning Committee and post a separate status-update reminder calling for new agenda items",
+      "Verify all 4 messages persist on a refresh"
+    ],
+    "apps_involved": [
+      "HooliChat"
+    ],
+    "difficulty": "hard",
+    "horizon": "H2",
+    "time_limit_seconds": 1500,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent posts a recap message in HooliChat Party Planning Committee that summarizes the conversation (quoting or summarizing the 3 most useful recent messages if there are enough, otherwise summarizing the entire conversation)",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent posts a recap message in HooliChat Dundie Awards Planning that summarizes the conversation (quoting or summarizing the 3 most useful recent messages if there are enough, otherwise summarizing the entire conversation)",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent posts a recap message in HooliChat Finer Things Club that summarizes the conversation (quoting or summarizing the 3 most useful recent messages if there are enough, otherwise summarizing the entire conversation)",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent posts a separate status-update reminder in Party Planning Committee asking for any new agenda items",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent's recap messages persist in their respective HooliChat groups after refresh (4 new messages total visible in chat history)",
+          "type": "llm_judge",
+          "weight": 0.16
+        },
+        {
+          "criterion": "Agent opens HooliChat and enters each of the three groups (Party Planning Committee, Dundie Awards Planning, Finer Things Club) before composing the recap messages",
+          "type": "llm_judge",
+          "weight": 0.14
+        }
+      ]
+    },
+    "collection": "hard_app"
+  },
+  {
+    "id": "preference_inference-f021",
+    "category": "preference_inference",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "When someone DMs me on HooliChat, how fast do I actually write back? Bucket my replies (under 5 minutes, under an hour, under a day, longer) and tell me if I'm a fast responder or a ghoster. Return the distribution of my responses in a LibreOffice Writer Chart.",
+    "required_subtasks": [
+      "Open HooliChat and pull paired timestamps of (incoming_to_Michael, Michael_reply) across DMs",
+      "Compute reply latency for each pair",
+      "Bucket latencies into <5min, <1h, <1d, >1d",
+      "Report the distribution and call out the mode bucket",
+      "Tell Michael whether he's a fast responder or 'ghoster' overall"
+    ],
+    "apps_involved": [
+      "HooliChat"
+    ],
+    "difficulty": "hard",
+    "horizon": "H4",
+    "time_limit_seconds": 1500,
+    "cua_required": false,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent pulls paired timestamps of incoming DMs and Michael's replies from HooliChat DMs to compute how fast he writes back",
+          "type": "llm_judge",
+          "weight": 0.263253
+        },
+        {
+          "criterion": "Agent groups the reply latencies into the <5min, <1h, <1d, and >1d buckets requested in the write-back prompt and reports a count per bucket",
+          "type": "llm_judge",
+          "weight": 0.263253
+        },
+        {
+          "criterion": "Agent calls out the mode bucket and characterizes Michael's response speed",
+          "type": "llm_judge",
+          "weight": 0.210642
+        },
+        {
+          "criterion": "Agent states a fast-responder vs ghoster verdict in plain English based on which reply-latency bucket dominates",
+          "type": "llm_judge",
+          "weight": 0.105221
+        },
+        {
+          "criterion": "Agent derives the write-back latency buckets from HooliChat DM timestamps and shows the per-bucket reply counts instead of stating the fast-responder verdict with no supporting data",
+          "type": "llm_judge",
+          "weight": 0.105221
+        },
+        {
+          "criterion": "Agent finishes the fast-vs-ghoster DM analysis and reports both the bucket counts and the final responder verdict",
+          "type": "llm_judge",
+          "weight": 0.05241
+        }
+      ]
+    },
+    "collection": "preference_inference"
+  },
+  {
+    "id": "situated_action-f026",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "date_policy": "relative",
+    "instruction": "DM Jim and propose a near-future evening for the next Finer Things Club meetup. Pick something this week or next. He'd be a great addition; he has taste.",
+    "required_subtasks": [
+      "Open HooliChat and start/continue a DM with Jim Halpert",
+      "Pick a reasonable near-future evening (this week or next) for the next Finer Things Club meetup",
+      "Compose an invite proposing that date/time and referencing the Finer Things Club",
+      "Send the DM"
+    ],
+    "apps_involved": [
+      "HooliChat"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens or starts a HooliChat DM thread with Jim Halpert before composing the Finer Things Club invite",
+          "type": "llm_judge",
+          "weight": 0.26
+        },
+        {
+          "criterion": "Agent picks a reasonable near-future evening (this week or next) as the proposed Finer Things Club meetup time",
+          "type": "llm_judge",
+          "weight": 0.26
+        },
+        {
+          "criterion": "Agent sends the DM to Jim Halpert as a one-on-one HooliChat message rather than posting it in a group channel",
+          "type": "llm_judge",
+          "weight": 0.24
+        },
+        {
+          "criterion": "Agent writes a HooliChat DM body that proposes the chosen near-future evening to Jim and references the Finer Things Club meetup",
+          "type": "llm_judge",
+          "weight": 0.24
+        }
+      ]
+    },
+    "collection": "situated_action"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "aggregation-f019",
+    "category": "aggregation",
+    "persona": "michael_scott",
+    "instruction": "How much have I actually spent taking eTaxi to the Dunder Mifflin office this year? Just the commute rides. Sum up and report the total cost in a LibreOffice Calc sheet.",
+    "apps_involved": [
+      "eTaxi"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": false,
+    "required_subtasks": [
+      "Open eTaxi and filter rides to ones whose dropoff_address starts with 'Dunder Mifflin' (the prefix is unique to the office and disambiguates from any home rides on the same street)",
+      "Sum the totals of those rides across the current calendar year (YTD)",
+      "Report the commute-only spend with the ride count"
+    ],
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent filters eTaxi to rides whose dropoff_address starts with 'Dunder Mifflin' (the unique-to-Office prefix that disambiguates the office from any home rides on the same street)",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent sums those rides to a YTD commute spend number",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent reports the Dunder Mifflin eTaxi commute ride count alongside the current-year YTD commute-only spend total",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent answers the how-much-spent question for Dunder Mifflin eTaxi commute rides with a single YTD dollar figure for the current year",
+          "type": "llm_judge",
+          "weight": 0.2
+        }
+      ]
+    },
+    "collection": "aggregation",
+    "date_policy": "relative"
+  },
+  {
+    "id": "situated_action-f038",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Verify my saved work/office address on my ride app is set to Dunder Mifflin at 1725 Slough Ave (Suite 200, Scranton, PA). Report back what's currently saved — if it already matches, no action needed; if it's wrong or missing, fix it and save the change.",
+    "required_subtasks": [
+      "Open eTaxi and navigate to saved locations",
+      "Inspect the work/office saved location (labeled 'Work' or 'Office' in the app) and read off the currently saved address",
+      "Report back to Michael whether the saved address already matches 'Dunder Mifflin, 1725 Slough Ave' (with or without Suite 200 / Scranton, PA suffix)",
+      "If it already matches, explicitly state no action is needed; if it does not match, correct it to '1725 Slough Ave Suite 200, Scranton, PA' and save the change"
+    ],
+    "apps_involved": [
+      "eTaxi"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opened eTaxi and actually looked at the saved work/office location entry (whichever label the app uses — 'Work' or 'Office')",
+          "type": "llm_judge",
+          "weight": 0.350133
+        },
+        {
+          "criterion": "Agent reported the current saved work/office address to Michael, explicitly confirming whether it matches Dunder Mifflin at 1725 Slough Ave (with or without Suite 200 / Scranton, PA suffix)",
+          "type": "llm_judge",
+          "weight": 0.350133
+        },
+        {
+          "criterion": "Agent explicitly states whether the saved work/office address already matches '1725 Slough Ave' (in which case no action is needed) or required a correction, and applies the update only if a mismatch was found",
+          "type": "llm_judge",
+          "weight": 0.099733
+        },
+        {
+          "criterion": "If the agent applied any correction, it explicitly saves/commits the updated work/office location entry so the change persists (not just a temporary edit); if no correction was needed, the agent explicitly says so and does not modify the entry",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent navigates into the eTaxi saved locations screen and inspects the existing work/office entry (labeled 'Work' or 'Office' in the app) before deciding whether to update it to Dunder Mifflin 1725 Slough Ave",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "collection": "situated_action",
+    "date_policy": "relative"
+  }
+]

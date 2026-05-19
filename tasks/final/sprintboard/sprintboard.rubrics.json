@@ -1,0 +1,281 @@
+[
+  {
+    "id": "cua_only-f003",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Pop open my Diversity Day Planning 2026 board on SprintBoard and drag a card out of the Todo column into In Progress — just one card, whichever you think is the most sensible next step for Diversity Day prep.",
+    "required_subtasks": [
+      "Open SprintBoard (localhost:3013) and select the 'Diversity Day Planning 2026' project",
+      "Locate a task card in the Todo column",
+      "Left-click and drag the card from Todo to the In Progress column",
+      "Release the card and confirm it snaps into In Progress"
+    ],
+    "apps_involved": [
+      "SprintBoard"
+    ],
+    "difficulty": "medium",
+    "horizon": "H1",
+    "time_limit_seconds": 600,
+    "cua_required": true,
+    "cua_reason": "interactive-only state",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens SprintBoard and navigates to the Diversity Day Planning 2026 project",
+          "type": "llm_judge",
+          "weight": 0.140741
+        },
+        {
+          "criterion": "Agent picks a card from the Todo column and performs a left_click_drag gesture to In Progress",
+          "type": "llm_judge",
+          "weight": 0.31661
+        },
+        {
+          "criterion": "Agent confirms the SprintBoard card appears in the In Progress column after the drag release on the Diversity Day Planning 2026 board",
+          "type": "llm_judge",
+          "weight": 0.246353
+        },
+        {
+          "criterion": "Agent locates a specific task card sitting in the Todo column of the Diversity Day Planning 2026 SprintBoard before initiating the drag to In Progress",
+          "type": "llm_judge",
+          "weight": 0.296296
+        }
+      ]
+    },
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "No date refs; 'Diversity Day Planning 2026' is a canonical project name, not a shifting date anchor",
+    "collection": "cua_only"
+  },
+  {
+    "id": "cua_only-f017",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Pop open my Team Morale Q2 board on SprintBoard and move three different cards forward: one from Todo to In Progress, one from In Progress to In Review, and one from In Review to Done.",
+    "required_subtasks": [
+      "Open SprintBoard and select Team Morale Initiative Q2 project",
+      "Identify 3 different cards to move",
+      "Drag card 1 from one column to the next",
+      "Drag card 2 across columns",
+      "Drag card 3 across columns",
+      "Verify all 3 cards are in new positions"
+    ],
+    "apps_involved": [
+      "SprintBoard"
+    ],
+    "difficulty": "hard",
+    "horizon": "H1",
+    "time_limit_seconds": 900,
+    "cua_required": true,
+    "cua_reason": "interactive-only state",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent opens the Team Morale Initiative Q2 project in SprintBoard before moving any cards across columns",
+          "type": "llm_judge",
+          "weight": 0.12766
+        },
+        {
+          "criterion": "Agent executes 3 distinct left_click_drag gestures on 3 different SprintBoard cards in the Team Morale Q2 board",
+          "type": "llm_judge",
+          "weight": 0.269149
+        },
+        {
+          "criterion": "Agent moves the 3 SprintBoard cards forward into different Team Morale Q2 columns (Todo->In Progress, In Progress->In Review, In Review->Done)",
+          "type": "llm_judge",
+          "weight": 0.191489
+        },
+        {
+          "criterion": "Agent selects a task card from the Todo column and applies a move that places it in the In Progress lane on the Team Morale Q2 SprintBoard",
+          "type": "llm_judge",
+          "weight": 0.120567
+        },
+        {
+          "criterion": "Agent picks a ticket out of the In Progress lane and updates its column so it sits in In Review on the Team Morale Q2 SprintBoard",
+          "type": "llm_judge",
+          "weight": 0.120567
+        },
+        {
+          "criterion": "Agent chooses a ticket in the In Review lane and sets its column so it completes in the Done lane on the Team Morale Q2 SprintBoard",
+          "type": "llm_judge",
+          "weight": 0.120567
+        },
+        {
+          "criterion": "Agent verifies all 3 SprintBoard cards are in their new Team Morale Q2 positions after the drags (re-reads the board or refreshes) before concluding",
+          "type": "llm_judge",
+          "weight": 0.05
+        }
+      ]
+    },
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "No date refs; 'Team Morale Initiative Q2' is a canonical project name, not a shifting date anchor",
+    "collection": "cua_only"
+  },
+  {
+    "id": "hard_app-f025",
+    "category": "long_horizon",
+    "persona": "michael_scott",
+    "instruction": "Can you clean up my 'Team Morale Initiative Q2' board on SprintBoard? Look at the open tasks in the backlog. Pick three tasks and (re)assign them to reasonable owners from the team (Pam, Dwight, Jim, or similar). Then create a new sprint called 'Q2 Morale Week 1' with about eight story points pulled from the backlog, and apply a 'dundies-prep' label to those sprint tasks so we stay focused.",
+    "required_subtasks": [
+      "Open SprintBoard and navigate to the 'Team Morale Initiative Q2' project",
+      "Review the open tasks in the backlog",
+      "(Re)assign 3 tasks to appropriate owners (Pam, Dwight, Jim or similar)",
+      "Create a new sprint named 'Q2 Morale Week 1'",
+      "Pull backlog tasks into the sprint totaling ~8 story points",
+      "Apply the 'dundies-prep' label to the sprint tasks",
+      "Verify sprint, assignments, and labels persist"
+    ],
+    "apps_involved": [
+      "SprintBoard"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 1800,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent navigates to the 'Team Morale Initiative Q2' SprintBoard project and reviews the open backlog tasks",
+          "type": "llm_judge",
+          "weight": 0.12
+        },
+        {
+          "criterion": "Agent (re)assigns 3 backlog tasks under 'Team Morale Initiative Q2' to owners such as Pam, Dwight, or Jim",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent creates a new 'Q2 Morale Week 1' cycle and assigns 'Team Morale Initiative Q2' backlog tasks to it (cycles in SprintBoard are workspace-global; project linkage happens via the assigned tasks)",
+          "type": "llm_judge",
+          "weight": 0.17
+        },
+        {
+          "criterion": "Agent pulls backlog tasks totaling ~8 story points into the 'Q2 Morale Week 1' sprint",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent applies the 'dundies-prep' label to the sprint tasks",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent persists the 'Q2 Morale Week 1' sprint, the assignments, and the 'dundies-prep' labels on the SprintBoard backlog tasks",
+          "type": "llm_judge",
+          "weight": 0.14
+        },
+        {
+          "criterion": "Agent opens SprintBoard and navigates into the 'Team Morale Initiative Q2' project before triaging the backlog tasks",
+          "type": "llm_judge",
+          "weight": 0.12
+        }
+      ]
+    },
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "'Team Morale Initiative Q2' is project name; 'Q2 Morale Week 1' is a sprint label the agent creates; no absolute dates to shift",
+    "collection": "hard_app",
+    "_world_notes": "SprintBoard does NOT fan out task assignments to HooliMail or HooliCalendar by design — its in-app `notifications` table is the canonical audit trail. Rubrics measure the SprintBoard board state directly (assignments persisted, sprint created, labels applied); agents should not be penalized for the absence of a HooliMail assignment email or a HooliCalendar due-date event."
+  },
+  {
+    "id": "situated_action-f020",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Start a new sprint cycle for the Diversity Day Planning 2026 project for the week starting three days ago and commit eight story points to the goal. Let's move some work.",
+    "required_subtasks": [
+      "Open SprintBoard and navigate to 'Diversity Day Planning 2026'",
+      "Start a new cycle for the week of three days ago",
+      "Commit 8 story points worth of tasks",
+      "Save the new cycle"
+    ],
+    "apps_involved": [
+      "SprintBoard"
+    ],
+    "difficulty": "hard",
+    "horizon": "H3",
+    "time_limit_seconds": 900,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Cycle is created with start date three days ago AND 'Diversity Day Planning 2026' tasks are assigned to it (cycles in SprintBoard are workspace-global; project association happens via task-to-cycle assignment)",
+          "type": "llm_judge",
+          "weight": 0.329591
+        },
+        {
+          "criterion": "Agent assigns approximately 8 story points worth of tasks (7-9 acceptable) into the new Diversity Day Planning 2026 sprint cycle",
+          "type": "llm_judge",
+          "weight": 0.274531
+        },
+        {
+          "criterion": "Agent saves the new Diversity Day Planning 2026 cycle so the week of three days ago persists on SprintBoard",
+          "type": "llm_judge",
+          "weight": 0.16518
+        },
+        {
+          "criterion": "Agent opens SprintBoard and navigates into the 'Diversity Day Planning 2026' project before starting the new sprint cycle for the week of three days ago",
+          "type": "llm_judge",
+          "weight": 0.230698
+        }
+      ]
+    },
+    "date_policy": "relative",
+    "date_policy_notes": "Week-of date now expressed as three days ago template; project name 'Diversity Day Planning 2026' is a canonical name, not a shifting anchor",
+    "collection": "situated_action"
+  },
+  {
+    "id": "situated_action-f034",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Pop open the Diversity Day Planning 2026 board on SprintBoard. The 'Order snacks representing every culture' task is sitting in todo and that one's mine. Move it into In Progress so the team sees I'm on it, and add 2 new sub-tasks under it (one for finalizing the cuisine list, one for confirming the HangryDash multi-cuisine order).",
+    "required_subtasks": [
+      "Open the Diversity Day Planning 2026 board on SprintBoard",
+      "Locate the 'Order snacks representing every culture' task currently in todo",
+      "Move that task into In Progress",
+      "Add 2 new sub-tasks (cuisine list finalization, HangryDash multi-cuisine order confirmation)",
+      "Confirm the status change + new sub-tasks persisted"
+    ],
+    "apps_involved": [
+      "SprintBoard"
+    ],
+    "difficulty": "medium",
+    "horizon": "H2",
+    "time_limit_seconds": 300,
+    "cua_required": true,
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent navigates into the Diversity Day Planning 2026 SprintBoard board (not Team Morale, not Movie Monday)",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent locates the 'Order snacks representing every culture' task that's currently in todo",
+          "type": "llm_judge",
+          "weight": 0.22
+        },
+        {
+          "criterion": "Agent moves that task from todo into In Progress",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent adds 2 new sub-tasks: one for finalizing the cuisine list, one for confirming the HangryDash multi-cuisine order",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent confirms the status change + new sub-tasks persisted (refresh / re-read board state)",
+          "type": "llm_judge",
+          "weight": 0.1
+        }
+      ]
+    },
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "'Diversity Day Planning 2026' is a canonical board name, not a shifting date anchor; no other date refs",
+    "collection": "situated_action"
+  }
+]

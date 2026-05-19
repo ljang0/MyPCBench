@@ -1,0 +1,61 @@
+[
+  {
+    "id": "cua_only-f005",
+    "category": "situated_action",
+    "persona": "michael_scott",
+    "instruction": "Drag that Jamaica boarding pass file out of my Downloads folder and into a proper Jamaica subfolder under my Trips docs (make the folder if it isn't already there). Rename it to something like jamaica_boarding_pass (keep whatever extension it has) so I can actually find it later.",
+    "required_subtasks": [
+      "Open Thunar and navigate to ~/Downloads/",
+      "Locate the Jamaica boarding pass file (seeded by Michael's Dinoco Jamaica booking — may be .pdf or .txt)",
+      "Open a second Thunar pane or window at ~/Documents/Trips/",
+      "Create a Jamaica/ subfolder if it does not exist",
+      "Drag the file from Downloads into the new folder",
+      "Right-click the file and rename it to jamaica_boarding_pass (preserving whatever extension the seeded file uses)"
+    ],
+    "apps_involved": [
+      "Thunar"
+    ],
+    "difficulty": "medium",
+    "horizon": "H1",
+    "time_limit_seconds": 600,
+    "cua_required": true,
+    "cua_reason": "interactive-only state",
+    "grading": {
+      "type": "llm_judge",
+      "rubrics": [
+        {
+          "criterion": "Agent uses Thunar (not terminal mv) to move the file via left_click_drag",
+          "type": "llm_judge",
+          "weight": 0.295716
+        },
+        {
+          "criterion": "Agent saves the Jamaica boarding pass file into ~/Documents/Trips/Jamaica/ renamed to jamaica_boarding_pass with whatever extension the seeded file uses (.pdf or .txt both accepted)",
+          "type": "llm_judge",
+          "weight": 0.25885
+        },
+        {
+          "criterion": "Original copy is no longer in Downloads (it was moved, not copied)",
+          "type": "llm_judge",
+          "weight": 0.147914
+        },
+        {
+          "criterion": "Agent opens Thunar and navigates into the ~/Downloads/ folder to surface the Jamaica boarding pass file before any drag",
+          "type": "llm_judge",
+          "weight": 0.099174
+        },
+        {
+          "criterion": "Agent locates the Jamaica boarding pass file inside the Thunar Downloads view (the seeded file is Jamaica_Boarding_Pass_DN1562.pdf or boarding_pass_DN1562.txt — both are the Dinoco AVP→MBJ flight file for Michael's Jamaica trip)",
+          "type": "llm_judge",
+          "weight": 0.099174
+        },
+        {
+          "criterion": "Agent confirms or creates the Jamaica/ subfolder under ~/Documents/Trips/ in Thunar before moving the boarding pass file",
+          "type": "llm_judge",
+          "weight": 0.099174
+        }
+      ]
+    },
+    "collection": "cua_only",
+    "date_policy": "relative"
+  }
+]

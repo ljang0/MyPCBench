@@ -1,0 +1,30 @@
+# Secrets — never commit real keys (.env.example is the tracked template)
+.env
+.env.*
+!.env.example
+
+# Run outputs / scratch — run_mypcbench.py writes results/;
+# draft/ is the vendored Qwen agent's message cache
+results/
+draft/
+*.log
+
+# Fetched VM image (scripts/get-eval-image.sh writes these)
+/mypcbench-vm/
+*.qcow2
+OVMF_*.fd
+
+# Local DB state if a VM/app is exercised on the host
+*.sqlite*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.sw[op]
