@@ -17,7 +17,7 @@ wrapper, never a requirement. `--backend qemu` is the runner default.
 | Set | What it is | Docker Hub `ljang/mypcbench-qemu` (image digest) | HF qcow2 (file sha256) |
 |-----|-----------|--------------------------------------------------|------------------------|
 | **`eval-round0`** | **Canonical paper baseline** (`v1.2.15-round78e`). Reproduce the paper numbers with this. | `:eval-round0` (≡ `:eval-round0-michael_scott`) · `sha256:86d4da6575ebf5adbfa3229389f341445245d6d7f2bee6340150858b9a8dbdcf` | `michael_scott_round78e.qcow2` · `sha256:c7209624dfae24ecf2cde90233097ec19797ae770c2ae4e201892046c51d1fb6` |
-| **`latest`** | Current **OSS-polish** release (`v1.2.16-oss-polish`). Use this to just try the benchmark. | `:v1.2.16-oss-polish-michael_scott` (≡ `:demo`, `:michael_scott`) · `sha256:eb99138a12487c09e48c1b31a05bcf8811cc48e28b1c8cb99b57c736a027cdea` | `michael_scott.qcow2` · `sha256:facabd91778b79a621c3d33d4b4b73c9c13c52cfdea8e9d3db34bd216806dc0a` |
+| **`latest`** | More fleshed-out, polished build (`v1.2.16-oss-polish`) with expanded seeded catalogs (HangryDash, Kwik-E-Mart, Dinoco). Use for development and exploration; not the paper baseline. | `:v1.2.16-oss-polish-michael_scott` (≡ `:demo`, `:michael_scott`) · `sha256:eb99138a12487c09e48c1b31a05bcf8811cc48e28b1c8cb99b57c736a027cdea` | `michael_scott.qcow2` · `sha256:facabd91778b79a621c3d33d4b4b73c9c13c52cfdea8e9d3db34bd216806dc0a` |
 
 The qcow2 baked inside each Docker `-qemu` image is **byte-identical** to
 the file with the same sha256 on HuggingFace — both fetch paths produce

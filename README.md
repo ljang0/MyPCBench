@@ -108,7 +108,7 @@ and runs it via `qemu-system-x86_64`. Either path boots the same VM.
 | Set | Use | Docker Hub `ljang/mypcbench-qemu` | HF `ljang0/mypcbench-qemu-baseline` |
 |---|---|---|---|
 | **`eval-round0`** | **paper baseline** (`v1.2.15-round78e`) — reproduce the numbers above | `:eval-round0` (≡ `:eval-round0-michael_scott`) · image `sha256:86d4da6575eb…` | `michael_scott_round78e.qcow2` · qcow2 `sha256:c7209624dfae24…` |
-| **`latest`** | current OSS-polish build — just try it | `:v1.2.16-oss-polish-michael_scott` (≡ `:demo`, `:michael_scott`) · image `sha256:eb99138a1248…` | `michael_scott.qcow2` · qcow2 `sha256:facabd91778b79…` |
+| **`latest`** | more fleshed-out, polished build (`v1.2.16-oss-polish`) — expanded seeded catalogs, non-paper | `:v1.2.16-oss-polish-michael_scott` (≡ `:demo`, `:michael_scott`) · image `sha256:eb99138a1248…` | `michael_scott.qcow2` · qcow2 `sha256:facabd91778b79…` |
 
 Requirements: Linux + KVM (`/dev/kvm`) + QEMU, ~16 GB RAM per VM. Docker optional.
 
