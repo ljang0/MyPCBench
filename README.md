@@ -101,10 +101,14 @@ Full guide (two image sets, every agent, local-vLLM Qwen, troubleshooting):
 Two pre-baked images (both Michael Scott, instant boot). Fetch either with
 **no docker/root** via `scripts/get-eval-image.sh --set <eval-round0|latest>`.
 
-| Set | Use | Image (Docker Hub `ljang/` · HF `ljang0/mypcbench-qemu-baseline`) |
-|---|---|---|
-| **`eval-round0`** | **paper baseline** (`v1.2.15-round78e`) — reproduce the numbers above | `mypcbench-qemu:eval-round0` · HF `michael_scott_round78e.qcow2` · `sha256:86d4da6575eb…` |
-| **`latest`** | current OSS-polish build — just try it | `mypcbench-qemu:v1.2.16-oss-polish-michael_scott` (≡ `:demo`) · HF `michael_scott.qcow2` · `sha256:eb99138a1248…` |
+The canonical artifact is the **qcow2** on HuggingFace; the Docker `-qemu`
+image bundles exactly that qcow2 (byte-identical sha256 — verifiable below)
+and runs it via `qemu-system-x86_64`. Either path boots the same VM.
+
+| Set | Use | Docker Hub `ljang/mypcbench-qemu` | HF `ljang0/mypcbench-qemu-baseline` |
+|---|---|---|---|
+| **`eval-round0`** | **paper baseline** (`v1.2.15-round78e`) — reproduce the numbers above | `:eval-round0` (≡ `:eval-round0-michael_scott`) · image `sha256:86d4da6575eb…` | `michael_scott_round78e.qcow2` · qcow2 `sha256:c7209624dfae24…` |
+| **`latest`** | current OSS-polish build — just try it | `:v1.2.16-oss-polish-michael_scott` (≡ `:demo`, `:michael_scott`) · image `sha256:eb99138a1248…` | `michael_scott.qcow2` · qcow2 `sha256:facabd91778b79…` |
 
 Requirements: Linux + KVM (`/dev/kvm`) + QEMU, ~16 GB RAM per VM. Docker optional.
 

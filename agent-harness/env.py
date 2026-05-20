@@ -1,6 +1,7 @@
 """MyPCBenchEnv — OSWorld-compatible desktop environment for MyPCBench.
 
-Wraps a Docker container running the MyPCBench desktop image and exposes
+Wraps a Docker container running the MyPCBench QEMU image (or boots the
+qcow2 under qemu-system-x86_64 directly with --backend qemu) and exposes
 the same interface as OSWorld's DesktopEnv: reset(), step(), _get_obs().
 Agents built for OSWorld can plug in directly. Grading is not part of the
 env — the runner writes a completion marker + rubric bundle and scoring is
