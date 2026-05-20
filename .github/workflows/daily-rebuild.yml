@@ -1,0 +1,272 @@
+name: daily-rebuild
+
+# Cron-driven daily rebuild + republish of the canonical michael_scott
+# qcow2/QEMU wrapper. Runs on a self-hosted runner because the build
+# needs:
+#   - KVM (GitHub-hosted runners do not expose /dev/kvm)
+#   - ~30 GB free disk for the qcow2 + Docker layers
+#   - ~30 minutes of wallclock time (cloud-init + persona seed + bake)
+#
+# 07:00 UTC = 03:00 EST = ~midnight PST → off-peak rebuild window so the
+# self-hosted machine isn't fighting interactive devs.
+#
+# What it produces (on success, three tags pushed to Docker Hub):
+#   - ljang/mypcbench-qemu:michael_scott                   (rolling latest)
+#   - ljang/mypcbench-qemu:michael_scott-YYYY-MM-DD        (immutable date pin)
+#   - ljang/mypcbench-qemu:v1.2.16-<commit-sha>            (SHA pin)
+# Plus the qcow2 to HuggingFace dataset ljang0/mypcbench-qemu-baseline.
+#
+# Also runs the v1.2.12 boot-time date rebase verification: by default the
+# rebuild boots at delta=0 only, but workflow_dispatch can flip
+# `run_h2_shifts` to also exercise +30d and +180d shifts (slow, ~15min
+# extra) so we catch any temporal-drift regression in the rebase worker.
+#
+# On failure, opens a GitHub issue with the failure log so the regression
+# is visible the next morning.
+
+on:
+  schedule:
+    # 07:00 UTC daily (03:00 EST / midnight PST — off-peak)
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+    inputs:
+      force_push:
+        description: 'Push even if regression check has warnings (use with care)'
+        required: false
+        default: 'false'
+      run_h2_shifts:
+        description: 'Also run H2 task verification at +30d and +180d shifts (adds ~15min)'
+        required: false
+        default: 'false'
+
+concurrency:
+  # Prevent two daily-rebuilds from racing for the same disk/Docker daemon
+  # if a manual dispatch overlaps with the cron run.
+  group: daily-rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild-and-publish:
+    runs-on: self-hosted
+    timeout-minutes: 90
+    env:
+      PERSONA: michael_scott
+      BUILD_PARALLELISM: "2"
+      INSTALL_GDPVAL_DEPS: "0"
+      DOCKER_HUB_NAMESPACE: ljang
+      HF_DATASET_REPO: ljang0/mypcbench-qemu-baseline
+      LOCAL_IMAGE: mypcbench-qemu:michael_scott
+      QCOW2_PATH: vm-setup/build/mypcbench-michael_scott.qcow2
+
+    steps:
+      - name: Checkout build-source branch
+        uses: actions/checkout@v4
+        with:
+          # Post-2026-05-18 publish: `main` is the single-commit OSS
+          # release and no longer carries vm-setup/web-apps/tools. The
+          # build source + daily-rebuild driver lives on cluster/no-docker.
+          ref: cluster/no-docker
+          fetch-depth: 1
+
+      - name: Compute date + short SHA
+        id: vars
+        run: |
+          echo "date_stamp=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+          echo "short_sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Free up disk before build
+        run: |
+          # The qcow2 + Docker intermediate layers can hit 30+ GB.
+          # Best-effort prune; ignore failures so a clean runner doesn't error.
+          docker system prune -af --volumes || true
+          df -h
+
+      - name: Build qcow2 + QEMU wrapper image
+        env:
+          BUILD_PARALLELISM: ${{ env.BUILD_PARALLELISM }}
+          INSTALL_GDPVAL_DEPS: ${{ env.INSTALL_GDPVAL_DEPS }}
+        run: |
+          bash vm-setup/linux/build-qemu-image.sh \
+            --persona "${PERSONA}" \
+            --skip-baseline \
+            --force
+
+      - name: Boot the freshly-built image for verification
+        id: boot
+        run: |
+          set -euo pipefail
+          # Stop any leftover container from a previous (possibly failed) run.
+          docker rm -f mypcbench-verify >/dev/null 2>&1 || true
+
+          docker run -d --name mypcbench-verify \
+            --privileged --device /dev/kvm \
+            -p 5000:5000 -p 6080:6080 \
+            -p 3001-3018:3001-3018 \
+            "${LOCAL_IMAGE}"
+
+          # Wait for /health (cloud-init + 17 web apps coming up takes ~60-90s)
+          for i in $(seq 1 60); do
+            if curl -fsS http://localhost:5000/health >/dev/null 2>&1; then
+              echo "control-api up after ${i}*5s"
+              break
+            fi
+            sleep 5
+          done
+          curl -fsS http://localhost:5000/health || { echo "::error::/health never returned 200"; exit 1; }
+
+          # Confirm all 17 web apps respond on their ports
+          missing=0
+          for port in $(seq 3001 3017); do
+            if ! curl -fsS -o /dev/null -m 5 "http://localhost:${port}/"; then
+              echo "::warning::App on port ${port} not responding"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ "${missing}" -gt 0 ]; then
+            echo "::error::${missing}/17 apps failed to respond"
+            exit 1
+          fi
+          echo "All 17 apps responding."
+
+      - name: Run regression check (v1.2.11)
+        id: regression
+        run: |
+          python3 tools/per_task_review/regression_check_v1.2.11.py \
+            --container mypcbench-verify \
+            --output /tmp/regression_check_result.json
+          # The regression script exits non-zero on any failure; surface
+          # the result file as an artifact regardless of pass/fail so the
+          # issue can be triaged from the workflow run page.
+        continue-on-error: false
+
+      - name: Upload regression report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-check-${{ steps.vars.outputs.date_stamp }}
+          path: /tmp/regression_check_result.json
+          if-no-files-found: warn
+
+      - name: Run v1.2.12 H2 shift verification (delta=0)
+        id: h2_shift0
+        run: |
+          set -euo pipefail
+          # Baseline shift — proves the freshly-baked image grades 190/190
+          # at the same clock the rebase computed delta=0 against.
+          H2_SHIFT_TAG=0 python3 tools/per_task_review/task_verify_v1.2.12_part1.py
+          H2_SHIFT_TAG=0 python3 tools/per_task_review/task_verify_v1.2.12_part2.py
+          for tag in 0; do
+            for part in part1 part2; do
+              cp "tools/per_task_review/task_verify_v1.2.12_shift_${tag}_${part}.json" \
+                 "/tmp/h2_shift${tag}_${part}.json"
+            done
+          done
+
+      # +30d / +180d multi-shift verification is gated by the
+      # `run_h2_shifts` workflow_dispatch input. The driver now exists
+      # at `tools/h2_restore_and_shift_v1.2.13.sh` (v1.2.13). On request
+      # it stops the apps, restores `/data` from `/data_backup_h2`,
+      # back-dates `bake_reference_time` by N days, restarts the
+      # systemd date-rebase unit, and re-runs `task_verify` for that
+      # shift.  Multi-shift is a release-gate, not a daily check, so
+      # remains opt-in via workflow_dispatch.
+      - name: Run v1.2.13 H2 shift verification (+30d, +180d)
+        if: github.event.inputs.run_h2_shifts == 'true'
+        run: |
+          set -euo pipefail
+          for delta in 30 180; do
+            docker exec mypcbench-verify bash -c "cd /opt/mypcbench && bash tools/h2_restore_and_shift_v1.2.13.sh ${delta}"
+            for part in part1 part2; do
+              H2_SHIFT_TAG="${delta}" python3 "tools/per_task_review/task_verify_v1.2.12_${part}.py"
+              cp "tools/per_task_review/task_verify_v1.2.12_shift_${delta}_${part}.json" \
+                 "/tmp/h2_shift${delta}_${part}.json"
+            done
+          done
+
+      - name: Upload H2 shift artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h2-shifts-${{ steps.vars.outputs.date_stamp }}
+          path: /tmp/h2_shift*_part*.json
+          if-no-files-found: warn
+
+      - name: Login to Docker Hub
+        if: success()
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        run: |
+          echo "${DOCKER_TOKEN}" | docker login -u "${DOCKER_HUB_NAMESPACE}" --password-stdin
+
+      - name: Tag + push to Docker Hub (3 tags)
+        if: success()
+        run: |
+          set -euo pipefail
+          ROLLING="${DOCKER_HUB_NAMESPACE}/mypcbench-qemu:${PERSONA}"
+          DATED="${DOCKER_HUB_NAMESPACE}/mypcbench-qemu:${PERSONA}-${{ steps.vars.outputs.date_stamp }}"
+          SHA_PIN="${DOCKER_HUB_NAMESPACE}/mypcbench-qemu:v1.2.16-${{ github.sha }}"
+
+          docker tag "${LOCAL_IMAGE}" "${ROLLING}"
+          docker tag "${LOCAL_IMAGE}" "${DATED}"
+          docker tag "${LOCAL_IMAGE}" "${SHA_PIN}"
+
+          docker push "${ROLLING}"
+          docker push "${DATED}"
+          docker push "${SHA_PIN}"
+
+          echo "Pushed:"
+          echo "  ${ROLLING}"
+          echo "  ${DATED}"
+          echo "  ${SHA_PIN}"
+
+      - name: Push qcow2 to HuggingFace dataset
+        if: success()
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          if ! command -v hf >/dev/null 2>&1; then
+            python3 -m pip install --upgrade --quiet huggingface_hub
+          fi
+          # Docker images are too big for HF (~10 GB layered);
+          # only the qcow2 ships there.
+          hf upload "${HF_DATASET_REPO}" "${QCOW2_PATH}" \
+            "michael_scott.qcow2" \
+            --repo-type dataset \
+            --commit-message "daily-rebuild ${{ steps.vars.outputs.date_stamp }} (sha ${{ steps.vars.outputs.short_sha }})"
+
+      - name: Stop verification container
+        if: always()
+        run: |
+          docker rm -f mypcbench-verify >/dev/null 2>&1 || true
+
+      - name: Open issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const date = '${{ steps.vars.outputs.date_stamp }}';
+            const sha = '${{ steps.vars.outputs.short_sha }}';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `Daily rebuild failed for **${date}** at commit \`${sha}\`.`,
+              ``,
+              `Workflow run: ${runUrl}`,
+              ``,
+              `The regression check or build pipeline did not pass; the canonical`,
+              `\`ljang/mypcbench-qemu:michael_scott\` tag on Docker Hub was NOT updated.`,
+              `End users continue to receive the previous good image until this is resolved.`,
+              ``,
+              `**Triage checklist:**`,
+              `- [ ] Open the workflow run, scroll to the failed step.`,
+              `- [ ] Download the \`regression-check-${date}\` artifact for the per-task verdicts.`,
+              `- [ ] If a transient infra issue (disk full, KVM busy) — re-run the workflow.`,
+              `- [ ] If a real regression — bisect against the previous successful daily rebuild.`,
+            ].join('\n');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `daily-rebuild failed ${date} (${sha})`,
+              body,
+              labels: ['daily-rebuild', 'ci-failure'],
+            });
