@@ -13,7 +13,7 @@ name: daily-rebuild
 # What it produces (on success, three tags pushed to Docker Hub):
 #   - ljang/mypcbench-qemu:michael_scott                   (rolling latest)
 #   - ljang/mypcbench-qemu:michael_scott-YYYY-MM-DD        (immutable date pin)
-#   - ljang/mypcbench-qemu:v1.2.16-<commit-sha>            (SHA pin)
+#   - ljang/mypcbench-qemu:v1.2.17-<commit-sha>            (SHA pin)
 # Plus the qcow2 to HuggingFace dataset ljang0/mypcbench-qemu-baseline.
 #
 # Also runs the v1.2.12 boot-time date rebase verification: by default the
@@ -204,7 +204,7 @@ jobs:
           set -euo pipefail
           ROLLING="${DOCKER_HUB_NAMESPACE}/mypcbench-qemu:${PERSONA}"
           DATED="${DOCKER_HUB_NAMESPACE}/mypcbench-qemu:${PERSONA}-${{ steps.vars.outputs.date_stamp }}"
-          SHA_PIN="${DOCKER_HUB_NAMESPACE}/mypcbench-qemu:v1.2.16-${{ github.sha }}"
+          SHA_PIN="${DOCKER_HUB_NAMESPACE}/mypcbench-qemu:v1.2.17-${{ github.sha }}"
 
           docker tag "${LOCAL_IMAGE}" "${ROLLING}"
           docker tag "${LOCAL_IMAGE}" "${DATED}"

@@ -3,15 +3,15 @@
     "id": "hard_app-f015",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "Book me a new table at Cotogna on TableFind for the next upcoming Saturday at 7pm, party of four, and add a special-request note that one of us (Pam) needs a gluten-free option so they're ready for her. Then make me a new saved in LibreOffice Writer list called 'Go-Tos' and drop Cotogna into it. When you're done, grab me the confirmation number.",
+    "instruction": "Book me a new table at Sotto Mare on TableFind for the next upcoming Saturday at 7pm, party of four, and add a special-request note that one of us (Pam) needs a gluten-free option so they're ready for her. Then make me a new saved in LibreOffice Writer list called 'Go-Tos' and drop Sotto Mare into it. When you're done, grab me the confirmation number.",
     "required_subtasks": [
-      "Open TableFind and navigate to Cotogna",
+      "Open TableFind and navigate to Sotto Mare",
       "Start a new reservation for party of 4 on the next available Saturday 19:00 slot",
       "Add the 'gluten-free option for Pam' special-request note in the booking form",
       "Submit and capture the confirmation number",
       "Navigate to saved-restaurant lists",
       "Create a new list called 'Go-Tos'",
-      "Add Cotogna to the 'Go-Tos' list",
+      "Add Sotto Mare to the 'Go-Tos' list",
       "Verify the list and the reservation persist on a refresh",
       "Open LibreOffice Writer and save the 'Go-Tos' restaurant list under ~/Documents"
     ],
@@ -27,17 +27,17 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens TableFind and navigates to Cotogna before starting the new reservation",
+          "criterion": "Agent opens TableFind and navigates to Sotto Mare before starting the new reservation",
           "type": "llm_judge",
           "weight": 0.11
         },
         {
-          "criterion": "Agent submits a new TableFind reservation for Cotogna for party of 4 at 19:00 on a Saturday — accepts either today (if Saturday with 7pm slot still bookable) or the next upcoming Saturday",
+          "criterion": "Agent submits a new TableFind reservation for Sotto Mare for party of 4 at 19:00 on a Saturday — accepts either today (if Saturday with 7pm slot still bookable) or the next upcoming Saturday",
           "type": "llm_judge",
           "weight": 0.165
         },
         {
-          "criterion": "Agent enters a 'gluten-free option for Pam' special-request note on the new Cotogna reservation before submitting",
+          "criterion": "Agent enters a 'gluten-free option for Pam' special-request note on the new Sotto Mare reservation before submitting",
           "type": "llm_judge",
           "weight": 0.14
         },
@@ -52,12 +52,12 @@
           "weight": 0.14
         },
         {
-          "criterion": "Agent adds Cotogna to the 'Go-Tos' list in the LibreOffice Writer document",
+          "criterion": "Agent adds Sotto Mare to the 'Go-Tos' list in the LibreOffice Writer document",
           "type": "llm_judge",
           "weight": 0.14
         },
         {
-          "criterion": "Agent saves the LibreOffice Writer 'Go-Tos' document and confirms the new Cotogna TableFind reservation persists after navigating away",
+          "criterion": "Agent saves the LibreOffice Writer 'Go-Tos' document and confirms the new Sotto Mare TableFind reservation persists after navigating away",
           "type": "llm_judge",
           "weight": 0.105
         },
@@ -76,16 +76,16 @@
     "id": "hard_app-f016",
     "category": "long_horizon",
     "persona": "michael_scott",
-    "instruction": "Book me Cotogna for ten people for the Dundies after-party next Friday. While you're in TableFind, pull up three other Scranton-area restaurants as a fallback plan in case Cotogna is full, and favorite the top two. Once that's done, confirm the Cotogna reservation with a note that it's the Dundies after-party so they can prep the vibe.",
+    "instruction": "Book me Sotto Mare for ten people for the Dundies after-party next Friday. While you're in TableFind, pull up three other Scranton-area restaurants as a fallback plan in case Sotto Mare is full, and favorite the top two. Once that's done, confirm the Sotto Mare reservation with a note that it's the Dundies after-party so they can prep the vibe.",
     "required_subtasks": [
-      "Open TableFind and search for Cotogna",
+      "Open TableFind and search for Sotto Mare",
       "Check availability for a 10-person reservation for the Dundies after-party night",
-      "Book Cotogna for 10 with a 'Dundies after-party' note",
+      "Book Sotto Mare for 10 with a 'Dundies after-party' note",
       "Record the confirmation number",
       "Search TableFind for 3 other Scranton-area restaurants as fallbacks",
       "Compare the 3 fallbacks (open compare view or one-by-one)",
       "Favorite 2 of the Scranton fallback restaurants",
-      "Verify the Cotogna booking and 2 favorites persist"
+      "Verify the Sotto Mare booking and 2 favorites persist"
     ],
     "apps_involved": [
       "TableFind"
@@ -98,12 +98,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent searches TableFind for Cotogna and checks 10-person availability",
+          "criterion": "Agent searches TableFind for Sotto Mare and checks 10-person availability",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent books Cotogna for 10 with a 'Dundies after-party' special-request note",
+          "criterion": "Agent books Sotto Mare for 10 with a 'Dundies after-party' special-request note",
           "type": "llm_judge",
           "weight": 0.197
         },
@@ -123,17 +123,17 @@
           "weight": 0.116
         },
         {
-          "criterion": "Agent captures the Cotogna confirmation number",
+          "criterion": "Agent captures the Sotto Mare confirmation number",
           "type": "llm_judge",
           "weight": 0.107
         },
         {
-          "criterion": "Agent verifies the Cotogna Dundies booking and the 2 Scranton favorites persist in TableFind after refresh",
+          "criterion": "Agent verifies the Sotto Mare Dundies booking and the 2 Scranton favorites persist in TableFind after refresh",
           "type": "llm_judge",
           "weight": 0.089
         },
         {
-          "criterion": "Agent confirms availability of a 10-person reservation slot at Cotogna on TableFind for the Dundies after-party night before placing the booking",
+          "criterion": "Agent confirms availability of a 10-person reservation slot at Sotto Mare on TableFind for the Dundies after-party night before placing the booking",
           "type": "llm_judge",
           "weight": 0.107
         }
