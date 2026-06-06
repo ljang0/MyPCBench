@@ -388,14 +388,14 @@ class ClaudeCUAAgent(BaseAgent):
         tool_result").
 
         This method scans the last assistant message for unresolved tool_use
-        blocks (computer blocks specifically — bash/editor/MCP are resolved
+        blocks (computer blocks specifically — bash/editor calls are resolved
         inline in the prior predict() call). For each unresolved block it
         emits a tool_result with "Action executed." text. The LAST such
         tool_result also receives the current screenshot so the model can
         see the post-action state.
 
         The tool_results are appended to the EXISTING user message (if the
-        last message is user, which is the case when bash/editor/MCP results
+        last message is user, which is the case when bash/editor results
         were already pushed) or as a NEW user message (computer-only turn,
         last message is assistant). Either way, role alternation is
         preserved.

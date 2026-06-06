@@ -72,14 +72,14 @@ When a UI target is reachable by keyboard (Ctrl+S to save, Ctrl+F to search, Alt
 # response and our harness already dispatches them (Claude resolves every
 # pending tool_use, OpenAI iterates response.output, Qwen iterates
 # msg.tool_calls). Encouraging the model to batch read-only / order-independent
-# calls (multiple MCP reads, multiple shell commands) cuts wall time roughly
+# calls (multiple read-only queries, multiple shell commands) cuts wall time roughly
 # proportional to the batch depth on tasks with broad data gathering.
 # IMPORTANT caveat for CUA: parallel `computer` actions all see the SAME
 # post-batch screenshot, so only batch GUI actions when the next one doesn't
 # depend on the visible result of the previous one (e.g., type-then-Enter is
 # fine; click-then-decide-where-to-click-next is not).
 PARALLEL_TOOL_HINT = """
-You may emit multiple tool calls in a single response when the actions are independent. The runtime executes them in order and feeds the results back in one batched response on the next turn. Good batches: several read-only MCP queries against different apps; a `type` + `key Enter` GUI pair; a few shell commands whose outputs you can read together. Don't batch GUI actions whose next step depends on observing the visible result of the previous one — all GUI actions in a batch share the SAME post-batch screenshot.
+You may emit multiple tool calls in a single response when the actions are independent. The runtime executes them in order and feeds the results back in one batched response on the next turn. Good batches: several read-only queries against different apps; a `type` + `key Enter` GUI pair; a few shell commands whose outputs you can read together. Don't batch GUI actions whose next step depends on observing the visible result of the previous one — all GUI actions in a batch share the SAME post-batch screenshot.
 """
 
 # General dual-tool guidance — when an agent has both a visual/GUI tool and

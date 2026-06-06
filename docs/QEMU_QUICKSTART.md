@@ -18,16 +18,18 @@ docker pull ljang/mypcbench-qemu:eval-round0
 python3 agent-harness/run_mypcbench.py \
     --backend docker --docker_image ljang/mypcbench-qemu:eval-round0 \
     --agent_type dummy --model dummy \
-    --tasks_dir tasks/smoke_one --max_steps 4
+    --tasks_dir tasks/smoke_one --max_steps 4 \
+    --result_dir results/smoke-docker
 
 # 3. Run an agent (one of the paper agents) — runner manages the container
 python3 agent-harness/run_mypcbench.py \
     --backend docker --docker_image ljang/mypcbench-qemu:eval-round0 \
     --agent_type claude_cuabash --model claude-opus-4-6 \
-    --tasks_dir tasks/final --max_steps 100
+    --tasks_dir tasks/final --max_steps 100 \
+    --result_dir results/opus-docker
 
 # 4. Grade the run (separate, offline step)
-python3 agent-harness/judge_results.py --result_dir results
+python3 agent-harness/judge_results.py --result_dir results/opus-docker
 ```
 
 `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` stay host-side (the agent and the
@@ -55,9 +57,10 @@ MYPCBENCH_REUSE_CONTAINER=1 python3 agent-harness/run_mypcbench.py \
     --backend docker --docker_image ljang/mypcbench-qemu:eval-round0 \
     --container_name mypcbench \
     --agent_type claude_cuabash --model claude-opus-4-6 \
-    --tasks_dir tasks/final --max_steps 100
+    --tasks_dir tasks/final --max_steps 100 \
+    --result_dir results/opus-docker-reuse
 
-python3 agent-harness/judge_results.py --result_dir results
+python3 agent-harness/judge_results.py --result_dir results/opus-docker-reuse
 ```
 
 ## What you get

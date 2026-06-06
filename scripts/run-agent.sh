@@ -52,7 +52,20 @@ mkdir -p "$RESULT"
 if [ "$PARALLEL" -gt 0 ]; then
   # Parallel mode spins N VMs itself — no preexisting container needed
   TASKS_FILE="$TASKS"
-  [ -d "$TASKS" ] && TASKS_FILE="$TASKS/all_tasks_with_grading.json"
+  if [ -d "$TASKS" ]; then
+    if [ -f "$TASKS/all_tasks_with_grading.json" ]; then
+      TASKS_FILE="$TASKS/all_tasks_with_grading.json"
+    else
+      mapfile -t TASK_JSONS < <(find "$TASKS" -maxdepth 1 -type f -name '*.json' | sort)
+      if [ "${#TASK_JSONS[@]}" -eq 1 ]; then
+        TASKS_FILE="${TASK_JSONS[0]}"
+      else
+        echo "!! --parallel needs a task JSON file, tasks/final, or a directory with exactly one JSON file." >&2
+        echo "   Got directory '$TASKS' with ${#TASK_JSONS[@]} JSON files." >&2
+        exit 1
+      fi
+    fi
+  fi
   exec python3 agent-harness/run_parallel_tasks.py \
       --backend docker --docker-image "$IMAGE" \
       --tasks-file "$TASKS_FILE" \

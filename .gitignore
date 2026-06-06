@@ -9,6 +9,45 @@ results/
 draft/
 *.log
 
+# Local audit/build scratch and internal handoff notes. The public release is
+# runner-only; do not publish bake/source trees, app monorepos, generated state,
+# or one-off audit artifacts from local validation.
+.claude/
+.codex
+.mail-data/
+FINAL_FIX.MD
+QWEN_PARALLEL_RUN.md
+REBAKE*.md
+UNDERSPEC_AUDIT.md
+cluster-setup-prompt.md
+*_AUDIT.md
+*_HANDOFF*.md
+*_PROMPT*.md
+_driver.mjs
+_reset_lib.mjs
+bb_audit.mjs
+cookies*.txt
+texput.log
+agent-harness/utils/control_api_client.py
+agent-harness/utils/log.py
+node_modules/
+.pytest_cache/
+api-snapshots/
+data/
+generated_data/
+gym-anything/
+MyPCBenchHUMAN/
+-COLM-2026-*/
+tools/
+vm-setup/
+web-apps/
+desktop-seed/
+desktop-apps/
+generator/
+evaluation/
+tests/
+_deprecated/
+
 # Fetched VM image (scripts/get-eval-image.sh writes these)
 /mypcbench-vm/
 *.qcow2

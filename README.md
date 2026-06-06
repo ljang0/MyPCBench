@@ -34,7 +34,7 @@ do I normally tip?", "pay Jim back what I owe him").
 
 ## Results
 
-Six closed- and open-weight models under each provider's native CUA agent (Claude additionally gets bash + editor; OpenAI/Qwen get no bash, by design — see Agents). **Perfect** = % of tasks where every rubric passes; **Rubric** = mean rubric pass-rate (partial credit).
+Six closed- and open-weight models under each provider's native CUA agent (Claude uses computer + bash + editor; OpenAI uses computer + built-in shell; Qwen main uses computer + bash — see Agents). **Perfect** = % of tasks where every rubric passes; **Rubric** = mean rubric pass-rate (partial credit).
 
 | Model | Perfect % | Rubric % |
 |---|--:|--:|
@@ -68,6 +68,7 @@ separately; see [docs/NO_DOCKER.md](docs/NO_DOCKER.md)). It boots under QEMU/KVM
 
 ```bash
 bash scripts/get-eval-image.sh --set eval-round0 --out ./mypcbench-vm
+set -a; source .env; set +a           # API keys
 source ./mypcbench-vm/env.sh          # exports MYPCBENCH_QCOW2 / MYPCBENCH_OVMF_*
 
 # sanity: one task, no API cost — confirms the VM boots + Control API works
@@ -75,7 +76,6 @@ python3 agent-harness/run_mypcbench.py --backend qemu \
   --qcow2_path "$MYPCBENCH_QCOW2" --agent_type dummy --model dummy \
   --tasks_dir tasks/smoke_one --max_steps 4 --result_dir results/smoke
 
-set -a; source .env; set +a
 python3 agent-harness/run_mypcbench.py --backend qemu \
   --qcow2_path "$MYPCBENCH_QCOW2" \
   --agent_type claude_cuabash --model claude-opus-4-6 \

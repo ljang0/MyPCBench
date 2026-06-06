@@ -75,9 +75,9 @@ downloads the raw qcow2 from the HuggingFace dataset
 ```bash
 cp .env.example .env
 # edit .env:
-#   ANTHROPIC_API_KEY=sk-ant-...   # Claude agents
-#   OPENAI_API_KEY=sk-...          # GPT agents
-#   GEMINI_API_KEY=AIza...         # rubric judge (judge_results.py, Gemini gemini-3.1-flash-lite-preview)
+#   ANTHROPIC_API_KEY=<your Anthropic key>   # Claude agents
+#   OPENAI_API_KEY=<your OpenAI key>         # GPT agents
+#   GEMINI_API_KEY=<your Gemini key>         # rubric judge (judge_results.py, Gemini gemini-3.1-flash-lite-preview)
 ```
 
 The runner reads keys from the **process environment**, not `.env`
@@ -93,8 +93,8 @@ never commit keys.
 All four paper agents, against the canonical task set:
 
 ```bash
-source ./mypcbench-vm/env.sh       # MYPCBENCH_QCOW2 / OVMF
 set -a; source .env; set +a        # API keys into the environment
+source ./mypcbench-vm/env.sh       # MYPCBENCH_QCOW2 / OVMF
 
 # Claude Opus 4.6  (paper main)
 python3 agent-harness/run_mypcbench.py --backend qemu \
@@ -165,12 +165,12 @@ Wait for `Application startup complete`, then point the runner at
 
 ---
 
-## 7. One-command smoke (do this on the handoff node first)
+## 7. One-command smoke (do this on a new host first)
 
 ```bash
 bash scripts/get-eval-image.sh --set eval-round0 --out ./mypcbench-vm
-source ./mypcbench-vm/env.sh
 set -a; source .env; set +a                # API keys into the env
+source ./mypcbench-vm/env.sh
 
 # No-API sanity: one task, dummy agent — confirms VM boot + Control API
 python3 agent-harness/run_mypcbench.py --backend qemu \
