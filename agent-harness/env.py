@@ -739,21 +739,20 @@ class MyPCBenchEnv:
         """Inject OPENAI_API_KEY into chat app services for LLM auto-replies.
 
         Chat apps (buzzchat, workbuzz) use the shared @mypcbench/llm
-        client to generate NPC replies via gpt-5.4-mini. The key is
-        read from the project .env file and injected into the running
-        VM's systemd services.
+        client to generate NPC replies via gpt-5.4-mini. The key is read
+        from the process environment first, with project .env as a fallback,
+        then injected into the running VM's systemd services.
         """
-        env_path = Path(__file__).resolve().parent.parent / ".env"
-        if not env_path.exists():
-            log.debug("No .env file — LLM auto-replies disabled")
-            return
-        api_key = None
-        for line in env_path.read_text().splitlines():
-            if line.startswith("OPENAI_API_KEY="):
-                api_key = line.split("=", 1)[1].strip().strip('"')
-                break
+        api_key = (os.environ.get("OPENAI_API_KEY") or "").strip().strip('"')
         if not api_key:
-            log.debug("No OPENAI_API_KEY in .env — LLM auto-replies disabled")
+            env_path = Path(__file__).resolve().parent.parent / ".env"
+            if env_path.exists():
+                for line in env_path.read_text().splitlines():
+                    if line.startswith("OPENAI_API_KEY="):
+                        api_key = line.split("=", 1)[1].strip().strip('"')
+                        break
+        if not api_key:
+            log.debug("No OPENAI_API_KEY in environment or .env — LLM auto-replies disabled")
             return
         try:
             import base64 as _b64

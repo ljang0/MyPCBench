@@ -68,6 +68,18 @@ source ./mypcbench-vm/env.sh   # exports MYPCBENCH_QCOW2 / MYPCBENCH_OVMF_*
 downloads the raw qcow2 from the HuggingFace dataset
 `ljang0/mypcbench-qemu-baseline`, but does not ship OVMF.)
 
+On a busy host where the default direct-QEMU ports are already occupied,
+choose an unused port window before running the benchmark:
+
+```bash
+export MYPCBENCH_HOST_API_PORT=43000
+export MYPCBENCH_HOST_VNC_PORT=43001
+export MYPCBENCH_HOST_SSH_PORT=43002
+for cp in $(seq 3001 3018); do
+  export MYPCBENCH_HOST_APP_PORT_${cp}=$((43010 + cp - 3001))
+done
+```
+
 ---
 
 ## 4. API keys

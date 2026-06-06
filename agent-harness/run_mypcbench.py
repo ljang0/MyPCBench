@@ -542,7 +542,7 @@ def run_single_example(agent, env, task, max_steps, result_dir, sleep_after=1.0,
         import base64 as _b64
         _encoded = _b64.b64encode(final_response.encode("utf-8")).decode("ascii")
         env._execute_shell(f"echo {_encoded} | base64 -d > /tmp/mypcbench_agent_response.txt")
-        logger.info("Wrote agent response file (%d chars)", len(final_response))
+        logger.info("Wrote in-VM agent response file /tmp/mypcbench_agent_response.txt (%d chars)", len(final_response))
     except Exception as _e:
         logger.warning("Failed to write agent response file: %s", _e)
     grading = task.get("grading", {}) if isinstance(task.get("grading"), dict) else {}
@@ -829,7 +829,7 @@ def main():
     # Summary
     if scores:
         avg = sum(scores) / len(scores)
-        logger.info("=== Results: %d tasks, avg score %.2f ===", len(scores), avg)
+        logger.info("=== Completion markers: %d tasks, avg %.2f ===", len(scores), avg)
         for i, (task, score) in enumerate(zip(tasks, scores)):
             logger.info("  %s: %.2f", task.get("id", f"task_{i}"), score)
 
