@@ -672,7 +672,7 @@ def main():
                         default="ljang/mypcbench-qemu:eval-round0",
                         help="QEMU-in-Docker image (used with --backend docker). "
                              "Default is the paper baseline ljang/mypcbench-qemu:"
-                             "eval-round0; use :v1.2.16-oss-polish-michael_scott "
+                             "eval-round0; use :v1.2.47-oss-polish "
                              "for the latest build.")
     parser.add_argument("--container_name", type=str, default="mypcbench-agent")
     parser.add_argument("--persona", type=str, default="michael_scott")

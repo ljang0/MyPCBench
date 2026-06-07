@@ -561,6 +561,12 @@ class MyPCBenchEnv:
             for _ in range(20):
                 try:
                     os.kill(self._qemu_pid, 0)
+                    try:
+                        waited, _status = os.waitpid(self._qemu_pid, os.WNOHANG)
+                        if waited:
+                            break
+                    except ChildProcessError:
+                        pass
                     time.sleep(0.5)
                 except ProcessLookupError:
                     break
@@ -594,19 +600,31 @@ class MyPCBenchEnv:
         try:
             self._stop_qemu()
 
-            # Wait for ports to be released by the kernel
-            for attempt in range(15):
-                try:
-                    import socket
-                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    s.bind(("127.0.0.1", api_port or CONTROL_API_PORT))
-                    s.close()
+            # Wait for every forwarded port to be released by the kernel.
+            # Checking only the Control API port can still leave an app port
+            # in TIME_WAIT/listen cleanup, and QEMU then exits immediately
+            # with "Could not set up host forwarding rule".
+            ports_to_check = [
+                api_port or CONTROL_API_PORT,
+                vnc_port or VNC_PORT,
+                *app_ports.values(),
+                int(os.environ.get("MYPCBENCH_HOST_SSH_PORT", "2222")),
+            ]
+            for attempt in range(90):
+                busy = []
+                for port in ports_to_check:
+                    try:
+                        import socket
+                        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        s.bind(("127.0.0.1", int(port)))
+                        s.close()
+                    except OSError:
+                        busy.append(port)
+                if not busy:
                     break
-                except OSError:
-                    time.sleep(1)
+                time.sleep(1)
             else:
-                log.warning("Port %s still in use after 15s — proceeding anyway",
-                            api_port or CONTROL_API_PORT)
+                raise RuntimeError(f"Ports still in use after 90s: {busy}")
 
             # Restore port settings so _start_qemu uses the same ports
             self._host_api_port = api_port

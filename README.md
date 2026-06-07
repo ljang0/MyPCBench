@@ -61,10 +61,11 @@ cp .env.example .env     # add ANTHROPIC_API_KEY / OPENAI_API_KEY / GEMINI_API_K
 ```
 
 **No Docker** (recommended; works on GPU/compute nodes — no daemon, no root).
-Needs **`skopeo`** (a system package, not pip) — it fetches the image and
-extracts the qcow2 + OVMF. Without skopeo, `get-eval-image.sh` falls back
-to a larger HuggingFace download that ships **no OVMF** (install `ovmf`
-separately; see [docs/NO_DOCKER.md](docs/NO_DOCKER.md)). It boots under QEMU/KVM:
+When `skopeo` is available, `get-eval-image.sh` fetches the Docker image and
+extracts the bundled qcow2 + OVMF. Without `skopeo`, it falls back to the
+matching HuggingFace qcow2; install `ovmf` separately or set
+`MYPCBENCH_OVMF_CODE` if your distro does not ship it in a standard location.
+It boots under QEMU/KVM:
 
 ```bash
 bash scripts/get-eval-image.sh --set eval-round0 --out ./mypcbench-vm
@@ -101,14 +102,13 @@ Full guide (two image sets, every agent, local-vLLM Qwen, troubleshooting):
 Two pre-baked images (both Michael Scott, instant boot). Fetch either with
 **no docker/root** via `scripts/get-eval-image.sh --set <eval-round0|latest>`.
 
-The canonical artifact is the **qcow2** on HuggingFace; the Docker `-qemu`
-image bundles exactly that qcow2 (byte-identical sha256 — verifiable below)
-and runs it via `qemu-system-x86_64`. Either path boots the same VM.
+The canonical no-Docker artifact is the **qcow2** on HuggingFace. The Docker
+`-qemu` image bundles a qcow2 and runs it via `qemu-system-x86_64`.
 
 | Set | Use | Docker Hub `ljang/mypcbench-qemu` | HF `ljang0/mypcbench-qemu-baseline` |
 |---|---|---|---|
 | **`eval-round0`** | **paper baseline** (`v1.2.15-round78e`) — reproduce the numbers above | `:eval-round0` (≡ `:eval-round0-michael_scott`) · image `sha256:86d4da6575eb…` | `michael_scott_round78e.qcow2` · qcow2 `sha256:c7209624dfae24…` |
-| **`latest`** | more fleshed-out, polished build (`v1.2.16-oss-polish`) — expanded seeded catalogs, non-paper | `:v1.2.16-oss-polish-michael_scott` (≡ `:demo`, `:michael_scott`) · image `sha256:eb99138a1248…` | `michael_scott.qcow2` · qcow2 `sha256:facabd91778b79…` |
+| **`latest`** | more fleshed-out, polished build (`v1.2.47-oss-polish`) — expanded seeded catalogs, non-paper | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · image `sha256:2050585961cd…` | `michael_scott.qcow2` · qcow2 `sha256:c970a526e1ce21…` |
 
 Requirements: Linux + KVM (`/dev/kvm`) + QEMU, ~16 GB RAM per VM. Docker optional.
 

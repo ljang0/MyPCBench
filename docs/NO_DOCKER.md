@@ -14,21 +14,21 @@ wrapper, never a requirement. `--backend qemu` is the runner default.
 
 ## 1. The two image sets
 
-| Set | What it is | Docker Hub `ljang/mypcbench-qemu` (image digest) | HF qcow2 (file sha256) |
+| Set | What it is | Docker Hub `ljang/mypcbench-qemu` (image digest) | No-Docker image source |
 |-----|-----------|--------------------------------------------------|------------------------|
 | **`eval-round0`** | **Canonical paper baseline** (`v1.2.15-round78e`). Reproduce the paper numbers with this. | `:eval-round0` (≡ `:eval-round0-michael_scott`) · `sha256:86d4da6575ebf5adbfa3229389f341445245d6d7f2bee6340150858b9a8dbdcf` | `michael_scott_round78e.qcow2` · `sha256:c7209624dfae24ecf2cde90233097ec19797ae770c2ae4e201892046c51d1fb6` |
-| **`latest`** | More fleshed-out, polished build (`v1.2.16-oss-polish`) with expanded seeded catalogs (HangryDash, Kwik-E-Mart, Dinoco). Use for development and exploration; not the paper baseline. | `:v1.2.16-oss-polish-michael_scott` (≡ `:demo`, `:michael_scott`) · `sha256:eb99138a12487c09e48c1b31a05bcf8811cc48e28b1c8cb99b57c736a027cdea` | `michael_scott.qcow2` · `sha256:facabd91778b79a621c3d33d4b4b73c9c13c52cfdea8e9d3db34bd216806dc0a` |
+| **`latest`** | More fleshed-out, polished build (`v1.2.47-oss-polish`) with expanded seeded catalogs (HangryDash, Kwik-E-Mart, Dinoco). Use for development and exploration; not the paper baseline. | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · `sha256:2050585961cd95db0a8e34b62266706e5b09b39e9fdabcc0b6f16b6b49e099fe` | `michael_scott.qcow2` · `sha256:c970a526e1ce2192ff4fca2fa415f5736f2cc291d2be9e90e545a8c0f58a3d84` |
 
-The qcow2 baked inside each Docker `-qemu` image is **byte-identical** to
-the file with the same sha256 on HuggingFace — both fetch paths produce
-the same VM disk. Verify with
+The qcow2 baked inside each Docker `-qemu` image is **byte-identical** to the
+file with the same sha256 on HuggingFace. Verify Docker-image contents with
 `docker run --rm --entrypoint sha256sum ljang/mypcbench-qemu:<tag> /baseline/mypcbench.qcow2`.
 
 Both are the **Michael Scott** persona, pre-baked for instant boot. The
 in-VM `mypcbench-date-rebase` service shifts all seeded dates by
 `now − bake_time` on every boot, so the data always reads as "today".
 
-Pick `eval-round0` for paper reproduction; `latest` for everything else.
+Pick `eval-round0` for paper reproduction; pick `latest` for the current
+OSS-polish VM.
 
 ---
 
@@ -42,7 +42,8 @@ Pick `eval-round0` for paper reproduction; `latest` for everything else.
   image for you** — nothing to install. Otherwise:
   `apt install ovmf` / `dnf install edk2-ovmf` / `pacman -S edk2-ovmf`.
 - **Python ≥ 3.9**; deps: `pip install -r requirements.txt`.
-- `skopeo` (for the no-docker image fetch) **or** `huggingface_hub`.
+- `skopeo` (for Docker-image extraction) **or** `huggingface_hub` (for the
+  HuggingFace qcow2 fallback).
 
 No root needed for any of the above. If QEMU itself isn't installed and
 you have no sudo, extract it from RPMs — see the snippet at the bottom.
@@ -62,11 +63,12 @@ bash scripts/get-eval-image.sh --set latest --out ./mypcbench-vm
 source ./mypcbench-vm/env.sh   # exports MYPCBENCH_QCOW2 / MYPCBENCH_OVMF_*
 ```
 
-`get-eval-image.sh` uses `skopeo` to pull the published QEMU image with
-**no docker daemon**, then extracts the baked `mypcbench.qcow2` and the
-`OVMF_CODE/VARS.fd` firmware from its layers. (`--method hf` instead
+When `skopeo` is available, `get-eval-image.sh` pulls the published QEMU image
+with **no docker daemon**, then extracts the baked `mypcbench.qcow2` and the
+`OVMF_CODE/VARS.fd` firmware from its layers. Without `skopeo`, the script
 downloads the raw qcow2 from the HuggingFace dataset
-`ljang0/mypcbench-qemu-baseline`, but does not ship OVMF.)
+`ljang0/mypcbench-qemu-baseline`; this does not ship OVMF, so install OVMF or
+set `MYPCBENCH_OVMF_CODE`.
 
 On a busy host where the default direct-QEMU ports are already occupied,
 choose an unused port window before running the benchmark:

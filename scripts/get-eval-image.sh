@@ -8,17 +8,18 @@
 #
 #   --set eval-round0   Canonical PAPER baseline  (== v1.2.15-round78e)
 #                        Use this to reproduce the paper numbers.
-#   --set latest        Current OSS-polish release (== v1.2.16-oss-polish,
-#                        also tagged :demo / :michael_scott). Use this to
-#                        just try the benchmark.
+#   --set latest        Validated OSS-polish release (== v1.2.47-oss-polish).
+#                        Use this to try the expanded seeded catalogs.
 #
 # Two fetch methods (auto-selected, override with --method):
 #
 #   skopeo   Pull the published QEMU image with `skopeo` (no docker daemon
 #            needed) and extract the baked qcow2 + OVMF from its layers.
-#            Works on any node with `skopeo` installed. DEFAULT.
+#            Works on any node with `skopeo` installed. DEFAULT when
+#            available.
 #   hf       Download the raw qcow2 from the HuggingFace dataset
 #            (ljang0/mypcbench-qemu-baseline). Needs `huggingface_hub`.
+#            Fallback when skopeo is unavailable.
 #
 # Output (under --out, default ./mypcbench-vm):
 #   mypcbench.qcow2            base image (read-only; the runner makes overlays)
@@ -57,7 +58,7 @@ done
 
 case "$SET" in
   eval-round0) QEMU_TAG="eval-round0";                 HF_FILE="michael_scott_round78e.qcow2";;
-  latest)      QEMU_TAG="v1.2.16-oss-polish-michael_scott"; HF_FILE="michael_scott.qcow2";;
+  latest)      QEMU_TAG="latest";                      HF_FILE="michael_scott.qcow2";;
   *) echo "--set must be 'eval-round0' or 'latest' (got: $SET)" >&2; exit 1;;
 esac
 QEMU_IMAGE="docker.io/${DOCKERHUB_ORG}/mypcbench-qemu:${QEMU_TAG}"
@@ -66,7 +67,11 @@ mkdir -p "$OUT"
 OUT="$(cd "$OUT" && pwd)"
 
 if [[ "$METHOD" == "auto" ]]; then
-  if command -v skopeo >/dev/null 2>&1; then METHOD="skopeo"; else METHOD="hf"; fi
+  if command -v skopeo >/dev/null 2>&1; then
+    METHOD="skopeo"
+  else
+    METHOD="hf"
+  fi
 fi
 echo "==> image set : $SET"
 echo "==> method    : $METHOD"

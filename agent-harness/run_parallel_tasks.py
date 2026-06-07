@@ -77,7 +77,10 @@ logger = logging.getLogger("mypcbench.parallel")
 # ── LLM auto-reply injection ────────────────────────────────────────────
 
 def _load_openai_key() -> str | None:
-    """Read OPENAI_API_KEY from the project .env file."""
+    """Read OPENAI_API_KEY from process env, with project .env fallback."""
+    env_key = (os.environ.get("OPENAI_API_KEY") or "").strip().strip('"')
+    if env_key:
+        return env_key
     env_path = Path(__file__).resolve().parent.parent / ".env"
     if not env_path.exists():
         return None
@@ -100,7 +103,7 @@ def _inject_llm_env(api_port: int, container_name: str) -> None:
 
     api_key = _load_openai_key()
     if not api_key:
-        logger.warning("No OPENAI_API_KEY in .env — chat auto-replies disabled")
+        logger.warning("No OPENAI_API_KEY in environment or .env — chat auto-replies disabled")
         return
 
     # 1. Write a shell script via base64 to avoid escaping issues with
@@ -372,8 +375,9 @@ def run_vm_batch(
 
     # ── Inject LLM auto-reply support ──────────────────────────────
     # Chat apps (buzzchat, workbuzz) generate NPC replies via an
-    # OpenAI-compatible LLM.  We read OPENAI_API_KEY from .env and
-    # inject it into the VM's systemd services so gpt-5.4-mini
+    # OpenAI-compatible LLM.  We read OPENAI_API_KEY from the process
+    # environment (with .env fallback) and inject it into the VM's systemd
+    # services so gpt-5.4-mini
     # (the default model in @mypcbench/llm) responds on behalf of
     # non-agent personas.
     _inject_llm_env(api_port, container_name)
