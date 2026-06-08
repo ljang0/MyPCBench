@@ -21,6 +21,7 @@ REBAKE*.md
 UNDERSPEC_AUDIT.md
 cluster-setup-prompt.md
 *_AUDIT.md
+!docs/RELEASE_AUDIT.md
 *_HANDOFF*.md
 *_PROMPT*.md
 _driver.mjs

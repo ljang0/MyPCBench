@@ -53,17 +53,37 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname
 logger = logging.getLogger("mypcbench.run")
 
 
-def _ensure_default_qcow2() -> str:
-    """Fetch the current default QEMU image when no explicit path is supplied."""
+def _managed_qcow2_path() -> Path:
+    return Path(__file__).resolve().parent.parent / "mypcbench-vm" / "mypcbench.qcow2"
+
+
+def _ensure_current_qcow2(qcow2_path: str | None) -> str | None:
+    """Refresh the managed default QEMU image before default QEMU runs.
+
+    Explicit non-default qcow2 paths are pinned inputs. The managed cache is
+    refreshed even when MYPCBENCH_QCOW2 points at it, so a stale local default
+    cannot silently shadow the daily/latest image.
+    """
     repo_root = Path(__file__).resolve().parent.parent
-    out_dir = repo_root / "mypcbench-vm"
+    managed = _managed_qcow2_path().resolve()
+    requested = Path(qcow2_path).expanduser().resolve() if qcow2_path else None
+    if os.environ.get("MYPCBENCH_SKIP_QCOW2_REFRESH") == "1":
+        if not requested:
+            raise RuntimeError("MYPCBENCH_SKIP_QCOW2_REFRESH=1 requires a qcow2 path")
+        logger.info("Using parent-supplied qcow2_path %s; skipping latest auto-refresh", requested)
+        return str(requested)
+    if requested and requested != managed:
+        logger.info("Using explicit qcow2_path %s; skipping latest auto-refresh for pinned image", requested)
+        return str(requested)
+
+    out_dir = managed.parent
     fetch = repo_root / "scripts" / "get-eval-image.sh"
-    logger.info("No qcow2_path/MYPCBENCH_QCOW2 supplied; fetching current image to %s", out_dir)
+    logger.info("Refreshing current latest QEMU image in managed cache %s", out_dir)
     subprocess.run(
         ["bash", str(fetch), "--set", "latest", "--out", str(out_dir)],
         check=True,
     )
-    return str(out_dir / "mypcbench.qcow2")
+    return str(managed)
 
 
 # ── --interface flag routing ───────────────────────────────────────────────
@@ -682,9 +702,9 @@ def main():
                              "parts. Pass --backend docker for the qemu-in-docker fallback.")
     parser.add_argument("--qcow2_path", type=str, default=None,
                         help="Path to base qcow2 image (QEMU backend only). "
-                             "If omitted and MYPCBENCH_QCOW2 is unset, the "
-                             "runner fetches the current latest image into "
-                             "./mypcbench-vm before booting.")
+                             "Default QEMU runs refresh the managed "
+                             "./mypcbench-vm cache from latest before "
+                             "booting. Non-default explicit paths are pinned.")
     parser.add_argument("--docker_image", type=str,
                         default="ljang/mypcbench-qemu:latest",
                         help="QEMU-in-Docker image (used with --backend docker). "
@@ -730,8 +750,8 @@ def main():
         sys.exit(1)
     logger.info("Loaded %d tasks from %s", len(tasks), args.tasks_dir)
 
-    if args.backend == "qemu" and not args.qcow2_path and not os.environ.get("MYPCBENCH_QCOW2"):
-        args.qcow2_path = _ensure_default_qcow2()
+    if args.backend == "qemu":
+        args.qcow2_path = _ensure_current_qcow2(args.qcow2_path or os.environ.get("MYPCBENCH_QCOW2"))
 
     # Create environment
     env = MyPCBenchEnv(

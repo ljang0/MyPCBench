@@ -16,7 +16,7 @@ wrapper, never a requirement. `--backend qemu` is the runner default.
 
 | Set | What it is | Docker Hub `ljang/mypcbench-qemu` (image digest) | No-Docker image source |
 |-----|-----------|--------------------------------------------------|------------------------|
-| **`latest`** | **Default current benchmark VM.** Tracks the daily/OSS-polish image so fresh tasks use the freshest published environment. | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · `sha256:2050585961cd95db0a8e34b62266706e5b09b39e9fdabcc0b6f16b6b49e099fe` | `michael_scott.qcow2` · `sha256:c970a526e1ce2192ff4fca2fa415f5736f2cc291d2be9e90e545a8c0f58a3d84` |
+| **`latest`** | **Default current benchmark VM.** Tracks the daily/OSS-polish image so fresh tasks use the freshest published environment. | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, today's `:michael_scott-YYYY-MM-DD`) · `sha256:471e10e2d5d32608c594896bd159d3ca55c4c60e72d3dc877997b5226f75f82a` | `michael_scott.qcow2` · `sha256:c970a526e1ce2192ff4fca2fa415f5736f2cc291d2be9e90e545a8c0f58a3d84` |
 | **`eval-round0`** | **Archived v0.0 paper baseline** (`v1.2.15-round78e`). Use only to reproduce the paper numbers. | `:eval-round0` (≡ `:eval-round0-michael_scott`) · `sha256:86d4da6575ebf5adbfa3229389f341445245d6d7f2bee6340150858b9a8dbdcf` | `michael_scott_round78e.qcow2` · `sha256:c7209624dfae24ecf2cde90233097ec19797ae770c2ae4e201892046c51d1fb6` |
 
 The qcow2 baked inside each Docker `-qemu` image is **byte-identical** to the
@@ -29,6 +29,22 @@ in-VM `mypcbench-date-rebase` service shifts all seeded dates by
 
 Pick `latest` for normal runs and release checks. Pick `eval-round0` only for
 paper reproduction.
+
+The runner-only release repo does not build the VM image. It verifies the
+daily publisher by requiring a current dated Docker tag, requiring `latest` to
+point at the same digest, and comparing Docker's embedded qcow2 with the
+HuggingFace `michael_scott.qcow2` LFS sha:
+
+```bash
+python3 scripts/check-release-image-freshness.py \
+  --require-date-tag today \
+  --max-latest-age-hours 36 \
+  --check-docker-embedded
+```
+
+The scheduled publisher workflow is
+`.github/workflows/release-image-publisher.yml`. It requires repository
+secrets `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, and `HF_TOKEN`.
 
 ---
 
@@ -71,10 +87,11 @@ downloads the raw qcow2 from the HuggingFace dataset
 set `MYPCBENCH_OVMF_CODE`.
 
 If `run_mypcbench.py --backend qemu` or `run_parallel_tasks.py --backend qemu`
-is started without `--qcow2_path` / `--qcow2-path` and without
-`MYPCBENCH_QCOW2`, the runner automatically runs this fetch step for `latest`
-into `./mypcbench-vm` before booting. Explicit local qcow2 paths are respected
-and are not replaced.
+uses the managed default cache, the runner automatically refreshes `latest`
+into `./mypcbench-vm` before booting. This also applies when
+`MYPCBENCH_QCOW2` points at `./mypcbench-vm/mypcbench.qcow2`, so the default
+cache cannot silently fall behind the daily/current image. Explicit non-default
+qcow2 paths are respected as pinned images and are not replaced.
 
 On a busy host where the default direct-QEMU ports are already occupied,
 choose an unused port window before running the benchmark:

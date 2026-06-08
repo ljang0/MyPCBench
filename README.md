@@ -59,11 +59,20 @@ stresses an assistant most.
 
 ## Quick start
 
+Start with the no-API smoke. It proves the runner can fetch/boot the current
+VM, reach the Control API, reset state, and write results before you spend API
+budget on a real agent.
+
 ```bash
 git clone https://github.com/ljang0/MyPCBench && cd MyPCBench
 python3 -m venv .venv && source .venv/bin/activate   # Python ≥ 3.9; Ubuntu 24.04 is PEP-668
 pip install -r requirements.txt
 cp .env.example .env     # add ANTHROPIC_API_KEY / OPENAI_API_KEY / GEMINI_API_KEY
+
+# Recommended first run: no API calls, current QEMU image, auto-refreshes ./mypcbench-vm
+python3 agent-harness/run_mypcbench.py --backend qemu \
+  --agent_type dummy --model dummy \
+  --tasks_dir tasks/smoke_one --max_steps 4 --result_dir results/smoke-qemu
 ```
 
 **No Docker** (recommended; works on GPU/compute nodes — no daemon, no root).
@@ -71,8 +80,8 @@ When `skopeo` is available, `get-eval-image.sh` fetches the Docker image and
 extracts the bundled qcow2 + OVMF. Without `skopeo`, it falls back to the
 matching HuggingFace qcow2; install `ovmf` separately or set
 `MYPCBENCH_OVMF_CODE` if your distro does not ship it in a standard location.
-`run_mypcbench.py --backend qemu` auto-fetches `latest` into `./mypcbench-vm`
-when no `--qcow2_path` or `MYPCBENCH_QCOW2` is supplied. To prefetch manually:
+`run_mypcbench.py --backend qemu` refreshes `latest` into the managed
+`./mypcbench-vm` cache before default QEMU boots. To prefetch manually:
 
 ```bash
 bash scripts/get-eval-image.sh --out ./mypcbench-vm   # defaults to --set latest
@@ -103,6 +112,14 @@ A single smoke task is ≈1–3 min plus a one-time ~90 s VM boot; the full
 
 Full guide (two image sets, every agent, local-vLLM Qwen, troubleshooting):
 **[docs/NO_DOCKER.md](docs/NO_DOCKER.md)**.
+
+### What Ships Here
+
+This is an OSWorld-style runner-only repo. It ships the harness, paper agents,
+184 tasks, rubrics, persona metadata, docs, and image-fetch/publish checks. It
+does not ship the VM build source, generated app databases, local audit results,
+paper drafts, or fetched qcow2 images. The runnable VM is distributed as the
+Docker/QEMU image and matching HuggingFace qcow2 described below.
 
 ### Smoke-Tested Setup Paths
 
@@ -146,15 +163,46 @@ The canonical no-Docker artifact is the **qcow2** on HuggingFace. The Docker
 
 | Set | Use | Docker Hub `ljang/mypcbench-qemu` | HF `ljang0/mypcbench-qemu-baseline` |
 |---|---|---|---|
-| **`latest`** | **default current benchmark VM** — daily/OSS-polish build used for fresh tasks and release checks | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · image `sha256:2050585961cd…` | `michael_scott.qcow2` · qcow2 `sha256:c970a526e1ce21…` |
+| **`latest`** | **default current benchmark VM** — daily/OSS-polish build used for fresh tasks and release checks | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, today's `:michael_scott-YYYY-MM-DD`) · image `sha256:471e10e2d5d3…` | `michael_scott.qcow2` · qcow2 `sha256:c970a526e1ce21…` |
 | **`eval-round0`** | **archived v0.0 paper baseline** (`v1.2.15-round78e`) — use only to reproduce the paper numbers above | `:eval-round0` (≡ `:eval-round0-michael_scott`) · image `sha256:86d4da6575eb…` | `michael_scott_round78e.qcow2` · qcow2 `sha256:c7209624dfae24…` |
 
 Docker-backed runner-owned starts use `docker run --pull always`, so mutable
 tags such as `latest` are refreshed before the VM starts. If you manually reuse
 a pre-booted container, recreate it yourself to pick up a new daily image.
-Direct-QEMU starts auto-fetch `latest` only when no local qcow2 is supplied; if
-you point `--qcow2_path` or `MYPCBENCH_QCOW2` at a file, that explicit file is
-used as-is.
+Direct-QEMU starts refresh the managed `./mypcbench-vm/mypcbench.qcow2` cache
+from `latest` before booting, including when `MYPCBENCH_QCOW2` points at that
+managed cache. If you point `--qcow2_path` or `MYPCBENCH_QCOW2` at a different
+file, that explicit non-default qcow2 is treated as a pinned image and used
+as-is.
+
+This release repo is runner-only and does not build the VM image. CI verifies
+that the expected dated Docker tag exists, that `latest` points at that same
+digest, and that HuggingFace has a byte-identical qcow2:
+
+```bash
+python3 scripts/check-release-image-freshness.py \
+  --require-date-tag today \
+  --max-latest-age-hours 36 \
+  --check-docker-embedded
+```
+
+The release-facing daily publisher is `.github/workflows/release-image-publisher.yml`.
+It publishes from a selected source image into `latest`,
+`michael_scott-YYYY-MM-DD`, `michael_scott`, `demo`, and HuggingFace
+`michael_scott.qcow2`. Configure `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, and
+`HF_TOKEN` as repository secrets before relying on the scheduled run.
+After merging, the publisher runs at `08:00 UTC`; the freshness verifier runs
+at `09:30 UTC` and fails if today's tag/upload is missing or inconsistent.
+
+To produce a clean OSWorld-style runner-only release tree from this workspace:
+
+```bash
+bash scripts/export-runner-release.sh
+```
+
+The export uses `release-files.txt` as an allowlist and excludes VM build
+source, web-app source, generated database state, local audit results, paper
+drafts, caches, and fetched qcow2 images.
 
 Requirements: Linux + KVM (`/dev/kvm`) + QEMU, ~16 GB RAM per VM. Docker optional.
 

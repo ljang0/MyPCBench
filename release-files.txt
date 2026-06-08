@@ -1,0 +1,34 @@
+# Files/directories included in the runner-only OSS release export.
+# This is intentionally OSWorld-style: host harness + tasks + docs + image
+# fetch/publish checks, but no VM build source, app source, generated DB state,
+# local audit results, paper drafts, or fetched images.
+.env.example
+.github/workflows/release-image-freshness.yml
+.github/workflows/release-image-publisher.yml
+.gitignore
+AGENTS.md
+LICENSE
+NOTICE
+README.md
+RELEASE_MANIFEST.md
+agent-harness/agents
+agent-harness/env.py
+agent-harness/judge_results.py
+agent-harness/run_mypcbench.py
+agent-harness/run_parallel_tasks.py
+agent-harness/utils/default_rubric_judge.py
+agent-harness/utils/osworld_full_traj_judge.py
+agent-harness/utils/persona_registry.py
+agent-harness/utils/rubric_judge.py
+docs
+personas
+release-files.txt
+requirements.txt
+scripts/check-release-image-freshness.py
+scripts/export-runner-release.sh
+scripts/get-eval-image.sh
+scripts/run-agent.sh
+tasks/final
+tasks/schema.json
+tasks/smoke
+tasks/smoke_one

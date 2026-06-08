@@ -15,6 +15,12 @@ docs, and license files only.
   convenience wrappers.
 - `docs/`, `README.md`, `LICENSE`, `NOTICE`, `.env.example`,
   `requirements.txt`, `RELEASE_MANIFEST.md`.
+- `.github/workflows/release-image-publisher.yml` and
+  `.github/workflows/release-image-freshness.yml` — daily release image
+  publish/verify automation.
+- `release-files.txt` and `scripts/export-runner-release.sh` — the explicit
+  file allowlist and export command for creating the clean runner-only repo
+  tree.
 
 ## Excluded
 
@@ -26,3 +32,31 @@ the separate build-source branch, not in this runner-only release.
 
 The VM is distributed separately as a pre-baked qcow2 and Docker QEMU wrapper;
 see `README.md`, `docs/NO_DOCKER.md`, and `docs/QEMU_QUICKSTART.md`.
+
+## Export
+
+Create the clean runner-only tree and tarball with:
+
+```bash
+bash scripts/export-runner-release.sh
+```
+
+The export is allowlist-based. It fails if a listed release path is missing and
+checks that build/audit/source-only directories such as `web-apps/`,
+`vm-setup/`, `generated_data/`, `results/`, `node_modules/`, paper folders, and
+local VM images are not present in the exported file list.
+
+The generated tarball is deterministic when `SOURCE_DATE_EPOCH` is fixed and
+always uses `mypcbench-runner/` as its archive root, independent of the local
+output directory name.
+
+## Verification
+
+Use `docs/RELEASE_AUDIT.md` as the public release gate. It covers workflow
+syntax, Docker source-ref resolution, Docker/HuggingFace image identity,
+runner-only export hygiene, deterministic tarball generation, exported CLI
+startup, and the 184-task corpus integrity check.
+
+The scheduled publisher is reliable only after the GitHub repository has
+`DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, and `HF_TOKEN` configured. Missing
+secrets are treated as workflow failures before publish/upload steps run.

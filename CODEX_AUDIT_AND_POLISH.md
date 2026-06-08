@@ -27,7 +27,36 @@ Self-contained release-audit runbook for Codex agents working on MyPCBench.
 
 ## 2. Image Identity
 
-Verify Docker and qcow2 hashes before claiming image equivalence:
+Verify freshness, Docker/HF identity, and Docker/qcow2 hashes before claiming
+image equivalence:
+
+```bash
+python3 scripts/check-release-image-freshness.py \
+  --require-date-tag today \
+  --max-latest-age-hours 36 \
+  --check-docker-embedded \
+  --output /tmp/mypcbench-image-freshness.json
+```
+
+The release repo is runner-only: it does not build VM images. The external VM
+publisher must create a dated Docker tag such as
+`michael_scott-YYYY-MM-DD`, move `latest` to the same digest, and publish the
+matching HuggingFace `michael_scott.qcow2`. Treat a missing current date tag,
+a stale `latest`, a date-tag/latest digest mismatch, or a Docker/HF qcow2 hash
+mismatch as a release blocker.
+
+This branch owns the release-facing publish/verify automation:
+
+- `.github/workflows/release-image-publisher.yml` runs daily/manual, publishes
+  Docker tags from a selected source image, uploads the embedded qcow2 to
+  HuggingFace, and then runs the freshness verifier.
+- `.github/workflows/release-image-freshness.yml` runs after the publisher and
+  fails if the daily tag/upload is missing or inconsistent.
+
+Required repository secrets: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, and
+`HF_TOKEN`.
+
+Manual identity fallback:
 
 ```bash
 docker pull ljang/mypcbench-qemu:latest

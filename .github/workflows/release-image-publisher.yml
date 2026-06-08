@@ -1,0 +1,146 @@
+name: Publish daily release image
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_image:
+        description: "Source image digest/tag to publish"
+        default: "ljang/mypcbench-qemu:latest"
+        required: true
+      publish_date:
+        description: "Date tag suffix, YYYY-MM-DD. Empty means today UTC."
+        default: ""
+        required: false
+  schedule:
+    # Runs before the freshness workflow. The VM bake itself may happen in an
+    # external/internal pipeline; this workflow publishes the release-facing
+    # Docker tags and HuggingFace qcow2 from the selected source image.
+    - cron: "0 8 * * *"
+
+concurrency:
+  group: release-image-publisher
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    env:
+      DOCKER_REPO: ljang/mypcbench-qemu
+      HF_REPO: ljang0/mypcbench-qemu-baseline
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check required publishing secrets
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in DOCKERHUB_USERNAME DOCKERHUB_TOKEN HF_TOKEN; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::$name repository secret is required for scheduled publishing"
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Resolve publish inputs
+        id: vars
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_image="${{ github.event.inputs.source_image || 'ljang/mypcbench-qemu:latest' }}"
+          publish_date="${{ github.event.inputs.publish_date || '' }}"
+          if [ -z "$publish_date" ]; then
+            publish_date="$(date -u +%F)"
+          fi
+          case "$publish_date" in
+            ????-??-??) ;;
+            *) echo "publish_date must be YYYY-MM-DD, got '$publish_date'" >&2; exit 1 ;;
+          esac
+          echo "source_image=$source_image" >> "$GITHUB_OUTPUT"
+          echo "publish_date=$publish_date" >> "$GITHUB_OUTPUT"
+          echo "date_tag=michael_scott-$publish_date" >> "$GITHUB_OUTPUT"
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Publish Docker tags
+        id: publish
+        run: |
+          set -euo pipefail
+          source="${{ steps.vars.outputs.source_image }}"
+          date_tag="${{ steps.vars.outputs.date_tag }}"
+          digest="$(docker buildx imagetools inspect "$source" --format '{{json .}}' | python -c 'import json,sys; print(json.load(sys.stdin)["manifest"]["digest"])')"
+          source_name="$(python -c 'import sys; source=sys.argv[1].split("@", 1)[0]; slash=source.rfind("/"); colon=source.rfind(":"); print(source[:colon] if colon > slash else source)' "$source")"
+          source_ref="$source_name@$digest"
+          echo "resolved_source_ref=$source_ref" >> "$GITHUB_OUTPUT"
+          docker buildx imagetools inspect "$source_ref"
+          tags=(
+            -t "$DOCKER_REPO:latest"
+            -t "$DOCKER_REPO:$date_tag"
+            -t "$DOCKER_REPO:michael_scott"
+            -t "$DOCKER_REPO:demo"
+          )
+          docker buildx imagetools create \
+            "${tags[@]}" \
+            "$source_ref"
+
+      - name: Extract qcow2 from source image
+        run: |
+          set -euo pipefail
+          source="${{ steps.publish.outputs.resolved_source_ref }}"
+          docker pull "$source"
+          cid="$(docker create "$source")"
+          trap 'docker rm -f "$cid" >/dev/null 2>&1 || true' EXIT
+          docker cp "$cid:/baseline/mypcbench.qcow2" michael_scott.qcow2
+          sha256sum michael_scott.qcow2
+
+      - name: Upload qcow2 to HuggingFace
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade huggingface_hub
+          for attempt in 1 2 3 4 5; do
+            if huggingface-cli upload "$HF_REPO" michael_scott.qcow2 michael_scott.qcow2 --repo-type dataset; then
+              exit 0
+            fi
+            sleep "$((attempt * 30))"
+          done
+          huggingface-cli upload "$HF_REPO" michael_scott.qcow2 michael_scott.qcow2 --repo-type dataset
+
+      - name: Verify published image
+        env:
+          PUBLISH_DATE: ${{ steps.vars.outputs.publish_date }}
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5; do
+            if python scripts/check-release-image-freshness.py \
+              --require-date-tag "$PUBLISH_DATE" \
+              --max-latest-age-hours 36 \
+              --check-docker-embedded \
+              --output results/release_image_freshness.json; then
+              exit 0
+            fi
+            sleep "$((attempt * 30))"
+          done
+          python scripts/check-release-image-freshness.py \
+            --require-date-tag "$PUBLISH_DATE" \
+            --max-latest-age-hours 36 \
+            --check-docker-embedded \
+            --output results/release_image_freshness.json

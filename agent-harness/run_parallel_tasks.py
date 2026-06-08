@@ -8,9 +8,9 @@ Docker container with its own CoW overlay, so state is fully isolated.
 Usage
 -----
 
-    # NOTE: --backend defaults to qemu. If --qcow2-path / MYPCBENCH_QCOW2 is
-    # not supplied, the runner fetches the current latest image into
-    # ./mypcbench-vm. Pass --backend docker to use --docker-image
+    # NOTE: --backend defaults to qemu. Default QEMU runs refresh the managed
+    # ./mypcbench-vm cache from the current latest image. Pass --backend docker
+    # to use --docker-image
     # (QEMU-in-Docker wrapper).
 
     # Run the 184-task set with Claude Opus 4.6 on 4 parallel VMs
@@ -76,17 +76,32 @@ if _project_root not in sys.path:
 logger = logging.getLogger("mypcbench.parallel")
 
 
-def _ensure_default_qcow2() -> str:
-    """Fetch the current default QEMU image when no explicit path is supplied."""
+def _managed_qcow2_path() -> Path:
+    return Path(__file__).resolve().parent.parent / "mypcbench-vm" / "mypcbench.qcow2"
+
+
+def _ensure_current_qcow2(qcow2_path: str | None) -> str | None:
+    """Refresh the managed default QEMU image before default QEMU runs.
+
+    Explicit non-default qcow2 paths are pinned inputs. The managed cache is
+    refreshed even when MYPCBENCH_QCOW2 points at it, so a stale local default
+    cannot silently shadow the daily/latest image.
+    """
     repo_root = Path(__file__).resolve().parent.parent
-    out_dir = repo_root / "mypcbench-vm"
+    managed = _managed_qcow2_path().resolve()
+    requested = Path(qcow2_path).expanduser().resolve() if qcow2_path else None
+    if requested and requested != managed:
+        logger.info("Using explicit qcow2-path %s; skipping latest auto-refresh for pinned image", requested)
+        return str(requested)
+
+    out_dir = managed.parent
     fetch = repo_root / "scripts" / "get-eval-image.sh"
-    logger.info("No qcow2-path/MYPCBENCH_QCOW2 supplied; fetching current image to %s", out_dir)
+    logger.info("Refreshing current latest QEMU image in managed cache %s", out_dir)
     subprocess.run(
         ["bash", str(fetch), "--set", "latest", "--out", str(out_dir)],
         check=True,
     )
-    return str(out_dir / "mypcbench.qcow2")
+    return str(managed)
 
 
 # ── LLM auto-reply injection ────────────────────────────────────────────
@@ -248,7 +263,7 @@ def run_vm_batch(
         if not qcow2_path:
             return {"vm_idx": vm_idx,
                     "error": "QEMU backend did not receive a qcow2 path. The "
-                             "parent runner should auto-fetch latest unless "
+                             "parent runner should refresh latest unless "
                              "--qcow2-path/MYPCBENCH_QCOW2 was misconfigured.",
                     "scores": []}
         overlay_path = f"/tmp/mypcbench-{container_name}-overlay.qcow2"
@@ -424,6 +439,7 @@ def run_vm_batch(
         qcow2_path = args_dict.get("qcow2_path") or os.environ.get("MYPCBENCH_QCOW2")
         if qcow2_path:
             env["MYPCBENCH_QCOW2"] = qcow2_path
+            env["MYPCBENCH_SKIP_QCOW2_REFRESH"] = "1"
     # Forward the per-app host ports to the run_mypcbench.py child so its
     # in-VM port discovery resolves the right host->guest mappings.
     for i in range(18):
@@ -557,9 +573,9 @@ def main() -> int:
                              "transparent overlay rebuild on reset.")
     parser.add_argument("--qcow2-path", type=str, default=None,
                         help="Path to base qcow2 image (QEMU backend only). "
-                             "If omitted and MYPCBENCH_QCOW2 is unset, the "
-                             "runner fetches the current latest image into "
-                             "./mypcbench-vm before booting.")
+                             "Default QEMU runs refresh the managed "
+                             "./mypcbench-vm cache from latest before "
+                             "booting. Non-default explicit paths are pinned.")
     parser.add_argument("--docker-image", type=str, default="ljang/mypcbench-qemu:latest",
                         help="Docker image (QEMU-in-Docker wrapper). Default "
                              "tracks the current daily/OSS-polish build. Each "
@@ -644,8 +660,8 @@ def main() -> int:
         return 1
     logger.info("Loaded %d tasks from %s", len(all_tasks), tasks_path)
 
-    if args.backend == "qemu" and not args.qcow2_path and not os.environ.get("MYPCBENCH_QCOW2"):
-        args.qcow2_path = _ensure_default_qcow2()
+    if args.backend == "qemu":
+        args.qcow2_path = _ensure_current_qcow2(args.qcow2_path or os.environ.get("MYPCBENCH_QCOW2"))
 
     # Split tasks across VMs: ceil(N / num_vms) per VM
     num_vms = max(1, args.num_vms)

@@ -176,8 +176,8 @@ class MyPCBenchEnv:
         # Backend: "docker" (default) or "qemu" (direct QEMU, no Docker)
         self.backend = backend
         # For the QEMU backend, pass a base qcow2 path or set MYPCBENCH_QCOW2.
-        # The top-level runners auto-fetch ./mypcbench-vm from the current
-        # latest image when neither is supplied.
+        # The top-level runners refresh the managed ./mypcbench-vm cache from
+        # latest before default QEMU boots.
         self.qcow2_path = qcow2_path or os.environ.get("MYPCBENCH_QCOW2")
         self._qemu_pid: Optional[int] = None
         self._overlay_path: Optional[str] = None
