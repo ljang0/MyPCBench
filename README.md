@@ -19,7 +19,7 @@ desktops, generic app state, minimally-seeded DBs — and web evals skip any
 site behind a login. But a personal assistant has to work across a user's
 *whole digital life*. MyPCBench closes that gap: a deterministic generator
 populates a coherent user identity at the scale of a real personal computer,
-so the same OSWorld-style agent loop can finally be pointed at tasks that
+so standard desktop-agent loops can be evaluated on tasks that
 require **knowing who the user is** ("order my usual Friday DoorDash", "what
 do I normally tip?", "pay Jim back what I owe him").
 
