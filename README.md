@@ -34,7 +34,13 @@ do I normally tip?", "pay Jim back what I owe him").
 
 ## Results
 
-Six closed- and open-weight models under each provider's native CUA agent (Claude uses computer + bash + editor; OpenAI uses computer + built-in shell; Qwen main uses computer + bash — see Agents). **Perfect** = % of tasks where every rubric passes; **Rubric** = mean rubric pass-rate (partial credit).
+These paper numbers were measured on the archived `eval-round0` / v0.0
+baseline. Fresh benchmark runs default to the current `latest` image so tasks
+track the daily rebuilt environment. Six closed- and open-weight models under
+each provider's native CUA agent (Claude uses computer + bash + editor; OpenAI
+uses computer + built-in shell; Qwen main uses computer + bash — see Agents).
+**Perfect** = % of tasks where every rubric passes; **Rubric** = mean rubric
+pass-rate (partial credit).
 
 | Model | Perfect % | Rubric % |
 |---|--:|--:|
@@ -65,10 +71,11 @@ When `skopeo` is available, `get-eval-image.sh` fetches the Docker image and
 extracts the bundled qcow2 + OVMF. Without `skopeo`, it falls back to the
 matching HuggingFace qcow2; install `ovmf` separately or set
 `MYPCBENCH_OVMF_CODE` if your distro does not ship it in a standard location.
-It boots under QEMU/KVM:
+`run_mypcbench.py --backend qemu` auto-fetches `latest` into `./mypcbench-vm`
+when no `--qcow2_path` or `MYPCBENCH_QCOW2` is supplied. To prefetch manually:
 
 ```bash
-bash scripts/get-eval-image.sh --set eval-round0 --out ./mypcbench-vm
+bash scripts/get-eval-image.sh --out ./mypcbench-vm   # defaults to --set latest
 set -a; source .env; set +a           # API keys
 source ./mypcbench-vm/env.sh          # exports MYPCBENCH_QCOW2 / MYPCBENCH_OVMF_*
 
@@ -97,18 +104,57 @@ A single smoke task is ≈1–3 min plus a one-time ~90 s VM boot; the full
 Full guide (two image sets, every agent, local-vLLM Qwen, troubleshooting):
 **[docs/NO_DOCKER.md](docs/NO_DOCKER.md)**.
 
+### Smoke-Tested Setup Paths
+
+Use `dummy` first on a new host; it costs no API calls and verifies boot,
+Control API, app ports, and result writing.
+
+```bash
+# Docker wrapper, current image. Runner-owned starts pull latest before boot.
+python3 agent-harness/run_mypcbench.py --backend docker \
+  --agent_type dummy --model dummy \
+  --tasks_dir tasks/smoke_one --max_steps 4 --result_dir results/smoke-docker
+
+# QEMU-direct, current image. Auto-fetches ./mypcbench-vm if no qcow2 is set.
+python3 agent-harness/run_mypcbench.py --backend qemu \
+  --agent_type dummy --model dummy \
+  --tasks_dir tasks/smoke_one --max_steps 4 --result_dir results/smoke-qemu
+
+# Explicit qcow2 path, for pinned/local image testing.
+bash scripts/get-eval-image.sh --out ./mypcbench-vm
+python3 agent-harness/run_mypcbench.py --backend qemu \
+  --qcow2_path ./mypcbench-vm/mypcbench.qcow2 \
+  --agent_type dummy --model dummy \
+  --tasks_dir tasks/smoke_one --max_steps 4 --result_dir results/smoke-qcow2
+
+# Parallel wrapper smoke, one VM. Use --backend qemu or --backend docker.
+python3 agent-harness/run_parallel_tasks.py --backend qemu \
+  --tasks-file tasks/smoke_one/one.json --num-vms 1 \
+  --agent-type dummy --model dummy --max-steps 4 \
+  --result-dir results/smoke-parallel-qemu
+```
+
 ## Image sets
 
-Two pre-baked images (both Michael Scott, instant boot). Fetch either with
-**no docker/root** via `scripts/get-eval-image.sh --set <eval-round0|latest>`.
+Two pre-baked images (both Michael Scott, instant boot). By default the runner
+uses the current daily/OSS-polish image so tasks track the freshest published
+benchmark VM. Fetch either with **no docker/root** via
+`scripts/get-eval-image.sh --set <latest|eval-round0>`.
 
 The canonical no-Docker artifact is the **qcow2** on HuggingFace. The Docker
 `-qemu` image bundles a qcow2 and runs it via `qemu-system-x86_64`.
 
 | Set | Use | Docker Hub `ljang/mypcbench-qemu` | HF `ljang0/mypcbench-qemu-baseline` |
 |---|---|---|---|
-| **`eval-round0`** | **paper baseline** (`v1.2.15-round78e`) — reproduce the numbers above | `:eval-round0` (≡ `:eval-round0-michael_scott`) · image `sha256:86d4da6575eb…` | `michael_scott_round78e.qcow2` · qcow2 `sha256:c7209624dfae24…` |
-| **`latest`** | more fleshed-out, polished build (`v1.2.47-oss-polish`) — expanded seeded catalogs, non-paper | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · image `sha256:2050585961cd…` | `michael_scott.qcow2` · qcow2 `sha256:c970a526e1ce21…` |
+| **`latest`** | **default current benchmark VM** — daily/OSS-polish build used for fresh tasks and release checks | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · image `sha256:2050585961cd…` | `michael_scott.qcow2` · qcow2 `sha256:c970a526e1ce21…` |
+| **`eval-round0`** | **archived v0.0 paper baseline** (`v1.2.15-round78e`) — use only to reproduce the paper numbers above | `:eval-round0` (≡ `:eval-round0-michael_scott`) · image `sha256:86d4da6575eb…` | `michael_scott_round78e.qcow2` · qcow2 `sha256:c7209624dfae24…` |
+
+Docker-backed runner-owned starts use `docker run --pull always`, so mutable
+tags such as `latest` are refreshed before the VM starts. If you manually reuse
+a pre-booted container, recreate it yourself to pick up a new daily image.
+Direct-QEMU starts auto-fetch `latest` only when no local qcow2 is supplied; if
+you point `--qcow2_path` or `MYPCBENCH_QCOW2` at a file, that explicit file is
+used as-is.
 
 Requirements: Linux + KVM (`/dev/kvm`) + QEMU, ~16 GB RAM per VM. Docker optional.
 

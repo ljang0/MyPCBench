@@ -8,7 +8,7 @@ env — the runner writes a completion marker + rubric bundle and scoring is
 a separate post-run step (agent-harness/judge_results.py).
 
 Usage:
-    env = MyPCBenchEnv(docker_image="ljang/mypcbench-qemu:eval-round0")
+    env = MyPCBenchEnv(docker_image="ljang/mypcbench-qemu:latest")
     obs = env.reset(task_config=task)
     while not done:
         response, actions = agent.predict(instruction, obs)
@@ -141,7 +141,7 @@ class MyPCBenchEnv:
 
     def __init__(
         self,
-        docker_image: str = "ljang/mypcbench-qemu:eval-round0",
+        docker_image: str = "ljang/mypcbench-qemu:latest",
         container_name: str = "mypcbench-agent",
         persona: str = "michael_scott",
         world: str = "scranton-office",
@@ -175,10 +175,9 @@ class MyPCBenchEnv:
 
         # Backend: "docker" (default) or "qemu" (direct QEMU, no Docker)
         self.backend = backend
-        # For the QEMU backend, set MYPCBENCH_QCOW2 to the path of the base
-        # qcow2 image (download from HuggingFace per the README), or pass
-        # --qcow2-path to the runner.  No hardcoded fallback — OSS users
-        # have different local layouts.
+        # For the QEMU backend, pass a base qcow2 path or set MYPCBENCH_QCOW2.
+        # The top-level runners auto-fetch ./mypcbench-vm from the current
+        # latest image when neither is supplied.
         self.qcow2_path = qcow2_path or os.environ.get("MYPCBENCH_QCOW2")
         self._qemu_pid: Optional[int] = None
         self._overlay_path: Optional[str] = None
@@ -296,6 +295,7 @@ class MyPCBenchEnv:
         # --privileged + --device /dev/kvm.
         cmd = [
             "docker", "run", "-d",
+            "--pull", "always",
             "--name", self.container_name,
             "--privileged",
             "--device", "/dev/kvm",

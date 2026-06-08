@@ -23,7 +23,7 @@ MODEL="claude-opus-4-6"
 TASKS="tasks/final"
 RESULT="results/$(date +%Y%m%d_%H%M%S)"
 CONTAINER="mypcbench"
-IMAGE="ljang/mypcbench-qemu:eval-round0"
+IMAGE="ljang/mypcbench-qemu:latest"
 MAX_STEPS=100
 PARALLEL=0
 

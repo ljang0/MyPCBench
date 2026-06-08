@@ -33,9 +33,9 @@ git diff --check
 
 ## Default Image
 
-The paper/release default is `ljang/mypcbench-qemu:eval-round0`. Use
-`scripts/get-eval-image.sh --set eval-round0` for paper reproduction. The
-expanded OSS-polish image is `ljang/mypcbench-qemu:v1.2.47-oss-polish`
-(`latest`, `demo`, `michael_scott`, and `michael_scott-2026-06-06` are aliases)
-with baked qcow2 sha256
-`c970a526e1ce2192ff4fca2fa415f5736f2cc291d2be9e90e545a8c0f58a3d84`.
+The runner default is `ljang/mypcbench-qemu:latest`, which tracks the current
+daily/OSS-polish benchmark VM. Runner-owned Docker starts use
+`docker run --pull always`, and `scripts/get-eval-image.sh` defaults to
+`--set latest` for the no-Docker path. Use
+`ljang/mypcbench-qemu:eval-round0` / `scripts/get-eval-image.sh --set
+eval-round0` only for the archived v0.0 paper baseline.

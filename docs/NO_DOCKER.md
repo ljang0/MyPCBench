@@ -16,8 +16,8 @@ wrapper, never a requirement. `--backend qemu` is the runner default.
 
 | Set | What it is | Docker Hub `ljang/mypcbench-qemu` (image digest) | No-Docker image source |
 |-----|-----------|--------------------------------------------------|------------------------|
-| **`eval-round0`** | **Canonical paper baseline** (`v1.2.15-round78e`). Reproduce the paper numbers with this. | `:eval-round0` (≡ `:eval-round0-michael_scott`) · `sha256:86d4da6575ebf5adbfa3229389f341445245d6d7f2bee6340150858b9a8dbdcf` | `michael_scott_round78e.qcow2` · `sha256:c7209624dfae24ecf2cde90233097ec19797ae770c2ae4e201892046c51d1fb6` |
-| **`latest`** | More fleshed-out, polished build (`v1.2.47-oss-polish`) with expanded seeded catalogs (HangryDash, Kwik-E-Mart, Dinoco). Use for development and exploration; not the paper baseline. | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · `sha256:2050585961cd95db0a8e34b62266706e5b09b39e9fdabcc0b6f16b6b49e099fe` | `michael_scott.qcow2` · `sha256:c970a526e1ce2192ff4fca2fa415f5736f2cc291d2be9e90e545a8c0f58a3d84` |
+| **`latest`** | **Default current benchmark VM.** Tracks the daily/OSS-polish image so fresh tasks use the freshest published environment. | `:latest` (≡ `:v1.2.47-oss-polish`, `:demo`, `:michael_scott`, `:michael_scott-2026-06-06`) · `sha256:2050585961cd95db0a8e34b62266706e5b09b39e9fdabcc0b6f16b6b49e099fe` | `michael_scott.qcow2` · `sha256:c970a526e1ce2192ff4fca2fa415f5736f2cc291d2be9e90e545a8c0f58a3d84` |
+| **`eval-round0`** | **Archived v0.0 paper baseline** (`v1.2.15-round78e`). Use only to reproduce the paper numbers. | `:eval-round0` (≡ `:eval-round0-michael_scott`) · `sha256:86d4da6575ebf5adbfa3229389f341445245d6d7f2bee6340150858b9a8dbdcf` | `michael_scott_round78e.qcow2` · `sha256:c7209624dfae24ecf2cde90233097ec19797ae770c2ae4e201892046c51d1fb6` |
 
 The qcow2 baked inside each Docker `-qemu` image is **byte-identical** to the
 file with the same sha256 on HuggingFace. Verify Docker-image contents with
@@ -27,8 +27,8 @@ Both are the **Michael Scott** persona, pre-baked for instant boot. The
 in-VM `mypcbench-date-rebase` service shifts all seeded dates by
 `now − bake_time` on every boot, so the data always reads as "today".
 
-Pick `eval-round0` for paper reproduction; pick `latest` for the current
-OSS-polish VM.
+Pick `latest` for normal runs and release checks. Pick `eval-round0` only for
+paper reproduction.
 
 ---
 
@@ -53,12 +53,12 @@ you have no sudo, extract it from RPMs — see the snippet at the bottom.
 ## 3. Fetch an image (no docker daemon required)
 
 ```bash
-# Paper baseline (≈6 GB compressed pull → expands to a ~12 GB qcow2;
-# extracts qcow2 + OVMF, no docker, no root):
-bash scripts/get-eval-image.sh --set eval-round0 --out ./mypcbench-vm
+# Current daily/OSS-polish image (default; ≈6 GB compressed pull → expands to
+# a ~12 GB qcow2; extracts qcow2 + OVMF, no docker, no root):
+bash scripts/get-eval-image.sh --out ./mypcbench-vm
 
-# …or the latest OSS image:
-bash scripts/get-eval-image.sh --set latest --out ./mypcbench-vm
+# Archived v0.0 paper baseline, only for reproducing paper numbers:
+bash scripts/get-eval-image.sh --set eval-round0 --out ./mypcbench-vm-paper
 
 source ./mypcbench-vm/env.sh   # exports MYPCBENCH_QCOW2 / MYPCBENCH_OVMF_*
 ```
@@ -69,6 +69,12 @@ with **no docker daemon**, then extracts the baked `mypcbench.qcow2` and the
 downloads the raw qcow2 from the HuggingFace dataset
 `ljang0/mypcbench-qemu-baseline`; this does not ship OVMF, so install OVMF or
 set `MYPCBENCH_OVMF_CODE`.
+
+If `run_mypcbench.py --backend qemu` or `run_parallel_tasks.py --backend qemu`
+is started without `--qcow2_path` / `--qcow2-path` and without
+`MYPCBENCH_QCOW2`, the runner automatically runs this fetch step for `latest`
+into `./mypcbench-vm` before booting. Explicit local qcow2 paths are respected
+and are not replaced.
 
 On a busy host where the default direct-QEMU ports are already occupied,
 choose an unused port window before running the benchmark:
@@ -102,9 +108,11 @@ never commit keys.
 
 ---
 
-## 5. Run the paper agents (exact commands)
+## 5. Run the agents
 
-All four paper agents, against the canonical task set:
+All four paper agents, against the canonical task set. With the default image
+fetch above, these run against the current `latest` VM. To reproduce paper
+scores exactly, first fetch `--set eval-round0` and use that env file.
 
 ```bash
 set -a; source .env; set +a        # API keys into the environment
@@ -182,7 +190,7 @@ Wait for `Application startup complete`, then point the runner at
 ## 7. One-command smoke (do this on a new host first)
 
 ```bash
-bash scripts/get-eval-image.sh --set eval-round0 --out ./mypcbench-vm
+bash scripts/get-eval-image.sh --out ./mypcbench-vm
 set -a; source .env; set +a                # API keys into the env
 source ./mypcbench-vm/env.sh
 
@@ -238,4 +246,6 @@ bash scripts/run-agent.sh --parallel 1 --agent claude_cuabash --model claude-opu
 ```
 
 Everything in this doc works the same with
-`--backend docker --docker_image ljang/mypcbench-qemu:eval-round0`.
+`--backend docker --docker_image ljang/mypcbench-qemu:latest`. Runner-owned
+Docker starts pull the tag before booting. For paper reproduction, pass
+`--docker_image ljang/mypcbench-qemu:eval-round0` explicitly.

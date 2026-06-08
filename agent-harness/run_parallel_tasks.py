@@ -8,12 +8,14 @@ Docker container with its own CoW overlay, so state is fully isolated.
 Usage
 -----
 
-    # NOTE: --backend defaults to qemu (needs --qcow2-path / MYPCBENCH_QCOW2).
-    # Pass --backend docker to use --docker-image (QEMU-in-Docker wrapper).
+    # NOTE: --backend defaults to qemu. If --qcow2-path / MYPCBENCH_QCOW2 is
+    # not supplied, the runner fetches the current latest image into
+    # ./mypcbench-vm. Pass --backend docker to use --docker-image
+    # (QEMU-in-Docker wrapper).
 
     # Run the 184-task set with Claude Opus 4.6 on 4 parallel VMs
     python3 agent-harness/run_parallel_tasks.py \
-        --backend docker --docker-image ljang/mypcbench-qemu:eval-round0 \
+        --backend docker --docker-image ljang/mypcbench-qemu:latest \
         --tasks-file tasks/final/all_tasks_with_grading.json \
         --num-vms 4 \
         --agent-type claude_cuabash --model claude-opus-4-6 \
@@ -22,7 +24,7 @@ Usage
     # Qwen 3.5 35B via vLLM
     OPENAI_API_KEY=dummy OPENAI_BASE_URL=http://localhost:8000/v1 \
     python3 agent-harness/run_parallel_tasks.py \
-        --backend docker --docker-image ljang/mypcbench-qemu:eval-round0 \
+        --backend docker --docker-image ljang/mypcbench-qemu:latest \
         --tasks-file tasks/final/all_tasks_with_grading.json \
         --num-vms 4 \
         --agent-type qwen_cuabash \
@@ -72,6 +74,19 @@ if _project_root not in sys.path:
     sys.path.insert(0, _project_root)
 
 logger = logging.getLogger("mypcbench.parallel")
+
+
+def _ensure_default_qcow2() -> str:
+    """Fetch the current default QEMU image when no explicit path is supplied."""
+    repo_root = Path(__file__).resolve().parent.parent
+    out_dir = repo_root / "mypcbench-vm"
+    fetch = repo_root / "scripts" / "get-eval-image.sh"
+    logger.info("No qcow2-path/MYPCBENCH_QCOW2 supplied; fetching current image to %s", out_dir)
+    subprocess.run(
+        ["bash", str(fetch), "--set", "latest", "--out", str(out_dir)],
+        check=True,
+    )
+    return str(out_dir / "mypcbench.qcow2")
 
 
 # ── LLM auto-reply injection ────────────────────────────────────────────
@@ -232,8 +247,9 @@ def run_vm_batch(
         qcow2_path = args_dict.get("qcow2_path") or os.environ.get("MYPCBENCH_QCOW2")
         if not qcow2_path:
             return {"vm_idx": vm_idx,
-                    "error": "QEMU backend requires --qcow2-path or MYPCBENCH_QCOW2 env var. "
-                             "See README for downloading the base image.",
+                    "error": "QEMU backend did not receive a qcow2 path. The "
+                             "parent runner should auto-fetch latest unless "
+                             "--qcow2-path/MYPCBENCH_QCOW2 was misconfigured.",
                     "scores": []}
         overlay_path = f"/tmp/mypcbench-{container_name}-overlay.qcow2"
         pidfile = f"/tmp/mypcbench-{container_name}.pid"
@@ -325,6 +341,7 @@ def run_vm_batch(
         subprocess.run(["docker", "rm", "-f", container_name], capture_output=True)
         cmd = [
             "docker", "run", "-d",
+            "--pull", "always",
             "--name", container_name,
             "--privileged",
             "--device", "/dev/kvm",
@@ -539,11 +556,16 @@ def main() -> int:
                              "QEMU-direct is recommended for parallel runs — deterministic ports per replica, "
                              "transparent overlay rebuild on reset.")
     parser.add_argument("--qcow2-path", type=str, default=None,
-                        help="Path to base qcow2 image (QEMU backend only)")
-    parser.add_argument("--docker-image", type=str, default="ljang/mypcbench-qemu:eval-round0",
-                        help="Docker image (QEMU-in-Docker wrapper). Each `docker restart` "
-                             "rebuilds the CoW overlay for a true hard reset between tasks; "
-                             "pass --soft-reset for in-place iteration instead.")
+                        help="Path to base qcow2 image (QEMU backend only). "
+                             "If omitted and MYPCBENCH_QCOW2 is unset, the "
+                             "runner fetches the current latest image into "
+                             "./mypcbench-vm before booting.")
+    parser.add_argument("--docker-image", type=str, default="ljang/mypcbench-qemu:latest",
+                        help="Docker image (QEMU-in-Docker wrapper). Default "
+                             "tracks the current daily/OSS-polish build. Each "
+                             "`docker restart` rebuilds the CoW overlay for a "
+                             "true hard reset between tasks; pass --soft-reset "
+                             "for in-place iteration instead.")
     parser.add_argument("--persona", type=str, default="michael_scott")
     parser.add_argument("--world", type=str, default="scranton-office")
     parser.add_argument("--agent-type", type=str, default="claude_cuabash")
@@ -621,6 +643,9 @@ def main() -> int:
         )
         return 1
     logger.info("Loaded %d tasks from %s", len(all_tasks), tasks_path)
+
+    if args.backend == "qemu" and not args.qcow2_path and not os.environ.get("MYPCBENCH_QCOW2"):
+        args.qcow2_path = _ensure_default_qcow2()
 
     # Split tasks across VMs: ceil(N / num_vms) per VM
     num_vms = max(1, args.num_vms)

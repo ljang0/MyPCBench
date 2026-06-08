@@ -6,10 +6,10 @@
 # that has NO docker daemon and NO root — exactly what a shared GPU/compute
 # node looks like. Two image sets are supported:
 #
-#   --set eval-round0   Canonical PAPER baseline  (== v1.2.15-round78e)
-#                        Use this to reproduce the paper numbers.
-#   --set latest        Validated OSS-polish release (== v1.2.47-oss-polish).
-#                        Use this to try the expanded seeded catalogs.
+#   --set latest        Current daily/OSS-polish image. This is the default
+#                        so tasks track the freshest published benchmark VM.
+#   --set eval-round0   Archived v0.0 PAPER baseline (== v1.2.15-round78e).
+#                        Use only to reproduce the paper numbers.
 #
 # Two fetch methods (auto-selected, override with --method):
 #
@@ -27,8 +27,8 @@
 #   env.sh                     `source` it to export MYPCBENCH_* for the runner
 #
 # Example:
-#   bash scripts/get-eval-image.sh --set eval-round0 --out ./vm-paper
-#   source ./vm-paper/env.sh
+#   bash scripts/get-eval-image.sh --out ./vm-current
+#   source ./vm-current/env.sh
 #   # free no-API boot sanity (confirms VM + Control API):
 #   python3 agent-harness/run_mypcbench.py --backend qemu \
 #       --qcow2_path "$MYPCBENCH_QCOW2" --agent_type dummy --model dummy \
@@ -36,7 +36,7 @@
 # =============================================================================
 set -euo pipefail
 
-SET="eval-round0"
+SET="latest"
 METHOD="auto"
 OUT="./mypcbench-vm"
 DOCKERHUB_ORG="ljang"

@@ -8,22 +8,24 @@ For the no-Docker path (recommended on shared/compute nodes), see
 
 `run_mypcbench.py --backend docker` **starts and tears down its own
 container per run, on auto-assigned free host ports** — nothing to boot
-by hand, and no port collisions on shared/busy hosts.
+by hand, and no port collisions on shared/busy hosts. Runner-owned Docker
+starts pass `docker run --pull always`, so the default `latest` tag is refreshed
+before the VM boots.
 
 ```bash
-# 1. Pull the pre-baked Michael Scott image (the paper config)
-docker pull ljang/mypcbench-qemu:eval-round0
+# 1. Pull the current daily/OSS-polish Michael Scott image
+docker pull ljang/mypcbench-qemu:latest
 
 # 2. (optional) free no-API boot sanity — confirms VM + Control API
 python3 agent-harness/run_mypcbench.py \
-    --backend docker --docker_image ljang/mypcbench-qemu:eval-round0 \
+    --backend docker --docker_image ljang/mypcbench-qemu:latest \
     --agent_type dummy --model dummy \
     --tasks_dir tasks/smoke_one --max_steps 4 \
     --result_dir results/smoke-docker
 
 # 3. Run an agent (one of the paper agents) — runner manages the container
 python3 agent-harness/run_mypcbench.py \
-    --backend docker --docker_image ljang/mypcbench-qemu:eval-round0 \
+    --backend docker --docker_image ljang/mypcbench-qemu:latest \
     --agent_type claude_cuabash --model claude-opus-4-6 \
     --tasks_dir tasks/final --max_steps 100 \
     --result_dir results/opus-docker
@@ -45,16 +47,17 @@ A single smoke task is ≈1–3 min plus a one-time ~90 s VM boot; the full
 To keep one container warm across many runs, boot it yourself and point
 the runner at it with `MYPCBENCH_REUSE_CONTAINER=1`. You now own the host
 ports — the defaults below collide if already in use, so on a busy host
-remap `5000` and set `MYPCBENCH_HOST_API_PORT` to match:
+remap `5000` and set `MYPCBENCH_HOST_API_PORT` to match. Reuse mode does not
+refresh an already-running container; recreate it when the daily image changes.
 
 ```bash
-docker run -d --name mypcbench --privileged --device /dev/kvm \
+docker run -d --pull always --name mypcbench --privileged --device /dev/kvm \
   -p 5000:5000 -p 6080:6080 -p 2222:2222 -p 3001-3018:3001-3018 \
-  -e OPENAI_API_KEY ljang/mypcbench-qemu:eval-round0
+  -e OPENAI_API_KEY ljang/mypcbench-qemu:latest
 # busy host? e.g. -p 27000:5000 …  and:  export MYPCBENCH_HOST_API_PORT=27000
 
 MYPCBENCH_REUSE_CONTAINER=1 python3 agent-harness/run_mypcbench.py \
-    --backend docker --docker_image ljang/mypcbench-qemu:eval-round0 \
+    --backend docker --docker_image ljang/mypcbench-qemu:latest \
     --container_name mypcbench \
     --agent_type claude_cuabash --model claude-opus-4-6 \
     --tasks_dir tasks/final --max_steps 100 \

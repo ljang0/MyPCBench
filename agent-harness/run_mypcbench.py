@@ -34,6 +34,7 @@ import glob
 import json
 import logging
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -50,6 +51,19 @@ from utils.rubric_judge import build_rubric_bundle
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
 logger = logging.getLogger("mypcbench.run")
+
+
+def _ensure_default_qcow2() -> str:
+    """Fetch the current default QEMU image when no explicit path is supplied."""
+    repo_root = Path(__file__).resolve().parent.parent
+    out_dir = repo_root / "mypcbench-vm"
+    fetch = repo_root / "scripts" / "get-eval-image.sh"
+    logger.info("No qcow2_path/MYPCBENCH_QCOW2 supplied; fetching current image to %s", out_dir)
+    subprocess.run(
+        ["bash", str(fetch), "--set", "latest", "--out", str(out_dir)],
+        check=True,
+    )
+    return str(out_dir / "mypcbench.qcow2")
 
 
 # ── --interface flag routing ───────────────────────────────────────────────
@@ -667,13 +681,17 @@ def main():
                              "QEMU-direct is recommended — faster boot, transparent CoW lifecycle, fewer moving "
                              "parts. Pass --backend docker for the qemu-in-docker fallback.")
     parser.add_argument("--qcow2_path", type=str, default=None,
-                        help="Path to base qcow2 image (QEMU backend only)")
+                        help="Path to base qcow2 image (QEMU backend only). "
+                             "If omitted and MYPCBENCH_QCOW2 is unset, the "
+                             "runner fetches the current latest image into "
+                             "./mypcbench-vm before booting.")
     parser.add_argument("--docker_image", type=str,
-                        default="ljang/mypcbench-qemu:eval-round0",
+                        default="ljang/mypcbench-qemu:latest",
                         help="QEMU-in-Docker image (used with --backend docker). "
-                             "Default is the paper baseline ljang/mypcbench-qemu:"
-                             "eval-round0; use :v1.2.47-oss-polish "
-                             "for the latest build.")
+                             "Default is ljang/mypcbench-qemu:latest, which "
+                             "tracks the current daily/OSS-polish build. Use "
+                             ":eval-round0 only to reproduce the archived "
+                             "paper baseline.")
     parser.add_argument("--container_name", type=str, default="mypcbench-agent")
     parser.add_argument("--persona", type=str, default="michael_scott")
     parser.add_argument("--world", type=str, default="scranton-office")
@@ -711,6 +729,9 @@ def main():
         logger.error("No tasks found in %s", args.tasks_dir)
         sys.exit(1)
     logger.info("Loaded %d tasks from %s", len(tasks), args.tasks_dir)
+
+    if args.backend == "qemu" and not args.qcow2_path and not os.environ.get("MYPCBENCH_QCOW2"):
+        args.qcow2_path = _ensure_default_qcow2()
 
     # Create environment
     env = MyPCBenchEnv(

@@ -9,7 +9,8 @@ Self-contained release-audit runbook for Codex agents working on MyPCBench.
 - Canonical task set: `tasks/final/all_tasks_with_grading.json` plus bucket
   files under `tasks/final/*/*.rubrics.json`.
 - Current public benchmark persona: Michael Scott.
-- Default image: `ljang/mypcbench-qemu:eval-round0`.
+- Default image: `ljang/mypcbench-qemu:latest`, the current daily/OSS-polish
+  benchmark VM. `eval-round0` is an archived v0.0 paper baseline.
 - Hard rules:
   - Stage by path; never broad `git add .`.
   - Commit only when explicitly asked.
@@ -29,16 +30,17 @@ Self-contained release-audit runbook for Codex agents working on MyPCBench.
 Verify Docker and qcow2 hashes before claiming image equivalence:
 
 ```bash
-docker pull ljang/mypcbench-qemu:eval-round0
+docker pull ljang/mypcbench-qemu:latest
 docker run --rm --entrypoint sha256sum \
-  ljang/mypcbench-qemu:eval-round0 /baseline/mypcbench.qcow2
+  ljang/mypcbench-qemu:latest /baseline/mypcbench.qcow2
 
-bash scripts/get-eval-image.sh --set eval-round0 --out /tmp/mypcbench-vm
+bash scripts/get-eval-image.sh --set latest --out /tmp/mypcbench-vm
 sha256sum /tmp/mypcbench-vm/mypcbench.qcow2
 ```
 
-`eval-round0` Docker and HF qcow2 should match. Treat any mismatch in Docker
-tags, HF files, or HF metadata as a release finding.
+`latest` Docker and HF qcow2 should match for the current release image. Treat
+any mismatch in Docker tags, HF files, or HF metadata as a release finding.
+Use `--set eval-round0` only when explicitly reproducing the paper baseline.
 
 ## 3. Smoke Gates
 
@@ -46,7 +48,7 @@ Run both backend smokes when the host supports them:
 
 ```bash
 python3 agent-harness/run_mypcbench.py --backend docker \
-  --docker_image ljang/mypcbench-qemu:eval-round0 \
+  --docker_image ljang/mypcbench-qemu:latest \
   --agent_type dummy --model dummy \
   --tasks_dir tasks/smoke_one --max_steps 4 \
   --result_dir /tmp/mypcbench-smoke-docker
