@@ -76,16 +76,15 @@
     "id": "hard_app-f016",
     "category": "long_horizon",
     "persona": "michael_scott",
-    "instruction": "Book me Cotogna for ten people for the Dundies after-party next Friday. While you're in TableFind, pull up three other Scranton-area restaurants as a fallback plan in case Cotogna is full, and favorite the top two. Once that's done, confirm the Cotogna reservation with a note that it's the Dundies after-party so they can prep the vibe.",
+    "instruction": "Book me Cooper's Seafood House in Scranton for ten people for the Dundies after-party next Friday. While you're in TableFind, review the three other seeded Scranton restaurants—Alfredo's Pizza Cafe, Cugino's, and Cara Mia Bistro—as fallbacks in case Cooper's is full, and favorite the top two. Once that's done, confirm the Cooper's reservation with a note that it's the Dundies after-party so they can prep the vibe.",
     "required_subtasks": [
-      "Open TableFind and search for Cotogna",
-      "Check availability for a 10-person reservation for the Dundies after-party night",
-      "Book Cotogna for 10 with a 'Dundies after-party' note",
+      "Open TableFind and search for Cooper's Seafood House in Scranton",
+      "Check availability for ten people on next Friday relative to the task date",
+      "Book Cooper's Seafood House for ten on that next-Friday date with a 'Dundies after-party' note",
       "Record the confirmation number",
-      "Search TableFind for 3 other Scranton-area restaurants as fallbacks",
-      "Compare the 3 fallbacks (open compare view or one-by-one)",
-      "Favorite 2 of the Scranton fallback restaurants",
-      "Verify the Cotogna booking and 2 favorites persist"
+      "Review Alfredo's Pizza Cafe, Cugino's, and Cara Mia Bistro as the three Scranton fallback restaurants",
+      "Favorite the top two fallback restaurants",
+      "Verify the next-Friday Cooper's Seafood House booking and two favorites persist"
     ],
     "apps_involved": [
       "TableFind"
@@ -98,42 +97,42 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent searches TableFind for Cotogna and checks 10-person availability",
+          "criterion": "Agent searches TableFind for Cooper's Seafood House in Scranton and checks availability for ten people on next Friday relative to the task date (either the first or the second upcoming Friday is an acceptable reading of 'next Friday')",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent books Cotogna for 10 with a 'Dundies after-party' special-request note",
+          "criterion": "Agent books Cooper's Seafood House for ten people on next Friday (either the first or the second upcoming Friday is acceptable) and includes a 'Dundies after-party' special-request note",
           "type": "llm_judge",
           "weight": 0.197
         },
         {
-          "criterion": "Agent searches TableFind for 3 other Scranton-area restaurants as fallbacks",
+          "criterion": "Agent looks up the three named Scranton fallback restaurants in TableFind and finds the ones that exist in the app — Alfredo's Pizza Cafe and the Cara Mia venue (listed in TableFind as 'Cara Mia Trattoria'); for any named fallback with no TableFind listing (e.g. Cugino's), agent reports that it could not be found rather than fabricating a match",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent reviews the 3 Scranton fallback restaurants in TableFind one by one, examining details such as cuisine, rating, or neighborhood for each",
+          "criterion": "Agent reviews the fallback restaurants found in TableFind (at minimum Alfredo's Pizza Cafe and Cara Mia Trattoria) using details such as cuisine, rating, or neighborhood; named fallbacks absent from the app cannot be reviewed and skipping them is not penalized",
           "type": "llm_judge",
           "weight": 0.116
         },
         {
-          "criterion": "Agent favorites the top 2 Scranton fallback restaurants on TableFind",
+          "criterion": "Agent favorites two Scranton-area fallback restaurants from those found in TableFind (Alfredo's Pizza Cafe and Cara Mia Trattoria are the expected pair since only two of the named fallbacks are findable; any defensible 'top two' selection among the found fallbacks is acceptable)",
           "type": "llm_judge",
           "weight": 0.116
         },
         {
-          "criterion": "Agent captures the Cotogna confirmation number",
+          "criterion": "Agent records the Cooper's Seafood House booking confirmation number",
           "type": "llm_judge",
           "weight": 0.107
         },
         {
-          "criterion": "Agent verifies the Cotogna Dundies booking and the 2 Scranton favorites persist in TableFind after refresh",
+          "criterion": "Agent verifies that the next-Friday Cooper's Seafood House reservation and both fallback favorites persist after refresh",
           "type": "llm_judge",
           "weight": 0.089
         },
         {
-          "criterion": "Agent confirms availability of a 10-person reservation slot at Cotogna on TableFind for the Dundies after-party night before placing the booking",
+          "criterion": "Before booking, agent confirms that the selected Cooper's Seafood House slot is for ten people on next Friday, not another date",
           "type": "llm_judge",
           "weight": 0.107
         }

@@ -47,7 +47,7 @@ persona is supplied to the runner at run time via `--persona` (default
 ```
 
 Each rubric is `{ "criterion", "type": "llm_judge", "weight" }`; weights
-sum to 1.0 (3–13 rubrics per task).
+sum to 1.0 within serialization tolerance (3–19 rubrics per task; 1,134 total).
 
 Programmatic checks were retired in an earlier revision; there is no `grading.checks`.
 

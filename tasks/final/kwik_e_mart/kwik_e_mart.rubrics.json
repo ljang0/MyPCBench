@@ -3,16 +3,15 @@
     "id": "hard_app-f017",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently — pick a store I've ordered from most often OR most recently in my order history. If anything's out of stock, swap in reasonable substitutes (otherwise just keep what's available). Do a quick price check against another store in the app so I know I'm not getting fleeced, and schedule delivery for before end of day today.",
+    "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently—pick a store I've ordered from most often or use my most recent order. If anything is out of stock, swap in reasonable substitutes; otherwise keep what's available. Compare the relevant item prices with another store and proceed with the cheaper available option. Schedule delivery using any available slot that arrives before end of day today; it does not have to be the earliest. If the app offers no slot arriving before end of day, do not place the order—leave the cheaper cart ready and report that no qualifying slot exists.",
     "required_subtasks": [
       "Open Kwik-E-Mart and navigate to order history",
-      "Locate the reorder anchor (most recent order at one of Michael's top-frequency Kwik-E-Mart stores by order count, OR the most recent order overall)",
-      "Start a reorder flow",
-      "If any items surface as out-of-stock, pick explicit substitutions; otherwise keep the original items",
-      "Open a second store and view the same items' prices",
-      "Return to the top-store cart if it remains cheapest",
-      "Checkout and schedule delivery before end of day Thursday",
-      "Place the order and verify in recent orders"
+      "Choose a prior order from a top-frequency store or the most recent order",
+      "Start the reorder and substitute only items shown as out of stock",
+      "Compare the reordered items' prices with another store in the app",
+      "Proceed with the cheaper available option",
+      "Choose an available delivery slot before 11:59 PM local time today, or explicitly record that none exists",
+      "Place and verify the order when a qualifying slot exists; otherwise leave the cheaper cart ready without ordering"
     ],
     "apps_involved": [
       "Kwik-E-Mart"
@@ -25,37 +24,37 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Kwik-E-Mart and navigates to the order history view to surface a prior run at one of Michael's top-frequency stores or his most-recent store",
+          "criterion": "Agent opens Kwik-E-Mart order history and surfaces a prior order from a top-frequency store or the most-recent store",
           "type": "llm_judge",
           "weight": 0.12
         },
         {
-          "criterion": "Agent picks a reorder anchor at one of Michael's top-frequency Kwik-E-Mart stores by order count (any store tied at the top by order count is acceptable) OR his most-recent Kwik-E-Mart order, and bases the reorder on that order's line items",
+          "criterion": "Agent bases the reorder on the line items from a qualifying prior order",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent starts a reorder and handles out-of-stock items appropriately — picks substitutions if any items are flagged OOS, or notes that all original items were available and proceeds without substitutions",
+          "criterion": "Agent handles availability correctly by substituting items shown as out of stock or retaining the original items when they are available",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent opens a second store and compares prices",
+          "criterion": "Agent opens a second store and compares the relevant item prices",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent completes the price comparison and proceeds with the cheaper option (returns to the original store's cart if it is cheapest, or switches to the cheaper store)",
+          "criterion": "Agent completes the comparison and proceeds with the cheaper available option",
           "type": "llm_judge",
           "weight": 0.13
         },
         {
-          "criterion": "Agent selects the earliest available delivery slot at Kwik-E-Mart checkout for the chosen-store reorder",
+          "criterion": "Agent selects any available delivery slot scheduled before 11:59 PM local time today, with no earliest-slot requirement; if no qualifying slot exists, the agent explicitly records that result and does not select a later slot",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent places the Kwik-E-Mart reorder and verifies it appears in the recent-orders history after checkout",
+          "criterion": "When a before-end-of-day slot exists, agent places the reorder and verifies it in recent-order history; otherwise agent leaves the cheaper cart ready, does not place the order, and reports the unavailable qualifying window",
           "type": "llm_judge",
           "weight": 0.15
         }
@@ -138,16 +137,17 @@
     "id": "preference_inference-f009",
     "category": "preference_inference",
     "persona": "michael_scott",
-    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores and give me a quick profile of my shopping habits in LibreOffice Writer. ",
+    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores by order count and create a quick profile of my shopping habits in a LibreOffice Writer document.",
     "required_subtasks": [
-      "Open Kwik-E-Mart and list all stores Michael has ordered from",
-      "Count orders per store and rank them",
-      "Identify the top store by Michael's Kwik-E-Mart order count (plurality, not necessarily majority) from /api/orders",
-      "Scan the line items at the top store to characterize what Michael typically buys there",
-      "Give a one-paragraph profile of Michael's Kwik-E-Mart shopping preference"
+      "Open Kwik-E-Mart and count orders for every store in the live order history",
+      "Rank the stores by order count and identify the plurality store",
+      "Review line items bought at the plurality store",
+      "Write a concise shopping-habits profile grounded in those line items",
+      "Create a LibreOffice Writer document containing the ranking and profile"
     ],
     "apps_involved": [
-      "Kwik-E-Mart"
+      "Kwik-E-Mart",
+      "LibreOffice Writer"
     ],
     "difficulty": "easy",
     "horizon": "H1",
@@ -157,34 +157,34 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent explicitly names Michael's favorite Kwik-E-Mart grocery store — the plurality store, Wegmans (top by order count in the live /api/orders history) — in its written output or the LibreOffice Writer deliverable; merely opening or scrolling the orders page without naming the store does not satisfy this",
+          "criterion": "Agent identifies the favorite grocery store as the store with the highest count in the live Kwik-E-Mart order history",
           "type": "llm_judge",
-          "weight": 0.2632
+          "weight": 0.2
         },
         {
-          "criterion": "Agent reports the live order counts per store from Michael's Kwik-E-Mart order history (/api/orders), confirming the top-by-order-count store is ranked first ahead of the other stores Michael has used",
+          "criterion": "Agent reports the live order count for every store and ranks the stores by that count",
           "type": "llm_judge",
-          "weight": 0.2106
+          "weight": 0.2
         },
         {
-          "criterion": "Agent characterizes the typical line items Michael buys there",
+          "criterion": "Agent accurately characterizes the typical line items bought at the top-ranked store",
           "type": "llm_judge",
-          "weight": 0.2106
+          "weight": 0.15
         },
         {
-          "criterion": "Agent writes a one-paragraph profile of Michael's Kwik-E-Mart grocery shopping habits at his favorite store",
+          "criterion": "Agent writes a concise shopping-habits profile grounded in the favorite store's order history",
           "type": "llm_judge",
-          "weight": 0.1578
+          "weight": 0.15
         },
         {
-          "criterion": "Agent reads Kwik-E-Mart order-history line items and states them as the data source backing the favorite grocery store ranking and buying profile",
+          "criterion": "Agent uses the Kwik-E-Mart order-history rows and line items as the evidence source rather than inventing a preference",
           "type": "llm_judge",
-          "weight": 0.0842
+          "weight": 0.1
         },
         {
-          "criterion": "Agent delivers the favorite Kwik-E-Mart grocery store ranking and the buying-habits profile before ending the task",
+          "criterion": "Agent creates a LibreOffice Writer document containing the complete store ranking and shopping-habits profile",
           "type": "llm_judge",
-          "weight": 0.0736
+          "weight": 0.2
         }
       ]
     },

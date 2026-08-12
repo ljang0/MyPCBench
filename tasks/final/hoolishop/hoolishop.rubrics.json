@@ -95,7 +95,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent searches HooliShop and finds the World's Best Boss mug listing matching the variant Michael has bought before",
+          "criterion": "Agent searches HooliShop and finds a World's Best Boss mug listing that Michael has purchased before (any previously-bought variant is acceptable, e.g. the Set of 3, the 2-pack, the 15oz, or the standard single mug)",
           "type": "llm_judge",
           "weight": 0.12
         },

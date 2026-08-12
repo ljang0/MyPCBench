@@ -22,34 +22,34 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent lists all four Cheskepdia trip bookings with their property names (Jamaica, NYC, Barbados, Philadelphia hotels)",
+          "criterion": "Agent lists Michael's Cheskepdia hotel/resort bookings with their property names, including at minimum the Jamaica, NYC, Barbados, and Philadelphia hotel stays (listing additional hotel/resort bookings present in the account, e.g. a Scranton hotel stay, is equally acceptable — no exact booking count is required)",
           "type": "llm_judge",
-          "weight": 0.210684
+          "weight": 0.21
         },
         {
-          "criterion": "Agent categorizes each of the 4 Cheskepdia hotel bookings as luxury-tier or budget-tier and labels which group the pattern favors",
+          "criterion": "Agent categorizes each Cheskepdia hotel/resort booking it lists as luxury-tier or budget-tier and labels which group the pattern favors",
           "type": "llm_judge",
-          "weight": 0.210684
+          "weight": 0.21
         },
         {
           "criterion": "Agent flags Sandals (Montego Bay + Royal Barbados) as the dominant luxury pattern",
           "type": "llm_judge",
-          "weight": 0.210684
+          "weight": 0.21
         },
         {
-          "criterion": "Agent identifies the Philadelphia Radisson booking from the four hotel trips as the business-travel outlier among Michael's luxury-hotels pattern",
+          "criterion": "Agent identifies the Philadelphia Radisson booking as the business-travel outlier among Michael's luxury-hotels pattern",
           "type": "llm_judge",
-          "weight": 0.157863
+          "weight": 0.16
         },
         {
-          "criterion": "Agent lists specific Cheskepdia booking rows (property name, total) from the four trips when stating the luxury-versus-budget verdict",
+          "criterion": "Agent lists specific Cheskepdia booking rows (property name, total) when stating the luxury-versus-budget verdict",
           "type": "llm_judge",
-          "weight": 0.105242
+          "weight": 0.105
         },
         {
-          "criterion": "Agent delivers the full luxury-versus-budget guy verdict with the pattern summary, not stopping before answering the four-trip question",
+          "criterion": "Agent delivers the full luxury-versus-budget guy verdict with the pattern summary, not stopping before answering the question",
           "type": "llm_judge",
-          "weight": 0.104842
+          "weight": 0.105
         }
       ]
     },

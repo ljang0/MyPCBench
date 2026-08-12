@@ -137,39 +137,34 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent navigates to the 'Team Morale Initiative Q2' SprintBoard project and reviews the open backlog tasks",
+          "criterion": "Agent navigates to the 'Team Morale Initiative Q2' SprintBoard project and reviews its open backlog tasks before editing them",
           "type": "llm_judge",
-          "weight": 0.12
+          "weight": 0.1
         },
         {
-          "criterion": "Agent (re)assigns 3 backlog tasks under 'Team Morale Initiative Q2' to owners such as Pam, Dwight, or Jim",
+          "criterion": "Agent assigns or reassigns three project backlog tasks to reasonable team owners such as Pam, Dwight, or Jim",
           "type": "llm_judge",
-          "weight": 0.15
+          "weight": 0.18
         },
         {
-          "criterion": "Agent creates a new 'Q2 Morale Week 1' cycle and assigns 'Team Morale Initiative Q2' backlog tasks to it (cycles in SprintBoard are workspace-global; project linkage happens via the assigned tasks)",
+          "criterion": "Agent creates a cycle named exactly 'Q2 Morale Week 1' and assigns project backlog tasks to it",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "The tasks assigned to 'Q2 Morale Week 1' total approximately eight story points",
+          "type": "llm_judge",
+          "weight": 0.18
+        },
+        {
+          "criterion": "Agent applies the 'dundies-prep' label to the tasks placed in that cycle",
           "type": "llm_judge",
           "weight": 0.17
         },
         {
-          "criterion": "Agent pulls backlog tasks totaling ~8 story points into the 'Q2 Morale Week 1' sprint",
+          "criterion": "The new cycle, three assignments, cycle-task membership, and labels all persist in SprintBoard",
           "type": "llm_judge",
-          "weight": 0.15
-        },
-        {
-          "criterion": "Agent applies the 'dundies-prep' label to the sprint tasks",
-          "type": "llm_judge",
-          "weight": 0.15
-        },
-        {
-          "criterion": "Agent persists the 'Q2 Morale Week 1' sprint, the assignments, and the 'dundies-prep' labels on the SprintBoard backlog tasks",
-          "type": "llm_judge",
-          "weight": 0.14
-        },
-        {
-          "criterion": "Agent opens SprintBoard and navigates into the 'Team Morale Initiative Q2' project before triaging the backlog tasks",
-          "type": "llm_judge",
-          "weight": 0.12
+          "weight": 0.17
         }
       ]
     },

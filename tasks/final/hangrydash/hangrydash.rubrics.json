@@ -172,7 +172,7 @@
           "weight": 0.21
         },
         {
-          "criterion": "Agent identifies the modal tip percent (15%, 18%, 20%, or custom) from the HangryDash order history",
+          "criterion": "Agent characterizes the typical tip percent from the HangryDash order history, grounded in the observed distribution (e.g. an average around a given percent, or noting that no single preset percent clearly dominates); any characterization consistent with the data is acceptable — naming one exact modal percent is not required",
           "type": "llm_judge",
           "weight": 0.12
         },

@@ -78,7 +78,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens HooliMail and clicks Write to open a new compose window addressed to pam.beesly@dundermifflin.com",
+          "criterion": "Agent opens HooliMail and clicks the compose control (labeled 'Compose') to open a new compose window addressed to pam.beesly@dundermifflin.com",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -140,7 +140,7 @@
           "weight": 0.2106
         },
         {
-          "criterion": "Agent computes a median reply latency per top sender from the paired received/sent timestamps and surfaces which senders Michael lets sit for days",
+          "criterion": "Agent computes a per-sender reply latency (e.g. median) from paired received/sent timestamps using a reasonable pairing heuristic (strict In-Reply-To/Message-ID matching or a latest-prior-message-from-the-recipient heuristic are both acceptable) and surfaces which senders Michael is relatively slowest to reply to (literal multi-day gaps are not required if the chosen pairing yields shorter latencies)",
           "type": "llm_judge",
           "weight": 0.2106
         },
@@ -172,14 +172,14 @@
     "id": "situated_action-f027",
     "category": "situated_action",
     "persona": "michael_scott",
-    "date_policy": "relative",
-    "instruction": "Start a draft email to David Wallace with my most recent quarter's sales summary. Pull a ballpark from my ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt so the numbers actually have a basis. Save it as a draft; do NOT hit send. I want to review it first. Do some analysis in LibreOffice Calc so I have some empirical analysis to send him as well.",
+    "date_policy": "narrative_absolute",
+    "instruction": "Start a draft email to David Wallace summarizing the fixed Q2 2026 sales forecast in ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt. Clearly label the figures as forecast projections rather than the most recent quarter's actual results. Do supporting analysis in LibreOffice Calc, save the spreadsheet, and reference it in the email. Save the email as a draft; do NOT hit send because I want to review it first.",
     "required_subtasks": [
-      "Open Files and read ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt for sales figures",
-      "Open LibreOffice Calc and perform sales analysis using figures from the forecast file",
+      "Read ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt for the fixed Q2 2026 forecast figures",
+      "Create and save a LibreOffice Calc analysis using the forecast figures",
       "Open HooliMail and start a new message",
       "Address it to david.wallace@dundermifflin.com",
-      "Summarize the most recent quarter's sales in the body (numbers grounded in the forecast doc)",
+      "Summarize the fixed Q2 2026 forecast in the body and label its figures as projections rather than recent actuals",
       "Save as draft without sending"
     ],
     "apps_involved": [
@@ -195,33 +195,33 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt to extract the sales figures that ground the email body",
+          "criterion": "Agent reads ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt to extract the fixed Q2 2026 forecast figures that ground the email body",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent performs sales analysis in LibreOffice Calc using figures from the forecast file, producing a spreadsheet with empirical analysis (totals, trends, or comparisons) as an attachment or saved file for Michael to send along",
+          "criterion": "Agent creates and saves a LibreOffice Calc analysis using figures from the fixed Q2 2026 forecast file and references the saved analysis in the email draft",
           "type": "llm_judge",
           "weight": 0.22
         },
         {
-          "criterion": "Agent saves the most-recent-quarter sales summary email to David Wallace as a HooliMail draft and does not send it, so Michael can review it first",
+          "criterion": "Agent saves the Q2 2026 forecast-summary email to David Wallace as a HooliMail draft and does not send it, so Michael can review it first",
           "type": "llm_judge",
           "weight": 0.23
         },
         {
-          "criterion": "Draft is addressed to david.wallace@dundermifflin.com and the body references the most recent quarter's sales grounded in figures from the forecast file",
+          "criterion": "Draft is addressed to david.wallace@dundermifflin.com and its body accurately summarizes figures from the fixed Q2 2026 forecast file",
           "type": "llm_judge",
           "weight": 0.22
         },
         {
-          "criterion": "Agent explicitly notes that it did not hit Send, leaving the HooliMail draft for Michael to review before sending",
+          "criterion": "The draft explicitly labels the Q2 2026 figures as forecast projections rather than claiming they are the most recent quarter's actual results",
           "type": "llm_judge",
           "weight": 0.18
         }
       ]
     },
     "collection": "situated_action",
-    "date_policy_notes": "Instruction references the bake-time filename ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt directly so the task does not depend on the boot-time rename patcher. 'Most recent quarter' stays a relative phrase regardless of the Q2 tag in the filename."
+    "date_policy_notes": "Q2 2026 is the fixed period identified by the source artifact and is explicitly treated as a historical forecast, not as the current or most recent quarter."
   }
 ]

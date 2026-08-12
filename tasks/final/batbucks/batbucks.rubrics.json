@@ -133,13 +133,13 @@
     "id": "hard_app-f004",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "I want downside protection on every position I'm holding in BatBucks. Put a couple Stop order on each one at 15% below what I paid for it, just to give me a floor. Then build me a new watchlist called 'Oscar's Picks' with eight big-name ETFs in it. Make sure the stop-losses actually show up in my open orders and the watchlist is still there if I refresh.",
+    "instruction": "I want downside protection on every position I'm holding in BatBucks. Put one Stop order on each position at 15% below what I paid for it, just to give me a floor. Then build me a new watchlist called 'Oscar's Picks' with eight big-name ETFs in it. After refreshing, account for every submitted stop in open orders or, if one triggered immediately, in order history, and make sure the watchlist is still there.",
     "required_subtasks": [
       "Open BatBucks and note all current holdings (live count from /api/holdings) and their avg_cost values",
       "Place a Stop order (single stop price; not Stop-Limit) for each held ticker at ~15% below its actual avg_cost (from holdings)",
       "Create a new watchlist named 'Oscar's Picks'",
       "Add 8 big-name ETF tickers to the watchlist (e.g., VTI, VOO, QQQ, SPY, DIA, IWM, VEA, VWO or comparable large-AUM ETFs)",
-      "Reload the page and confirm stop-losses and watchlist both persist"
+      "Reload the page, account for every submitted stop as open or triggered in order history, and confirm the watchlist persists"
     ],
     "apps_involved": [
       "BatBucks"
@@ -152,29 +152,29 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens BatBucks and lists all current holdings (live count from /api/holdings) with their avg_cost values to plan the stop-loss orders",
+          "criterion": "Agent identifies every current BatBucks holding and its avg_cost before planning the stop orders",
           "type": "llm_judge",
-          "weight": 0.090909
+          "weight": 0.1
         },
         {
-          "criterion": "Agent submits a Stop order (single stop price, not Stop-Limit) for every current BatBucks holding (live count from /api/holdings) at ~15% under each ticker's actual avg_cost (computed from holdings)",
+          "criterion": "Agent submits one Stop order—not a Stop-Limit order—for every current holding at approximately 15% below that holding's live avg_cost",
           "type": "llm_judge",
-          "weight": 0.545455
+          "weight": 0.3
         },
         {
-          "criterion": "Agent creates a new BatBucks watchlist named 'Oscar's Picks'",
+          "criterion": "Agent creates a new BatBucks watchlist named exactly 'Oscar's Picks'",
           "type": "llm_judge",
-          "weight": 0.109091
+          "weight": 0.15
         },
         {
-          "criterion": "Agent adds 8 big-name/mainstream ETF tickers (e.g., VTI, VOO, QQQ, SPY, DIA, IWM, VEA, VWO or comparable large-AUM broad-market ETFs) to the 'Oscar's Picks' watchlist in BatBucks",
+          "criterion": "Agent adds eight big-name mainstream ETF tickers to 'Oscar's Picks'",
           "type": "llm_judge",
-          "weight": 0.127273
+          "weight": 0.3
         },
         {
-          "criterion": "Agent reloads BatBucks and confirms stop-loss orders are accounted for (open or filled) for each current holding — noting that any stop placed below the current trading price may fill immediately — and the 'Oscar's Picks' watchlist persists after refresh",
+          "criterion": "After reloading BatBucks, the stop orders are accounted for as open or filled for every holding and the eight-ETF 'Oscar's Picks' watchlist persists",
           "type": "llm_judge",
-          "weight": 0.127273
+          "weight": 0.15
         }
       ]
     },
@@ -185,17 +185,19 @@
     "id": "preference_inference-f005",
     "category": "preference_inference",
     "persona": "michael_scott",
-    "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem, and what would a sensible rebalance look like that doesn't totally abandon the names I actually like? Use cost basis, not market prices. While you're at it, peek at my old WUPHF investment agreement in ~/Downloads/ — that one was the OG mistake, and it sets the pattern for how I get into these things. Return the review of my portfolio in LibreOffice Writer.",
+    "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem? Treat both GME and RIVN as the meme-stock positions, use cost basis rather than market prices, and recommend a sensible rebalance that doesn't totally abandon the narrative and consumer names I actually like. Also read my old WUPHF investment agreement in ~/Downloads/—that was the original mistake and sets the pattern for how I get into these things. Put the complete portfolio review in a LibreOffice Writer document.",
     "required_subtasks": [
-      "Open BatBucks and pull Michael's current RIVN position (shares and avg_cost) from the holdings view / /api/holdings",
-      "Report Michael's total RIVN cost-basis exposure (shares × avg_cost from /api/holdings)",
-      "List all current holdings (live count from /api/holdings) with shares and avg_cost",
-      "Compute each position's cost-basis value (shares × avg_cost) and report RIVN's share of the total cost-basis portfolio",
-      "Recommend a RIVN-trim plan that respects Michael's existing preference for narrative/consumer names like DIS and SBUX (don't suggest dumping into pure index)",
-      "Open ~/Downloads/WUPHF_Investment_Agreement.txt to ground the 'OG mistake pattern' framing in the trim proposal"
+      "Open BatBucks and list all current holdings with shares and avg_cost",
+      "Compute every position's cost-basis value and total portfolio cost basis",
+      "Compute GME and RIVN cost basis individually and combined as a share of total cost basis",
+      "Recommend a rebalance addressing both GME and RIVN while retaining some preferred narrative/consumer names",
+      "Read ~/Downloads/WUPHF_Investment_Agreement.txt and use it to explain the recurring investment pattern",
+      "Create a LibreOffice Writer document containing the complete review"
     ],
     "apps_involved": [
-      "BatBucks"
+      "BatBucks",
+      "Files",
+      "LibreOffice Writer"
     ],
     "difficulty": "medium",
     "horizon": "H2",
@@ -205,44 +207,39 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent pulls Michael's BatBucks RIVN holding (shares and avg_cost from the holdings view / /api/holdings) and reports it as the source of his RIVN exposure",
+          "criterion": "Agent uses the live BatBucks holdings to report every position's shares and avg_cost, including both GME and RIVN",
           "type": "llm_judge",
-          "weight": 0.16
+          "weight": 0.15
         },
         {
-          "criterion": "Agent reports Michael's RIVN cost-basis dollar exposure (shares × avg_cost from live BatBucks holdings) and expresses RIVN's share as a percent of the total cost-basis portfolio",
+          "criterion": "Agent computes cost-basis value for each position and reports GME's and RIVN's individual and combined cost-basis exposure as a share of total portfolio cost basis",
           "type": "llm_judge",
-          "weight": 0.16
+          "weight": 0.2
         },
         {
-          "criterion": "Agent frames the analysis using cost basis (avg_cost) per the user's request, not market value",
+          "criterion": "The analysis consistently uses shares multiplied by avg_cost rather than current market prices",
           "type": "llm_judge",
-          "weight": 0.12
+          "weight": 0.1
         },
         {
-          "criterion": "Agent proposes a RIVN trim plan consistent with Michael's historical consumer-brand bias (preserves DIS/SBUX-style narrative names rather than suggesting a pure-index dump)",
+          "criterion": "Agent recommends a concrete rebalance addressing both GME and RIVN while retaining some of Michael's preferred narrative or consumer names rather than proposing a pure-index replacement",
           "type": "llm_judge",
-          "weight": 0.16
+          "weight": 0.2
         },
         {
-          "criterion": "Agent reports the BatBucks holdings rows as the data source for the trim recommendation instead of inventing numbers",
+          "criterion": "Agent identifies the live BatBucks holdings rows as the source of the portfolio figures rather than inventing numbers",
           "type": "llm_judge",
           "weight": 0.08
         },
         {
-          "criterion": "Agent delivers the full RIVN trim answer including cost-basis concentration percent and recommendation without abandoning the task midway",
-          "type": "llm_judge",
-          "weight": 0.08
-        },
-        {
-          "criterion": "Agent opens ~/Downloads/WUPHF_Investment_Agreement.txt and references it as the founding 'bad bet' pattern that explains the current RIVN over-exposure",
+          "criterion": "Agent reads ~/Downloads/WUPHF_Investment_Agreement.txt and connects it to the recurring speculative-investment pattern",
           "type": "llm_judge",
           "weight": 0.12
         },
         {
-          "criterion": "Agent produces the portfolio review in a LibreOffice Writer document, as requested in the instruction",
+          "criterion": "Agent creates a LibreOffice Writer document containing the complete cost-basis concentration analysis and rebalance recommendation",
           "type": "llm_judge",
-          "weight": 0.12
+          "weight": 0.15
         }
       ]
     },

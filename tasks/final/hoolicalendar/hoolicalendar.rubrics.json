@@ -4,16 +4,16 @@
     "category": "situated_action",
     "persona": "michael_scott",
     "date_policy": "relative",
-    "instruction": "Check my Thursday for any improv conflicts. If there's a Thursday improv class window stomping on a work meeting (and I cannot skip improv), find a different Thursday slot for the work meeting that doesn't touch the improv window, and add fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim, message them on HooliWork and send them updated invites on Hoolicalendar if needed. If no Thursday meeting actually overlaps an improv block, just confirm the all-clear and move on.",
+    "instruction": "Check the next Thursday strictly after the VM's current date for any improv conflicts. If an improv class window that day overlaps a work meeting (and I cannot skip improv), find a different slot on that same Thursday that does not touch the improv window, and protect fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim; message them on HooliWork and send updated HooliCalendar invites if a move is needed. If no work meeting on that date overlaps an improv block, just confirm the all-clear and move on.",
     "required_subtasks": [
-      "Open HooliCalendar and navigate to Thursday view",
-      "Identify any improv class event on the upcoming Thursday from live HooliCalendar Thursday events (Scranton Improv Workshop, Improv Class, or similar — read whatever improv-tagged event exists Thursday)",
-      "Identify any work meeting on Thursday that conflicts with the improv class window (or note that none does)",
-      "Pick a non-conflicting Thursday time slot for that work meeting",
-      "Move the meeting to the new time",
-      "Add a 15-minute buffer event before the new meeting",
-      "Add a 15-minute buffer event after the new meeting",
-      "Send updated invites to attendees",
+      "Resolve the next Thursday strictly after the VM date and open that date in HooliCalendar",
+      "Identify any improv-tagged event on that exact Thursday",
+      "Identify any work meeting on that exact date that conflicts with the improv window, or note that none does",
+      "If a conflict exists, pick a non-conflicting slot on that same Thursday for the work meeting",
+      "If a conflict exists, move the meeting to the new time",
+      "If a meeting is moved, protect a 15-minute buffer before it",
+      "If a meeting is moved, protect a 15-minute buffer after it",
+      "If a meeting is moved, send updated invites and notify the attendees",
       "Verify the new schedule visually shows no conflict"
     ],
     "apps_involved": [
@@ -28,17 +28,17 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens HooliCalendar and navigates to the Thursday day view to surface the scheduling conflict",
+          "criterion": "Agent resolves the next Thursday strictly after the VM date and opens that exact date in HooliCalendar to check for a scheduling conflict",
           "type": "llm_judge",
           "weight": 0.09
         },
         {
-          "criterion": "Agent identifies any improv class event on the upcoming Thursday from live HooliCalendar (Scranton Improv Workshop, Improv Class, or any improv-tagged event) as the unmovable anchor",
+          "criterion": "Agent identifies any improv-tagged event on that exact next-Thursday date as the unmovable anchor, or accurately reports that none exists",
           "type": "llm_judge",
           "weight": 0.1
         },
         {
-          "criterion": "Agent checks the Thursday work meetings against the improv class window and either identifies an overlapping meeting or explicitly reports that no Thursday meeting conflicts with the improv block",
+          "criterion": "Agent checks work meetings on that exact next-Thursday date against the improv window and either identifies an overlap or explicitly reports that no meeting conflicts",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -48,7 +48,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "If a conflict was found, agent moves the conflicting Thursday meeting in HooliCalendar to the new non-conflicting slot (or notes that no meeting needed to be moved)",
+          "criterion": "If a conflict was found, agent moves the conflicting Thursday meeting — specifically the overlapping meeting that has Andy and Jim as attendees, per the instruction's hint — in HooliCalendar to the new non-conflicting slot (or notes that no meeting needed to be moved); if another overlapping meeting without Andy and Jim also exists that day, leaving it in place is acceptable and not penalized",
           "type": "llm_judge",
           "weight": 0.11
         },
@@ -79,7 +79,8 @@
         }
       ]
     },
-    "collection": "hard_app"
+    "collection": "hard_app",
+    "date_policy_notes": "Thursday is deterministically the first Thursday strictly after the VM's current date, avoiding same-day boundary ambiguity."
   },
   {
     "id": "hard_app-f034",
@@ -112,52 +113,52 @@
         {
           "criterion": "Agent opens HooliCalendar and switches to a 2-week view to plan the Dundies prep schedule",
           "type": "llm_judge",
-          "weight": 0.081967
+          "weight": 0.08
         },
         {
-          "criterion": "Agent creates the 'Dundies categories brainstorm' event in HooliCalendar early in week 1 of the prep schedule",
+          "criterion": "Agent creates the 'Dundies categories brainstorm' event in HooliCalendar within the next two weeks as part of the prep schedule (no specific day placement required)",
           "type": "llm_judge",
-          "weight": 0.098361
+          "weight": 0.1
         },
         {
-          "criterion": "Agent creates the 'Venue walkthrough' event in HooliCalendar mid-week 1 for the Dundies prep schedule",
+          "criterion": "Agent creates the 'Venue walkthrough' event in HooliCalendar within the next two weeks for the Dundies prep schedule (no specific day placement required)",
           "type": "llm_judge",
-          "weight": 0.098361
+          "weight": 0.1
         },
         {
-          "criterion": "Agent creates the 'MC rehearsal' practice event late in week 1 of the HooliCalendar Dundies plan to lock in stage time",
+          "criterion": "Agent creates the 'MC rehearsal' practice event within the next two weeks on the HooliCalendar Dundies plan to lock in stage time (no specific day placement required)",
           "type": "llm_judge",
-          "weight": 0.098361
+          "weight": 0.1
         },
         {
-          "criterion": "Agent creates the 'Catering confirmation' event in HooliCalendar early in week 2 for the Dundies prep schedule",
+          "criterion": "Agent creates the 'Catering confirmation' event in HooliCalendar within the next two weeks for the Dundies prep schedule (no specific day placement required)",
           "type": "llm_judge",
-          "weight": 0.098361
+          "weight": 0.1
         },
         {
-          "criterion": "Agent books the 'Dress rehearsal' final run-through near week 2's end on HooliCalendar so the Dundies cast walks the show before opening night",
+          "criterion": "Agent books the 'Dress rehearsal' final run-through on HooliCalendar within the next two weeks (scheduling it as the last of the five prep events is natural but no exact placement is required), and the five prep events are collectively spread across the two-week window rather than all clustered on a single day",
           "type": "llm_judge",
-          "weight": 0.098361
+          "weight": 0.1
         },
         {
-          "criterion": "Agent selects a single shared Dundies color on each of the 5 prep events so they pop in the 2-week calendar view",
+          "criterion": "Agent applies deliberate non-default color-coding to each of the 5 prep events so they pop in the calendar view (a single shared color or distinct per-event colors are both acceptable)",
           "type": "llm_judge",
-          "weight": 0.098361
+          "weight": 0.1
         },
         {
           "criterion": "Agent adds Pam, Dwight, Kevin, Jim, and Holly as attendees on each of the 5 Dundies prep events (HooliCalendar's event editor exposes an attendees picker on today's build, so the invitees must actually be set on the events)",
           "type": "llm_judge",
-          "weight": 0.114754
+          "weight": 0.115
         },
         {
           "criterion": "Agent adds 24-hour and 1-hour reminders on each of the 5 Dundies prep events (HooliCalendar exposes per-event reminders on today's build, so the reminders must actually be set)",
           "type": "llm_judge",
-          "weight": 0.114754
+          "weight": 0.115
         },
         {
-          "criterion": "Agent verifies all 5 Dundies prep events appear in the HooliCalendar 2-week view with the shared color and the five attendees",
+          "criterion": "Agent verifies all 5 Dundies prep events appear in the HooliCalendar 2-week view with their chosen color-coding and the five attendees",
           "type": "llm_judge",
-          "weight": 0.098361
+          "weight": 0.09
         }
       ]
     },

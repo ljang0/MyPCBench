@@ -72,14 +72,13 @@
     "id": "situated_action-f004",
     "category": "situated_action",
     "persona": "michael_scott",
-    "date_policy": "relative",
-    "instruction": "Post a Motivational Monday message in our #random channel at work. You know how I like it: World's Best Boss style, kick the team's week off right. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
+    "date_policy": "narrative_absolute",
+    "instruction": "Post a workweek-kickoff motivational message in our #random channel at work. You know how I like it: World's Best Boss style. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
     "required_subtasks": [
-      "Open HooliWork and confirm Michael's #random channel membership",
-      "Navigate to the #random channel",
-      "Compose a Motivational Monday message in Michael's voice",
-      "Post the message to #random",
-      "Read ~/Documents/Motivational_Quotes_Collection.txt and pull at least one quote as inspiration"
+      "Open ~/Documents/Motivational_Quotes_Collection.txt and read its quotes",
+      "Choose at least one quote from that file and incorporate it into the message",
+      "Compose a workweek-kickoff message in Michael's World's Best Boss voice",
+      "Post the completed message to the HooliWork #random channel"
     ],
     "apps_involved": [
       "HooliWork",
@@ -93,29 +92,29 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent posts to the HooliWork #random channel (not another channel)",
+          "criterion": "Agent reads ~/Documents/Motivational_Quotes_Collection.txt and identifies at least one quote from that source",
           "type": "llm_judge",
-          "weight": 0.304287
+          "weight": 0.2
         },
         {
-          "criterion": "Agent writes the #random Monday post in Michael Scott's World's Best Boss motivational voice to kick the team's week off",
+          "criterion": "The posted message incorporates at least one actual quote or faithful excerpt from Motivational_Quotes_Collection.txt, rather than merely citing the filename",
           "type": "llm_judge",
-          "weight": 0.304287
+          "weight": 0.2
         },
         {
-          "criterion": "Message explicitly frames the post as a Monday motivation (week kickoff, start the week strong, Motivational Monday, etc.)",
+          "criterion": "Agent posts the completed message in the HooliWork #random channel, not another channel",
           "type": "llm_judge",
-          "weight": 0.130409
+          "weight": 0.2
         },
         {
-          "criterion": "Agent writes the #random Motivational Monday post as over-the-top self-aggrandizing World's Best Boss Michael Scott energy, not corporate HR boilerplate",
+          "criterion": "The message explicitly frames itself as motivation or a kickoff to the work week without depending on the execution weekday",
           "type": "llm_judge",
-          "weight": 0.130583
+          "weight": 0.15
         },
         {
-          "criterion": "Agent reads ~/Documents/Motivational_Quotes_Collection.txt and pulls at least one quote into the Motivational Monday post (or directly cites the file as the source)",
+          "criterion": "The message uses Michael Scott's over-the-top, self-aggrandizing World's Best Boss motivational voice rather than generic corporate boilerplate",
           "type": "llm_judge",
-          "weight": 0.130435
+          "weight": 0.25
         }
       ]
     },
@@ -126,12 +125,12 @@
     "category": "situated_action",
     "persona": "michael_scott",
     "date_policy": "relative",
-    "instruction": "Post a Pretzel Day countdown for next Monday at 8:00 AM EST in the #party-planning-committee channel at work. Build the hype.",
+    "instruction": "Post a Pretzel Day planning-kickoff message now in the #party-planning-committee channel at work. Build the hype and make it clear that planning starts today; do not invent a countdown number or event date.",
     "required_subtasks": [
-      "Open HooliWork",
-      "Navigate to the #party-planning-committee channel",
-      "Compose a Pretzel Day countdown message",
-      "Schedule or post the message for next Monday at 8:00 AM EST in #party-planning-committee"
+      "Open HooliWork and navigate to #party-planning-committee",
+      "Compose a hype-filled Pretzel Day planning-kickoff message that says planning starts today without inventing an event date",
+      "Post the kickoff in #party-planning-committee",
+      "Confirm the message appears in that channel"
     ],
     "apps_involved": [
       "HooliWork"
@@ -144,27 +143,28 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent navigates to the HooliWork #party-planning-committee channel before composing the Pretzel Day countdown message",
+          "criterion": "Agent navigates to the HooliWork #party-planning-committee channel before composing the message",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent composes a message that mentions Pretzel Day, says planning starts today, uses clear hype language, and does not invent a countdown number or event date",
+          "type": "llm_judge",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Agent posts the completed Pretzel Day planning kickoff as a new message in HooliWork",
+          "type": "llm_judge",
+          "weight": 0.4
+        },
+        {
+          "criterion": "The posted Pretzel Day planning kickoff appears in #party-planning-committee rather than another channel",
           "type": "llm_judge",
           "weight": 0.2
-        },
-        {
-          "criterion": "Agent composes a Pretzel Day countdown message body that mentions Pretzel Day and includes hype language (days remaining, excitement, etc.)",
-          "type": "llm_judge",
-          "weight": 0.25
-        },
-        {
-          "criterion": "Agent attempts to schedule or post the Pretzel Day countdown message for next Monday at 8:00 AM EST (scheduled delivery or immediate post with the specified time noted)",
-          "type": "llm_judge",
-          "weight": 0.3
-        },
-        {
-          "criterion": "Agent posts or schedules the Pretzel Day countdown message in the HooliWork #party-planning-committee channel rather than another channel",
-          "type": "llm_judge",
-          "weight": 0.25
         }
       ]
     },
-    "collection": "situated_action"
+    "collection": "situated_action",
+    "date_policy_notes": "The task is an immediate supported HooliWork planning kickoff and does not invent or depend on an unseeded Pretzel Day event date."
   }
 ]
