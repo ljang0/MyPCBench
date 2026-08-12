@@ -76,7 +76,7 @@
     "id": "hard_app-f016",
     "category": "long_horizon",
     "persona": "michael_scott",
-    "instruction": "Book me Cooper's Seafood House in Scranton for ten people for the Dundies after-party next Friday. While you're in TableFind, review the three other seeded Scranton restaurants—Alfredo's Pizza Cafe, Cugino's, and Cara Mia Bistro—as fallbacks in case Cooper's is full, and favorite the top two. Once that's done, confirm the Cooper's reservation with a note that it's the Dundies after-party so they can prep the vibe.",
+    "instruction": "Book me Cooper's Seafood House in Scranton for ten people for the Dundies after-party next Friday. While you're in TableFind, review the three other seeded Scranton restaurants—Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill—as fallbacks in case Cooper's is full, and favorite the top two. Once that's done, confirm the Cooper's reservation with a note that it's the Dundies after-party so they can prep the vibe.",
     "required_subtasks": [
       "Open TableFind and search for Cooper's Seafood House in Scranton",
       "Check availability for ten people on next Friday relative to the task date",
@@ -107,17 +107,17 @@
           "weight": 0.197
         },
         {
-          "criterion": "Agent looks up the three named Scranton fallback restaurants in TableFind and finds the ones that exist in the app — Alfredo's Pizza Cafe and the Cara Mia venue (listed in TableFind as 'Cara Mia Trattoria'); for any named fallback with no TableFind listing (e.g. Cugino's), agent reports that it could not be found rather than fabricating a match",
+          "criterion": "Agent looks up the three named Scranton fallback restaurants in TableFind — Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill — and finds all three (all are live TableFind listings)",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent reviews the fallback restaurants found in TableFind (at minimum Alfredo's Pizza Cafe and Cara Mia Trattoria) using details such as cuisine, rating, or neighborhood; named fallbacks absent from the app cannot be reviewed and skipping them is not penalized",
+          "criterion": "Agent reviews the three fallback restaurants using details shown in TableFind such as cuisine, rating, or neighborhood",
           "type": "llm_judge",
           "weight": 0.116
         },
         {
-          "criterion": "Agent favorites two Scranton-area fallback restaurants from those found in TableFind (Alfredo's Pizza Cafe and Cara Mia Trattoria are the expected pair since only two of the named fallbacks are findable; any defensible 'top two' selection among the found fallbacks is acceptable)",
+          "criterion": "Agent favorites the top two of the three fallback restaurants based on the review (any defensible top-two choice among Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill is acceptable)",
           "type": "llm_judge",
           "weight": 0.116
         },

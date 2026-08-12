@@ -68,10 +68,23 @@ exactly 1.0 (Decimal) on every touched task; `scripts/validate_tasks.py`
 - Seed wart: Jamaica receipt email subjects carry the pre-rebase trip dates
   while the live booking rebakes 3 days later (see flags below).
 
-## Flagged for owner decision (NOT fixed — instruction or image change needed)
+## Flagged for owner decision
 
-Rubrics were made maximally robust (closest-equivalent + absence branches),
-but these instructions/seeds reference things the live image contradicts:
+**Resolution (same day, owner-approved):** items 1–5 and 7 below were fixed
+with surgical instruction edits verified against the live image (LockedIn
+draft → save-text-locally-and-don't-post; f046 subject described instead of
+quoted; HooliShop items retargeted to live products — Hawaiian shirt 3-pack,
+Travel Adapter EU/UK, pens/copy paper; f016 fallbacks now Alfredo's Pizza
+Cafe, Cara Mia Trattoria, State Street Grill; f008 instruction now
+acknowledges the calendar/booking date mismatch and asks for removal of
+whatever Jamaica entries exist). Item 6 (`contradiction-f011`) is accepted
+as-is for now: the rubric grades the live comparison either way; the
+deterministic-contradiction guarantee awaits a year-preserving rebake rule
+whenever the rebake code is next touched. The f008 seed offset itself
+remains an image-side wart (cosmetic after the instruction fix).
+
+Original flags (instructions/seeds referenced things the live image
+contradicted):
 
 1. `long_horizon-f040`, `long_horizon-f070`, `long_horizon-f075` — instruction
    requires leaving a LockedIn post as an unpublished **draft**; LockedIn has
