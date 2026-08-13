@@ -77,9 +77,9 @@
           "weight": 0.12766
         },
         {
-          "criterion": "Agent executes 3 distinct left_click_drag gestures on 3 different SprintBoard cards in the Team Morale Q2 board",
+          "criterion": "Agent executes 3 distinct in-app move actions on 3 different SprintBoard cards in the Team Morale Q2 board; any move affordance the app provides counts equally (drag-and-drop, a card's status/column selector, or an edit dialog) — the instruction only asks that the cards be moved, so a non-drag method is not penalized",
           "type": "llm_judge",
-          "weight": 0.269149
+          "weight": 0.26915
         },
         {
           "criterion": "Agent moves the 3 SprintBoard cards forward into different Team Morale Q2 columns (Todo->In Progress, In Progress->In Review, In Review->Done)",
@@ -102,7 +102,7 @@
           "weight": 0.120567
         },
         {
-          "criterion": "Agent verifies all 3 SprintBoard cards are in their new Team Morale Q2 positions after the drags (re-reads the board or refreshes) before concluding",
+          "criterion": "Agent verifies all 3 SprintBoard cards are in their new Team Morale Q2 positions after the moves (re-reads the board or refreshes) before concluding",
           "type": "llm_judge",
           "weight": 0.05
         }

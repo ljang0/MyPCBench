@@ -33,7 +33,7 @@
           "weight": 0.09
         },
         {
-          "criterion": "Agent identifies any improv-tagged event on that exact next-Thursday date as the unmovable anchor, or accurately reports that none exists",
+          "criterion": "Agent identifies any improv-tagged event that the HooliCalendar UI displays on that exact next-Thursday date as the unmovable anchor, or accurately reports that none is displayed — judge strictly on what the calendar shows at run time: an improv block rendered in the UI counts as present even if an underlying record marks it cancelled, and it counts as absent only if the UI does not show it",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -205,7 +205,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "Agent calls out any conspicuous recurring morning or evening blocks on Michael's HooliCalendar week (e.g., a daily morning standup, a recurring evening prep block)",
+          "criterion": "Agent addresses whether any conspicuous recurring morning or evening block appears on Michael's HooliCalendar week — naming a repeating block visible in the live week view (a weekly-cadence block such as a recurring evening class or a repeating morning meeting counts; it need not be daily) or explicitly stating that no clearly recurring block stands out; either answer earns credit as long as it matches what the week view shows",
           "type": "llm_judge",
           "weight": 0.06
         },

@@ -215,7 +215,7 @@ work but auto-replies are disabled.
 1. **Run** — `run_mypcbench.py` writes `result.txt` (1.0 ran to completion / 0.0 errored) + `rubric_bundle.json` per task. It does *not* grade.
 2. **Judge** — `python3 agent-harness/judge_results.py --result_dir <dir>` scores each bundle offline (no live VM) → `rubric_judge_result.json` per task + aggregate `scores.json`; idempotent (`--force` re-judges).
 
-Each task has 3–19 weighted rubric criteria (per-task weights sum to 1 within serialization tolerance; mean 6.2; 1,134 total). Default judge:
+Each task has 3–19 weighted rubric criteria (per-task weights sum to 1 within serialization tolerance; mean 6.2; 1,133 total). Default judge:
 full-trajectory per-rubric on Gemini `gemini-3.1-flash-lite-preview` (the
 paper config); override via `MYPCBENCH_RUBRIC_JUDGE_MODEL`.
 

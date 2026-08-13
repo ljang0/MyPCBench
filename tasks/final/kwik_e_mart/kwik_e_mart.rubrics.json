@@ -39,12 +39,12 @@
           "weight": 0.15
         },
         {
-          "criterion": "Agent opens a second store and compares the relevant item prices",
+          "criterion": "Agent opens a second Kwik-E-Mart store and attempts a price comparison against the reordered items; because the second store's live catalog may carry none of the anchor order's exact items, comparing the closest available equivalents, or explicitly reporting that the other store stocks no comparable items so no meaningful comparison is possible, both earn full credit",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent completes the comparison and proceeds with the cheaper available option",
+          "criterion": "Agent completes the comparison and proceeds with the cheaper available option — or, if the second store carries no comparable items, states that and proceeds with the original store's cart",
           "type": "llm_judge",
           "weight": 0.13
         },

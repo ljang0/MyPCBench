@@ -355,7 +355,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight by departure_date in the live booking list",
+          "criterion": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight in the live booking list — the one with the earliest departure date and, among flights sharing that earliest date, the earliest departure time (equivalently, the upcoming flight the app shows as check-in open); if the live list displays more than one upcoming flight on that earliest date, any of them may be credited so long as the agent works with the same flight throughout",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -513,7 +513,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent picks the next upcoming Dinoco booking that is still cancellable (not already past or cancelled) and cancels it through the Dinoco UI",
+          "criterion": "Agent picks the next upcoming Dinoco booking that is still cancellable (not already past or cancelled) — the earliest displayed departure date and, among bookings sharing that earliest date, the earliest departure time; if the live list displays more than one cancellable booking on that earliest date, cancelling either is acceptable so long as the agent reports the same booking it cancelled — and cancels it through the Dinoco UI",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -815,14 +815,9 @@
           "weight": 0.224
         },
         {
-          "criterion": "Agent reviews HangryDash order history to confirm the chosen restaurant is salad-forward and one Michael has ordered from before",
+          "criterion": "Agent actually reviews Michael's HangryDash order history before choosing where to order, using it to establish that the restaurant it picks is salad-forward and one he has ordered from before",
           "type": "llm_judge",
-          "weight": 0.074336
-        },
-        {
-          "criterion": "Agent reviews HangryDash order history highlights to identify a salad-forward restaurant Michael has ordered from before picking the lunch order target",
-          "type": "llm_judge",
-          "weight": 0.106195
+          "weight": 0.180423
         },
         {
           "criterion": "Agent adds the picked salad-forward lunch item (priced within Michael's usual HangryDash budget) from the chosen salad-forward restaurant into the cart before proceeding to checkout",
@@ -882,7 +877,7 @@
         {
           "criterion": "Agent places the order and verifies it in history",
           "type": "llm_judge",
-          "weight": 0.170522
+          "weight": 0.170521
         }
       ]
     }
@@ -992,7 +987,7 @@
           "weight": 0.09
         },
         {
-          "criterion": "Agent identifies any improv-tagged event on that exact next-Thursday date as the unmovable anchor, or accurately reports that none exists",
+          "criterion": "Agent identifies any improv-tagged event that the HooliCalendar UI displays on that exact next-Thursday date as the unmovable anchor, or accurately reports that none is displayed — judge strictly on what the calendar shows at run time: an improv block rendered in the UI counts as present even if an underlying record marks it cancelled, and it counts as absent only if the UI does not show it",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -1133,7 +1128,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "Agent calls out any conspicuous recurring morning or evening blocks on Michael's HooliCalendar week (e.g., a daily morning standup, a recurring evening prep block)",
+          "criterion": "Agent addresses whether any conspicuous recurring morning or evening block appears on Michael's HooliCalendar week — naming a repeating block visible in the live week view (a weekly-cadence block such as a recurring evening class or a repeating morning meeting counts; it need not be daily) or explicitly stating that no clearly recurring block stands out; either answer earns credit as long as it matches what the week view shows",
           "type": "llm_judge",
           "weight": 0.06
         },
@@ -1756,12 +1751,12 @@
           "weight": 0.15
         },
         {
-          "criterion": "Agent opens a second store and compares the relevant item prices",
+          "criterion": "Agent opens a second Kwik-E-Mart store and attempts a price comparison against the reordered items; because the second store's live catalog may carry none of the anchor order's exact items, comparing the closest available equivalents, or explicitly reporting that the other store stocks no comparable items so no meaningful comparison is possible, both earn full credit",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent completes the comparison and proceeds with the cheaper available option",
+          "criterion": "Agent completes the comparison and proceeds with the cheaper available option — or, if the second store carries no comparable items, states that and proceeds with the original store's cart",
           "type": "llm_judge",
           "weight": 0.13
         },
@@ -2030,7 +2025,7 @@
           "weight": 0.27
         },
         {
-          "criterion": "The third slide is a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window",
+          "criterion": "The third slide is a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window (dates as shown in the live Cheskepdia booking; if the agent used the HooliMail travel-folder receipts the instruction permits, matching those dates is also acceptable)",
           "type": "llm_judge",
           "weight": 0.14
         },
@@ -2106,7 +2101,7 @@
           "weight": 0.35
         },
         {
-          "criterion": "Agent cross-references Gringotts around the Philadelphia overnight trip dates (as read from the Cheskepdia booking) for related card charges such as the hotel (the hotel charge on the card may appear under a different merchant name — e.g. Hilton Garden Inn — than the Cheskepdia booking property, and may post on or shortly after the checkout date), gas, or food",
+          "criterion": "Agent cross-references Gringotts around the Philadelphia overnight trip dates (as read from the Cheskepdia booking) for the related card charges the ledger shows live — the hotel line (which on this bake matches the Cheskepdia booking's property name and posts on the check-in day, so an exact-name match is expected rather than an alias), plus on-trip incidentals such as the eTaxi rides between Scranton and Philadelphia, gas, or food. Any defensible set of charges the live ledger shows around those dates is acceptable; the agent is not required to hunt for a differently-named hotel merchant.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -2557,12 +2552,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent enumerates the recurring Gringotts bill_pay entries as they appear live (each payee with its amount and frequency) and reports a correct monthly subtotal from that live list",
+          "criterion": "Agent enumerates the recurring Gringotts bill_pay entries as they appear live (each payee with its amount and frequency) and reports a monthly subtotal that is arithmetically consistent with the list it reported. The live bill_pay list contains near-duplicate payees (the same service listed twice under slightly different names) and a credit-card autopay line; a raw total, a de-duplicated total, and a total that excludes the card-autopay line are all acceptable so long as the agent states which rows it counted.",
           "type": "llm_judge",
           "weight": 0.162462
         },
         {
-          "criterion": "Agent adds the improv class charge at the per-session amount and cadence as it appears in the Gringotts transactions ledger",
+          "criterion": "Agent accounts for the improv class as a recurring cost, using either the Gringotts bill_pay improv payee (amount and monthly frequency as listed) or the per-session amount and cadence shown in the Gringotts transactions ledger; either source is correct provided the agent says which it used and does not count improv twice in the same subtotal.",
           "type": "llm_judge",
           "weight": 0.162462
         },
@@ -2624,7 +2619,7 @@
           "weight": 0.12
         },
         {
-          "criterion": "Agent searches HooliMail and ~/Downloads for Dinoco boarding-pass and itinerary artifacts to corroborate the flights Michael has actually booked; if HooliMail has no matching entries the agent surfaces whatever local boarding-pass files exist",
+          "criterion": "Agent searches HooliMail for Dinoco boarding-pass and itinerary artifacts to corroborate the flights Michael has actually booked; if HooliMail has no matching entries the agent says so. Surfacing boarding-pass files saved locally (e.g. in ~/Downloads) is acceptable extra corroboration but is not required, since the instruction names only Dinoco, Gringotts, and HooliMail.",
           "type": "llm_judge",
           "weight": 0.12
         },
@@ -2772,7 +2767,7 @@
           "weight": 0.2
         },
         {
-          "criterion": "The agent correctly compares remaining trip costs with available resources and gives a clear, evidence-based max-out and affordability verdict without assuming the trips are four weeks apart.",
+          "criterion": "The agent correctly compares remaining (not-yet-posted) trip costs with available resources and gives a clear, evidence-based max-out and affordability verdict without assuming the trips are four weeks apart. If the live records show that all or nearly all trip costs have already posted, or that one of the trips has already completed, then concluding that there is little or no remaining exposure — and saying so explicitly, with the posted-versus-outstanding reasoning that leads there — is the correct answer rather than a miss.",
           "type": "llm_judge",
           "weight": 0.24
         }
@@ -3635,7 +3630,7 @@
           "weight": 0.166667
         },
         {
-          "criterion": "Agent reads the actual set of upcoming Dinoco flights shown live in the app — excluding the synthetic DN-CKW test flights (DN-CKW001..004) — and computes total first-class upgrade cost using Michael's stated $600-per-flight assumption (per-leg or per-trip counting are both acceptable, as is the actual Dinoco upgrade fee if shown)",
+          "criterion": "Agent reads the set of upcoming Dinoco flights as the app displays them and computes total first-class upgrade cost using Michael's stated $600-per-flight assumption (per-leg or per-trip counting are both acceptable, as is the actual Dinoco upgrade fee if shown). Any consistent count of the upcoming flights the app lists is acceptable — if the Upcoming list includes short internal/test itineraries (e.g. DN-CKW confirmation codes), counting them or leaving them out are both correct as long as the agent's arithmetic matches the set it enumerated.",
           "type": "llm_judge",
           "weight": 0.12502
         },
@@ -3645,12 +3640,12 @@
           "weight": 0.208312
         },
         {
-          "criterion": "Agent lists the real upcoming Dinoco trips shown live in the app (excluding the synthetic DN-CKW test flights) by confirmation number + duration when evaluating which upgrades are worth it",
+          "criterion": "Agent lists the upcoming Dinoco trips shown live in the app by confirmation number + duration when evaluating which upgrades are worth it; every upcoming trip the app displays counts, and the agent is not required to exclude short internal/test itineraries.",
           "type": "llm_judge",
           "weight": 0.166667
         },
         {
-          "criterion": "Agent differentiates upgrade priority across the real upcoming Dinoco trips shown live in the app (excluding synthetic DN-CKW test flights) with a defensible criterion (e.g., longest-duration as highest-value and shortest as least-value on diminishing returns, OR if the upcoming flights are all comparable long-haul routes, prioritizing by travel companion or time-of-day factors) instead of upgrading every flight blindly",
+          "criterion": "Agent differentiates upgrade priority across the upcoming Dinoco trips shown live in the app with a defensible criterion (e.g., longest-duration as highest-value and shortest as least-value on diminishing returns, OR if the upcoming flights are all comparable long-haul routes, prioritizing by travel companion or time-of-day factors) instead of upgrading every flight blindly; the ranking is judged against whatever set of upcoming trips the agent defensibly enumerated.",
           "type": "llm_judge",
           "weight": 0.166667
         },
@@ -4067,12 +4062,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent locates Michael's sent messages to Jan Levinson in HooliMail (either jan.levinson@dundermifflin.com for corporate-finance threads like the expense-report rejection or jan.levinson@serenitybyjan.com for personal threads)",
+          "criterion": "Agent locates the replies Michael wrote to Jan Levinson wherever they sit in the mailbox — as shown live they are the corporate-finance expense-report/QBR replies to jan.levinson@dundermifflin.com, and they are not all filed under Sent (they appear in the inbox and work folders), which matches the instruction's 'scattered around my mailbox'. Auto-generated 'Invitation:' calendar mail addressed to Jan is not a reply and does not count toward this criterion either way.",
           "type": "llm_judge",
           "weight": 0.221088
         },
         {
-          "criterion": "Agent copies the body of every sent reply Michael wrote to Jan Levinson into ~/Desktop/jan_reply_history.odt in the Writer document",
+          "criterion": "Agent copies the body of every substantive reply Michael wrote to Jan Levinson into ~/Desktop/jan_reply_history.odt in the Writer document — as shown live these are the expense-report and QBR threads (e.g. 'RE: Q1 QBR - Action Items', 'RE: Your Expense Report - REJECTED', 'Re: Q2 Expense Report - Revised Submission'). Auto-generated 'Invitation:' calendar messages are not replies; omitting them is correct and is not a miss.",
           "type": "llm_judge",
           "weight": 0.309456
         },
@@ -4179,12 +4174,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The outbound eTaxi is booked from 1725 Slough Ave, Apt 4B to AVP on the live Jamaica departure date to arrive at least two hours before the flight.",
+          "criterion": "The outbound eTaxi booked during this session goes from 1725 Slough Ave, Apt 4B to AVP on the live Jamaica departure date and arrives at least two hours before the flight. eTaxi's trip history already contains pre-seeded airport rides on the live Jamaica dates, so credit requires a ride created during this session rather than a pre-existing one — but the agent is not expected to prove which rides pre-dated its work.",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "The return eTaxi is booked from AVP to 1725 Slough Ave, Apt 4B on the live Jamaica return date at least thirty minutes after the recorded landing time.",
+          "criterion": "The return eTaxi booked during this session goes from AVP to 1725 Slough Ave, Apt 4B on the live Jamaica return date with pickup at least thirty minutes after the recorded landing time. eTaxi's trip history already contains a pre-seeded return ride that satisfies this timing, so credit requires a ride created during this session rather than the pre-existing one — but the agent is not expected to prove which rides pre-dated its work.",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -4235,7 +4230,7 @@
           "weight": 0.173905
         },
         {
-          "criterion": "Agent downloads the boarding pass to ~/Downloads",
+          "criterion": "Agent downloads the boarding pass for the flight checked in during this session to ~/Downloads; boarding-pass files already present in ~/Downloads before the session (e.g. Jamaica_Boarding_Pass_DN1562.pdf and other pre-seeded passes) are decoys and do not satisfy this criterion",
           "type": "llm_judge",
           "weight": 0.147736
         },
@@ -4250,7 +4245,7 @@
           "weight": 0.130475
         },
         {
-          "criterion": "Agent verifies the Dinoco boarding pass file landed in ~/Downloads and the loyalty / profile screenshot is also saved",
+          "criterion": "Agent verifies that the boarding pass it saved this session for the checked-in flight is present in ~/Downloads — distinct from any pre-seeded boarding-pass files already there — and that the loyalty / profile screenshot is also saved",
           "type": "llm_judge",
           "weight": 0.139198
         },
@@ -4296,9 +4291,9 @@
           "weight": 0.130789
         },
         {
-          "criterion": "Agent posts a comment on each SprintBoard task currently sitting in review state across the three projects",
+          "criterion": "Agent posts a comment on each SprintBoard task currently sitting in review state, having checked the in-review column on all three project boards (Team Morale, Diversity Day, Movie Monday); where a board's in-review column is empty, having no comment there is correct as long as the agent says so",
           "type": "llm_judge",
-          "weight": 0.15387
+          "weight": 0.153871
         },
         {
           "criterion": "Agent applies SprintBoard labels to multiple open tasks across the Team Morale, Diversity Day, and Movie Monday projects, persisting after refresh",
@@ -4306,7 +4301,7 @@
           "weight": 0.092322
         },
         {
-          "criterion": "Agent references the SprintBoard project brief docs in ~/Documents for context when picking labels and writing comments across the three projects",
+          "criterion": "Agent references the SprintBoard project brief docs saved under ~/Documents (a Projects/ or similar subfolder is acceptable) for context when picking labels and writing comments across the three projects",
           "type": "llm_judge",
           "weight": 0.076781
         },
@@ -4526,7 +4521,7 @@
           "type": "llm_judge"
         },
         {
-          "criterion": "Agent completed all seven SpeedTax return subtasks: W-2, 1099, charitable, home office days, calculations, and draft save",
+          "criterion": "Agent completed all six SpeedTax return subtasks: W-2, 1099, charitable, home office days, calculations, and draft save",
           "weight": 0.1,
           "type": "llm_judge"
         }
@@ -5130,7 +5125,7 @@
           "type": "llm_judge"
         },
         {
-          "criterion": "Agent identifies the top 10 urgent inbox messages from the the received-inbox count for the triage",
+          "criterion": "Agent identifies the top 10 urgent inbox messages from the received-inbox count for the triage",
           "weight": 0.15,
           "type": "llm_judge"
         },
@@ -5150,7 +5145,7 @@
           "type": "llm_judge"
         },
         {
-          "criterion": "Agent provides a final summary with the inbox bucket counts for today, this week, reference, and ignore from the the received-inbox count",
+          "criterion": "Agent provides a final summary with the inbox bucket counts for today, this week, reference, and ignore from the received-inbox count",
           "weight": 0.1,
           "type": "llm_judge"
         }
@@ -5469,7 +5464,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The agent accurately lists the complete set of active monthly recurring auto-charges shown in Gringotts without adding non-monthly or fabricated charges.",
+          "criterion": "The agent accurately lists the monthly recurring auto-charges shown in Gringotts without adding non-monthly or fabricated charges. The live payee list carries near-duplicate entries (the same service listed twice under slightly different names, one of which has no payment history) and no explicit active/cancelled flag, so listing every monthly autopay payee or a de-duplicated subset are both acceptable, provided every charge listed actually appears live and the agent states how it treated the duplicates.",
           "type": "llm_judge",
           "weight": 0.45
         },
@@ -5479,7 +5474,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "The agent correctly computes the combined monthly total and clearly identifies Gringotts as the source of truth.",
+          "criterion": "The agent computes a combined monthly total that is arithmetically consistent with the charges it listed and clearly identifies Gringotts as the source of truth; because the live payee list contains near-duplicates with no active flag, any total that matches the agent's stated de-duplication treatment is correct.",
           "type": "llm_judge",
           "weight": 0.25
         }
@@ -5535,22 +5530,22 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Cheskepdia and loads the upcoming Sandals Montego Bay (Jamaica) booking",
+          "criterion": "Agent opens Cheskepdia and loads a Sandals Montego Bay (Jamaica) booking, identifying which booking it used. Cheskepdia shows more than one Jamaica Sandals booking (an upcoming stay and a completed one) and the instruction's past tense does not disambiguate them, so either booking is acceptable as the source for the figures below.",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent reports the trip total cost as it is shown on the live Cheskepdia Sandals Montego Bay booking",
+          "criterion": "Agent reports the trip total cost exactly as shown on the live Cheskepdia Sandals Montego Bay booking it identified.",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent reports the host name as listed on the live Cheskepdia Sandals Montego Bay booking (Sandals Resorts Concierge)",
+          "criterion": "Agent reports the host name as listed on the live Cheskepdia Sandals Montego Bay booking it identified (the upcoming booking shows 'Sandals Resorts Concierge').",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent reports the amenities list shown on the live Cheskepdia Sandals Montego Bay booking (or notes that no amenities are listed if the booking shows none)",
+          "criterion": "Agent reports the amenities list shown on the live Cheskepdia Sandals Montego Bay booking it identified (or notes that no amenities are listed if that booking shows none).",
           "type": "llm_judge",
           "weight": 0.25
         }
@@ -5637,7 +5632,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent locates a Holly playlist text file on Michael's filesystem and reports the absolute path where it was found (either ~/Documents/Personal/holly_road_trip_playlist.txt — the playlist made for Holly — or ~/Desktop/holly_playlist.txt is an acceptable find)",
+          "criterion": "Agent locates a Holly playlist file on Michael's filesystem and reports the absolute path where it was found. Any of the seeded Holly playlists is an acceptable find — e.g. ~/Documents/Personal/holly_road_trip_playlist.txt, ~/Desktop/holly_playlist.txt, or a Holly playlist saved under ~/Music such as Holly_Road_Trip_Playlist.m3u — as long as the tracks reported come from the file the agent actually opened.",
           "type": "llm_judge",
           "weight": 0.35
         },
@@ -6196,7 +6191,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads the Jamaica trip document and uses its exact check-in/check-out or departure/return dates in the out-of-office body",
+          "criterion": "Agent reads a Jamaica trip document in ~/Documents/Trips/ and uses its exact recorded date range (check-in/check-out or departure/return) in the out-of-office body. That folder currently holds two documents recording different Jamaica ranges — the dedicated Sandals Montego Bay trip file and the Travel_Overview summary — so either recorded range is acceptable, provided the dates used are the ones actually written in the document the agent read rather than invented or approximated.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -6236,7 +6231,7 @@
           "weight": 0.21
         },
         {
-          "criterion": "Agent cross-references each subscription against whichever usage source is most relevant (e.g., LockedIn post count for a Premium sub, Files for untouched media/storage, HangryDash orders for food-delivery) to identify the 3-4 worst offenders; if no matching usage source exists for a given subscription, explicitly notes the absence rather than forcing a match",
+          "criterion": "Agent identifies the 3-4 most expensive recurring charges from the live Gringotts list as the kill-list targets and gives a brief reason for each; cost rank alone is a sufficient reason, and supporting a pick with usage evidence from another app (e.g. LockedIn post count, HangryDash order history, Files) is acceptable but is not required and its absence is not a miss.",
           "type": "llm_judge",
           "weight": 0.23
         },
@@ -6483,7 +6478,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads Jan's Q2 expense-report flagged-items HooliMail thread (live subject 'Re: Expense Report Q2 — Flagged Items [JAN-EXP-Q2]'; finding this thread counts even though its subject differs from the instruction's wording) and extracts every flagged line item with its amount and rejection reason",
+          "criterion": "Agent reads Jan's Q2 expense-report flagged-items HooliMail thread (live subject 'Re: Expense Report Q2 — Flagged Items [JAN-EXP-Q2]') and extracts every flagged line item with its amount and rejection reason",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -6983,7 +6978,7 @@
           "weight": 0.13
         },
         {
-          "criterion": "Agent pre-fills a HooliShop cart with the requested supplies the live catalog actually carries (pens and paper at minimum, plus reasonable substitutes such as Post-it notes) without placing the order, noting any requested category HooliShop does not carry (e.g. notebooks, coffee)",
+          "criterion": "Agent pre-fills a HooliShop cart with the requested office supplies the live catalog actually carries (pens and copy paper at minimum, plus reasonable similar supplies such as Post-it notes) without placing the order; close substitutes are acceptable when the agent notes the substitution.",
           "type": "llm_judge",
           "weight": 0.08
         },
@@ -7839,7 +7834,7 @@
           "weight": 0.05
         },
         {
-          "criterion": "Agent pre-fills a low-budget HooliShop cart with pens and basic paper supplies without placing the order (the live catalog carries pens and paper but no notebook product; substituting paper items and/or noting the notebook gap is acceptable)",
+          "criterion": "Agent pre-fills a low-budget HooliShop cart with pens and basic paper supplies from the live HooliShop catalog without placing the order (e.g. a multi-pack pen product such as BIC Round Stic and a copy-paper product such as Hammermill, as shown live); close substitutes are acceptable when the agent notes the substitution.",
           "type": "llm_judge",
           "weight": 0.05
         },
@@ -8387,9 +8382,9 @@
           "weight": 0.12766
         },
         {
-          "criterion": "Agent executes 3 distinct left_click_drag gestures on 3 different SprintBoard cards in the Team Morale Q2 board",
+          "criterion": "Agent executes 3 distinct in-app move actions on 3 different SprintBoard cards in the Team Morale Q2 board; any move affordance the app provides counts equally (drag-and-drop, a card's status/column selector, or an edit dialog) — the instruction only asks that the cards be moved, so a non-drag method is not penalized",
           "type": "llm_judge",
-          "weight": 0.269149
+          "weight": 0.26915
         },
         {
           "criterion": "Agent moves the 3 SprintBoard cards forward into different Team Morale Q2 columns (Todo->In Progress, In Progress->In Review, In Review->Done)",
@@ -8412,7 +8407,7 @@
           "weight": 0.120567
         },
         {
-          "criterion": "Agent verifies all 3 SprintBoard cards are in their new Team Morale Q2 positions after the drags (re-reads the board or refreshes) before concluding",
+          "criterion": "Agent verifies all 3 SprintBoard cards are in their new Team Morale Q2 positions after the moves (re-reads the board or refreshes) before concluding",
           "type": "llm_judge",
           "weight": 0.05
         }

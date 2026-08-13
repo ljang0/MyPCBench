@@ -111,6 +111,51 @@ contradicted):
   rubric sets changed (78 from the static remediation + 24 newly touched).
 - Rubric items: 1,192 → 1,134.
 
+## Pass 2 — rollover-stress re-audit (2026-08-13 bake)
+
+After the pass-1 fixes and the owner-approved instruction edits, the FULL
+benchmark (184 tasks / 1,134 items) was re-audited against a fresh bake with
+the VM clock advanced to the next day (Thursday 2026-08-13, offline boot so
+NTP can't correct it) — data re-anchored to a different weekday than any
+prior check. Auditors: mixed Fable/Opus subagents, same probe method.
+
+Results: **~97.5% of items verified clean on the shifted bake.** 28 defective
+items across 22 tasks were found and fixed rubric-only (same policy), plus
+cosmetic/typo fixes. Item count is now 1,133 (one duplicate-criterion merge).
+Every pass-1 and same-day instruction fix that was re-checked held.
+
+The dominant defect source was **bake variability**, not weekday logic:
+catalog products appear/disappear between bakes (a notebook existed on
+Thursday that was absent Wednesday), a random seed roll can cancel the event
+a task anchors on (while the UI still renders it), synthetic canonical
+records (DN-CKW00x flights, shadow payees, auto-generated calendar-invite
+mail floods, pre-seeded airport rides on the exact task dates) render as
+ordinary data, and duplicate seed rows make "the correct total" ambiguous.
+Consequent standing rule now encoded in the rubrics: criteria never assert
+absences or exact seed contents; they anchor on what the app displays and
+accept any defensible reading, with decoy-guard wording where pre-seeded
+look-alikes exist.
+
+New image-side findings for the infra workstream (rubrics accommodate all of
+these, but the clean fixes are seed/rebase-side):
+- Canon patches did not apply on one first boot (speedtax served the stale
+  baseline until a reboot re-ran `run_all_canon_patches`) — an eval against
+  such a boot grades against broken data. Verify the boot path.
+- The three canonical charity rows (Red Cross/Habitat/St Pat's) are being
+  walked out of CY2025 by the +N-day rebase, so `contradiction-f011`'s
+  designed "supported, exact $950 reconcile" answer has already degraded to
+  "overstated" (and degrades further ~2026-08-20). Pin those rows.
+- `contradiction-f006`'s premise ("both trips booked") dies after 2026-09-04
+  when the Jamaica trip completes; all trip costs already post pre-trip.
+- Duplicate Gringotts payees (36–39 shadow block), the DN-CKW00x synthetic
+  flights, pre-seeded eTaxi transfers 133/134/136 on the live Jamaica dates,
+  and the conflicting `Travel_Overview.txt` Jamaica window are all seed
+  cleanups that would restore single correct answers.
+- Apps serve the flat `/data/<app>.sqlite` (LIVE_DB_DIR=/data);
+  `/data/vms/michael_scott/` is a stale pre-canon baseline. Mail DB holds 10
+  personas — always filter by user_email. HTTP APIs remain the only
+  authoritative state for judging.
+
 ## Not done / next
 
 - No eval-agent execution, no judge scoring (out of scope by design).

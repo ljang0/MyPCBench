@@ -22,7 +22,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight by departure_date in the live booking list",
+          "criterion": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight in the live booking list — the one with the earliest departure date and, among flights sharing that earliest date, the earliest departure time (equivalently, the upcoming flight the app shows as check-in open); if the live list displays more than one upcoming flight on that earliest date, any of them may be credited so long as the agent works with the same flight throughout",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -228,7 +228,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent picks the next upcoming Dinoco booking that is still cancellable (not already past or cancelled) and cancels it through the Dinoco UI",
+          "criterion": "Agent picks the next upcoming Dinoco booking that is still cancellable (not already past or cancelled) — the earliest displayed departure date and, among bookings sharing that earliest date, the earliest departure time; if the live list displays more than one cancellable booking on that earliest date, cancelling either is acceptable so long as the agent reports the same booking it cancelled — and cancels it through the Dinoco UI",
           "type": "llm_judge",
           "weight": 0.25
         },
