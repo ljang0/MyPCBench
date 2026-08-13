@@ -2552,12 +2552,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent enumerates the recurring Gringotts bill_pay entries as they appear live (each payee with its amount and frequency) and reports a monthly subtotal that is arithmetically consistent with the list it reported. The live bill_pay list contains near-duplicate payees (the same service listed twice under slightly different names) and a credit-card autopay line; a raw total, a de-duplicated total, and a total that excludes the card-autopay line are all acceptable so long as the agent states which rows it counted.",
+          "criterion": "Agent enumerates the recurring Gringotts bill_pay entries as they appear live (each payee with its amount and frequency) and reports a monthly subtotal that is arithmetically consistent with the list it reported. The live list includes a credit-card autopay line; a total that includes it and a total that excludes it are both acceptable so long as the agent states which rows it counted.",
           "type": "llm_judge",
           "weight": 0.162462
         },
         {
-          "criterion": "Agent accounts for the improv class as a recurring cost, using either the Gringotts bill_pay improv payee (amount and monthly frequency as listed) or the per-session amount and cadence shown in the Gringotts transactions ledger; either source is correct provided the agent says which it used and does not count improv twice in the same subtotal.",
+          "criterion": "Agent accounts for the improv class as a recurring cost using the per-session amount and cadence shown in the Gringotts transactions ledger (a bill_pay improv payee is also acceptable if one is listed live), provided the agent says which source it used and does not count improv twice in the same subtotal.",
           "type": "llm_judge",
           "weight": 0.162462
         },
@@ -4506,7 +4506,7 @@
           "type": "llm_judge"
         },
         {
-          "criterion": "Agent entered the home office WFH days count into SpeedTax exactly as written in Documents/Tax_2025/tax_worksheet.txt, and entered or corrected the charitable contributions so the return matches the total of the donations listed in the seeded Tax_2025 charitable file (charitable_and_home_office.txt), fixing any pre-filled SpeedTax charitable amount that disagrees with the seeded documents",
+          "criterion": "Agent entered the home office WFH days count into SpeedTax exactly as written in Documents/Tax_2025/tax_worksheet.txt, and ensured the return's charitable contributions match the total of the donations listed in the seeded Tax_2025 charitable file (charitable_and_home_office.txt) — correcting a pre-filled amount that disagrees, or confirming and leaving it unchanged when it already matches",
           "weight": 0.2,
           "type": "llm_judge"
         },
@@ -5202,7 +5202,7 @@
           "weight": 0.09
         },
         {
-          "criterion": "The retrospective accurately reports OddsMarket realized profit or loss and current open-position count, distinguishing available-history results from live snapshot state.",
+          "criterion": "The retrospective accurately reports OddsMarket profit or loss and the current open-position count as the app displays them, distinguishing available-history results from live snapshot state; when no positions have been sold there is nothing realized, and reporting the displayed unrealized/net P&L (or explicitly stating that nothing is realized yet) is correct.",
           "type": "llm_judge",
           "weight": 0.09
         },
@@ -5212,7 +5212,7 @@
           "weight": 0.07
         },
         {
-          "criterion": "The retrospective identifies Michael's most recent HooliWork message and accurately records its channel and displayed date.",
+          "criterion": "The retrospective identifies Michael's most recent HooliWork message and accurately records where it was posted and its displayed date; either his most recent channel message (with the channel name) or his most recent message overall (naming the conversation) is acceptable, provided the agent says which it reported.",
           "type": "llm_judge",
           "weight": 0.07
         },
@@ -5464,7 +5464,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The agent accurately lists the monthly recurring auto-charges shown in Gringotts without adding non-monthly or fabricated charges. The live payee list carries near-duplicate entries (the same service listed twice under slightly different names, one of which has no payment history) and no explicit active/cancelled flag, so listing every monthly autopay payee or a de-duplicated subset are both acceptable, provided every charge listed actually appears live and the agent states how it treated the duplicates.",
+          "criterion": "The agent accurately lists the monthly recurring auto-charges shown in Gringotts without adding non-monthly or fabricated charges. The live list distinguishes autopay-enabled payees from other monthly lines (including a credit-card autopay line) and carries no explicit active/cancelled flag, so listing only the autopay payees or every monthly line are both acceptable, provided every charge listed actually appears live and the agent states which set it counted.",
           "type": "llm_judge",
           "weight": 0.45
         },
@@ -5474,7 +5474,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "The agent computes a combined monthly total that is arithmetically consistent with the charges it listed and clearly identifies Gringotts as the source of truth; because the live payee list contains near-duplicates with no active flag, any total that matches the agent's stated de-duplication treatment is correct.",
+          "criterion": "The agent computes a combined monthly total that is arithmetically consistent with the charges it listed and clearly identifies Gringotts as the source of truth; because the live list has no active/cancelled flag and the card-autopay line may reasonably be included or excluded, any total matching the agent's stated treatment is correct.",
           "type": "llm_judge",
           "weight": 0.25
         }

@@ -948,6 +948,53 @@ class MyPCBenchEnv:
         except Exception:
             return False
 
+
+    # Boot-time canon patches (run_all_canon_patches.py, a systemd oneshot)
+    # rewrite /data/*.sqlite AFTER the Control API is already answering. An
+    # eval that starts in that window reads pre-patch values — e.g. a stale
+    # checking balance and a bill_pay list that still carries duplicate
+    # payees — and grades against data the image is about to replace. The
+    # patcher stamps /data/_canon_patched when it finishes, so wait for it.
+    CANON_MARKER = "/data/_canon_patched"
+
+    def _wait_for_canon_patches(self, timeout: int = 300) -> bool:
+        """Block until the canon-patch oneshot has stamped its marker.
+
+        Returns True once the marker exists (or the unit is not present at
+        all, i.e. an older image that never had this stage). Returns False on
+        timeout — callers warn rather than abort, since a slow patcher is not
+        as bad as refusing to run.
+        """
+        deadline = time.time() + timeout
+        warned = False
+        while time.time() < deadline:
+            try:
+                r = self._execute_shell(
+                    f"test -e {self.CANON_MARKER} && echo READY || "
+                    f"systemctl is-active mypcbench-canon-patch 2>/dev/null || true"
+                )
+                out = ((r or {}).get("output", "") if isinstance(r, dict) else str(r)).strip()
+            except Exception:
+                out = ""
+            if "READY" in out:
+                return True
+            # Older images have no canon-patch unit; don't block on them.
+            if out in ("inactive", "unknown", "failed") and not warned:
+                log.warning(
+                    "canon-patch unit reports %r and no %s marker — proceeding; "
+                    "seeded data may be pre-patch", out, self.CANON_MARKER,
+                )
+                return True
+            if not warned:
+                log.info("waiting for boot-time canon patches to finish…")
+                warned = True
+            time.sleep(3)
+        log.warning(
+            "timed out after %ss waiting for %s; seeded data may still be "
+            "pre-patch", timeout, self.CANON_MARKER,
+        )
+        return False
+
     def _prewarm_lazy_dbs(self, subset: Optional[set] = None, max_retries: int = 3,
                           require: Optional[bool] = None) -> None:
         """Hit each app's bootstrap endpoint AND verify the per-VM DB is
@@ -1047,6 +1094,9 @@ class MyPCBenchEnv:
             # First call: attach (reuse) or start a new container.
             self._start_container()
             self._wait_for_ready()
+            # Boot-time canon patches must land before anything reads the
+            # seeded DBs, or the agent/judge sees pre-patch values.
+            self._wait_for_canon_patches()
             # Warm all lazy DBs before the agent's first interaction so
             # the agent sees consistent state across apps it never touches.
             self._prewarm_lazy_dbs()
