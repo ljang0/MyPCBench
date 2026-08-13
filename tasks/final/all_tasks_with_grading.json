@@ -2295,7 +2295,7 @@
           "weight": 0.15
         },
         {
-          "criterion": "The deck reads ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt, compares Q2 performance with that Q2 forecast, and derives defensible next-quarter priorities.",
+          "criterion": "The deck reads ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt, compares Q2 performance with the sales-forecast spreadsheet at its ~/Documents path (its in-file header reads 'CURRENT QUARTER SALES FORECAST' — the quarter appears in the filename, not the body), and derives defensible next-quarter priorities.",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -2511,7 +2511,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads Thursday obligations this quarter from the HooliCalendar UI (not from an empty per-vm sqlite)",
+          "criterion": "Agent reads Thursday obligations this quarter from the HooliCalendar UI",
           "type": "llm_judge",
           "weight": 0.2
         },
