@@ -87,7 +87,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "Agent sends an attendance message to each Dundies candidate named in the source categories document, via HooliWork, HooliMail, or BuzzChat",
+          "criterion": "Agent sends an attendance message to the Dundies nominees the source document names, excluding anyone the document explicitly rules out; any defensible reading of that list is acceptable provided the agent is consistent with the document",
           "type": "llm_judge",
           "weight": 0.3
         },

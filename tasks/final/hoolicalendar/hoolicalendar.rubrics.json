@@ -111,7 +111,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens HooliCalendar and switches to a 2-week view to plan the Dundies prep schedule",
+          "criterion": "Agent works in a HooliCalendar view that shows the next two weeks, so the five events can be seen across that window; any view that covers it is acceptable",
           "type": "llm_judge",
           "weight": 0.08
         },

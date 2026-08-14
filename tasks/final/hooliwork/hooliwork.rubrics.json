@@ -154,12 +154,12 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent posts the completed Pretzel Day planning kickoff as a new message in HooliWork",
+          "criterion": "Agent posts the completed Pretzel Day countdown message as a new message in HooliWork",
           "type": "llm_judge",
           "weight": 0.4
         },
         {
-          "criterion": "The posted Pretzel Day planning kickoff appears in #party-planning-committee rather than another channel",
+          "criterion": "The posted Pretzel Day countdown appears in #party-planning-committee rather than another channel",
           "type": "llm_judge",
           "weight": 0.2
         }

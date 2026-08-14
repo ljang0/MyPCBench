@@ -677,7 +677,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "Agent sends an attendance message to each Dundies candidate named in the source categories document, via HooliWork, HooliMail, or BuzzChat",
+          "criterion": "Agent sends an attendance message to the Dundies nominees the source document names, excluding anyone the document explicitly rules out; any defensible reading of that list is acceptable provided the agent is consistent with the document",
           "type": "llm_judge",
           "weight": 0.3
         },
@@ -1047,7 +1047,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens HooliCalendar and switches to a 2-week view to plan the Dundies prep schedule",
+          "criterion": "Agent works in a HooliCalendar view that shows the next two weeks, so the five events can be seen across that window; any view that covers it is acceptable",
           "type": "llm_judge",
           "weight": 0.08
         },
@@ -1288,7 +1288,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads Michael's received HooliMail — via the HooliMail app/API (the Inbox folder, optionally together with the other received-mail folders such as Work, Travel and Receipts, which the sidebar lists as siblings alongside Inbox rather than inside it), OR by walking the Maildir filesystem at ~/Maildir/cur and ~/Maildir/new plus the cur/new directories of the other mail folders — and states which folders its count covers. Either scope is acceptable: the Inbox folder alone, or the Inbox together with the other received-mail folders. The Sent folder is excluded, and Michael's own From: lines are excluded when counting senders.",
+          "criterion": "Agent reads the HooliMail folders through the app, which is the authoritative view of the mailbox, and states the source it used",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -1378,12 +1378,12 @@
           "weight": 0.2106
         },
         {
-          "criterion": "Agent computes a per-sender reply latency (e.g. median) from paired received/sent timestamps using a reasonable pairing heuristic (strict In-Reply-To/Message-ID matching or a latest-prior-message-from-the-recipient heuristic are both acceptable), and reports a relative ranking that separates the senders Michael answers quickest from those he is slowest to answer. The latencies must follow from the pairing the agent actually performed and from the timestamps the mailbox shows; the ranking must distinguish a fast end from a slow end rather than report the senders as uniform.",
+          "criterion": "Agent computes a per-sender reply latency from paired received/sent timestamps, states the pairing method it used, and applies that method consistently; where reply headers do not resolve to a parent message, the agent says so rather than silently dropping those messages",
           "type": "llm_judge",
           "weight": 0.2106
         },
         {
-          "criterion": "Agent identifies the fastest-reply and slowest-reply senders with supporting evidence",
+          "criterion": "Agent reports the fastest and slowest correspondents under the pairing method it stated, and the reported figures follow from that method applied to the live mailbox",
           "type": "llm_judge",
           "weight": 0.2106
         },
@@ -1440,7 +1440,7 @@
           "weight": 0.22
         },
         {
-          "criterion": "The draft explicitly labels the Q2 2026 figures as forecast projections rather than claiming they are the most recent quarter's actual results",
+          "criterion": "The draft does not misrepresent the forecast figures as booked actuals; describing them as forecast or projected numbers is the clearest way to satisfy this, and is credited",
           "type": "llm_judge",
           "weight": 0.18
         }
@@ -1711,12 +1711,12 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent posts the completed Pretzel Day planning kickoff as a new message in HooliWork",
+          "criterion": "Agent posts the completed Pretzel Day countdown message as a new message in HooliWork",
           "type": "llm_judge",
           "weight": 0.4
         },
         {
-          "criterion": "The posted Pretzel Day planning kickoff appears in #party-planning-committee rather than another channel",
+          "criterion": "The posted Pretzel Day countdown appears in #party-planning-committee rather than another channel",
           "type": "llm_judge",
           "weight": 0.2
         }
@@ -2295,7 +2295,7 @@
           "weight": 0.15
         },
         {
-          "criterion": "The deck reads ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt, compares Q2 performance with the sales-forecast spreadsheet at its ~/Documents path (its in-file header reads 'CURRENT QUARTER SALES FORECAST' — the quarter appears in the filename, not the body), and derives defensible next-quarter priorities.",
+          "criterion": "The deck reads ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt — the only forecast artifact on the machine, whose in-file header reads 'CURRENT QUARTER SALES FORECAST' with the quarter appearing in the filename rather than the body — and derives defensible next-quarter priorities from it",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -2429,7 +2429,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "The report gives an accurate ranked top-five recurring-subject list with frequencies, treating ordinary reply/forward prefixes consistently.",
+          "criterion": "The report gives an accurate ranked top-five recurring-subject list with frequencies, treating ordinary reply/forward prefixes consistently. Where several subjects tie at the rank-five boundary, any of the tied subjects may occupy the final slot.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -3095,7 +3095,7 @@
           "weight": 0.11
         },
         {
-          "criterion": "Agent flags the most serious conflict and proposes an action",
+          "criterion": "Agent reports the most serious scheduling conflict it finds against the departure date, or states clearly that the calendar, task list and mail show no conflict — whichever the live state supports",
           "type": "llm_judge",
           "weight": 0.12
         },
@@ -3142,7 +3142,7 @@
           "weight": 0.2
         },
         {
-          "criterion": "The final response places both transactions next to the claim and gives a clear evidence-based assessment without implying that the records share a current-year window.",
+          "criterion": "The final response places both transactions next to the claim and gives a clear evidence-based assessment, stating the window each record falls in",
           "type": "llm_judge",
           "weight": 0.3
         }
@@ -3228,7 +3228,7 @@
           "weight": 0.133332
         },
         {
-          "criterion": "Agent searches HooliChat for DMs where each Zelle recipient's name appears near payment language to cross-check the money bunch",
+          "criterion": "Agent cross-checks the Zelle sends against HooliChat for corroborating payment discussion and reports what it finds, including an explicit no-corroboration result where the chats contain none",
           "type": "llm_judge",
           "weight": 0.122222
         },
@@ -3490,7 +3490,7 @@
           "weight": 0.17
         },
         {
-          "criterion": "Agent derives a trophy unit price from the most recent HooliShop order whose product title contains Trophy or Award; if that order has no usable unit price or no such order exists, the agent uses and labels the first available current-catalog Trophy or Award product, then multiplies the unit price by the planned quantity",
+          "criterion": "Agent derives a trophy unit price from last year's HooliShop trophy or award order, as the instruction asks; if no prior-year order carries a usable unit price the agent uses and labels a current-catalog Trophy or Award product, then multiplies by the planned quantity",
           "type": "llm_judge",
           "weight": 0.17
         },
@@ -3847,7 +3847,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The spreadsheet states and uses the correct most recent fully completed calendar quarter before the VM date, without hard-coding Q2.",
+          "criterion": "The spreadsheet states which calendar quarter it used and that quarter is the most recent fully completed one before the VM date; the sheet must name the quarter rather than leave it implicit",
           "type": "llm_judge",
           "weight": 0.18
         },
@@ -4194,7 +4194,7 @@
           "weight": 0.14
         },
         {
-          "criterion": "A saved location named 'Scranton Improv Academy' is created using the address the live HooliCalendar Improv event shows (the seeded event carries the venue's street address). If a bake ever leaves that event with only a room or venue label and no street address, an address the agent sourced from another live app record for the same venue — or the displayed venue text saved with an explicit note that no street address is shown — is also acceptable.",
+          "criterion": "A saved location is created for the improv venue using the address the live HooliCalendar improv event shows; the venue name as the calendar displays it is acceptable, as is 'Scranton Improv Academy'",
           "type": "llm_judge",
           "weight": 0.14
         },
@@ -5202,7 +5202,7 @@
           "weight": 0.09
         },
         {
-          "criterion": "The retrospective accurately reports OddsMarket profit or loss and the current open-position count as the app displays them, distinguishing available-history results from live snapshot state; when no positions have been sold there is nothing realized, and reporting the displayed unrealized/net P&L (or explicitly stating that nothing is realized yet) is correct.",
+          "criterion": "The retrospective accurately reports OddsMarket profit or loss and the current open-position count as the app displays them, distinguishing realized results on settled markets from live snapshot state on open ones",
           "type": "llm_judge",
           "weight": 0.09
         },
@@ -5530,7 +5530,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Cheskepdia and loads the Sandals Montego Bay (Jamaica) booking, identifying which booking it used. The account currently holds a single Jamaica Sandals reservation and it is upcoming; the instruction's past tense does not require a completed booking, so using the upcoming reservation must not be penalised. If the live account shows more than one Jamaica Sandals booking, either is acceptable as the source for the figures below.",
+          "criterion": "Agent identifies Michael's upcoming Sandals Montego Bay reservation in Cheskepdia; where the account also holds an older completed Sandals stay in Jamaica, using the upcoming one is correct and naming both is acceptable",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -6602,7 +6602,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "Agent reports the most-recent SpeedTax return's actual status and displayed headline amounts, explicitly labeling a blank amount as undetermined",
+          "criterion": "Agent reports the most recent FILED SpeedTax return's status and its displayed headline amounts, as the instruction asks; any amount the app leaves blank is labelled undetermined rather than guessed",
           "type": "llm_judge",
           "weight": 0.08
         },
@@ -6870,7 +6870,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent selects the first May 15 strictly after the VM's current date and blocks that exact day on HooliCalendar with reminders.",
+          "criterion": "Agent identifies the Pretzel Day date it will use — the live HooliCalendar 'Pretzel Day' event if that date is still ahead, otherwise the next occurrence of it — states that date explicitly, and blocks that exact day on HooliCalendar with reminders",
           "type": "llm_judge",
           "weight": 0.15
         },
@@ -6910,7 +6910,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "Agent orders available World's Best Boss mugs from HooliShop as generic office-fun swag for distribution.",
+          "criterion": "Agent orders an available World's Best Boss or Pretzel-themed mug from the live HooliShop catalog as office-fun swag for distribution",
           "type": "llm_judge",
           "weight": 0.13
         }
@@ -6958,12 +6958,12 @@
           "weight": 0.1
         },
         {
-          "criterion": "Agent shortlists at least one live NYC Cheskepdia stay for supplier scouting",
+          "criterion": "Agent scopes a week-one workspace option from what the live Cheskepdia listings actually support, or explicitly reports that no co-working or serviced-office listing exists, rather than inventing one",
           "type": "llm_judge",
           "weight": 0.08
         },
         {
-          "criterion": "Agent scopes a single future weekend Dinoco itinerary from AVP to JFK and back",
+          "criterion": "Agent scopes a future weekend supplier-scouting trip from AVP on the live Dinoco catalog and records the displayed flight details; where only the outbound leg exists live, saying so and scoping the return separately is acceptable",
           "type": "llm_judge",
           "weight": 0.08
         },
@@ -7157,7 +7157,7 @@
           "weight": 0.2
         },
         {
-          "criterion": "Agent creates 4 future HooliCalendar events on the same day-of-month at three-calendar-month intervals",
+          "criterion": "Agent creates 4 future HooliCalendar events for the quarterly Movie Monday series, spaced roughly a quarter apart",
           "type": "llm_judge",
           "weight": 0.15
         },
@@ -7167,7 +7167,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "Agent pre-fills a HangryDash late-night dessert cart for the first event without placing the order",
+          "criterion": "Agent places the HangryDash late-night dessert order for the first event, as the instruction asks",
           "type": "llm_judge",
           "weight": 0.08
         },
@@ -7223,7 +7223,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent shortlists 2-3 live Cheskepdia residential listings closer to the Dunder Mifflin office than Michael's current address and evaluates them using the neighborhood or location evidence the listings show; the live listing set includes Scranton properties",
+          "criterion": "Agent shortlists 2-3 live Cheskepdia residential listings in Scranton and evaluates them using the neighborhood or location evidence the listings show, explaining the commute reasoning it applies",
           "type": "llm_judge",
           "weight": 0.12
         },
@@ -7437,7 +7437,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "Agent does not order swag and does not enter any expense or other data in SpeedTax",
+          "criterion": "Agent attempts the requested swag purchase and the SpeedTax spend entry, and where the live catalog carries no such swag or SpeedTax exposes no expense-entry path, explicitly reports that limitation instead of silently skipping it",
           "type": "llm_judge",
           "weight": 0.07
         }
@@ -7630,7 +7630,7 @@
           "weight": 0.09
         },
         {
-          "criterion": "When both bookings are valid and future, agent orders one Hawaiian shirt 3-pack and one Travel Adapter EU/UK from HooliShop (both live catalog products; close substitutes acceptable only if noted); otherwise the agent places no trip purchase",
+          "criterion": "When both bookings are valid and future, agent orders the requested travel essentials from the live HooliShop catalog — sunscreen, a beach read, and swim trunks, all of which the catalog carries; close substitutes are acceptable if noted. Otherwise the agent places no travel order.",
           "type": "llm_judge",
           "weight": 0.07
         },
@@ -7675,7 +7675,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "For a valid future trip, agent reports Gringotts cash and BatBucks holdings at cost and avoids inventing a live-price rebalance conclusion; for an invalid state, this downstream check is not required",
+          "criterion": "For a valid future trip, agent reports Gringotts cash and BatBucks holdings; BatBucks displays live prices and market values, so using them is acceptable provided the basis is stated",
           "type": "llm_judge",
           "weight": 0.08
         }
@@ -7704,7 +7704,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent chooses a future Friday-through-Sunday weekend at least two weeks away and records that Emma will stay with Michael at 1725 Slough Ave",
+          "criterion": "Agent chooses a future Friday-through-Sunday weekend at least two weeks away and books Emma a Cheskepdia stay near the University of Scranton campus, as the instruction asks",
           "type": "llm_judge",
           "weight": 0.12
         },
@@ -7739,7 +7739,7 @@
           "weight": 0.09
         },
         {
-          "criterion": "Agent emails Emma a confirming itinerary containing the home-stay plan and both reservations",
+          "criterion": "Agent emails Emma a confirming itinerary containing the booked stay and both reservations",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -7819,7 +7819,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "Agent scopes one future Dinoco AVP-to-JFK round trip departing and returning within the next four weeks and records the displayed flight details",
+          "criterion": "Agent scopes a future round trip from AVP to a client city named in the request (Philadelphia or Wilkes-Barre) and records the displayed flight details; where only one leg exists in the live catalog, saying so is acceptable",
           "type": "llm_judge",
           "weight": 0.06
         },
@@ -7844,7 +7844,7 @@
           "weight": 0.07
         },
         {
-          "criterion": "Agent creates exactly eight HooliCalendar consulting-hours blocks: Tuesday and Thursday evening in each of the next four full Monday-to-Sunday weeks beginning with the first Monday strictly after the VM date",
+          "criterion": "Agent creates recurring HooliCalendar consulting-hours blocks on Tuesday and Thursday evenings; any consistent number of weeks is acceptable provided the pattern is stated",
           "type": "llm_judge",
           "weight": 0.1
         },

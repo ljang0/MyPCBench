@@ -23,7 +23,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads Michael's received HooliMail — via the HooliMail app/API (the Inbox folder, optionally together with the other received-mail folders such as Work, Travel and Receipts, which the sidebar lists as siblings alongside Inbox rather than inside it), OR by walking the Maildir filesystem at ~/Maildir/cur and ~/Maildir/new plus the cur/new directories of the other mail folders — and states which folders its count covers. Either scope is acceptable: the Inbox folder alone, or the Inbox together with the other received-mail folders. The Sent folder is excluded, and Michael's own From: lines are excluded when counting senders.",
+          "criterion": "Agent reads the HooliMail folders through the app, which is the authoritative view of the mailbox, and states the source it used",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -140,12 +140,12 @@
           "weight": 0.2106
         },
         {
-          "criterion": "Agent computes a per-sender reply latency (e.g. median) from paired received/sent timestamps using a reasonable pairing heuristic (strict In-Reply-To/Message-ID matching or a latest-prior-message-from-the-recipient heuristic are both acceptable), and reports a relative ranking that separates the senders Michael answers quickest from those he is slowest to answer. The latencies must follow from the pairing the agent actually performed and from the timestamps the mailbox shows; the ranking must distinguish a fast end from a slow end rather than report the senders as uniform.",
+          "criterion": "Agent computes a per-sender reply latency from paired received/sent timestamps, states the pairing method it used, and applies that method consistently; where reply headers do not resolve to a parent message, the agent says so rather than silently dropping those messages",
           "type": "llm_judge",
           "weight": 0.2106
         },
         {
-          "criterion": "Agent identifies the fastest-reply and slowest-reply senders with supporting evidence",
+          "criterion": "Agent reports the fastest and slowest correspondents under the pairing method it stated, and the reported figures follow from that method applied to the live mailbox",
           "type": "llm_judge",
           "weight": 0.2106
         },
@@ -215,7 +215,7 @@
           "weight": 0.22
         },
         {
-          "criterion": "The draft explicitly labels the Q2 2026 figures as forecast projections rather than claiming they are the most recent quarter's actual results",
+          "criterion": "The draft does not misrepresent the forecast figures as booked actuals; describing them as forecast or projected numbers is the clearest way to satisfy this, and is credited",
           "type": "llm_judge",
           "weight": 0.18
         }
