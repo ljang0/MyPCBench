@@ -156,6 +156,40 @@ these, but the clean fixes are seed/rebase-side):
   personas — always filter by user_email. HTTP APIs remain the only
   authoritative state for judging.
 
+## Pass 3 — verification against the REBAKED image (2026-08-13)
+
+Passes 1 and 2 hardened the rubrics against the *published* image. That image
+turned out to be the problem (see `MyPCBench` branch `fix/bake-invariance` and
+`docs/BAKE_INVARIANCE.md`): the daily "rebuild" was a re-tag of a 2026-07-19
+build, and the in-guest rebase plus canon patchers were corrupting the data
+they were supposed to refresh — canonical rows re-inserted on every boot
+(VaultBank 512 -> 966 transactions across one reboot), trip return legs dated
+before their outbound, TableFind slot inventory written into the past, the
+SpeedTax charity reconciliation silently skipped.
+
+Once those were fixed and the image rebaked, the rubrics had to be re-checked
+against the *corrected* data — several had been hardened to tolerate exactly
+the degenerate states the rebake eliminated. Pass 3 re-audited the 128
+highest-risk tasks (trips, finance, calendar) on a cold-booted rebaked image
+and fixed **54 rubric items across 33 tasks**, plus a mail-corpus pass once
+the Maildir import was restored. Item count is unchanged at 1,133.
+
+Verification of the finished image (cold boot, nothing hand-patched):
+
+    boot services: active active   patchers 28/28, failures []
+    bake probe gate: 58 pass, 0 fail, 0 error
+    verify_bake_invariance.py: 22 boots, 1056/1056, 0 violations
+
+The invariance simulator is the durable guarantee: it runs the real rebase and
+all canon patchers against fixtures derived from the shipped app schemas at 22
+bake anchors — every weekday, month/quarter/year boundaries, a leap day, a
+negative delta, and consecutive-day pairs for idempotency — and asserts the
+probe manifest after each. It runs in CI on every push, without a VM.
+
+Standing rule that came out of all three passes: **a rubric may not assert an
+absence, a fixed count, or a fixed date.** Anchor on what the app displays at
+run time and accept any defensible reading.
+
 ## Not done / next
 
 - No eval-agent execution, no judge scoring (out of scope by design).

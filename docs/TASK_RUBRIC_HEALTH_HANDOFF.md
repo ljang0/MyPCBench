@@ -185,13 +185,17 @@ What was not done:
 Therefore the correct release statement is:
 
 > All 184 tasks pass static task/rubric/date-contract validation, and every
-> rubric item has been empirically verified feasible, aligned, and
-> rebake-safe against a live VM on the current daily image
-> (2026-08-12 bake), with 56 defective items repaired rubric-only. Nine
-> tasks retain instruction- or seed-level defects that rubric edits can only
-> partially absorb (see `LIVE_RUBRIC_AUDIT_2026-08-12.md`). The benchmark is
-> still not certified as 184/184 executable end-to-end by a computer-use
-> agent, because no eval-agent runs or judge scoring were performed.
+> rubric item has been empirically verified against a live VM across three
+> passes: the published image (2026-08-12), a rollover-stress bake with the
+> clock advanced a day, and a cold-booted **rebaked** image built from
+> `fix/bake-invariance` (2026-08-13). 138 rubric items across 73 tasks were
+> repaired in total, rubric-only except for 8 owner-approved instruction
+> fixes. The rebaked image passes the 58-probe data gate 58/0/0 on a cold
+> boot, and `verify_bake_invariance.py` passes 1056/1056 across 22 bake
+> anchors, so task feasibility is now proven invariant to the bake date
+> rather than checked on one day's data. The benchmark is still not certified
+> as 184/184 executable end-to-end by a computer-use agent, because no
+> eval-agent runs or judge scoring were performed.
 
 ## Image and daily regeneration boundary
 
