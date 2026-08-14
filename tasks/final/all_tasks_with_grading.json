@@ -7311,7 +7311,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent derives a trip budget from live Gringotts balances and chooses compatible future lodging and flight dates for a destination outside the excluded set (not Jamaica, Barbados, New York, or Philadelphia); the live Dinoco catalog seeds AVP-PDX and AVP-BCN round trips and Cheskepdia lists Portland and Barcelona stays",
+          "criterion": "Agent derives a trip budget from live Gringotts balances and chooses compatible future lodging and flight dates for a destination outside the excluded set (not Jamaica, Barbados, New York, or Philadelphia); the live Dinoco catalog seeds round trips from AVP to Portland and from AVP to Barcelona, and Cheskepdia lists stays in both cities",
           "type": "llm_judge",
           "weight": 0.1
         },
