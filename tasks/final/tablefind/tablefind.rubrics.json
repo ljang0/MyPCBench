@@ -76,7 +76,7 @@
     "id": "hard_app-f016",
     "category": "long_horizon",
     "persona": "michael_scott",
-    "instruction": "Book me Cooper's Seafood House in Scranton for ten people for the Dundies after-party next Friday. While you're in TableFind, review the three other seeded Scranton restaurants—Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill—as fallbacks in case Cooper's is full, and favorite the top two. Once that's done, confirm the Cooper's reservation with a note that it's the Dundies after-party so they can prep the vibe.",
+    "instruction": "Book me Cotogna for ten people for the Dundies after-party next Friday. While you're in TableFind, pull up three other Scranton-area restaurants as a fallback plan in case Cotogna is full, and favorite the top two. Once that's done, confirm the Cotogna reservation with a note that it's the Dundies after-party so they can prep the vibe.",
     "required_subtasks": [
       "Open TableFind and search for Cooper's Seafood House in Scranton",
       "Check availability for ten people on next Friday relative to the task date",
@@ -97,42 +97,42 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent searches TableFind for Cooper's Seafood House in Scranton and checks availability for ten people on next Friday relative to the task date (either the first or the second upcoming Friday is an acceptable reading of 'next Friday')",
+          "criterion": "Agent searches TableFind for Cotogna and checks availability for ten people on next Friday relative to the task date (either the first or the second upcoming Friday is an acceptable reading of 'next Friday')",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent books Cooper's Seafood House for ten people on next Friday (either the first or the second upcoming Friday is acceptable) and includes a 'Dundies after-party' special-request note",
+          "criterion": "Agent books Cotogna for ten people on next Friday (either the first or the second upcoming Friday is acceptable) and includes a 'Dundies after-party' special-request note",
           "type": "llm_judge",
           "weight": 0.197
         },
         {
-          "criterion": "Agent looks up the three named Scranton fallback restaurants in TableFind — Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill — and finds all three (all are live TableFind listings)",
+          "criterion": "Agent looks up three other Scranton-area restaurants in TableFind as a fallback plan and finds all three; any three live Scranton-area listings other than Cotogna are acceptable",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent reviews the three fallback restaurants using details shown in TableFind such as cuisine, rating, or neighborhood",
+          "criterion": "Agent reviews the three fallback restaurants it chose using details shown in TableFind such as cuisine, rating, or neighborhood",
           "type": "llm_judge",
           "weight": 0.116
         },
         {
-          "criterion": "Agent favorites the top two of the three fallback restaurants based on the review (any defensible top-two choice among Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill is acceptable)",
+          "criterion": "Agent favorites two of the three fallback restaurants it reviewed; any defensible top-two choice among the three it selected is acceptable",
           "type": "llm_judge",
           "weight": 0.116
         },
         {
-          "criterion": "Agent records the Cooper's Seafood House booking confirmation number",
+          "criterion": "Agent records the Cotogna booking confirmation number",
           "type": "llm_judge",
           "weight": 0.107
         },
         {
-          "criterion": "Agent verifies that the next-Friday Cooper's Seafood House reservation and both fallback favorites persist after refresh",
+          "criterion": "Agent verifies that the next-Friday Cotogna reservation and both fallback favorites persist after refresh",
           "type": "llm_judge",
           "weight": 0.089
         },
         {
-          "criterion": "Before booking, agent confirms that the selected Cooper's Seafood House slot is for ten people on next Friday, not another date",
+          "criterion": "Before booking, agent confirms that the selected Cotogna slot is for ten people on next Friday, not another date",
           "type": "llm_judge",
           "weight": 0.107
         }

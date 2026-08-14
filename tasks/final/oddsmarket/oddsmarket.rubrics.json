@@ -53,7 +53,7 @@
     "id": "cua_only-f008",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "Go into OddsMarket and treat the open-position status and P&L displayed in the app as authoritative, even if a market title contains an old relative date. Find the open position with the largest unrealized dollar loss, click Close, type CONFIRM in the modal, and complete the close.",
+    "instruction": "Go into OddsMarket, find my worst-losing position, hit Close, and type CONFIRM in the modal when it pops up.",
     "required_subtasks": [
       "Open OddsMarket and navigate to the open positions list",
       "Compare the displayed unrealized dollar P&L for every open position",
@@ -78,12 +78,12 @@
           "weight": 0.15
         },
         {
-          "criterion": "Agent compares the displayed P&L and correctly identifies the currently open position with the largest unrealized dollar loss, without relying on a hardcoded market title",
+          "criterion": "Agent compares the displayed P&L and correctly identifies the worst-losing open position under a defensible reading — the largest unrealized dollar loss, or the largest percentage loss where the agent makes that basis evident — without relying on a hardcoded market title",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent clicks Close on that identified worst-dollar-loss position",
+          "criterion": "Agent clicks Close on the position it identified as worst-losing",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -112,7 +112,7 @@
     "id": "hard_app-f005",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "Clean up my OddsMarket account using the open status and P&L shown in the app as authoritative, even if a market title contains an old relative date. Exit every YES position whose displayed per-position P&L is below -10%. If none qualify, say so and skip the exit. Put any freed-up money into my still-open NBC Office reboot/revival YES position; if that position itself qualifies for exit, close it and report the cash instead of reinvesting. Then add every position still open to my watchlist.",
+    "instruction": "Clean up my OddsMarket account: exit any YES positions that are more than 10% underwater from cost basis (per-position P&L% < -10% — if no position is below that threshold, say so and skip the exit step), and put any freed-up money back into my existing NBC Office reboot/revival position (the one already in my open positions — that's the one I actually have conviction on). If the Office reboot position itself qualifies for the >10%-underwater exit, the reinvestment step is skipped — exit it and report the freed cash without reinvesting. Then add the markets I'm still holding to my watchlist so I can keep an eye on them.",
     "required_subtasks": [
       "Open OddsMarket and enumerate all positions the app currently marks open with their displayed P&L percentages",
       "Exit every open YES position with displayed P&L below -10%, or explicitly report that none qualify",

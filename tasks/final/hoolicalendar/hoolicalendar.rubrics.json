@@ -4,7 +4,7 @@
     "category": "situated_action",
     "persona": "michael_scott",
     "date_policy": "relative",
-    "instruction": "Check the next Thursday strictly after the VM's current date for any improv conflicts. If an improv class window that day overlaps a work meeting (and I cannot skip improv), find a different slot on that same Thursday that does not touch the improv window, and protect fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim; message them on HooliWork and send updated HooliCalendar invites if a move is needed. If no work meeting on that date overlaps an improv block, just confirm the all-clear and move on.",
+    "instruction": "Check my Thursday for any improv conflicts. If there's a Thursday improv class window stomping on a work meeting (and I cannot skip improv), find a different Thursday slot for the work meeting that doesn't touch the improv window, and add fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim, message them on HooliWork and send them updated invites on Hoolicalendar if needed. If no Thursday meeting actually overlaps an improv block, just confirm the all-clear and move on.",
     "required_subtasks": [
       "Resolve the next Thursday strictly after the VM date and open that date in HooliCalendar",
       "Identify any improv-tagged event on that exact Thursday",

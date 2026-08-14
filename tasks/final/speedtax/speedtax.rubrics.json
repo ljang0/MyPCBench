@@ -3,7 +3,7 @@
     "id": "cua_only-f002",
     "category": "cua_only",
     "persona": "michael_scott",
-    "instruction": "I started my 2025 tax return on SpeedTax but never finished. Walk through that in-progress 2025 return: review my wages and any freelance/1099 income, look over the deductions section, and click Continue through the review step (step 6) so I can see what I would owe or get back. Do not submit it; leave it ready for me to review.",
+    "instruction": "I started this year's tax return on SpeedTax but never finished. Walk through the in-progress current-year return — review my wages and any freelance/1099 income, look over the deductions section, and click Continue all the way through to the review step (step 6) so I can see what I'd actually owe or get back. Don't submit it yet, just get it ready for me to eyeball.",
     "apps_involved": [
       "SpeedTax"
     ],

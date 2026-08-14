@@ -55,7 +55,7 @@
     "id": "aggregation-f001",
     "category": "aggregation",
     "persona": "michael_scott",
-    "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Create a LibreOffice Calc spreadsheet with one row per completed trip and its miles, followed by a cumulative total row. Include upcoming trips and their mileage in a separate, clearly labeled section of the same spreadsheet.",
+    "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Give me a spreadsheet of each trip, and the miles for each one with a final row of the cumulative miles. Also include the upcoming trips and their milage.",
     "apps_involved": [
       "Dinoco Airlines",
       "LibreOffice Calc"

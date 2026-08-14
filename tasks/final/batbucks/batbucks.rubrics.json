@@ -133,7 +133,7 @@
     "id": "hard_app-f004",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "I want downside protection on every position I'm holding in BatBucks. Put one Stop order on each position at 15% below what I paid for it, just to give me a floor. Then build me a new watchlist called 'Oscar's Picks' with eight big-name ETFs in it. After refreshing, account for every submitted stop in open orders or, if one triggered immediately, in order history, and make sure the watchlist is still there.",
+    "instruction": "I want downside protection on every position I'm holding in BatBucks. Put a couple Stop order on each one at 15% below what I paid for it, just to give me a floor. Then build me a new watchlist called 'Oscar's Picks' with eight big-name ETFs in it. Make sure the stop-losses actually show up in my open orders and the watchlist is still there if I refresh.",
     "required_subtasks": [
       "Open BatBucks and note all current holdings (live count from /api/holdings) and their avg_cost values",
       "Place a Stop order (single stop price; not Stop-Limit) for each held ticker at ~15% below its actual avg_cost (from holdings)",
@@ -185,7 +185,7 @@
     "id": "preference_inference-f005",
     "category": "preference_inference",
     "persona": "michael_scott",
-    "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem? Treat both GME and RIVN as the meme-stock positions, use cost basis rather than market prices, and recommend a sensible rebalance that doesn't totally abandon the narrative and consumer names I actually like. Also read my old WUPHF investment agreement in ~/Downloads/—that was the original mistake and sets the pattern for how I get into these things. Put the complete portfolio review in a LibreOffice Writer document.",
+    "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem, and what would a sensible rebalance look like that doesn't totally abandon the names I actually like? Use cost basis, not market prices. While you're at it, peek at my old WUPHF investment agreement in ~/Downloads/ — that one was the OG mistake, and it sets the pattern for how I get into these things. Return the review of my portfolio in LibreOffice Writer.",
     "required_subtasks": [
       "Open BatBucks and list all current holdings with shares and avg_cost",
       "Compute every position's cost-basis value and total portfolio cost basis",

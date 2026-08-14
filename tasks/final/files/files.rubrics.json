@@ -3,7 +3,7 @@
     "id": "retrieval-f020",
     "category": "retrieval",
     "persona": "michael_scott",
-    "instruction": "Where did I save my Threat Level Midnight sequel notes? They should be somewhere under ~/Documents/Projects. Give me a quick rundown of the plot, cast, and other plans in the notes, then draft a script I can use as a starting point. For casting, make sure the script includes every coworker already named in the notes' cast: Holly, Jim, and Dwight.",
+    "instruction": "Where did I save my Threat Level Midnight sequel notes? Should be tucked somewhere under ~/Documents/Projects. Give me a quick rundown of what's in there (plot, cast, whatever I had going). Can you draft up a script that I can use as a starting point? Make sure you include everyone from work as a character, for casting reasons.",
     "apps_involved": [
       "Files"
     ],
@@ -37,7 +37,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "The draft script includes all three coworkers explicitly named in the source notes' cast—Holly, Jim, and Dwight—as characters",
+          "criterion": "The draft script includes the coworkers named in the source notes' cast — Holly, Jim, and Dwight — as characters; including further Dunder Mifflin coworkers as additional characters is acceptable",
           "type": "llm_judge",
           "weight": 0.3
         },
@@ -55,7 +55,7 @@
     "id": "retrieval-f032",
     "category": "retrieval",
     "persona": "michael_scott",
-    "instruction": "I remember making a Dundies 2026 categorization document. Show me the categories in ~/Documents/Dundies_2026_Categories.txt and tell me where the document is. Make an Impress presentation for that saved 2026 Dundies plan. Then message the three coworkers named as award candidates in the category list—Jim, Kevin, and Darryl—to ask them to attend. Do not message Toby; the document explicitly says he is not invited.",
+    "instruction": "I remember making a Dundies categorization document. Show me the Dundies 2026 categories I came up with. Where is the doc and what categories did I put down? Can you make a presentation with these categories using LibreOffice Impress so I can prepare for the Dundies? Message each of the candidates to make sure they show up to the Dundies.",
     "apps_involved": [
       "Files",
       "LibreOffice Impress",
@@ -87,7 +87,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "Agent sends an attendance message to each of the three explicitly requested candidates—Jim, Kevin, and Darryl—via HooliWork, HooliMail, or BuzzChat",
+          "criterion": "Agent sends an attendance message to each Dundies candidate named in the source categories document, via HooliWork, HooliMail, or BuzzChat",
           "type": "llm_judge",
           "weight": 0.3
         },
@@ -97,7 +97,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "Agent does not send Toby an attendance message, consistent with the explicit instruction and source document",
+          "criterion": "Agent's recipient list follows the candidates recorded in the source document rather than adding people the document does not name",
           "type": "llm_judge",
           "weight": 0.05
         }
@@ -163,7 +163,7 @@
     "id": "situated_action-f029",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "Open my Threat Level Midnight sequel notes file and add five new plot points for me. Big ones. Michael Scarn's back. Send the revised plot notes to at least three friends from work who could be used for casting. Attach the saved revised notes file or paste its complete revised contents—do not send only a summary or link.",
+    "instruction": "Open my Threat Level Midnight sequel notes file and add five new plot points for me. Big ones. Michael Scarn's back. Send out the revised plot notes to a handful of my friends from work, who could be used for casting.",
     "required_subtasks": [
       "Locate and open ~/Documents/Projects/Threat_Level_Midnight_Sequel_Notes.txt in Files",
       "Add five new plot-point entries in the Threat Level Midnight tone",

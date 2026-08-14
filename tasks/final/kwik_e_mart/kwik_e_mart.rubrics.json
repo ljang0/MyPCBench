@@ -3,7 +3,7 @@
     "id": "hard_app-f017",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently—pick a store I've ordered from most often or use my most recent order. If anything is out of stock, swap in reasonable substitutes; otherwise keep what's available. Compare the relevant item prices with another store and proceed with the cheaper available option. Schedule delivery using any available slot that arrives before end of day today; it does not have to be the earliest. If the app offers no slot arriving before end of day, do not place the order—leave the cheaper cart ready and report that no qualifying slot exists.",
+    "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently — pick a store I've ordered from most often OR most recently in my order history. If anything's out of stock, swap in reasonable substitutes (otherwise just keep what's available). Do a quick price check against another store in the app so I know I'm not getting fleeced, and schedule delivery for before end of day today.",
     "required_subtasks": [
       "Open Kwik-E-Mart and navigate to order history",
       "Choose a prior order from a top-frequency store or the most recent order",

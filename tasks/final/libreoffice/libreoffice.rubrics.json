@@ -3,7 +3,7 @@
     "id": "cua_only-f011",
     "category": "situated_action",
     "persona": "michael_scott",
-    "instruction": "Open my ~/Documents/Dundies_2026_Categories.txt file in Writer. In an editable Writer copy, bold the 'Whitest Sneakers' line and add a new category called 'Fine Work Outfit' immediately after it. Save the edited copy as an .odt Writer document in ~/Documents so the bold formatting persists; leave the original .txt file in place.",
+    "instruction": "Open my Dundies 2026 categories doc in Writer, bold the 'Whitest Sneakers' line, then add a new category called 'Fine Work Outfit' right after it. Save it when you're done.",
     "required_subtasks": [
       "Open ~/Documents/Dundies_2026_Categories.txt in LibreOffice Writer",
       "Create or save an editable Writer-format copy in ~/Documents",
@@ -38,7 +38,7 @@
           "weight": 0.35
         },
         {
-          "criterion": "Agent saves the edited copy as an .odt document in ~/Documents, the Writer document preserves both edits, and the original ~/Documents/Dundies_2026_Categories.txt remains present and unmodified",
+          "criterion": "Agent saves the edited document in a format that preserves the bold run (for example .odt), both edits persist in the saved file, and the original ~/Documents/Dundies_2026_Categories.txt is left present",
           "type": "llm_judge",
           "weight": 0.25
         }
@@ -52,7 +52,7 @@
     "id": "cua_only-f021",
     "category": "long_horizon",
     "persona": "michael_scott",
-    "instruction": "Write me a one-page invitation in Writer for the saved Dundies 2026 event. I want a big bold title at the top, a bulleted list of the categories pulled from ~/Documents/Dundies_2026_Categories.txt, and a signature block that says 'Michael Scott, World's Best Boss'. Save it to my desktop as a clearly named .odt file so I can print a stack.",
+    "instruction": "Write me a one-page Dundies 2026 invitation in Writer. I want a big bold title at the top, a bulleted list of this year's categories pulled from my Dundies categories doc, and a signature block that says 'Michael Scott, World's Best Boss'. Save it to my desktop so I can print a stack.",
     "required_subtasks": [
       "Read ~/Documents/Dundies_2026_Categories.txt for the saved 2026 event categories",
       "Create a one-page LibreOffice Writer invitation",
@@ -111,7 +111,7 @@
     "id": "cua_only-f024",
     "category": "long_horizon",
     "persona": "michael_scott",
-    "instruction": "Throw together a three-slide Impress deck for my Jamaica trip. On the flight slide include the flight number, departure time, confirmation code, and fare from Dinoco or HooliMail. On the Sandals hotel slide include the Montego Bay property name, confirmation number, check-in and check-out dates, and total price from Cheskepdia. Make the third slide a rough day-by-day schedule for that stay. Save any clearly named .odp file inside ~/Documents/Trips; no particular filename is required.",
+    "instruction": "Throw together a three-slide Impress deck for my Jamaica trip: one slide for the flight info, one for the Sandals hotel info, and one with a rough daily schedule. Save it into my Trips documents folder.",
     "required_subtasks": [
       "Open LibreOffice Impress and create exactly three slides",
       "Populate the flight slide from live Dinoco Airlines or HooliMail trip details",

@@ -73,7 +73,7 @@
     "category": "situated_action",
     "persona": "michael_scott",
     "date_policy": "narrative_absolute",
-    "instruction": "Post a workweek-kickoff motivational message in our #random channel at work. You know how I like it: World's Best Boss style. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
+    "instruction": "Post a Motivational Monday message in our #random channel at work. You know how I like it: World's Best Boss style, kick the team's week off right. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
     "required_subtasks": [
       "Open ~/Documents/Motivational_Quotes_Collection.txt and read its quotes",
       "Choose at least one quote from that file and incorporate it into the message",
@@ -125,7 +125,7 @@
     "category": "situated_action",
     "persona": "michael_scott",
     "date_policy": "relative",
-    "instruction": "Post a Pretzel Day planning-kickoff message now in the #party-planning-committee channel at work. Build the hype and make it clear that planning starts today; do not invent a countdown number or event date.",
+    "instruction": "Post a Pretzel Day countdown for next Monday at 8:00 AM EST in the #party-planning-committee channel at work. Build the hype.",
     "required_subtasks": [
       "Open HooliWork and navigate to #party-planning-committee",
       "Compose a hype-filled Pretzel Day planning-kickoff message that says planning starts today without inventing an event date",
@@ -148,7 +148,7 @@
           "weight": 0.15
         },
         {
-          "criterion": "Agent composes a message that mentions Pretzel Day, says planning starts today, uses clear hype language, and does not invent a countdown number or event date",
+          "criterion": "Agent composes a message that mentions Pretzel Day, reflects the next-Monday 8:00 AM timing named in the request, and uses clear hype language without inventing unsupported event details",
           "type": "llm_judge",
           "weight": 0.25
         },

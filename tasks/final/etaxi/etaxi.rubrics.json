@@ -3,7 +3,7 @@
     "id": "aggregation-f019",
     "category": "aggregation",
     "persona": "michael_scott",
-    "instruction": "How much have I actually spent taking eTaxi to the Dunder Mifflin office this calendar year? Just the commute rides. Create a LibreOffice Calc spreadsheet that lists the qualifying rides and reports their ride count and total cost.",
+    "instruction": "How much have I actually spent taking eTaxi to the Dunder Mifflin office this year? Just the commute rides. Sum up and report the total cost in a LibreOffice Calc sheet.",
     "apps_involved": [
       "eTaxi",
       "LibreOffice Calc"

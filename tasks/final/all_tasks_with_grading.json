@@ -103,7 +103,7 @@
   {
     "id": "hard_app-f004",
     "app": "batbucks",
-    "instruction": "I want downside protection on every position I'm holding in BatBucks. Put one Stop order on each position at 15% below what I paid for it, just to give me a floor. Then build me a new watchlist called 'Oscar's Picks' with eight big-name ETFs in it. After refreshing, account for every submitted stop in open orders or, if one triggered immediately, in order history, and make sure the watchlist is still there.",
+    "instruction": "I want downside protection on every position I'm holding in BatBucks. Put a couple Stop order on each one at 15% below what I paid for it, just to give me a floor. Then build me a new watchlist called 'Oscar's Picks' with eight big-name ETFs in it. Make sure the stop-losses actually show up in my open orders and the watchlist is still there if I refresh.",
     "apps_involved": [
       "BatBucks"
     ],
@@ -143,7 +143,7 @@
   {
     "id": "preference_inference-f005",
     "app": "batbucks",
-    "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem? Treat both GME and RIVN as the meme-stock positions, use cost basis rather than market prices, and recommend a sensible rebalance that doesn't totally abandon the narrative and consumer names I actually like. Also read my old WUPHF investment agreement in ~/Downloads/—that was the original mistake and sets the pattern for how I get into these things. Put the complete portfolio review in a LibreOffice Writer document.",
+    "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem, and what would a sensible rebalance look like that doesn't totally abandon the names I actually like? Use cost basis, not market prices. While you're at it, peek at my old WUPHF investment agreement in ~/Downloads/ — that one was the OG mistake, and it sets the pattern for how I get into these things. Return the review of my portfolio in LibreOffice Writer.",
     "apps_involved": [
       "BatBucks",
       "Files",
@@ -385,7 +385,7 @@
   {
     "id": "aggregation-f001",
     "app": "dinoco_airlines",
-    "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Create a LibreOffice Calc spreadsheet with one row per completed trip and its miles, followed by a cumulative total row. Include upcoming trips and their mileage in a separate, clearly labeled section of the same spreadsheet.",
+    "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Give me a spreadsheet of each trip, and the miles for each one with a final row of the cumulative miles. Also include the upcoming trips and their milage.",
     "apps_involved": [
       "Dinoco Airlines",
       "LibreOffice Calc"
@@ -543,7 +543,7 @@
   {
     "id": "aggregation-f019",
     "app": "etaxi",
-    "instruction": "How much have I actually spent taking eTaxi to the Dunder Mifflin office this calendar year? Just the commute rides. Create a LibreOffice Calc spreadsheet that lists the qualifying rides and reports their ride count and total cost.",
+    "instruction": "How much have I actually spent taking eTaxi to the Dunder Mifflin office this year? Just the commute rides. Sum up and report the total cost in a LibreOffice Calc sheet.",
     "apps_involved": [
       "eTaxi",
       "LibreOffice Calc"
@@ -614,7 +614,7 @@
   {
     "id": "retrieval-f020",
     "app": "files",
-    "instruction": "Where did I save my Threat Level Midnight sequel notes? They should be somewhere under ~/Documents/Projects. Give me a quick rundown of the plot, cast, and other plans in the notes, then draft a script I can use as a starting point. For casting, make sure the script includes every coworker already named in the notes' cast: Holly, Jim, and Dwight.",
+    "instruction": "Where did I save my Threat Level Midnight sequel notes? Should be tucked somewhere under ~/Documents/Projects. Give me a quick rundown of what's in there (plot, cast, whatever I had going). Can you draft up a script that I can use as a starting point? Make sure you include everyone from work as a character, for casting reasons.",
     "apps_involved": [
       "Files"
     ],
@@ -639,7 +639,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "The draft script includes all three coworkers explicitly named in the source notes' cast—Holly, Jim, and Dwight—as characters",
+          "criterion": "The draft script includes the coworkers named in the source notes' cast — Holly, Jim, and Dwight — as characters; including further Dunder Mifflin coworkers as additional characters is acceptable",
           "type": "llm_judge",
           "weight": 0.3
         },
@@ -654,7 +654,7 @@
   {
     "id": "retrieval-f032",
     "app": "files",
-    "instruction": "I remember making a Dundies 2026 categorization document. Show me the categories in ~/Documents/Dundies_2026_Categories.txt and tell me where the document is. Make an Impress presentation for that saved 2026 Dundies plan. Then message the three coworkers named as award candidates in the category list—Jim, Kevin, and Darryl—to ask them to attend. Do not message Toby; the document explicitly says he is not invited.",
+    "instruction": "I remember making a Dundies categorization document. Show me the Dundies 2026 categories I came up with. Where is the doc and what categories did I put down? Can you make a presentation with these categories using LibreOffice Impress so I can prepare for the Dundies? Message each of the candidates to make sure they show up to the Dundies.",
     "apps_involved": [
       "Files",
       "LibreOffice Impress",
@@ -677,7 +677,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "Agent sends an attendance message to each of the three explicitly requested candidates—Jim, Kevin, and Darryl—via HooliWork, HooliMail, or BuzzChat",
+          "criterion": "Agent sends an attendance message to each Dundies candidate named in the source categories document, via HooliWork, HooliMail, or BuzzChat",
           "type": "llm_judge",
           "weight": 0.3
         },
@@ -687,7 +687,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "Agent does not send Toby an attendance message, consistent with the explicit instruction and source document",
+          "criterion": "Agent's recipient list follows the candidates recorded in the source document rather than adding people the document does not name",
           "type": "llm_judge",
           "weight": 0.05
         }
@@ -738,7 +738,7 @@
   {
     "id": "situated_action-f029",
     "app": "files",
-    "instruction": "Open my Threat Level Midnight sequel notes file and add five new plot points for me. Big ones. Michael Scarn's back. Send the revised plot notes to at least three friends from work who could be used for casting. Attach the saved revised notes file or paste its complete revised contents—do not send only a summary or link.",
+    "instruction": "Open my Threat Level Midnight sequel notes file and add five new plot points for me. Big ones. Michael Scarn's back. Send out the revised plot notes to a handful of my friends from work, who could be used for casting.",
     "apps_involved": [
       "Files",
       "HooliMail",
@@ -971,7 +971,7 @@
   {
     "id": "hard_app-f033",
     "app": "hoolicalendar",
-    "instruction": "Check the next Thursday strictly after the VM's current date for any improv conflicts. If an improv class window that day overlaps a work meeting (and I cannot skip improv), find a different slot on that same Thursday that does not touch the improv window, and protect fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim; message them on HooliWork and send updated HooliCalendar invites if a move is needed. If no work meeting on that date overlaps an improv block, just confirm the all-clear and move on.",
+    "instruction": "Check my Thursday for any improv conflicts. If there's a Thursday improv class window stomping on a work meeting (and I cannot skip improv), find a different Thursday slot for the work meeting that doesn't touch the improv window, and add fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim, message them on HooliWork and send them updated invites on Hoolicalendar if needed. If no Thursday meeting actually overlaps an improv block, just confirm the all-clear and move on.",
     "apps_involved": [
       "HooliCalendar",
       "HooliWork"
@@ -1408,7 +1408,7 @@
   {
     "id": "situated_action-f027",
     "app": "hoolimail",
-    "instruction": "Start a draft email to David Wallace summarizing the fixed Q2 2026 sales forecast in ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt. Clearly label the figures as forecast projections rather than the most recent quarter's actual results. Do supporting analysis in LibreOffice Calc, save the spreadsheet, and reference it in the email. Save the email as a draft; do NOT hit send because I want to review it first.",
+    "instruction": "Start a draft email to David Wallace with my most recent quarter's sales summary. Pull a ballpark from my ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt so the numbers actually have a basis. Save it as a draft; do NOT hit send. I want to review it first. Do some analysis in LibreOffice Calc so I have some empirical analysis to send him as well.",
     "apps_involved": [
       "HooliMail",
       "Files",
@@ -1650,7 +1650,7 @@
   {
     "id": "situated_action-f004",
     "app": "hooliwork",
-    "instruction": "Post a workweek-kickoff motivational message in our #random channel at work. You know how I like it: World's Best Boss style. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
+    "instruction": "Post a Motivational Monday message in our #random channel at work. You know how I like it: World's Best Boss style, kick the team's week off right. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
     "apps_involved": [
       "HooliWork",
       "Files"
@@ -1691,7 +1691,7 @@
   {
     "id": "situated_action-f036",
     "app": "hooliwork",
-    "instruction": "Post a Pretzel Day planning-kickoff message now in the #party-planning-committee channel at work. Build the hype and make it clear that planning starts today; do not invent a countdown number or event date.",
+    "instruction": "Post a Pretzel Day countdown for next Monday at 8:00 AM EST in the #party-planning-committee channel at work. Build the hype.",
     "apps_involved": [
       "HooliWork"
     ],
@@ -1706,7 +1706,7 @@
           "weight": 0.15
         },
         {
-          "criterion": "Agent composes a message that mentions Pretzel Day, says planning starts today, uses clear hype language, and does not invent a countdown number or event date",
+          "criterion": "Agent composes a message that mentions Pretzel Day, reflects the next-Monday 8:00 AM timing named in the request, and uses clear hype language without inventing unsupported event details",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -1726,7 +1726,7 @@
   {
     "id": "hard_app-f017",
     "app": "kwik_e_mart",
-    "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently—pick a store I've ordered from most often or use my most recent order. If anything is out of stock, swap in reasonable substitutes; otherwise keep what's available. Compare the relevant item prices with another store and proceed with the cheaper available option. Schedule delivery using any available slot that arrives before end of day today; it does not have to be the earliest. If the app offers no slot arriving before end of day, do not place the order—leave the cheaper cart ready and report that no qualifying slot exists.",
+    "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently — pick a store I've ordered from most often OR most recently in my order history. If anything's out of stock, swap in reasonable substitutes (otherwise just keep what's available). Do a quick price check against another store in the app so I know I'm not getting fleeced, and schedule delivery for before end of day today.",
     "apps_involved": [
       "Kwik-E-Mart"
     ],
@@ -1917,7 +1917,7 @@
   {
     "id": "cua_only-f011",
     "app": "libreoffice",
-    "instruction": "Open my ~/Documents/Dundies_2026_Categories.txt file in Writer. In an editable Writer copy, bold the 'Whitest Sneakers' line and add a new category called 'Fine Work Outfit' immediately after it. Save the edited copy as an .odt Writer document in ~/Documents so the bold formatting persists; leave the original .txt file in place.",
+    "instruction": "Open my Dundies 2026 categories doc in Writer, bold the 'Whitest Sneakers' line, then add a new category called 'Fine Work Outfit' right after it. Save it when you're done.",
     "apps_involved": [
       "LibreOffice Writer"
     ],
@@ -1942,7 +1942,7 @@
           "weight": 0.35
         },
         {
-          "criterion": "Agent saves the edited copy as an .odt document in ~/Documents, the Writer document preserves both edits, and the original ~/Documents/Dundies_2026_Categories.txt remains present and unmodified",
+          "criterion": "Agent saves the edited document in a format that preserves the bold run (for example .odt), both edits persist in the saved file, and the original ~/Documents/Dundies_2026_Categories.txt is left present",
           "type": "llm_judge",
           "weight": 0.25
         }
@@ -1952,7 +1952,7 @@
   {
     "id": "cua_only-f021",
     "app": "libreoffice",
-    "instruction": "Write me a one-page invitation in Writer for the saved Dundies 2026 event. I want a big bold title at the top, a bulleted list of the categories pulled from ~/Documents/Dundies_2026_Categories.txt, and a signature block that says 'Michael Scott, World's Best Boss'. Save it to my desktop as a clearly named .odt file so I can print a stack.",
+    "instruction": "Write me a one-page Dundies 2026 invitation in Writer. I want a big bold title at the top, a bulleted list of this year's categories pulled from my Dundies categories doc, and a signature block that says 'Michael Scott, World's Best Boss'. Save it to my desktop so I can print a stack.",
     "apps_involved": [
       "LibreOffice Writer"
     ],
@@ -1997,7 +1997,7 @@
   {
     "id": "cua_only-f024",
     "app": "libreoffice",
-    "instruction": "Throw together a three-slide Impress deck for my Jamaica trip. On the flight slide include the flight number, departure time, confirmation code, and fare from Dinoco or HooliMail. On the Sandals hotel slide include the Montego Bay property name, confirmation number, check-in and check-out dates, and total price from Cheskepdia. Make the third slide a rough day-by-day schedule for that stay. Save any clearly named .odp file inside ~/Documents/Trips; no particular filename is required.",
+    "instruction": "Throw together a three-slide Impress deck for my Jamaica trip: one slide for the flight info, one for the Sandals hotel info, and one with a rough daily schedule. Save it into my Trips documents folder.",
     "apps_involved": [
       "LibreOffice Impress",
       "Dinoco Airlines",
@@ -2040,7 +2040,7 @@
   {
     "id": "aggregation-f002",
     "app": "multi_app",
-    "instruction": "Create a morning-style brief in LibreOffice Writer covering HooliMail received this week that is unread, starred, or from David Wallace or Jan Levinson; today's calendar; messages received since local midnight in HooliChat and HooliWork; and card charges posted since local midnight. If a source has no matching items, say so in the brief.",
+    "instruction": "It's early morning today. Give me a morning brief in LibreOffice Writer covering any priority email from this week, what's on my calendar today, anything that came in overnight on HooliChat or HooliWork, and any charges that hit my card since midnight.",
     "apps_involved": [
       "HooliMail",
       "HooliCalendar",
@@ -2055,7 +2055,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The Writer brief accurately reports current-week HooliMail that is unread, starred, or from David Wallace or Jan Levinson, or explicitly states that none were found.",
+          "criterion": "The Writer brief covers HooliMail from the current week that the agent treats as priority, states or makes evident the criterion it used (for example unread, starred, flagged, or from senior leadership), and reports those messages accurately — or explicitly states that none were found. Any defensible reading of 'priority email' is acceptable.",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -2168,7 +2168,7 @@
   {
     "id": "aggregation-f009",
     "app": "multi_app",
-    "instruction": "Build me a standup summary for today, using the VM's local calendar date. Include the current snapshot of all open SprintBoard issues, HooliWork posts I made since local midnight today, and HooliCalendar meetings occurring today. Also include the takeaways from the recent all-hands notes saved at ~/Desktop/meeting_notes_allhands.txt. Report an explicit none-found result for an empty source or today window.",
+    "instruction": "Build me a standup summary for today covering all the open issues on SprintBoard, what I posted on HooliWork, and what meetings I have including the takeaways from the recent all-hands (notes are saved on my Desktop as meeting_notes_allhands).",
     "apps_involved": [
       "SprintBoard",
       "HooliWork",
@@ -2186,7 +2186,7 @@
           "weight": 0.152174
         },
         {
-          "criterion": "Agent reports Michael's HooliWork posts since local midnight on the VM's current date, or reports 'no posts today' rather than using older posts or fabricating",
+          "criterion": "Agent reports Michael's recent HooliWork posts under a recency window appropriate to a standup that it states or makes evident (for example since local midnight today, or since the previous working day), and reports 'no posts' rather than fabricating when that window is empty.",
           "type": "llm_judge",
           "weight": 0.152174
         },
@@ -2206,7 +2206,7 @@
           "weight": 0.173913
         },
         {
-          "criterion": "Agent checks all three standup sources and applies the requested current-snapshot or today window to each before assembling the summary, even if some are empty",
+          "criterion": "Agent checks all three standup sources — SprintBoard, HooliWork, and HooliCalendar — and applies a consistent recency window to each before assembling the summary, even if some are empty.",
           "type": "llm_judge",
           "weight": 0.086957
         },
@@ -2221,7 +2221,7 @@
   {
     "id": "aggregation-f010",
     "app": "multi_app",
-    "instruction": "Create a budget rollup for the fixed Dundies 2026 project. Check HooliShop for trophy or award orders tied to that project by product or context, regardless of the displayed order year; check the 'Dundie Awards Planning' HooliChat group for incurred or committed expenses; and read ~/Documents/Dundies_2026_Categories.txt for the category list and its PPC and personal funding contributions. Treat funding as available budget, not as spending. Put each known expense, funding source, and unpriced commitment in a LibreOffice Calc spreadsheet with a clear classification, calculate expense and funding subtotals separately, and then write a separate LibreOffice Writer summary report with the resulting surplus or shortfall and unresolved commitments.",
+    "instruction": "Pull together everything I've spent or committed to the Dundies this year so far into a LibreOffice Calc Spreadsheet. Check my trophy orders, any mentions in the planning group chat, and the categories doc. Write up a report in LibreOffice Writer when you're done.",
     "apps_involved": [
       "HooliShop",
       "HooliChat",
@@ -2265,7 +2265,7 @@
   {
     "id": "aggregation-f011",
     "app": "multi_app",
-    "instruction": "Build and save a four-slide LibreOffice Impress performance-review deck under ~/Documents/ for David Wallace, centered on the fixed Q2 2026 sales-forecast artifact. Use SprintBoard, HooliWork, LockedIn, and sent-mail records that explicitly reference Q2 2026 or the same forecast or project; do not pull a record into Q2 merely because its rebased timestamp now falls in that calendar window. Read ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt and compare the matched performance evidence with that forecast. Use these slide themes: project progress; chat and LockedIn presence; forecast comparison and follow-on priorities; explicit ask. Clearly say when a source has no explicitly matched record.",
+    "instruction": "Put together a last-quarter performance review packet I can send to David Wallace. Pull my project progress (closed and open), my chat participation, any LockedIn posts, and relevant sent email threads. Pair it with a quick forward-look using the quarter sales forecast doc in ~/Downloads/ so David sees I'm thinking next quarter too. Make me look good. Build the actual perf-review packet as a LibreOffice Impress 4-slide deck (project progress / chat + LockedIn presence / forward-look / ask) — David likes visuals.",
     "apps_involved": [
       "SprintBoard",
       "HooliWork",
@@ -2280,17 +2280,17 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The deck accurately summarizes open and closed SprintBoard work explicitly tied by content or project identity to Q2 2026 or the fixed forecast, without assigning records to Q2 from rebased timestamps alone.",
+          "criterion": "The deck accurately summarizes open and closed SprintBoard work that the agent ties to the last-quarter window it derives from the VM's current date, or to the fixed forecast document, without assigning records to that quarter from rebased timestamps alone.",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "The deck accurately summarizes explicitly matched HooliWork and LockedIn evidence, or clearly states that a source has no matching Q2 2026 or forecast or project record.",
+          "criterion": "The deck accurately summarizes explicitly matched HooliWork and LockedIn evidence, or clearly states that a source has no record matching the last-quarter window, forecast, or project it used.",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "The deck accurately references sent-mail threads explicitly tied to Q2 2026 or the same forecast or project, or clearly records that none were found.",
+          "criterion": "The deck accurately references sent-mail threads explicitly tied to the last-quarter window it used, the same forecast, or the same project, or clearly records that none were found.",
           "type": "llm_judge",
           "weight": 0.15
         },
@@ -2300,7 +2300,7 @@
           "weight": 0.2
         },
         {
-          "criterion": "A four-slide LibreOffice Impress deck is saved under ~/Documents/, follows the requested slide themes, and includes a clear ask addressed to David Wallace.",
+          "criterion": "A four-slide LibreOffice Impress deck is saved to disk, follows the requested slide themes, and includes a clear ask addressed to David Wallace.",
           "type": "llm_judge",
           "weight": 0.25
         }
@@ -2408,7 +2408,7 @@
   {
     "id": "aggregation-f029",
     "app": "multi_app",
-    "instruction": "Using Michael's sent messages from the most recent 12 months represented in the local Maildir, create a LibreOffice Writer report with his top five recipients, top five recurring thread subjects, and total sent-message count. Check ~/Maildir/new/ because of my hunch, but use the folder that actually contains messages sent by michael.scott@dundermifflin.com and state which source you used.",
+    "instruction": "Who am I sending mail to the most? Give me my top 5 recipients and my top 5 recurring thread subjects over the past year in a LibreOffice Writer. Heads up: I think my sent mail is filed in the new folder, not Sent.",
     "apps_involved": [
       "Files",
       "LibreOffice Writer"
@@ -2449,7 +2449,7 @@
   {
     "id": "aggregation-f031",
     "app": "multi_app",
-    "instruction": "Compare two deterministic HangryDash windows anchored to the most recent displayed order: the recent window is the calendar month containing that order plus the two preceding calendar months, and the earlier window is the three immediately preceding calendar months. For each window, report total and average monthly spend, order count, and top restaurant; explain the trend; and put the numbers and exact window dates in a LibreOffice Calc spreadsheet. A window with no orders must be reported as zero rather than replaced with different dates.",
+    "instruction": "Compare how I was ordering HangryDash a few months ago to how I'm ordering it now. Monthly spend, top restaurants, and any trend I should know about. Report the numbers to me in a LibreOffice Calc SpreadSheet.",
     "apps_involved": [
       "HangryDash",
       "LibreOffice Calc"
@@ -2460,12 +2460,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent derives the earlier window as the three calendar months immediately preceding the defined recent window and computes its total and average monthly HangryDash spend, using zero if it has no orders",
+          "criterion": "Agent defines an earlier 'a few months ago' comparison window from the live HangryDash order history and computes its total and average monthly spend, using zero if that window contains no orders. Any defensible window choice is acceptable provided the agent states it.",
           "type": "llm_judge",
           "weight": 0.17
         },
         {
-          "criterion": "Agent derives the recent window as the calendar month containing the most recent displayed order plus the two preceding months and computes its total and average monthly spend and order count",
+          "criterion": "Agent defines a recent 'how I'm ordering now' window from the live HangryDash order history and computes its total and average monthly spend and order count. Any defensible window choice is acceptable provided the agent states it.",
           "type": "llm_judge",
           "weight": 0.17
         },
@@ -2475,17 +2475,17 @@
           "weight": 0.17
         },
         {
-          "criterion": "Agent writes a numeric trend narrative covering the shift in spend, order count, and top restaurant between the two defined equal-length windows",
+          "criterion": "Agent writes a numeric trend narrative covering the shift in spend, order count, and top restaurant between the two windows it defined",
           "type": "llm_judge",
           "weight": 0.17
         },
         {
-          "criterion": "Agent states the exact start and end dates for both adjacent three-calendar-month windows and reports concrete metrics computed only from orders inside each window",
+          "criterion": "Agent states the exact start and end dates of both windows it chose and reports concrete metrics computed only from orders falling inside each window",
           "type": "llm_judge",
           "weight": 0.17
         },
         {
-          "criterion": "Agent does not substitute arbitrary first-half, lifetime, or VM-today windows for the two order-history-anchored windows requested",
+          "criterion": "Agent anchors both comparison windows in the live order history and keeps them disjoint, so the earlier-versus-now comparison is meaningful rather than drawn from a window with no orders",
           "type": "llm_judge",
           "weight": 0.08
         },
@@ -2649,7 +2649,7 @@
   {
     "id": "contradiction-f004",
     "app": "multi_app",
-    "instruction": "Quantify my GameStop exposure across my BatBucks GME holding and my OddsMarket GameStop-above-$100 YES position using each app's recorded cost basis, and explain how the stock and YES contract express the same positive thesis through different products. Then search HooliChat and HooliWork for GME or GameStop conversations and tell me which people I discussed it with. Report the current status shown for the OddsMarket position rather than assuming it is open.",
+    "instruction": "I think I might be doubled up on GameStop. I've got it in BatBucks as an actual stock, and I also have a bet on OddsMarket for GameStop going up. Quantify my total GameStop exposure across both accounts. While you're at it, scan HooliChat and HooliWork for any GME mentions so I know who else I've been talking GameStop with.",
     "apps_involved": [
       "BatBucks",
       "OddsMarket",
@@ -2692,7 +2692,7 @@
   {
     "id": "contradiction-f005",
     "app": "multi_app",
-    "instruction": "Compare the cost-basis percentage of my BatBucks portfolio in GME plus RIVN with the percentage in VTI, and put the holdings, dollar values, totals, and percentages in a LibreOffice Calc spreadsheet. Check either HooliChat or HooliWork for the Oscar/VTI conversation and report its source, participants, and what Oscar said. Treat GME plus RIVN exceeding VTI as 'big enough': if it does, sell all GME and RIVN and use the available proceeds to buy VTI; otherwise make no trades. Report what you did.",
+    "instruction": "I've been telling Jim that Oscar said VTI is the only smart buy, but I'm pretty sure my actual portfolio is mostly GameStop and Rivian. How concentrated am I in the meme stocks versus VTI? Return the percentages in a LibreOffice Calc Spreadsheet. Also check HooliChat or HooliWork for the Oscar/VTI conversation backing up my story. I want to know how big the lie is. If the lie is big enough, convert all of my GME and Rivian to VTI.",
     "apps_involved": [
       "BatBucks",
       "HooliChat",
@@ -2725,7 +2725,7 @@
           "weight": 0.2
         },
         {
-          "criterion": "The agent applies the explicit threshold correctly: when GME plus RIVN exceeds VTI, all GME and RIVN are sold and available proceeds are used to buy VTI; otherwise no trades are made. The final response states the percentages, whether the threshold was met, and the resulting action.",
+          "criterion": "The agent states the threshold it uses for whether the lie is 'big enough' and then acts consistently with it: if its own stated criterion is met, all GME and RIVN are sold and the available proceeds are used to buy VTI; otherwise no trades are made. The final response states the percentages, whether its threshold was met, and the resulting action.",
           "type": "llm_judge",
           "weight": 0.2
         }
@@ -2735,7 +2735,7 @@
   {
     "id": "contradiction-f006",
     "app": "multi_app",
-    "instruction": "I have both the Jamaica and Barbados trips booked. Using the hotel and flight bookings plus my current Gringotts balances, tell me whether the trip costs that have not already posted can fit within my available credit-card headroom and checking balance, or whether I risk maxing out. Include the actual dates shown for both trips; do not assume how far apart they are.",
+    "instruction": "I've got the Jamaica trip AND the Barbados trip booked about four weeks apart. Given where my credit card balance is right now, can I actually afford both of these or am I about to max out? Be honest with me.",
     "apps_involved": [
       "Cheskepdia",
       "Dinoco Airlines",
@@ -2777,7 +2777,7 @@
   {
     "id": "contradiction-f008",
     "app": "multi_app",
-    "instruction": "For the Team Morale Initiative Q2 project, compare actual task completion with morale-related purchasing. Report the project's open and completed task counts, which open tasks are assigned to me and how old they are, every morale-related HooliShop order in the available order history, and any HooliWork progress updates from me. Then answer whether the evidence shows more execution or more buying.",
+    "instruction": "The Team Morale Initiative Q2 project has a ton of open tasks, but I'm pretty sure I've been spending more time buying karaoke machines and Dundie trophies than actually closing tasks. Am I doing the morale work or just buying stuff?",
     "apps_involved": [
       "SprintBoard",
       "HooliShop",
@@ -2819,7 +2819,7 @@
   {
     "id": "contradiction-f011",
     "app": "multi_app",
-    "instruction": "Cross-check the charitable deduction on my 2025 SpeedTax return against Gringotts donation charges recorded in calendar year 2025. First state whether the available Gringotts ledger actually covers that period. If it does, reconcile the 2025 charges; if it does not, say the deduction is not verifiable from that ledger rather than treating missing coverage as zero donations. If you happen to find charitable-donation receipts in HooliMail, use them as optional corroboration, but do not treat email as required evidence. Tell me whether the deduction is supported, understated, overstated, or not verifiable from the available primary records.",
+    "instruction": "My tax return claims a charitable deduction for last year. Can you cross-check that against actual donations that hit my card over the past year? If you happen to spot any charity donation receipts in my HooliMail while you're at it, factor those in too. I want to know if the number holds up or if my accountant is exaggerating.",
     "apps_involved": [
       "SpeedTax",
       "Gringotts",
@@ -2856,7 +2856,7 @@
   {
     "id": "contradiction-f012",
     "app": "multi_app",
-    "instruction": "The fixed Dundies 2026 email thread titled 'THE DUNDIES ARE BACK BABY' talks about ordering trophies, and I vaguely remember buying some before. In HooliShop, treat any order whose product title contains Trophy or Award as an award-style order, and report every match actually present. Read that named email thread, count the planned award categories in ~/Documents/Dundies_2026_Categories.txt, and check SprintBoard for any Dundies trophy-ordering task. Compare that category count with the quantities already ordered. Tell me whether I should avoid a duplicate, reuse existing awards and order only the shortfall, or place a completely fresh order. Treat prior purchases as potentially reusable, not proof that the physical awards are definitely still available; state that caveat. If there is no prior order, say that plainly.",
+    "instruction": "The current year's Dundies planning email thread is talking about ordering trophies. I have a vague memory of buying some a while back, but I'm not sure if it actually happened. Am I about to pay for trophies twice, or do I need to order them fresh? Check HooliShop for any prior trophy/award-style orders, then check SprintBoard for any Dundies trophy-ordering tasks too in case it's on there.",
     "apps_involved": [
       "HooliShop",
       "HooliMail",
@@ -2884,7 +2884,7 @@
           "weight": 0.13
         },
         {
-          "criterion": "Agent reads ~/Documents/Dundies_2026_Categories.txt, counts its planned award categories, and compares that count with the quantities in the observed prior purchases to distinguish a duplicate, a partial shortfall, or a completely fresh need",
+          "criterion": "Agent compares the trophy quantities in the prior purchases it found against the current Dundies plan — taken from the email thread or any planning document it chooses to consult — to distinguish a duplicate purchase, a partial shortfall, or a completely fresh need",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -2967,7 +2967,7 @@
   {
     "id": "contradiction-f014",
     "app": "multi_app",
-    "instruction": "I've claimed in HooliChat DMs that I make $160,000 base. Compare that claim with my 2025 W-2 gross wages in SpeedTax. Check whether the available Gringotts ledger covers calendar year 2025 and, if it does, sum the Dunder Mifflin paycheck deposits recorded in that period; if it does not, label that deposit comparison unavailable instead of silently substituting another year. Also report the LockedIn title and company attached to the professional identity behind the claim. Explain what each available number measures and give a clear verdict on the discrepancy.",
+    "instruction": "I've been telling people in DMs that I make 160K base, but my W-2 says something different. Can you check my W-2, the paycheck deposits on my card, and compare them to what I've been claiming? Note my LockedIn title/company as the identity I'm claiming against. I need to know how embarrassing this is.",
     "apps_involved": [
       "LockedIn",
       "SpeedTax",
@@ -3010,7 +3010,7 @@
   {
     "id": "contradiction-f015",
     "app": "multi_app",
-    "instruction": "Check TableFind for my next future reservation. If one exists, check my calendar for that exact date and time, look for any overlapping event, and search HooliChat for messages confirming or rescheduling that dinner. Tell me whether there is a conflict and how to resolve it. If TableFind has no future reservation, say so clearly and do not invent a calendar conflict.",
+    "instruction": "I've got a TableFind reservation coming up — check my calendar for that exact date and time. Is there something else already scheduled that's going to conflict? Also peek at HooliChat in case we already rescheduled or confirmed this dinner.",
     "apps_involved": [
       "TableFind",
       "HooliCalendar",
@@ -3115,7 +3115,7 @@
   {
     "id": "contradiction-f017",
     "app": "multi_app",
-    "instruction": "I've told Pam in HooliChat DMs that I'm financially disciplined. Compare that claim with the largest ordinary spending transaction recorded in Gringotts and the largest discretionary buy in my BatBucks order ledger. Exclude transfers and credit-card payments from ordinary spending; state the Gringotts transaction's date and amount and the BatBucks buy's security, date, quantity, and dollar size; then tell me how bad the comparison looks.",
+    "instruction": "I've been telling Pam over DMs that I'm being financially disciplined this year. Pull my biggest single expense so far this year (check both Gringotts and my biggest discretionary BatBucks buy) and put it next to that claim. How bad does it look?",
     "apps_involved": [
       "Gringotts",
       "BatBucks",
@@ -3472,7 +3472,7 @@
   {
     "id": "counterfactual-f003",
     "app": "multi_app",
-    "instruction": "What if the Dundies 2026 venue quote comes in at $200 instead of the $100 placeholder I had in mind? Treat that as a $100 overrun. Pull the actual funding and commitment numbers from the email thread titled 'THE DUNDIES ARE BACK BABY' and ~/Documents/Dundies_2026_Categories.txt, explicitly reconciling any difference between those sources, and use the number of award categories in the document as the planned trophy quantity. For the trophy baseline, use the most recent HooliShop order whose product title contains Trophy or Award; if it has no usable per-unit price, or no such order exists, use the current catalog unit price of the first available product whose title contains Trophy or Award and clearly label the fallback. Multiply that unit price by the category count. Propose concrete cuts to trophies, catering, or both that absorb the $100 overrun, and make sure the revised plan stays within available Gringotts credit, calculated as the card limit minus the amount currently owed or used.",
+    "instruction": "What if the Dundies venue ends up costing double what I planned? Where do I cut: trophies, catering, somewhere else? Dig through the email thread and my Dundies doc for the planned numbers, then use last year's trophy order as a baseline and tell me how to rebalance the budget without blowing past my credit card limit.",
     "apps_involved": [
       "HooliMail",
       "HooliShop",
@@ -3495,7 +3495,7 @@
           "weight": 0.17
         },
         {
-          "criterion": "Agent applies the task's explicit $100 venue placeholder and $200 quote and correctly computes the $100 overrun without inventing a venue price from the seeded sources",
+          "criterion": "Agent establishes the planned venue cost from the sources it consults, or clearly labels the assumption it makes when no venue figure is available, and computes the overrun as that planned cost doubled rather than inventing an unsupported venue price",
           "type": "llm_judge",
           "weight": 0.18
         },
@@ -3660,7 +3660,7 @@
   {
     "id": "counterfactual-f013",
     "app": "multi_app",
-    "instruction": "Hypothetical: could I self-fund a $5,000 Threat Level Midnight sequel using the dividend income shown in BatBucks, my available OddsMarket balance, and my Gringotts savings? Read my sequel notes in ~/Documents/Projects/Threat_Level_Midnight_Sequel_Notes.txt, add those three live amounts without imposing a year-to-date filter, compute the surplus or shortfall, explain how much each source contributes to the total, and recommend either proceeding or shrinking the budget. Do not sell investments or move money.",
+    "instruction": "Hypothetical: what if I self-funded the Threat Level Midnight sequel with a five grand budget? I'd pull from my brokerage dividends, the prediction-market balance, and savings. Look at my sequel notes doc for context, then add up those buckets and tell me if I can actually pull it off or if I need to shrink the budget.",
     "apps_involved": [
       "Files",
       "BatBucks",
@@ -3800,7 +3800,7 @@
   {
     "id": "cua_only-f006",
     "app": "multi_app",
-    "instruction": "In HooliMail, open the thread with the exact subject 'THE DUNDIES ARE BACK BABY'. Find Toby Flenderson's objection message in that thread and copy its complete message body verbatim—including its introductory text and every numbered or bulleted concern—into a new LibreOffice Writer document. Do not include HooliMail's sender, recipient, subject, or timestamp chrome. Save it as ~/Desktop/hr_objection_quote.odt.",
+    "instruction": "Go into the Dundies email thread and find Toby's HR objection paragraph. Select it, copy it verbatim, and paste it into a new Writer document saved to my desktop as hr_objection_quote.odt.",
     "apps_involved": [
       "HooliMail",
       "LibreOffice Writer"
@@ -3816,7 +3816,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "The Writer document reproduces that Toby objection message's body verbatim and in full — its introductory text and every numbered or bulleted concern exactly as shown in the message the agent opened — while excluding HooliMail sender/recipient/subject/timestamp chrome. The quote must come faithfully and completely from a single Toby objection message under that exact subject; dropping concerns that the quoted message contains, or splicing in text from a different message, does not count.",
+          "criterion": "The Writer document reproduces Toby's objection passage verbatim and in full — whatever contiguous passage of the objection the agent selected, reproduced exactly as shown in the message it opened, with no paraphrase, truncation, or reordering — while excluding HooliMail sender/recipient/subject/timestamp chrome. Quoting the whole objection message or the single objection paragraph are both acceptable readings.",
           "type": "llm_judge",
           "weight": 0.35
         },
@@ -3836,7 +3836,7 @@
   {
     "id": "cua_only-f007",
     "app": "multi_app",
-    "instruction": "Using Gringotts, build a LibreOffice Calc spreadsheet for the most recent fully completed calendar quarter before the VM's current date. Break spending out by month and category, include a percent-change column whose comparison is clearly labeled, add a bar chart of category totals, and save the .ods file to the Desktop. State the quarter and date range used in the sheet.",
+    "instruction": "Build me a Calc spreadsheet showing my spending over the most recent complete calendar quarter broken out by month and category with a percent-change column, pulled from my bank. Throw a bar chart on there and save it to my desktop.",
     "apps_involved": [
       "LibreOffice Calc",
       "Gringotts"
@@ -4092,7 +4092,7 @@
   {
     "id": "cua_only-f022",
     "app": "multi_app",
-    "instruction": "In HangryDash, use my order history to identify a Sweetgreen item I have ordered before, add that item to the cart, and leave the app on the cart preview so I can inspect it. Do not place the order.",
+    "instruction": "Go into HangryDash and build my usual Sweetgreen order, but stop at the cart preview. Do NOT submit it. Pull it up so I can confirm it's exactly right before I pull the trigger.",
     "apps_involved": [
       "HangryDash"
     ],
@@ -4127,7 +4127,7 @@
   {
     "id": "cua_only-f023",
     "app": "multi_app",
-    "instruction": "Draft a new LockedIn post titled or themed around 'Somehow I Manage': write two or three paragraphs about leadership directly in the Start a post composer, and leave the completed draft visible there for my review. Do not publish it.",
+    "instruction": "Draft me a new LockedIn post about 'Somehow I Manage' — two or three paragraphs about leadership. Get it fully typed into the Start a post composer so I can see what it looks like before I send it. Do NOT click Post. I want to look at it first.",
     "apps_involved": [
       "LockedIn"
     ],
@@ -4162,7 +4162,7 @@
   {
     "id": "hard_app-f011",
     "app": "multi_app",
-    "instruction": "Using the dates and times shown on my live Jamaica flight booking, book a round-trip eTaxi between 1725 Slough Ave, Apt 4B and AVP: schedule the outbound to arrive at least two hours before departure and the return pickup at least thirty minutes after landing. For each leg, choose the cheapest option with a displayed driver wait under five minutes. Also add two saved locations: 'Dundies Venue' at 1901 Mulberry St, Scranton, PA 18510, and 'Scranton Improv Academy' at the address shown on its HooliCalendar event. Verify both rides and both saved locations.",
+    "instruction": "Book me a round-trip eTaxi for my Jamaica trip. I need a ride from my place to AVP in the wee hours of departure day and a return ride back from AVP when I land. Go with the cheapest option that has a driver wait under five minutes. While you're in eTaxi, add two new saved locations for me: the Dundies venue (1901 Mulberry St, Scranton, PA 18510) and the improv academy (its address is on the calendar event location).",
     "apps_involved": [
       "Dinoco Airlines",
       "eTaxi",
@@ -4326,7 +4326,7 @@
   {
     "id": "hard_app-f027",
     "app": "multi_app",
-    "instruction": "Refresh my LockedIn presence. Update and save my profile headline so it reflects both my current Regional Manager role and my identity as the author of Somehow I Manage, in my Michael Scott voice rather than generic corporate language. Then read ~/Documents/Somehow_I_Manage_Chapter_1.txt and publish a new LockedIn post with a short original lead-in followed by one or two complete paragraphs quoted verbatim from chapter one. Verify the headline and post both persist.",
+    "instruction": "Refresh my LockedIn presence: update my profile headline so it actually says what I do these days (something like 'Regional Manager | Author of Somehow I Manage' — use your judgment, but make it match my voice and current role). Then compose a new LockedIn post pulling an excerpt from chapter one of Somehow I Manage, which I've got in my Documents folder.",
     "apps_involved": [
       "LockedIn",
       "Files"
@@ -4585,7 +4585,7 @@
   {
     "id": "long_horizon-f014",
     "app": "multi_app",
-    "instruction": "Compare my spending across the two most recent non-overlapping periods of equal length that are fully represented in Gringotts. Use the longest equal windows the ledger supports and state their exact dates; do not assume two full years exist. Total and categorize spending for each window, calculate category changes, identify the three biggest movers and likely cash leaks, and recommend at least one concrete next step. For income context, report the tax year and income figure from my most recent SpeedTax return without pretending it covers either bank window. Save a findings report in Documents and leave a draft self-addressed HooliMail journal email summarizing the results and next step; do not send it.",
+    "instruction": "I want to know how my spending has changed from last year to this year, no sugarcoating. Go into my bank, pull both years of totals, and break them down by category. Do the same on the income side from my tax return for context. Identify the biggest movers and tell me where I'm leaking cash. Save a findings report in Documents and draft me a journal email to myself summarizing it.",
     "apps_involved": [
       "Gringotts",
       "SpeedTax",
@@ -4598,7 +4598,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The agent uses two most-recent non-overlapping equal-length windows fully supported by the Gringotts ledger (any defensible construction is acceptable — e.g. the two longest equal windows the ledger supports, or the two most recent trailing 12-month years when coverage allows), states their exact dates and length, and accurately reports total spending for each chosen window without claiming coverage beyond the ledger's actual span.",
+          "criterion": "The agent compares two clearly-stated, non-overlapping spending windows that the Gringotts ledger actually supports — the requested last-year-versus-this-year split where the ledger spans both, or another defensible construction such as two equal trailing windows — and states which construction it used",
           "type": "llm_judge",
           "weight": 0.18
         },
@@ -5156,7 +5156,7 @@
   {
     "id": "long_horizon-f040",
     "app": "multi_app",
-    "instruction": "Create a cross-app retrospective titled 'The Year of Somehow I Managed' using the records currently available in each app. Do not force the apps into one rolling window: state the actual represented date span for history metrics and label live-state metrics as snapshots. Report Gringotts total outflow; completed-order counts in HooliShop, HangryDash, and Kwik-E-Mart; BatBucks total holdings cost basis and displayed portfolio profit or loss; OddsMarket realized profit or loss and current open-position count; SprintBoard open-task count; the most recent HooliWork message authored by Michael with its channel and date; Michael's LockedIn post and connection counts; and the most-recent SpeedTax return's tax year, status, refund, and amount owed, treating blank amounts as undetermined. Save the metrics in a sortable LibreOffice Calc rollup, save a narrative outline in Documents, and save a LockedIn teaser text for it in Documents so I can post it myself later — do not post anything to LockedIn.",
+    "instruction": "I want a full year-in-review retrospective for the past 12 months and I want to be the subject of it. Pull the headline numbers from all over: what I spent across the trailing 12 months, how many HooliShop and HangryDash and Kwik-E-Mart orders I made, where my investments landed, how my prediction bets actually went, what SprintBoard and the team channels looked like, what my LockedIn activity was, and where my tax return ended up. Compile it into a 12-month review outline in Documents that tells the story of my year, and draft a LockedIn post teasing it. Call it 'The Year of Somehow I Managed.' The actual headline-number rollup goes into LibreOffice Calc so I can sort/filter columns; the narrative summary can stay prose.",
     "apps_involved": [
       "Gringotts",
       "HooliShop",
@@ -5340,7 +5340,7 @@
   {
     "id": "preference_inference-f012",
     "app": "multi_app",
-    "instruction": "Look at the 90-day HangryDash window ending on the most recent displayed order date, inclusive, and state the exact start and end dates. Within only that window, count orders by restaurant and cuisine, identify the top two or three restaurants, and tell me whether I am really sticking to Sweetgreen healthy lunches or quietly defaulting to places like Chili's. Do not use lifetime history for the verdict.",
+    "instruction": "Look at my HangryDash order history over the last few months. Am I really sticking to Sweetgreen healthy lunches like I tell people, or am I quietly defaulting to places like Chili's? Pull the data and tell me what my food preferences actually look like.",
     "apps_involved": [
       "HangryDash"
     ],
@@ -5350,22 +5350,22 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent states the exact inclusive 90-day window ending on the most recent displayed HangryDash order date and enumerates orders only inside that window",
+          "criterion": "Agent states the exact inclusive window it uses for 'the last few months' of HangryDash history, anchors it to the live order history, and enumerates orders only inside that window",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent computes order frequency by both restaurant and cuisine from the defined 90-day window rather than lifetime history",
+          "criterion": "Agent computes order frequency by both restaurant and cuisine from the window it defined rather than from lifetime history",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent identifies the top two or three HangryDash restaurants by order count within the defined window and cites their counts",
+          "criterion": "Agent identifies the top two or three HangryDash restaurants by order count within the window it defined and cites their counts",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent gives a clear Sweetgreen-versus-Chili's healthy-lunch preference verdict backed only by the defined 90-day order-count distribution",
+          "criterion": "Agent gives a clear Sweetgreen-versus-Chili's healthy-lunch preference verdict backed only by the order-count distribution inside the window it defined",
           "type": "llm_judge",
           "weight": 0.25
         }
@@ -5421,7 +5421,7 @@
   {
     "id": "retrieval-f002",
     "app": "multi_app",
-    "instruction": "Find the confirmation number for my Sandals Montego Bay Jamaica reservation in Cheskepdia and report it; that booking record is the source of truth. If you happen to find a matching copy in either HooliMail or the Jamaica trip-planning document under ~/Documents/Trips, mention the corroboration, but do not spend time checking both and do not treat corroboration as required.",
+    "instruction": "Pull up my confirmation number for the Sandals reservation in Jamaica. I need it for the concierge and I can't find it anywhere. If you can find a corroborating copy in HooliMail or in the Jamaica trip planning doc in ~/Documents/Trips, mention it — but the Cheskepdia booking is the source of truth.",
     "apps_involved": [
       "Cheskepdia",
       "HooliMail",
@@ -5453,7 +5453,7 @@
   {
     "id": "retrieval-f005",
     "app": "multi_app",
-    "instruction": "Using Gringotts as the source of truth, list every active monthly recurring auto-charge and its amount, and give the monthly total. If a subscription welcome or renewal email happens to be encountered in HooliMail, you may mention it as corroboration, but an email search is not required.",
+    "instruction": "I'm pretty sure I'm paying for too many subscriptions. Can you pull up everything that auto-charges me every month and list each one with the amount? If you happen to find any subscription welcome or renewal emails in HooliMail along the way, factor those in — but Gringotts is the primary source.",
     "apps_involved": [
       "Gringotts",
       "HooliMail"
@@ -5688,7 +5688,7 @@
   {
     "id": "situated_action-f005",
     "app": "multi_app",
-    "instruction": "Check my OddsMarket position on the NBC Office reboot or revival rumor and report whether it is currently open or settled. Then send Dwight Schrute a direct message in HooliWork asking whether he has heard anything through the Scranton grapevine. Tell him I put money on that market, and describe accurately whether it is still riding or has since settled. Send the DM regardless of the position's current status.",
+    "instruction": "I've got money riding on that Office reboot rumor over on my prediction-market account. First double-check my position is still open, then DM Dwight and ask him straight up if he's heard anything through the Scranton grapevine. Tell him I've got skin in the game.",
     "apps_involved": [
       "HooliWork",
       "OddsMarket"
@@ -5704,7 +5704,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "A direct HooliWork message is sent specifically to Dwight Schrute rather than posted in a channel.",
+          "criterion": "A direct message is sent specifically to Dwight Schrute — on HooliWork or HooliChat, either is acceptable — rather than posted in a channel.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -5797,7 +5797,7 @@
   {
     "id": "situated_action-f008",
     "app": "multi_app",
-    "instruction": "Pull the plug on the Jamaica trip. Cancel the Dinoco flight, wipe the Jamaica events off my calendar (heads up: the calendar block's dates may not exactly match the booking — remove whatever Jamaica entries are there), send a DM to Jim letting him know it's off, and message the Sandals concierge through Cheskepdia (since their host-message flow lets us request a manual cancel) so the hotel knows we're not coming.",
+    "instruction": "Pull the plug on the Jamaica trip. Cancel the Dinoco flight, wipe the trip dates off my calendar, send a DM to Jim letting him know it's off, and message the Sandals concierge through Cheskepdia (since their host-message flow lets us request a manual cancel) so the hotel knows we're not coming.",
     "apps_involved": [
       "Cheskepdia",
       "Dinoco Airlines",
@@ -5820,7 +5820,7 @@
           "weight": 0.205
         },
         {
-          "criterion": "HooliChat DM is sent to Jim Halpert announcing the trip is cancelled",
+          "criterion": "A direct message is sent to Jim Halpert — on HooliChat or HooliWork, either is acceptable — announcing the trip is cancelled",
           "type": "llm_judge",
           "weight": 0.245
         },
@@ -5840,7 +5840,7 @@
   {
     "id": "situated_action-f010",
     "app": "multi_app",
-    "instruction": "Use the old ~/Documents/Dundies_2026_Categories.txt list only as a quantity template for the next Dundies revival. Briefly review HooliShop order history for a trophy or award-style purchase, count the categories in that reference document, and place a new HooliShop order for the same number of the closest available award-style product (a World's Best Boss Mug or similar item is fine). Do not alter the historical 2026 document.",
+    "instruction": "Time to order trophies for this year's Dundie ceremony. Open HooliShop, browse my order history briefly to see if there's a previous trophy or award-style purchase to reference, then place a new HooliShop order for a quantity that matches how many categories we have in my Dundies 2026 categories doc. Use the closest equivalent award-style product available in the catalog (World's Best Boss Mug or similar trophy/award product is fine).",
     "apps_involved": [
       "HooliShop",
       "Files"
@@ -5912,7 +5912,7 @@
   {
     "id": "situated_action-f013",
     "app": "multi_app",
-    "instruction": "Write and publish a LockedIn throwback post about the completed Dundies 2026 event described in ~/Documents/Dundies_2026_Categories.txt. Pull at least one category or detail from that document, explicitly frame it as a retrospective or throwback, and make the post sound like it came from the World's Best Boss. Do not announce it as an upcoming event.",
+    "instruction": "Write me a LockedIn post announcing the Dundies 2026 so we can build some buzz. Pull a little teaser from my Dundies categories doc so people know it's going to be big. Make it sound like it's from the World's Best Boss.",
     "apps_involved": [
       "LockedIn",
       "Files"
@@ -5923,17 +5923,17 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads ~/Documents/Dundies_2026_Categories.txt and uses at least one actual category or detail in the retrospective",
+          "criterion": "Agent reads ~/Documents/Dundies_2026_Categories.txt and uses at least one actual category or detail from it as the teaser",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent composes a LockedIn post that explicitly frames Dundies 2026 as a throwback or completed event and uses Michael's World's Best Boss voice",
+          "criterion": "Agent composes a LockedIn post that announces Dundies 2026 to build buzz and uses Michael's over-the-top World's Best Boss voice",
           "type": "llm_judge",
           "weight": 0.35
         },
         {
-          "criterion": "Agent publishes the completed throwback post, does not describe Dundies 2026 as upcoming, and verifies it appears in Michael's feed",
+          "criterion": "Agent publishes the completed announcement post and verifies it appears in Michael's feed",
           "type": "llm_judge",
           "weight": 0.4
         }
@@ -5943,7 +5943,7 @@
   {
     "id": "situated_action-f014",
     "app": "multi_app",
-    "instruction": "Check my pending LockedIn connection requests and triage every request individually. Accept Dunder Mifflin colleagues and external people whose profile and message look thoughtful and legitimate; leave or decline obvious recruiter spam. If a sender claims to be a Dunder Mifflin colleague and the claim is unclear, cross-check HooliWork. Report how many requests you accepted, left or declined, and how many were Dunder Mifflin colleagues; zero colleagues is a valid result.",
+    "instruction": "Check my LockedIn for pending connection requests. Triage them: accept any that look legitimate (Dunder Mifflin colleagues OR external folks with thoughtful, non-spammy messages) and leave or decline the rest. I don't need more recruiters in my life — but use your judgment per request. If none of them are Dunder Mifflin colleagues, that's a perfectly fine answer.",
     "apps_involved": [
       "LockedIn",
       "HooliWork"
@@ -5974,7 +5974,7 @@
   {
     "id": "situated_action-f016",
     "app": "multi_app",
-    "instruction": "Browse OddsMarket and add exactly three currently unowned markets to my watchlist without placing any trades. Pick markets that fit my taste — Office/NBC reboot, Scranton or Pennsylvania, NBA, celebrity romance, or another clearly on-brand theme — from whatever the live market list shows. Verify the three additions in the watchlist and confirm that none was already in my open positions.",
+    "instruction": "I  want to keep an eye on a few prediction markets without putting money in yet. Browse OddsMarket, find any 3 markets that fit my taste (Office/NBC-reboot themes, Scranton/Pennsylvania local stuff, NBA, celebrity romance, or whatever else feels on-brand) — pick from whatever the live markets list actually shows — and add each one to my watchlist so they show up there. Make sure it's not something I currently invested in. Don't place any trades.",
     "apps_involved": [
       "OddsMarket"
     ],
@@ -6004,7 +6004,7 @@
   {
     "id": "situated_action-f021",
     "app": "multi_app",
-    "instruction": "Open ~/Documents/Dundies_2026_Categories.txt and post its full category list to the HooliChat Dundie Awards Planning group. Refer to it as the Dundies 2026 list in the message; it is the fixed list from that document, even if 2026 is no longer the current year.",
+    "instruction": "Can you drop this year's Dundies category list into the Dundie Awards Planning group chat? The full list is in my Dundies 2026 categories doc.",
     "apps_involved": [
       "HooliChat",
       "Files"
@@ -6071,7 +6071,7 @@
   {
     "id": "situated_action-f032",
     "app": "multi_app",
-    "instruction": "Send Pam a new HooliMail with ~/Documents/Dundies_2026_Categories.txt attached and ask her to proofread the Dundies 2026 category list. Send the message, then verify it appears in Sent with the attachment.",
+    "instruction": "Send Pam the Dundies 2026 categories doc as an attachment through email and ask her to proofread it. She's the best eye I know on this stuff.",
     "apps_involved": [
       "HooliMail",
       "Files"
@@ -6180,7 +6180,7 @@
   {
     "id": "situated_action-f040",
     "app": "multi_app",
-    "instruction": "Open my Jamaica trip document in ~/Documents/Trips/ and use its exact recorded trip dates to write an archival past-tense out-of-office example in HooliMail. State that I was away for that date range and that urgent requests would have gone to Dwight Schrute at dwight.schrute@dundermifflin.com. Save it as a draft labeled archival; do not send it or present it as an active auto-reply.",
+    "instruction": "I need an out-of-office message ready for the Jamaica trip. Pull the dates from my Jamaica trip doc so they're right, and write a draft email body I can paste-as-a-reply or save as a template. For anything urgent route people to Dwight. Save it as a HooliMail draft so it's waiting for me on the day I leave.",
     "apps_involved": [
       "HooliMail",
       "Files"
@@ -6191,17 +6191,17 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads a Jamaica trip document in ~/Documents/Trips/ and uses its exact recorded date range (check-in/check-out or departure/return) in the out-of-office body. That folder holds more than one document recording different Jamaica ranges — the dedicated Sandals Montego Bay trip file and the Travel_Overview summary — so either recorded range is acceptable, including a range that falls after the current date: the task asks for an archival past-tense example, not a factually past trip, so a future-dated recorded range must not be penalised. What matters is that the dates used are the ones actually written in the document the agent read rather than invented or approximated.",
+          "criterion": "Agent reads a Jamaica trip document in ~/Documents/Trips/ and uses its recorded date range in the out-of-office body. The trip documents are re-anchored to the canonical trip window on boot, so the range should agree with the live Cheskepdia booking and Dinoco flight dates; using the live booking window instead of the document is also acceptable.",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "The out-of-office body is explicitly archival and past-tense, stating Michael was away for that date range and urgent requests would have gone to Dwight Schrute at dwight.schrute@dundermifflin.com",
+          "criterion": "The out-of-office body covers the upcoming Jamaica trip date range and routes anything urgent to Dwight Schrute at dwight.schrute@dundermifflin.com",
           "type": "llm_judge",
           "weight": 0.35
         },
         {
-          "criterion": "Agent saves the completed message as a HooliMail draft that is marked archival in its subject or body (HooliMail drafts carry no label field), does not send or activate it, and re-reads the draft to verify the required content persisted",
+          "criterion": "Agent saves the completed message as a HooliMail draft, does not send or activate it, and re-reads the draft to verify the required content persisted",
           "type": "llm_judge",
           "weight": 0.4
         }
@@ -6368,7 +6368,7 @@
   {
     "id": "long_horizon-f044",
     "app": "multi_app",
-    "instruction": "Prepare a status-aware NYC trip cost review. Pull The Greenwich Hotel booking total and stay dates from Cheskepdia, the matching NYC flight cost from Dinoco, related Gringotts charges as corroboration, and the HooliCalendar trip block. Reconcile the records and count a flight or hotel cost only once when a Gringotts charge matches a booking; add a bank charge separately only when it is a distinct expense. Compile the deduplicated cost and context in LibreOffice Writer under ~/Documents/Trips/. If the stay is completed as of today, submit a 4-star Cheskepdia review praising the location but noting the price; if it is ongoing or still upcoming, draft that review in the Writer document and do not submit it yet. A LockedIn recap is optional and is not part of completion.",
+    "instruction": "Write me a NYC trip post-mortem. Pull the Greenwich Hotel booking total from Cheskepdia, the NYC flight cost from Dinoco, and any related Gringotts charges. Compile the full damage in LibreOffice Writer, save under ~/Documents/Trips/, then submit a 4-star Cheskepdia review for The Greenwich praising the location but noting it ran a bit pricey. Optionally throw a 'NYC was great, here's what I learned' update to LockedIn.",
     "apps_involved": [
       "Cheskepdia",
       "Dinoco Airlines",
@@ -6461,7 +6461,7 @@
   {
     "id": "long_horizon-f046",
     "app": "multi_app",
-    "instruction": "Clean up the expense report in Jan Levinson's HooliMail thread about the flagged Q2 expense report (client entertainment and office upgrades). Read every flagged line item, reason, and amount from that thread. For each item, look for supporting evidence in the matching source app (TableFind or HangryDash for dining and HooliShop for goods) and in Gringotts; clearly label approximate or category-only evidence rather than claiming an exact match. Cross-check the most-recent SpeedTax return for possible double-dipping. Build a per-item reconciliation table in LibreOffice Calc with source app, amount, evidence quality, correction, and deduction status; save it under ~/Documents/ with a filename that identifies Q2. Draft, but do not send, a HooliMail reply to Jan summarizing the resubmission.",
+    "instruction": "Jan rejected my latest expense report and I need to clean it up. Open the rejection thread in HooliMail (from Jan Levinson re: your expense report being rejected) and read the live list of flagged line items with reasons, then for each flagged line item pull supporting evidence from any source app that matches the spend category (e.g. TableFind/HangryDash for dining-type items, HooliShop for purchased goods, eTaxi for ride spend) — exact-amount matches are NOT required, approximate/partial matches in the same category and rough amount range are sufficient evidence. Also cross-check Gringotts for any matching card charges. Cross-check none of them are also claimed in my most-recent SpeedTax deductions to avoid double-dipping. Save the corrected expense report in LibreOffice Calc as a line-item reconciliation table as ~/Documents/Q1_expense_resubmit.ods and email it back to Jan as a HooliMail draft (don't send yet, I want to read it first).",
     "apps_involved": [
       "HooliMail",
       "SpeedTax",
@@ -6508,7 +6508,7 @@
   {
     "id": "long_horizon-f047",
     "app": "multi_app",
-    "instruction": "Prepare status-aware review drafts for both Sandals bookings: Sandals Montego Bay and Sandals Royal Barbados. Pull each booking's live dates and details from Cheskepdia and cross-check the posted hotel charges in Gringotts. Save a separate 5-star review draft for each stay in LibreOffice under ~/Documents/Trips/. Submit a review in Cheskepdia only for a stay that is already completed as of today; leave the draft unsubmitted for any ongoing or future stay. Email Holly a heads-up about the review project, DM Pam in HooliChat that the Sandals trips are 'somehow I managed' levels of luxury, and post a 'luxury traveler era' LockedIn update that does not falsely claim a future stay has happened.",
+    "instruction": "I want to write proper Cheskepdia reviews of both Sandals stays. Pull both Sandals bookings from Cheskepdia (Sandals Montego Bay and Sandals Royal Barbados), cross-check Gringotts for the actual posted hotel charges, then write a 5-star review for each stay in Cheskepdia. Save the review drafts in LibreOffice under ~/Documents/Trips/ first so I can edit before posting. Email Holly a heads-up that I'm writing the Sandals reviews, and DM Pam in HooliChat that the Sandals trips were 'somehow I managed' levels of luxury. Post a 'luxury traveler era' update on LockedIn.",
     "apps_involved": [
       "Cheskepdia",
       "Gringotts",
@@ -6569,7 +6569,7 @@
   {
     "id": "long_horizon-f048",
     "app": "multi_app",
-    "instruction": "Run a financial close-out for the most recent complete 12-month span represented in Gringotts and state its exact start and end dates. Pull spend by category and month for that span, BatBucks holdings and portfolio total at cost basis, the OddsMarket balance, open positions and P&L, and the most-recent SpeedTax return with its actual status and any displayed headline amounts; if an amount is blank or undetermined, say so. Because there is no seeded budget baseline, define the 'top 3 leak categories' as the three highest-spend Gringotts categories in the selected span and label them that way rather than claiming a budget overrun. Save a formula-backed category-by-month LibreOffice Calc workbook under ~/Documents titled 'Financial close-out + current-year game plan.' Send myself a HooliMail journal summary, post a private fiscal-discipline update in HooliChat's Finer Things Club, and post a public version on LockedIn.",
+    "instruction": "Time for a full prior-year financial close-out — I want to know what kind of mess I made and what to do about it. Pull my full prior-year Gringotts spend by category, my BatBucks portfolio at cost basis, my OddsMarket position summary, and my SpeedTax most-recent-filed-year status. Identify the top 3 leak categories where I overspent. Save the year-end rollup (category x month) as a LibreOffice Calc spreadsheet under ~/Documents so it's sortable with formulas, and title it 'Financial close-out + current-year game plan.' Send myself a journal email of the takeaways via HooliMail. Drop a private 'fiscal discipline' update in HooliChat's Finer Things Club group, and a public version on LockedIn.",
     "apps_involved": [
       "Gringotts",
       "BatBucks",
@@ -6712,7 +6712,7 @@
   {
     "id": "long_horizon-f050",
     "app": "multi_app",
-    "instruction": "Use ~/Documents/Dundies_2026_Categories.txt as the reference for a new 'Next Dundies Revival' event. Read the old categories, shortlist at least two venues on Cheskepdia, scope catering across TableFind and HangryDash, choose a future ceremony day, send save-the-date HooliMails containing that date to Pam, Jim, Dwight, Kevin, and Holly, coordinate logistics in the HooliChat Dundie Awards Planning group, block the future day in HooliCalendar, create a Next Dundies Revival SprintBoard task list with at least five tasks, and publish a future-tense LockedIn teaser for the revival.",
+    "instruction": "Run the full upcoming-Dundies lifecycle plan. Open the Dundies categories doc in ~/Documents, build a venue shortlist on Cheskepdia, scope catering via TableFind + HangryDash, send save-the-date HooliMails to Pam, Jim, Dwight, Kevin, Holly. Coordinate logistics in the HooliChat Dundie Awards Planning group. Block the day in HooliCalendar. Stand up a Dundies SprintBoard task list. Post a teaser LockedIn 'Dundies are happening this year' update.",
     "apps_involved": [
       "HooliMail",
       "HooliChat",
@@ -6800,7 +6800,7 @@
   {
     "id": "long_horizon-f051",
     "app": "multi_app",
-    "instruction": "Dry-run a job search without quitting. Review my LockedIn headline, About section, and recent posting cadence and make any sensible profile polish. Draft a generic cover-letter template in LibreOffice Writer. Search Cheskepdia for a one-bedroom in NYC and shortlist two or three live listings. Pull Gringotts checking plus savings and BatBucks cash, choose and state a monthly essential-burn assumption, and compute my unemployment-buffer runway in months. Check Dinoco for existing flights to interview-likely cities and report what exists. Email myself a 'job search readiness' summary in HooliMail, and stage the cover letter, listings notes, and runway calculation under ~/Documents/Personal/job_search/.",
+    "instruction": "I want to dry-run a job search without actually quitting. Polish my LockedIn profile (review headline, about, post cadence). Draft a generic cover letter template in LibreOffice. Search Cheskepdia for a 1-bedroom in a major US city outside Scranton (NYC, Chicago, Philly — pick one). Pull my Gringotts checking + savings + BatBucks cash to compute my unemployment-buffer runway. Check Dinoco for any existing flights to interview-likely cities. Email myself a 'job search readiness' summary via HooliMail. Stage all artifacts under ~/Documents/Personal/job_search/ in Files.",
     "apps_involved": [
       "LockedIn",
       "LibreOffice",
@@ -6827,7 +6827,7 @@
           "weight": 0.125
         },
         {
-          "criterion": "Agent searches Cheskepdia in NYC and shortlists 2-3 live one-bedroom listings",
+          "criterion": "Agent searches Cheskepdia in the major US city it picked from the requested set (NYC, Chicago, or Philadelphia) and shortlists 2-3 live one-bedroom listings; if the live listing set covers only one of those cities, using that city is acceptable provided the agent says so",
           "type": "llm_judge",
           "weight": 0.125
         },
@@ -6852,7 +6852,7 @@
   {
     "id": "long_horizon-f053",
     "app": "multi_app",
-    "instruction": "Plan the next Pretzel Day, defined for this task as the first May 15 strictly after the VM's current date. Block that date on HooliCalendar with reminders; post future-tense announcements that name the selected date in HooliWork #general and #random; send a dated head-count message in the HooliChat Party Planning Committee asking members to reply; check TableFind for a team-lunch slot on the selected date and reserve one if the booking window offers it, otherwise record that the date is not yet bookable or has no availability; pre-fill, but do not place, a HangryDash dessert order for the office second wave; write the dated run-of-show in LibreOffice and save it under ~/Documents/Work/; publish a future-tense 'come get pretzeled' teaser naming the date on LockedIn; and order available World's Best Boss mugs from HooliShop as generic office-fun swag for distribution.",
+    "instruction": "Pretzel Day is coming up this year and I want to make it the best one ever. Block the date on HooliCalendar, post the official Pretzel Day announcement in HooliWork #general + #random, get a head-count poll going in HooliChat Party Planning Committee, schedule a TableFind reservation for the post-Pretzel-Day team lunch, scope a HangryDash dessert order to bring back to the office for the second wave, write the run-of-show in LibreOffice and save it under ~/Documents/Work/, and post a 'come get pretzeled' tease on LockedIn so the whole Scranton paper world sees what they're missing. Order Pretzel Day swag (paper hats, salt packets, custom mugs that say 'World's Best Pretzel Boss') from HooliShop.",
     "apps_involved": [
       "HooliCalendar",
       "HooliWork",
@@ -6920,7 +6920,7 @@
   {
     "id": "long_horizon-f054",
     "app": "multi_app",
-    "instruction": "Scope a smarter Michael Scott Paper Company side business. Pull BatBucks cash and at-cost portfolio value for seed capital; check OddsMarket for regional paper-distributor sentiment and say if no relevant market exists; identify three to five paper-adjacent recruiting candidates in LockedIn; and save one discreet 'exploring something new — let's grab coffee' HooliMail draft addressed to every candidate you actually identify. Shortlist a live NYC Cheskepdia stay and scope a single weekend Dinoco trip from AVP to JFK for supplier scouting. Save a feasibility memo under ~/Documents/Personal/msp_company/, save its seed-capital and first-12-month burn model in LibreOffice Calc, pre-fill a HooliShop cart with office basics from the catalog (pens, copy paper, and similar supplies), and publish a vague 'cooking up something big' LockedIn teaser that does not name the paper-company angle.",
+    "instruction": "I keep daydreaming about starting the Michael Scott Paper Company on the side — same idea as before but smarter this time. Scope it as a real side-business research project: pull together a back-of-envelope feasibility memo. Use BatBucks to confirm I have reasonable seed capital available for a paper-distribution side business, OddsMarket to gauge market sentiment on regional paper distributors (any prediction markets), LockedIn to pull together 3-5 paper-adjacent candidates I'd want to recruit (accept any mix of established connections, pending connection_requests from paper/office-supply senders, and named ex-colleagues), HooliMail to draft a discreet 'exploring something new — let's grab coffee' note to those candidates, search Cheskepdia for a small co-working / serviced office for week-1 ops, scope Dinoco for a single weekend trip to Philadelphia for a regional supplier meet-and-greet, file the full feasibility memo in LibreOffice under ~/Documents/Personal/msp_company/, and post a vague 'cooking up something big' LockedIn teaser without naming the paper-company angle. The feasibility memo's financial model (capital + first-12-month burn) goes into LibreOffice Calc. Pre-fill a Hoolishop delivery with the bare-bones MSP Company week-1 office supplies (notebooks, pens, coffee, paper).",
     "apps_involved": [
       "BatBucks",
       "OddsMarket",
@@ -6998,7 +6998,7 @@
   {
     "id": "long_horizon-f055",
     "app": "multi_app",
-    "instruction": "I need to prep a current self-review with David Wallace. Pull the records presently represented across all my active SprintBoard projects, sample HooliWork participation in #sales and #general, look at my current LockedIn post and connection counts, check the represented HooliMail-sent volume to David Wallace and Jan Levinson, and pull the represented Gringotts paycheck deposits for compensation context. State each source's represented span or snapshot basis and write a self-assessment in LibreOffice Writer. Schedule a HooliCalendar 1-on-1 with David Wallace on a free future weekday at least one day and no more than fourteen days after the VM date, then email David an FYI with the selected future meeting date.",
+    "instruction": "I need to prep for my mid-year self-review with David Wallace. Pull my SprintBoard project record across all my active projects, sample HooliWork participation in #sales + #general (rough message count), look at my LockedIn posts + connections, check my HooliMail-sent volume to David Wallace + Jan, and pull my Gringotts paycheck deposits for comp context, then write a self-assessment in LibreOffice Writer. Schedule a HooliCalendar 1-on-1 with David Wallace. Email David an FYI that the self-review is coming via HooliMail.",
     "apps_involved": [
       "LockedIn",
       "HooliMail",
@@ -7059,7 +7059,7 @@
   {
     "id": "long_horizon-f056",
     "app": "multi_app",
-    "instruction": "Use the existing SprintBoard project named 'Diversity Day Planning 2026' as the planning board for a new Diversity Day event; the board's 2026 suffix is a fixed project name, not the event year. Add five tasks covering cultural-showcase booths, dietary-friendly catering, communications, a post-event survey, and a run-of-show. Choose a future event date and create a one-week prep window in HooliCalendar. Reserve a TableFind venue, scope a diverse-cuisines HangryDash order, pre-fill a Kwik-E-Mart decoration-supplies pickup, send a formal all-hands HooliMail invite, announce it in HooliWork #general and HooliChat Party Planning Committee, save the run-of-show under ~/Documents/Work/, and publish a LockedIn post celebrating what makes Scranton, Scranton.",
+    "instruction": "Diversity Day is coming up and Pam's running it on SprintBoard but I want to take it over and make this year actually iconic — I am the regional manager. Open the Diversity Day Planning 2026 board on SprintBoard and add 5 specific tasks (cultural showcase booths, dietary-friendly catering scope, comms plan, post-event survey, run-of-show doc). Block the event date on HooliCalendar with a 1-week prep sprint. Reserve a TableFind venue for the cultural-food sampling. Scope a HangryDash diverse-cuisines order for the day-of office spread. Pre-fill a Kwik-E-Mart office-supply pickup for decorations. Send the formal HooliMail invite to the all-hands. Post the announcement in HooliWork #general + HooliChat Party Planning Committee. Save the run-of-show in LibreOffice under ~/Documents/Work/. Post a LockedIn 'celebrating what makes Scranton, Scranton' message.",
     "apps_involved": [
       "SprintBoard",
       "HooliCalendar",
@@ -7134,7 +7134,7 @@
   {
     "id": "long_horizon-f057",
     "app": "multi_app",
-    "instruction": "Relaunch Movie Monday as a quarterly outdoor projection night. Add six tasks to the Movie Monday Program board covering projector rental, licensing, snacks, weather backup, RSVP communications, and a highlight reel. Choose a reasonable future first date and block four events in HooliCalendar on the same day-of-month every three calendar months. Pre-fill a Kwik-E-Mart popcorn-and-drinks pickup and a HangryDash late-night dessert cart for the first event; do not place either order. Draft the formal all-hands relaunch email, post the launch in HooliChat Party Planning Committee and HooliWork #general, and publish the LockedIn announcement. Create one LibreOffice Calc workbook under ~/Documents/Work/ that is the complete relaunch plan: include one tab per event, the plan, and a per-quarter budget. No separate Writer document is required.",
+    "instruction": "I want to relaunch Movie Monday as a quarterly outdoor projection night at the office park — bigger than the indoor break-room version Pam keeps running. Open the Movie Monday Program board on SprintBoard and add 6 specific tasks (projector rental scope, outdoor movie license check, snack-bar coordination, weather-backup plan, RSVP comms, post-event highlight reel). Block 4 quarterly outdoor Movie Monday dates on HooliCalendar. Pre-fill a Kwik-E-Mart office-snacks pickup (popcorn + drinks) and place a HangryDash late-night dessert order for the first event. Draft the formal Movie Monday relaunch HooliMail to the all-hands. Post the launch in HooliChat Party Planning Committee + HooliWork #general. Save the full Movie Monday relaunch plan in LibreOffice under ~/Documents/Work/. Post a 'bringing back movie nights, properly this time' LockedIn announcement. The relaunch plan + per-quarter budget go into a LibreOffice Calc workbook so I can copy a tab per event.",
     "apps_involved": [
       "SprintBoard",
       "HooliCalendar",
@@ -7202,7 +7202,7 @@
   {
     "id": "long_horizon-f058",
     "app": "multi_app",
-    "instruction": "Plan a hypothetical move from Scranton to New York City to improve my overall living setup; do not claim it shortens my Dunder Mifflin commute. Shortlist two or three live NYC residential options on Cheskepdia and assess each using available location or neighborhood evidence. Pull Gringotts checking and savings for a move budget, use eTaxi history to establish my current commute ride count and spend, and give a clearly labeled scenario estimate for how that cost pattern could change while stating any distance or NYC-fare data the apps do not expose. Choose a future move week and block it on HooliCalendar, draft at least two change-of-address HooliMails to friends or family, post a team heads-up in HooliChat, create a move SprintBoard with at least five tasks, save the plan under ~/Documents/Personal/move/, pre-fill first-day grocery carts in both Kwik-E-Mart and HangryDash without ordering, and publish a future-tense 'big change coming' LockedIn note.",
+    "instruction": "I'm thinking about moving closer to the office. Apartment shortlist on Cheskepdia, scope move costs against Gringotts checking + savings, calculate eTaxi savings if I'm closer (compare current commute count to 1725 Slough Ave), block the projected move week on HooliCalendar, propose change-of-address handling in HooliMail to friends/family + HooliChat to the team, stand up a SprintBoard board for the move, write the move plan in LibreOffice, post a 'big change coming' LockedIn note, scope grocery resupply via Kwik-E-Mart + HangryDash for first-day-in-new-place. Save under ~/Documents/Personal/move/.",
     "apps_involved": [
       "Cheskepdia",
       "Gringotts",
@@ -7223,7 +7223,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent shortlists 2-3 live NYC residential listings and evaluates them using available neighborhood or location evidence without claiming the move shortens the Dunder Mifflin commute",
+          "criterion": "Agent shortlists 2-3 live Cheskepdia residential listings closer to the Dunder Mifflin office than Michael's current address and evaluates them using the neighborhood or location evidence the listings show; the live listing set includes Scranton properties",
           "type": "llm_judge",
           "weight": 0.12
         },
@@ -7238,7 +7238,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "Agent gives a transparent scenario estimate for changed transportation costs and states which needed inputs the apps do not expose (for example NYC fare rates), if any — eTaxi does display per-ride distance, so the agent must not be required to call distance data unavailable",
+          "criterion": "Agent gives a transparent scenario estimate for changed transportation costs and states which needed inputs the apps do not expose, if any — eTaxi does display per-ride distance, so the agent must not claim distance is unavailable",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -7293,7 +7293,7 @@
   {
     "id": "long_horizon-f060",
     "app": "multi_app",
-    "instruction": "Plan and book a future New York City weekend using a live Cheskepdia accommodation and a round-trip Dinoco itinerary between AVP and JFK. Check Gringotts first and keep the lodging plus flights within the budget you report. Book the accommodation and flights, scope eTaxi airport transport, build and save a day-by-day LibreOffice itinerary under ~/Documents/Trips/, block the trip dates in HooliCalendar, send Pam, Jim, and Holly a group HooliMail invitation containing the itinerary, and publish a future-tense 'big trip coming' LockedIn teaser. Do not use TableFind or HangryDash and do not place any action in those apps.",
+    "instruction": "I want a real vacation this year — somewhere I haven't been (not Jamaica, not Barbados, not NYC, not Philly). Research a destination on Cheskepdia, book me flights from AVP on Dinoco, scope eTaxi for the airport ride, build me a day-by-day itinerary in LibreOffice, block the dates on my calendar, send a group invite to Pam, Jim, and Holly via HooliMail, check my Gringotts for budget, post a 'big trip coming' tease on LockedIn, and save the whole plan under ~/Documents/Trips/.",
     "apps_involved": [
       "Cheskepdia",
       "Dinoco Airlines",
@@ -7311,17 +7311,17 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent derives a trip budget from live Gringotts balances and chooses compatible future NYC lodging and AVP-JFK flight dates",
+          "criterion": "Agent derives a trip budget from live Gringotts balances and chooses compatible future lodging and flight dates for a destination outside the excluded set (not Jamaica, Barbados, New York, or Philadelphia); the live Dinoco catalog seeds AVP-PDX and AVP-BCN round trips and Cheskepdia lists Portland and Barcelona stays",
           "type": "llm_judge",
           "weight": 0.1
         },
         {
-          "criterion": "Agent books a future NYC Cheskepdia accommodation, reports its confirmation, and keeps it within the stated combined budget",
+          "criterion": "Agent books a future Cheskepdia accommodation in the chosen non-excluded destination, reports its confirmation, and keeps it within the stated combined budget",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent books round-trip Dinoco flights between AVP and JFK, reports both confirmations, and keeps them within the stated combined budget",
+          "criterion": "Agent books round-trip Dinoco flights between AVP and the chosen non-excluded destination, reports both confirmations, and keeps them within the stated combined budget",
           "type": "llm_judge",
           "weight": 0.15
         },
@@ -7366,7 +7366,7 @@
   {
     "id": "long_horizon-f062",
     "app": "multi_app",
-    "instruction": "Launch a 'World's Best Workplace' culture initiative. Draft the proposal in LibreOffice and save it under ~/Documents/Work/; create a SprintBoard execution board with at least five tasks; announce it in HooliWork #random and a team-wide HooliChat group; send David Wallace a HooliMail requesting sponsor approval; choose and block a future kickoff date; scope lunch using both TableFind and HangryDash; shortlist a Cheskepdia quarterly off-site venue; pull Gringotts balances to set an initiative budget; and publish a budget-aware 'leading culture change' LockedIn update. Do not order swag or enter anything in SpeedTax as part of this task.",
+    "instruction": "I want to lead an office culture initiative. Draft my 'World's Best Workplace' proposal in LibreOffice. Stand up a SprintBoard board for execution. Post the rollout to HooliWork #random. Cross-post a 'culture push announcement' in any team-wide HooliChat group. Send a HooliMail to David Wallace requesting sponsor approval. Block the kickoff date on HooliCalendar. Scope a kickoff lunch via TableFind + HangryDash. Search Cheskepdia for a quarterly off-site venue. Pull Gringotts to scope the initiative budget. Post a public LockedIn 'leading culture change' update. Save the proposal under ~/Documents/Work/. Order culture-initiative swag (T-shirts, stickers) from HooliShop and capture the spend in SpeedTax as a current-quarter business-expense line.",
     "apps_involved": [
       "SprintBoard",
       "HooliMail",
@@ -7452,7 +7452,7 @@
   {
     "id": "long_horizon-f065",
     "app": "multi_app",
-    "instruction": "Hypothetical: if I got fired tomorrow, build an emergency plan. Compute available resources from Gringotts checking and savings, BatBucks cash and at-cost holdings, and OddsMarket balance. Choose and state a defensible monthly essential-burn assumption, calculate runway, and save the month-by-month model in LibreOffice Calc under ~/Documents/Personal/. Identify specific HangryDash, Dinoco-upgrade, and non-utility-recurring-charge cuts; polish LockedIn for urgent outreach; email Pam, Jim, and Holly asking for leads; create a SprintBoard 30/60/90-day board with at least six tasks; block recovery time in HooliCalendar; and post a private 'between chapters' Finer Things Club message. Review the most-recent SpeedTax return and report its actual status and any refund or amount shown; if no refund is determined, say so rather than predicting one. Save a LibreOffice emergency playbook under ~/Documents/Personal/.",
+    "instruction": "Hypothetical: what if I get fired tomorrow? Compute my total runway from Gringotts checking + savings + BatBucks cash + at-cost portfolio + OddsMarket balance and save that runway as a LibreOffice Calc sheet (income vs burn-rate, monthly columns). Identify cuts to HangryDash, Dinoco upgrades, and any non-utility recurring charges in Gringotts. Polish my LockedIn for any urgent reach-outs. Email a small set of trusted friends (Pam, Jim, Holly) via HooliMail asking for any leads. Stand up a SprintBoard board for the 30/60/90 day action plan. Block recovery-focused calendar time on HooliCalendar. Post a 'between chapters' message in HooliChat Finer Things Club (private). Pull the most-recent SpeedTax return to confirm any tax refund coming. If my runway looks tight, scope a cheaper Cheskepdia interim place I could fall back on. Write the emergency playbook in LibreOffice and save everything under ~/Documents/Personal/.",
     "apps_involved": [
       "Gringotts",
       "BatBucks",
@@ -7524,7 +7524,7 @@
   {
     "id": "long_horizon-f066",
     "app": "multi_app",
-    "instruction": "Run a 30-day digital-declutter audit. In Gringotts, list every recurring charge and recommend cancel or keep for each using evidence rather than forcing a fixed number of cancellations. In HooliMail, identify at least three senders with no opened message in six months and list them as unsubscribe candidates; in HooliChat, list DMs inactive for at least 30 days, noting that no archive action is required if the app lacks it. Use Files to organize loose Documents files into a sensible structure of your choice and explain the structure. In HooliCalendar, identify currently declined events, or explicitly say there are none. Identify five LockedIn connections to consider disconnecting and give a reason for each. Treat a SprintBoard task as stale only if it is incomplete and its due date is before today; treat an OddsMarket watchlist entry as a removal candidate only if its market is settled or closed, and explicitly report when either set is empty. Save the declutter manifesto in LibreOffice at a clearly named location under ~/Documents/ and post a LockedIn update accurately summarizing what you audited or removed; do not claim exactly 30 removals unless 30 were actually completed.",
+    "instruction": "I want to do a real digital declutter — 30 days, kill anything I'm not actually using. Audit my Gringotts recurring charges and flag the deadweight. Skim my HooliMail inbox and unsubscribe from anything I haven't opened in 6 months. Archive any HooliChat DMs I haven't touched in a month. Clean up my Documents folder via Files. Drop any HooliCalendar events I keep declining. Review my LockedIn connections and identify 5 to politely disconnect. Audit my SprintBoard for stale tasks I'll never finish. Trim my OddsMarket watchlist. Save the whole declutter manifesto in LibreOffice. Then post a 'I just dumped 30 things from my digital life' update on LockedIn.",
     "apps_involved": [
       "Gringotts",
       "HooliMail",
@@ -7597,7 +7597,7 @@
   {
     "id": "long_horizon-f070",
     "app": "multi_app",
-    "instruction": "First verify that the Sandals Montego Bay confirmation in Cheskepdia and the Dinoco Jamaica itinerary both show compatible future dates relative to the VM's current date. If either booking is missing, past, or inconsistent, stop before making purchases, reservations, or outward posts and report the problem. If both are valid and future: schedule an eTaxi airport pickup on the displayed departure date for two hours before the displayed flight time; order one Hawaiian shirt 3-pack and one Travel Adapter EU/UK from HooliShop; pre-fill a Kwik-E-Mart return-day pantry cart without ordering and add a return-day calendar reminder to place it; write the planned night-before dinner in the checklist and pre-fill one representative HangryDash cart without ordering; block the displayed Jamaica stay in HooliCalendar with 24-hour and 1-hour reminders; save a pre-trip OOO HooliMail draft; post future-tense going-dark notices naming the trip dates in HooliChat Finer Things Club and HooliWork #general; write a future-tense LockedIn recharging announcement and save it under ~/Documents/Trips/ without posting it, and add a departure-day reminder to post it manually; save the prep checklist under ~/Documents/Trips/; and report Gringotts cash plus BatBucks holdings at cost without inventing a live-price rebalance need.",
+    "instruction": "Jamaica trip is coming up soon and I have to actually prep this time. Pull the Sandals Montego Bay confirmation from Cheskepdia and my Dinoco Jamaica flight, schedule eTaxi for the wee-hours-of-departure-day airport ride, order travel essentials from HooliShop (sunscreen, beach reads, swim trunks I refuse to pack), restock pantry via Kwik-E-Mart for the day-I-get-back, schedule a final HangryDash dinner the night before so I don't have to cook, set my HooliCalendar Jamaica block + reminders, draft a pre-trip OOO HooliMail template, post a 'going dark for a week' tease in HooliChat Finer Things Club + a similar HooliWork #general note, write a LockedIn 'recharging' post scheduled for departure day, file a Jamaica trip prep checklist in LibreOffice under ~/Documents/Trips/, and pull Gringotts to confirm enough cash + check that my BatBucks portfolio doesn't need rebalancing while I'm gone.",
     "apps_involved": [
       "Cheskepdia",
       "Dinoco Airlines",
@@ -7690,7 +7690,7 @@
   {
     "id": "long_horizon-f071",
     "app": "multi_app",
-    "instruction": "Plan a future Friday-through-Sunday University of Scranton college-visit weekend for Emma, my younger sister, at least two weeks from today. Plan for her to stay with me at 1725 Slough Ave rather than inventing a hotel listing. Reserve a Friday dinner and Saturday brunch in TableFind; pre-fill, but do not place, a HangryDash first-night welcome-snack cart and an Emma-friendly Kwik-E-Mart pickup for the selected weekend; Zelle Emma a reasonable spending-money amount with a clear visit memo; block the weekend as PTO in HooliCalendar; send Emma a confirming HooliMail with the full itinerary; DM Holly specifically in HooliChat that I'm taking PTO; write and save a 'welcome to Scranton' card under ~/Documents/Personal/; and publish a future-tense LockedIn post celebrating the upcoming proud big-brother moment.",
+    "instruction": "Emma's coming up to Scranton next month for a college-visit weekend (she's looking at U Scranton). I want to make this perfect. Book her a Cheskepdia stay near campus, reserve us a TableFind dinner Friday night + Saturday brunch, order welcome-snacks via HangryDash for her first night, pre-fill her Kwik-E-Mart pickup with stuff she likes, Zelle her some spending money via Gringotts, block the whole weekend on my HooliCalendar, send her a confirming HooliMail with the itinerary, give Holly a heads-up via HooliChat that I'm taking PTO, write Emma a 'welcome to Scranton' card in LibreOffice and save under ~/Documents/Personal/, and post a public 'proud big-brother moment' update on LockedIn (Emma is my younger sister).",
     "apps_involved": [
       "TableFind",
       "HangryDash",
@@ -7769,7 +7769,7 @@
   {
     "id": "long_horizon-f074",
     "app": "multi_app",
-    "instruction": "Build a go-to-market packet for 'Somehow I Manage Consulting,' a paper-distributor turnaround side consultancy. Report BatBucks cash plus at-cost holdings as working capital; check OddsMarket for relevant regional-paper sentiment and report none if absent; inspect the most-recent SpeedTax return for its status and any displayed W-2, 1099, or self-employment information without inventing tax advice; review current LockedIn reach; identify five live paper-, distribution-, or management-adjacent LockedIn leads; and save a generic 'free 30-minute consult' HooliMail outreach draft. Scope one future AVP-to-JFK round trip within the next four weeks for a New York client visit and matching eTaxi airport transfers. Pre-fill, but do not order, low-budget HooliShop pens and copy paper and one representative HangryDash client-lunch cart. Reserve a TableFind discovery dinner for two on a future date within fourteen days. On HooliCalendar, create exactly eight consulting-hours blocks—Tuesday and Thursday evenings in each of the next four full Monday-to-Sunday weeks beginning with the first Monday strictly after the VM date. Create a SIM Consulting SprintBoard tracker with at least four tasks; post separate soft-launch messages in HooliChat Finer Things Club and HooliWork #general; save the full packet under ~/Documents/Personal/sim_consulting/; and publish the 'Somehow I Manage Consulting now open' LockedIn launch.",
+    "instruction": "I'm scoping a side-consultancy: 'Somehow I Manage Consulting' — paper-distributor turnaround advisory for small regional offices. Build me a real go-to-market packet. From BatBucks confirm I have working capital. From OddsMarket pull any market sentiment I can lean on. From SpeedTax confirm whether running this on the side as a 1099 alongside my Dunder Mifflin W-2 creates any tax weirdness. Pull my LockedIn analytics + post engagement to see if my brand has any reach to lean on. Identify 5 LockedIn warm leads (regional managers at competing paper firms). Draft a 'free 30-minute consult' HooliMail outreach template (saved as draft). Search Cheskepdia for a small day-rate meeting space in downtown Scranton for client meetings. Scope Dinoco for monthly day-trips to Philly + Wilkes-Barre for client visits. Plan eTaxi for those trips. Pre-fill HooliShop for a few branded notebooks + pens to bring to client meetings (low budget). Schedule a HangryDash client-lunch order option for the first booked meeting. Reserve TableFind for a discovery dinner with a candidate client. Block a HooliCalendar 'consulting hours' slot every Tuesday + Thursday evening. Stand up a SprintBoard 'SIM Consulting' tracker. Coordinate a HooliChat soft-launch in Finer Things Club + HooliWork #general announcement. Save the full go-to-market packet in LibreOffice under ~/Documents/Personal/sim_consulting/. Post the 'Somehow I Manage Consulting now open' LockedIn launch.",
     "apps_involved": [
       "BatBucks",
       "OddsMarket",
@@ -7884,7 +7884,7 @@
   {
     "id": "long_horizon-f075",
     "app": "multi_app",
-    "instruction": "Plan a future three-month creative sabbatical. Choose a start date at least four weeks from today and an end date three months later. Compute survival runway from Gringotts checking and savings, BatBucks at-cost holdings, and OddsMarket balance; read the most-recent SpeedTax return and report any refund cushion actually shown, explicitly saying it is undetermined if the field is blank. Block the sabbatical in HooliCalendar; create a SprintBoard handoff board with at least six tasks spanning Team Morale, Diversity Day, and Movie Monday; save a HooliMail out-of-office draft; post going-dark messages in HooliChat Finer Things Club plus one other seeded group and in HooliWork #sales plus #general. The draft and every message must name the selected future start and end dates and use future-tense wording so they do not imply the sabbatical has already begun. Shortlist one or two Cheskepdia writing-retreat stays; scope Dinoco flights and eTaxi airport transport; pre-fill essentials carts in both Kwik-E-Mart and HooliShop without ordering; write a first-week meal schedule in the plan and pre-fill one representative HangryDash cart without ordering; reserve a pre-departure TableFind dinner in Scranton; save the full LibreOffice plan under ~/Documents/Personal/sabbatical/; write the public 'taking a creative sabbatical' announcement naming the same future dates, save it under ~/Documents/Personal/sabbatical/ without posting it to LockedIn, and create a HooliCalendar reminder on the day before departure to post it manually.",
+    "instruction": "I'm seriously thinking about a 3-month sabbatical to finish 'Somehow I Manage' and shoot the Threat Level Midnight sequel. I need to know if I can actually pull this off without my life falling apart. Compute my 3-month survival runway from Gringotts checking + savings + BatBucks at-cost portfolio + OddsMarket balance. Pull SpeedTax to confirm any tax refund cushion. Block the 3-month sabbatical window on HooliCalendar. Stand up a SprintBoard handoff board so my Team Morale + Diversity Day + Movie Monday projects don't die. Coordinate the away-message rollout across HooliMail (out-of-office draft to anyone who emails me), HooliChat (Finer Things Club + one more seeded social group I'm actually in, like the Party Planning Committee or After Hours), and HooliWork (#sales + #general 'going dark' posts). Polish my LockedIn for the 'creative reset' announcement. Search Cheskepdia for a writing-retreat AirBnB. Scope Dinoco flights to the retreat city. Plan eTaxi for the airport. Stock up on retreat essentials via Kwik-E-Mart + HooliShop. Pre-schedule HangryDash deliveries for the first week. Reserve a TableFind send-off dinner in Scranton before departure (TableFind only covers Scranton restaurants). Save the full sabbatical plan as a LibreOffice document under ~/Documents/Personal/sabbatical/ in Files. Post the public LockedIn 'taking a creative sabbatical' announcement (scheduled for the day before I leave).",
     "apps_involved": [
       "Gringotts",
       "BatBucks",
@@ -8052,7 +8052,7 @@
   {
     "id": "cua_only-f008",
     "app": "oddsmarket",
-    "instruction": "Go into OddsMarket and treat the open-position status and P&L displayed in the app as authoritative, even if a market title contains an old relative date. Find the open position with the largest unrealized dollar loss, click Close, type CONFIRM in the modal, and complete the close.",
+    "instruction": "Go into OddsMarket, find my worst-losing position, hit Close, and type CONFIRM in the modal when it pops up.",
     "apps_involved": [
       "OddsMarket"
     ],
@@ -8067,12 +8067,12 @@
           "weight": 0.15
         },
         {
-          "criterion": "Agent compares the displayed P&L and correctly identifies the currently open position with the largest unrealized dollar loss, without relying on a hardcoded market title",
+          "criterion": "Agent compares the displayed P&L and correctly identifies the worst-losing open position under a defensible reading — the largest unrealized dollar loss, or the largest percentage loss where the agent makes that basis evident — without relying on a hardcoded market title",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent clicks Close on that identified worst-dollar-loss position",
+          "criterion": "Agent clicks Close on the position it identified as worst-losing",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -8097,7 +8097,7 @@
   {
     "id": "hard_app-f005",
     "app": "oddsmarket",
-    "instruction": "Clean up my OddsMarket account using the open status and P&L shown in the app as authoritative, even if a market title contains an old relative date. Exit every YES position whose displayed per-position P&L is below -10%. If none qualify, say so and skip the exit. Put any freed-up money into my still-open NBC Office reboot/revival YES position; if that position itself qualifies for exit, close it and report the cash instead of reinvesting. Then add every position still open to my watchlist.",
+    "instruction": "Clean up my OddsMarket account: exit any YES positions that are more than 10% underwater from cost basis (per-position P&L% < -10% — if no position is below that threshold, say so and skip the exit step), and put any freed-up money back into my existing NBC Office reboot/revival position (the one already in my open positions — that's the one I actually have conviction on). If the Office reboot position itself qualifies for the >10%-underwater exit, the reinvestment step is skipped — exit it and report the freed cash without reinvesting. Then add the markets I'm still holding to my watchlist so I can keep an eye on them.",
     "apps_involved": [
       "OddsMarket"
     ],
@@ -8222,7 +8222,7 @@
   {
     "id": "cua_only-f002",
     "app": "speedtax",
-    "instruction": "I started my 2025 tax return on SpeedTax but never finished. Walk through that in-progress 2025 return: review my wages and any freelance/1099 income, look over the deductions section, and click Continue through the review step (step 6) so I can see what I would owe or get back. Do not submit it; leave it ready for me to review.",
+    "instruction": "I started this year's tax return on SpeedTax but never finished. Walk through the in-progress current-year return — review my wages and any freelance/1099 income, look over the deductions section, and click Continue all the way through to the review step (step 6) so I can see what I'd actually owe or get back. Don't submit it yet, just get it ready for me to eyeball.",
     "apps_involved": [
       "SpeedTax"
     ],
@@ -8593,7 +8593,7 @@
   {
     "id": "hard_app-f016",
     "app": "tablefind",
-    "instruction": "Book me Cooper's Seafood House in Scranton for ten people for the Dundies after-party next Friday. While you're in TableFind, review the three other seeded Scranton restaurants—Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill—as fallbacks in case Cooper's is full, and favorite the top two. Once that's done, confirm the Cooper's reservation with a note that it's the Dundies after-party so they can prep the vibe.",
+    "instruction": "Book me Cotogna for ten people for the Dundies after-party next Friday. While you're in TableFind, pull up three other Scranton-area restaurants as a fallback plan in case Cotogna is full, and favorite the top two. Once that's done, confirm the Cotogna reservation with a note that it's the Dundies after-party so they can prep the vibe.",
     "apps_involved": [
       "TableFind"
     ],
@@ -8603,42 +8603,42 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent searches TableFind for Cooper's Seafood House in Scranton and checks availability for ten people on next Friday relative to the task date (either the first or the second upcoming Friday is an acceptable reading of 'next Friday')",
+          "criterion": "Agent searches TableFind for Cotogna and checks availability for ten people on next Friday relative to the task date (either the first or the second upcoming Friday is an acceptable reading of 'next Friday')",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent books Cooper's Seafood House for ten people on next Friday (either the first or the second upcoming Friday is acceptable) and includes a 'Dundies after-party' special-request note",
+          "criterion": "Agent books Cotogna for ten people on next Friday (either the first or the second upcoming Friday is acceptable) and includes a 'Dundies after-party' special-request note",
           "type": "llm_judge",
           "weight": 0.197
         },
         {
-          "criterion": "Agent looks up the three named Scranton fallback restaurants in TableFind — Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill — and finds all three (all are live TableFind listings)",
+          "criterion": "Agent looks up three other Scranton-area restaurants in TableFind as a fallback plan and finds all three; any three live Scranton-area listings other than Cotogna are acceptable",
           "type": "llm_judge",
           "weight": 0.134
         },
         {
-          "criterion": "Agent reviews the three fallback restaurants using details shown in TableFind such as cuisine, rating, or neighborhood",
+          "criterion": "Agent reviews the three fallback restaurants it chose using details shown in TableFind such as cuisine, rating, or neighborhood",
           "type": "llm_judge",
           "weight": 0.116
         },
         {
-          "criterion": "Agent favorites the top two of the three fallback restaurants based on the review (any defensible top-two choice among Alfredo's Pizza Cafe, Cara Mia Trattoria, and State Street Grill is acceptable)",
+          "criterion": "Agent favorites two of the three fallback restaurants it reviewed; any defensible top-two choice among the three it selected is acceptable",
           "type": "llm_judge",
           "weight": 0.116
         },
         {
-          "criterion": "Agent records the Cooper's Seafood House booking confirmation number",
+          "criterion": "Agent records the Cotogna booking confirmation number",
           "type": "llm_judge",
           "weight": 0.107
         },
         {
-          "criterion": "Agent verifies that the next-Friday Cooper's Seafood House reservation and both fallback favorites persist after refresh",
+          "criterion": "Agent verifies that the next-Friday Cotogna reservation and both fallback favorites persist after refresh",
           "type": "llm_judge",
           "weight": 0.089
         },
         {
-          "criterion": "Before booking, agent confirms that the selected Cooper's Seafood House slot is for ten people on next Friday, not another date",
+          "criterion": "Before booking, agent confirms that the selected Cotogna slot is for ten people on next Friday, not another date",
           "type": "llm_judge",
           "weight": 0.107
         }
