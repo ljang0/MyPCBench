@@ -90,12 +90,12 @@
           "weight": 0.3
         },
         {
-          "criterion": "The Calc spreadsheet includes the correct completed-flight count and a final cumulative mileage row whose total matches the listed completed trips",
+          "criterion": "The Calc spreadsheet states a completed-flight count that is internally consistent with the completed trips it lists, and a final cumulative mileage row whose total matches the mileage of those listed trips. Where the live flight history shows flights labelled completed whose departure date still falls after the current date, either treatment — counting them or excluding them from the past-12-month total — is acceptable, provided the sheet is consistent about the treatment it chose.",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "The spreadsheet clearly distinguishes completed flights used in the past-12-month total from upcoming flights that are not included in that total",
+          "criterion": "The spreadsheet clearly distinguishes completed flights used in the past-12-month total from upcoming flights that are not included in that total. Any consistent treatment of flights whose live status reads completed but whose departure date falls after the current date is acceptable — listing them, labelling them as a separate case, or omitting them — as long as the sheet's totals agree with the treatment chosen.",
           "type": "llm_judge",
           "weight": 0.1
         }

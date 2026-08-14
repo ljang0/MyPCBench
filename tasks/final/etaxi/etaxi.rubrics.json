@@ -83,7 +83,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "If the entry is wrong or missing, the agent corrects it to Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA and saves it; if it already matches, the agent leaves it unchanged and explicitly reports that no action was needed",
+          "criterion": "The agent's action matches the entry it found: an existing work/office entry whose address contains 1725 Slough Ave counts as matching even when it omits the 'Suite 200' or 'PA' portion, so the correct outcome there is to leave it unchanged and explicitly report that no action was needed — rewriting it to the full 'Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA' is acceptable only if the agent first states that the entry already matched. If the live entry is missing or shows a different street address, the agent corrects it to Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA and saves the change.",
           "type": "llm_judge",
           "weight": 0.4
         }

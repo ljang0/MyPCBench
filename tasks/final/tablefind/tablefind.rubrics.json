@@ -47,17 +47,17 @@
           "weight": 0.11
         },
         {
-          "criterion": "Agent opens LibreOffice Writer and creates a new document (or uses an existing one) to start a 'Go-Tos' restaurant list",
+          "criterion": "Agent creates a new 'Go-Tos' restaurant list to hold Michael's go-to restaurants — a new LibreOffice Writer document, or an existing Writer document extended with the list. The instruction's phrasing of this step is garbled and TableFind also offers its own saved-list feature, so building the 'Go-Tos' list as a TableFind saved list instead is equally acceptable.",
           "type": "llm_judge",
           "weight": 0.14
         },
         {
-          "criterion": "Agent adds Cotogna to the 'Go-Tos' list in the LibreOffice Writer document",
+          "criterion": "Agent adds Cotogna to the 'Go-Tos' list, in whichever target the list was created in (the LibreOffice Writer document or a TableFind saved list)",
           "type": "llm_judge",
           "weight": 0.14
         },
         {
-          "criterion": "Agent saves the LibreOffice Writer 'Go-Tos' document and confirms the new Cotogna TableFind reservation persists after navigating away",
+          "criterion": "Agent saves the 'Go-Tos' list in whichever target it was created in (saving the LibreOffice Writer document, or persisting the TableFind saved list) and confirms the new Cotogna TableFind reservation persists after navigating away",
           "type": "llm_judge",
           "weight": 0.105
         },

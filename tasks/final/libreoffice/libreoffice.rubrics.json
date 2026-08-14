@@ -149,7 +149,7 @@
           "weight": 0.27
         },
         {
-          "criterion": "The third slide is a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window (dates as shown in the live Cheskepdia booking; if the agent used the HooliMail travel-folder receipts the instruction permits, matching those dates is also acceptable)",
+          "criterion": "The third slide is a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window as shown in the live Cheskepdia booking. Dates taken from a HooliMail travel-folder receipt are acceptable only where that receipt agrees with the live Cheskepdia booking window.",
           "type": "llm_judge",
           "weight": 0.14
         },

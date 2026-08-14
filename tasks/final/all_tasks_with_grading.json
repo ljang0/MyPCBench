@@ -411,12 +411,12 @@
           "weight": 0.3
         },
         {
-          "criterion": "The Calc spreadsheet includes the correct completed-flight count and a final cumulative mileage row whose total matches the listed completed trips",
+          "criterion": "The Calc spreadsheet states a completed-flight count that is internally consistent with the completed trips it lists, and a final cumulative mileage row whose total matches the mileage of those listed trips. Where the live flight history shows flights labelled completed whose departure date still falls after the current date, either treatment — counting them or excluding them from the past-12-month total — is acceptable, provided the sheet is consistent about the treatment it chose.",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "The spreadsheet clearly distinguishes completed flights used in the past-12-month total from upcoming flights that are not included in that total",
+          "criterion": "The spreadsheet clearly distinguishes completed flights used in the past-12-month total from upcoming flights that are not included in that total. Any consistent treatment of flights whose live status reads completed but whose departure date falls after the current date is acceptable — listing them, labelling them as a separate case, or omitting them — as long as the sheet's totals agree with the treatment chosen.",
           "type": "llm_judge",
           "weight": 0.1
         }
@@ -604,7 +604,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "If the entry is wrong or missing, the agent corrects it to Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA and saves it; if it already matches, the agent leaves it unchanged and explicitly reports that no action was needed",
+          "criterion": "The agent's action matches the entry it found: an existing work/office entry whose address contains 1725 Slough Ave counts as matching even when it omits the 'Suite 200' or 'PA' portion, so the correct outcome there is to leave it unchanged and explicitly report that no action was needed — rewriting it to the full 'Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA' is acceptable only if the agent first states that the entry already matched. If the live entry is missing or shows a different street address, the agent corrects it to Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA and saves the change.",
           "type": "llm_judge",
           "weight": 0.4
         }
@@ -2025,7 +2025,7 @@
           "weight": 0.27
         },
         {
-          "criterion": "The third slide is a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window (dates as shown in the live Cheskepdia booking; if the agent used the HooliMail travel-folder receipts the instruction permits, matching those dates is also acceptable)",
+          "criterion": "The third slide is a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window as shown in the live Cheskepdia booking. Dates taken from a HooliMail travel-folder receipt are acceptable only where that receipt agrees with the live Cheskepdia booking window.",
           "type": "llm_judge",
           "weight": 0.14
         },
@@ -2153,7 +2153,7 @@
           "weight": 0.175
         },
         {
-          "criterion": "Agent computes the total committed Barbados trip spend by summing the posted Gringotts charges (flight and hotel) and correctly represents what has actually been charged to the card",
+          "criterion": "Agent computes the total committed Barbados trip spend by summing the posted Gringotts charges (flight and hotel) and correctly represents what has actually posted to the Gringotts account the ledger shows those charges on, rather than reporting the booking or fare figures as the committed spend",
           "type": "llm_judge",
           "weight": 0.175
         },
@@ -3027,22 +3027,22 @@
           "weight": 0.22
         },
         {
-          "criterion": "Agent either navigates HooliCalendar to the exact date and time of the future reservation, or explicitly skips the calendar lookup because TableFind has no future reservation",
+          "criterion": "Agent navigates HooliCalendar to the exact date and time of the earliest future TableFind reservation — if two or more reservations tie for that earliest date and time, either one's date and time is acceptable. Skipping the calendar lookup earns credit only when the live TableFind state genuinely shows no future reservation.",
           "type": "llm_judge",
           "weight": 0.16
         },
         {
-          "criterion": "Agent either checks all calendar events overlapping the future reservation and reports the overlaps or a clear absence, or explicitly records that no overlap check is possible because TableFind has no future reservation",
+          "criterion": "Agent checks the calendar events overlapping that reservation's date and time and reports either the overlapping events or a clear absence of overlap. Recording that no overlap check is possible earns credit only when the live TableFind state shows no future reservation.",
           "type": "llm_judge",
           "weight": 0.18
         },
         {
-          "criterion": "Agent either searches HooliChat for messages confirming or rescheduling the future reservation and reports evidence or a clean absence, or explicitly skips that search because TableFind has no future reservation to identify",
+          "criterion": "Agent searches HooliChat for messages confirming or rescheduling that reservation and reports either the matching evidence or a clean absence of any such message. Skipping the search earns credit only when the live TableFind state shows no future reservation.",
           "type": "llm_judge",
           "weight": 0.14
         },
         {
-          "criterion": "Agent gives a conclusion consistent with the observed state: a conflict verdict and practical resolution when a reservation exists, or a clear no-future-reservation result without inventing a conflict",
+          "criterion": "Agent gives a conclusion consistent with the observed state: when a calendar event overlaps the reservation, a conflict verdict with a practical resolution; when nothing on the calendar overlaps it, a clear no-conflict verdict without inventing one; and when the live TableFind state shows no future reservation, a clear no-future-reservation result. If two reservations sit at the same date and time and the agent raises that as the conflict, that is a legitimate conflict to flag and should be credited.",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -3085,7 +3085,7 @@
           "weight": 0.12
         },
         {
-          "criterion": "Agent checks SprintBoard for any tasks due on the Jamaica flight date that conflict with the early morning departure",
+          "criterion": "Agent checks SprintBoard for any tasks due on the Jamaica flight date that conflict with the early morning departure — reporting that no SprintBoard tasks are due on that date is acceptable and correct when the live board shows none",
           "type": "llm_judge",
           "weight": 0.11
         },
@@ -3105,7 +3105,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "Agent delivers a final answer flagging the worst calendar conflict with the early morning Jamaica flight without leaving subtasks unresolved",
+          "criterion": "Agent delivers a final answer that states the worst conflict on the Jamaica departure day as the live calendar shows it, without leaving subtasks unresolved. If nothing on the live calendar falls in the early-morning departure window, stating that plainly and naming the most serious same-day commitment instead is the correct answer and must not be penalised.",
           "type": "llm_judge",
           "weight": 0.2
         }
@@ -3723,7 +3723,7 @@
           "weight": 0.14
         },
         {
-          "criterion": "Opens HooliCalendar UI and lists events on the bumped NYC-flight day (the original seeded departure day)",
+          "criterion": "Opens HooliCalendar UI and lists the events on the bumped NYC-flight day, taking that day from the departure date shown on the live Dinoco NYC flight record. HooliCalendar's own NYC trip mirror events may carry a date that disagrees with the live flight record; the Dinoco departure date is the one this item is scored against, and an agent that notes the discrepancy should not be penalised for it.",
           "type": "llm_judge",
           "weight": 0.14
         },
@@ -4179,7 +4179,7 @@
           "weight": 0.2
         },
         {
-          "criterion": "The return eTaxi booked during this session goes from AVP to 1725 Slough Ave, Apt 4B on the live Jamaica return date with pickup at least thirty minutes after the recorded landing time. eTaxi's trip history already contains a pre-seeded return ride that satisfies this timing, so credit requires a ride created during this session rather than the pre-existing one — but the agent is not expected to prove which rides pre-dated its work.",
+          "criterion": "The return eTaxi booked during this session goes from AVP to 1725 Slough Ave, Apt 4B on the live Jamaica return date with pickup at least thirty minutes after the recorded landing time. eTaxi's trip history already contains a pre-seeded return ride on the live return date (whose pickup time does not necessarily satisfy the thirty-minute rule), so credit requires a ride created during this session rather than the pre-existing one — but the agent is not expected to prove which rides pre-dated its work.",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -4194,7 +4194,7 @@
           "weight": 0.14
         },
         {
-          "criterion": "A saved location named 'Scranton Improv Academy' uses the address read from the corresponding HooliCalendar event.",
+          "criterion": "A saved location named 'Scranton Improv Academy' is created using the address the live HooliCalendar Improv event shows (the seeded event carries the venue's street address). If a bake ever leaves that event with only a room or venue label and no street address, an address the agent sourced from another live app record for the same venue — or the displayed venue text saved with an explicit note that no street address is shown — is also acceptable.",
           "type": "llm_judge",
           "weight": 0.14
         },
@@ -4725,7 +4725,7 @@
           "type": "llm_judge"
         },
         {
-          "criterion": "Agent completed all six HangryDash delivery give-back subtasks: rank top 5, identify the #1 restaurant, leave reviews, TableFind favorites, Documents log, summary",
+          "criterion": "Agent completed all five instructed HangryDash give-back subtasks: produced the top-5 ranking, identified the #1 restaurant, left reviews on all five, marked the overlapping restaurants as TableFind favorites, and saved the review list to Documents — and reports the results back to the user",
           "weight": 0.1,
           "type": "llm_judge"
         }
@@ -5530,7 +5530,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Cheskepdia and loads a Sandals Montego Bay (Jamaica) booking, identifying which booking it used. Cheskepdia shows more than one Jamaica Sandals booking (an upcoming stay and a completed one) and the instruction's past tense does not disambiguate them, so either booking is acceptable as the source for the figures below.",
+          "criterion": "Agent opens Cheskepdia and loads the Sandals Montego Bay (Jamaica) booking, identifying which booking it used. The account currently holds a single Jamaica Sandals reservation and it is upcoming; the instruction's past tense does not require a completed booking, so using the upcoming reservation must not be penalised. If the live account shows more than one Jamaica Sandals booking, either is acceptable as the source for the figures below.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -6191,7 +6191,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads a Jamaica trip document in ~/Documents/Trips/ and uses its exact recorded date range (check-in/check-out or departure/return) in the out-of-office body. That folder currently holds two documents recording different Jamaica ranges — the dedicated Sandals Montego Bay trip file and the Travel_Overview summary — so either recorded range is acceptable, provided the dates used are the ones actually written in the document the agent read rather than invented or approximated.",
+          "criterion": "Agent reads a Jamaica trip document in ~/Documents/Trips/ and uses its exact recorded date range (check-in/check-out or departure/return) in the out-of-office body. That folder holds more than one document recording different Jamaica ranges — the dedicated Sandals Montego Bay trip file and the Travel_Overview summary — so either recorded range is acceptable, including a range that falls after the current date: the task asks for an archival past-tense example, not a factually past trip, so a future-dated recorded range must not be penalised. What matters is that the dates used are the ones actually written in the document the agent read rather than invented or approximated.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -6201,7 +6201,7 @@
           "weight": 0.35
         },
         {
-          "criterion": "Agent saves the completed message as a HooliMail draft labeled archival, does not send or activate it, and verifies the draft retains the required content",
+          "criterion": "Agent saves the completed message as a HooliMail draft that is marked archival in its subject or body (HooliMail drafts carry no label field), does not send or activate it, and re-reads the draft to verify the required content persisted",
           "type": "llm_judge",
           "weight": 0.4
         }
@@ -6383,7 +6383,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent pulls the live Greenwich booking total and dates, matching Dinoco NYC flight cost, related Gringotts charges, and HooliCalendar trip context, using matching bank charges as corroboration rather than duplicate costs",
+          "criterion": "Agent pulls the live Greenwich booking total and dates, the matching Dinoco NYC flight cost, related Gringotts charges, and the HooliCalendar trip context, using matching bank charges as corroboration rather than duplicate costs. The HooliCalendar trip block may carry dates that disagree with the live Cheskepdia booking and Dinoco flights; the booking and flight records are authoritative for the reconciliation, and an agent that reports the calendar-versus-booking date mismatch should be credited rather than marked wrong.",
           "type": "llm_judge",
           "weight": 0.3
         },
@@ -6398,7 +6398,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "If the stay is completed, agent submits a 4-star Greenwich review praising location and noting price; if the stay is ongoing/upcoming, agent preserves that text as an unsubmitted draft in the Writer document and does not post a premature review",
+          "criterion": "Agent justifies from the live Greenwich check-out date whether the stay is completed, and acts accordingly: when the live check-out falls before the current date the agent submits the 4-star Cheskepdia review praising location and noting price; only when the live dates place the stay at or after the current date does the alternative apply, in which case the agent preserves that review text as an unsubmitted draft in the Writer document and posts no premature review.",
           "type": "llm_judge",
           "weight": 0.25
         }
@@ -6890,7 +6890,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "Agent checks TableFind for a team-lunch slot on the selected Pretzel Day date and either reserves an offered slot or accurately records that the date is not yet bookable or has no availability.",
+          "criterion": "Agent checks TableFind for a team-lunch slot on the selected Pretzel Day date and reserves one. TableFind generates availability for any future date, so 'the date is not yet bookable' is not an acceptable outcome; recording no availability is acceptable only where the live TableFind availability for the chosen restaurant and date genuinely offers no lunch slot.",
           "type": "llm_judge",
           "weight": 0.12
         },
@@ -7238,7 +7238,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "Agent gives a transparent scenario estimate for changed transportation costs and identifies unavailable distance or NYC-fare data",
+          "criterion": "Agent gives a transparent scenario estimate for changed transportation costs and states which needed inputs the apps do not expose (for example NYC fare rates), if any — eTaxi does display per-ride distance, so the agent must not be required to call distance data unavailable",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -7630,7 +7630,7 @@
           "weight": 0.08
         },
         {
-          "criterion": "When both bookings are valid and future, agent schedules an eTaxi airport pickup on the displayed departure date for two hours before the displayed flight time; otherwise the agent leaves no invalid ride and reports the safe stop",
+          "criterion": "When both bookings are valid and future, agent schedules an eTaxi airport pickup on the displayed departure date for exactly two hours before the displayed flight time; eTaxi's trip history may already hold a pre-seeded airport ride on that date at a different offset, which does not satisfy this criterion — credit requires the two-hour pickup, obtained either by booking a new ride or by rescheduling the existing one. Otherwise the agent leaves no invalid ride and reports the safe stop",
           "type": "llm_judge",
           "weight": 0.09
         },
@@ -8568,17 +8568,17 @@
           "weight": 0.11
         },
         {
-          "criterion": "Agent opens LibreOffice Writer and creates a new document (or uses an existing one) to start a 'Go-Tos' restaurant list",
+          "criterion": "Agent creates a new 'Go-Tos' restaurant list to hold Michael's go-to restaurants — a new LibreOffice Writer document, or an existing Writer document extended with the list. The instruction's phrasing of this step is garbled and TableFind also offers its own saved-list feature, so building the 'Go-Tos' list as a TableFind saved list instead is equally acceptable.",
           "type": "llm_judge",
           "weight": 0.14
         },
         {
-          "criterion": "Agent adds Cotogna to the 'Go-Tos' list in the LibreOffice Writer document",
+          "criterion": "Agent adds Cotogna to the 'Go-Tos' list, in whichever target the list was created in (the LibreOffice Writer document or a TableFind saved list)",
           "type": "llm_judge",
           "weight": 0.14
         },
         {
-          "criterion": "Agent saves the LibreOffice Writer 'Go-Tos' document and confirms the new Cotogna TableFind reservation persists after navigating away",
+          "criterion": "Agent saves the 'Go-Tos' list in whichever target it was created in (saving the LibreOffice Writer document, or persisting the TableFind saved list) and confirms the new Cotogna TableFind reservation persists after navigating away",
           "type": "llm_judge",
           "weight": 0.105
         },
