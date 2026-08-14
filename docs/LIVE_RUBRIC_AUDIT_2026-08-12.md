@@ -253,6 +253,46 @@ the same `TRIP_OFFSETS` the database patchers use, shifting by a delta derived
 from the file's own contents so an aligned file is a byte-for-byte no-op.
 `tests/test_trip_doc_reanchor.py` proves it across 12 bake anchors.
 
+## Pass 5 — full live re-verification of all 184 tasks (2026-08-14)
+
+Restoring the instructions invalidated the earlier live verification: passes
+1-3 had checked feasibility against the *rewritten* prompts. So the whole
+benchmark was re-audited against the rebaked image with
+`tools/per_task_review/per_task_audit.py`, which resolves every concrete entity
+an instruction or rubric names — confirmation codes, flight numbers, tickers,
+contacts, file paths — against the live apps and databases.
+
+The first run came back 137/184. Every one of the 47 failures was a defect in
+the auditor rather than in a task or the image:
+
+* **50 `login_failed` findings.** `PHONE` was hardcoded to
+  `+1-415-555-0147`; the persona's number is `+1-570-555-0147` — the same last
+  four digits behind a San Francisco area code left over from before the world
+  moved to Scranton. Every phone-auth app refused the login. Credentials now
+  come from `personas/auth.json`.
+* **`conf_code CHESK-POL not found in any DB`.** `ALL_DBS` omitted mail, so
+  entity searches never reached `/data/mail.sqlite`. The two cited Cheskepdia
+  policy emails are rows 1-2 there, with `mail_entry_state` folder `travel` —
+  present the whole time.
+* **A hardcoded port map and a `TODAY` literal 16 months stale**, which meant
+  the auditor could only run against a host owning ports 3001-3017 and
+  mis-resolved every `${TODAY+N}` rubric variable.
+
+One genuine task defect did surface, and only because of this pass:
+`required_subtasks` lives **only in the per-app shards**, never in the bundle,
+so both the instruction restore and the shard sync walked straight past it. 76
+tasks still carried the rewritten-era subtask list — `long_horizon-f060`'s
+still read *"choose compatible future NYC lodging and AVP-JFK flight dates"*
+against an instruction that excludes New York by name. All 76 were restored
+from the baseline, and f060's *"does not use TableFind or HangryDash"* rubric
+item was dropped because it contradicted the task's own subtasks.
+
+Final: **184/184 PASS, 0 findings, exit 0.** 184 tasks / 1,132 rubric items.
+
+What this establishes and what it does not: every entity the tasks name
+resolves live, and every app authenticates and serves. It is not a grading
+simulation — no eval agent was run and no judge scored a trajectory.
+
 ## Not done / next
 
 - No eval-agent execution, no judge scoring (out of scope by design).

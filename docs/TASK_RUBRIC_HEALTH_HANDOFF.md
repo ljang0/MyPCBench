@@ -184,26 +184,21 @@ What was not done:
 
 Therefore the correct release statement is:
 
-> All 184 tasks pass static task/rubric/date-contract validation, and every
-> rubric item has been empirically verified against a live VM across four
-> passes: the published image (2026-08-12), a rollover-stress bake with the
-> clock advanced a day, a cold-booted **rebaked** image built from
-> `fix/bake-invariance` (2026-08-13), and an instruction-integrity pass
-> (2026-08-14). The fourth pass restored **76 task instructions** that had
-> been rewritten in the spec direction — folding the rubric's own grading
-> criteria into the prompt — and realigned **50 rubric items across 23 tasks**
-> to grade the original wording instead. No rubric item had to be dropped and
-> the task set is unchanged at 184 tasks / 1,133 items. Where a rubric
-> contradicted its own instruction the live image sided with the instruction
-> every time, except one real image defect — seeded trip documents drifting a
-> month behind their own bookings — which was fixed in the bake rather than in
-> the task. The final image passes the 58-probe data gate 58/0/0 on a cold
-> boot with the trip documents byte-matching the live booking window, and
-> `verify_bake_invariance.py` passes 1056/1056 across 22 bake anchors, so task
+> All 184 tasks pass static task/rubric/date-contract validation. All 184
+> instructions are byte-identical to the pre-audit originals, and the whole
+> benchmark has been re-verified live against the rebaked image: the per-task
+> entity audit resolves every confirmation code, flight number, ticker, contact
+> and file path named by any instruction or rubric, and reports **184/184 PASS,
+> 0 findings**. The image passes the 58-probe data gate 58/0/0 on a cold boot
+> with the seeded trip documents byte-matching the live booking window, and
+> `verify_bake_invariance.py` passes 1056/1056 across 22 bake anchors, so
 > feasibility is proven invariant to the bake date rather than checked on one
-> day's data. The benchmark is still not certified as 184/184 executable
-> end-to-end by a computer-use agent, because no eval-agent runs or judge
-> scoring were performed.
+> day's data. 184 tasks / 1,132 rubric items.
+>
+> Scope of that claim: it establishes that every entity the tasks reference
+> exists and is reachable in the live image, and that each rubric grades the
+> original instruction. It is **not** an end-to-end execution guarantee — no
+> eval-agent runs or judge scoring were performed.
 
 ## Image and daily regeneration boundary
 
