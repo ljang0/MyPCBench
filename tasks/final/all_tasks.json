@@ -431,7 +431,7 @@
   {
     "id": "preference_inference-f009",
     "app": "kwik_e_mart",
-    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores by order count and create a quick profile of my shopping habits in a LibreOffice Writer document.",
+    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores and give me a quick profile of my shopping habits in LibreOffice Writer. ",
     "apps_involved": [
       "Kwik-E-Mart",
       "LibreOffice Writer"

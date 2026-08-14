@@ -137,7 +137,7 @@
     "id": "preference_inference-f009",
     "category": "preference_inference",
     "persona": "michael_scott",
-    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores by order count and create a quick profile of my shopping habits in a LibreOffice Writer document.",
+    "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores and give me a quick profile of my shopping habits in LibreOffice Writer. ",
     "required_subtasks": [
       "Open Kwik-E-Mart and count orders for every store in the live order history",
       "Rank the stores by order count and identify the plurality store",
@@ -157,12 +157,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent identifies the favorite grocery store as the store with the highest count in the live Kwik-E-Mart order history",
+          "criterion": "Agent identifies the favorite grocery store from the live Kwik-E-Mart order history under a basis it states or makes evident — order count or total spend are both defensible readings of 'favorite'",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "Agent reports the live order count for every store and ranks the stores by that count",
+          "criterion": "Agent reports the live per-store figures for that basis across every store and ranks the stores by it",
           "type": "llm_judge",
           "weight": 0.2
         },
