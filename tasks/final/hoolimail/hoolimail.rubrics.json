@@ -23,12 +23,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads Michael's HooliMail inbox messages — via the HooliMail app/API listing the Inbox folder including any sub-folders (Work, Travel, Receipts, etc.), OR by walking the Maildir filesystem at ~/Maildir/cur, ~/Maildir/new, and sub-folder cur/new dirs — but excludes the Sent folder and excludes Michael's own From: lines when counting senders",
+          "criterion": "Agent reads Michael's received HooliMail — via the HooliMail app/API (the Inbox folder, optionally together with the other received-mail folders such as Work, Travel and Receipts, which the sidebar lists as siblings alongside Inbox rather than inside it), OR by walking the Maildir filesystem at ~/Maildir/cur and ~/Maildir/new plus the cur/new directories of the other mail folders — and states which folders its count covers. Either scope is acceptable: the Inbox folder alone, or the Inbox together with the other received-mail folders. The Sent folder is excluded, and Michael's own From: lines are excluded when counting senders.",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent groups the inbox messages by sender email and counts how many messages each sender is filling it up with",
+          "criterion": "Agent groups the messages it read by sender email address and counts how many messages each sender is filling the mailbox with, with the per-sender counts consistent with the folder scope the agent stated in the first criterion. The counts are graded against that stated scope rather than against a fixed sender list, since the two permitted scopes yield materially different rankings.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -140,7 +140,7 @@
           "weight": 0.2106
         },
         {
-          "criterion": "Agent computes a per-sender reply latency (e.g. median) from paired received/sent timestamps using a reasonable pairing heuristic (strict In-Reply-To/Message-ID matching or a latest-prior-message-from-the-recipient heuristic are both acceptable) and surfaces which senders Michael is relatively slowest to reply to (literal multi-day gaps are not required if the chosen pairing yields shorter latencies)",
+          "criterion": "Agent computes a per-sender reply latency (e.g. median) from paired received/sent timestamps using a reasonable pairing heuristic (strict In-Reply-To/Message-ID matching or a latest-prior-message-from-the-recipient heuristic are both acceptable), and reports a relative ranking that separates the senders Michael answers quickest from those he is slowest to answer. The latencies must follow from the pairing the agent actually performed and from the timestamps the mailbox shows; the ranking must distinguish a fast end from a slow end rather than report the senders as uniform.",
           "type": "llm_judge",
           "weight": 0.2106
         },

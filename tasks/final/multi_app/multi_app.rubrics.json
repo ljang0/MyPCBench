@@ -494,7 +494,7 @@
           "weight": 0.15
         },
         {
-          "criterion": "The report gives an accurate ranked top-five recipient list with frequencies for the most recent 12-month span represented in the authoritative sent-mail source.",
+          "criterion": "The report gives a ranked top-five recipient list with frequencies for the most recent 12-month span represented in the authoritative sent-mail source, and the reported frequencies agree with that source. Where several recipients tie at the rank-five boundary, any of the tied recipients may occupy the final slot. Either treatment of Jan Levinson's two live addresses is acceptable — counting jan.levinson@dundermifflin.com and jan.levinson@serenitybyjan.com as separate recipients, or merging them into a single person-level entry — provided the report is consistent about the treatment it chose.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -1074,7 +1074,7 @@
           "weight": 0.18
         },
         {
-          "criterion": "Agent opens the email thread titled 'THE DUNDIES ARE BACK BABY' and extracts the trophy-ordering plan described there",
+          "criterion": "Agent opens a HooliMail conversation whose subject is exactly 'THE DUNDIES ARE BACK BABY' and extracts the trophy-ordering plan that the conversation it opened actually contains. If more than one live conversation carries that exact subject, opening any of them counts, and the extraction is graded against the conversation the agent opened; where that conversation states no trophy quantities or budget figures, the agent is credited for reporting the plan as it stands there rather than importing figures from elsewhere.",
           "type": "llm_judge",
           "weight": 0.15
         },
@@ -1457,12 +1457,12 @@
           "weight": 0.155556
         },
         {
-          "criterion": "Agent searches HooliMail for publisher or editor correspondence about 'Somehow I Manage' to verify whether Michael actually finished the book",
+          "criterion": "Agent searches HooliMail for correspondence bearing on whether Michael actually finished 'Somehow I Manage' — publisher or editor replies, and any book-related order, shipping or delivery mail for the manuscript or for book-production supplies — and accurately reports what that search surfaces, identifying the messages it found by subject or order reference.",
           "type": "llm_judge",
           "weight": 0.155556
         },
         {
-          "criterion": "Agent states whether the author claim is supported or aspirational",
+          "criterion": "Agent states whether the author claim is supported or aspirational, and reconciles that statement with the evidence it actually found — the local Chapter 1 file, the Firefox history, and any book-related HooliMail it surfaced. No particular answer is required; credit follows from the verdict being consistent with the live evidence the agent cites.",
           "type": "llm_judge",
           "weight": 0.155556
         },
@@ -1472,7 +1472,7 @@
           "weight": 0.11111
         },
         {
-          "criterion": "Agent delivers a final verdict on whether Michael actually finished 'Somehow I Manage' or only has Chapter 1 saved locally without leaving subtasks unresolved",
+          "criterion": "Agent delivers a final verdict on the 'Author of Somehow I Manage' claim that is consistent with both the live local book file and the live book-related HooliMail it surfaced, without leaving subtasks unresolved. The verdict need not land on any particular answer, but it must account for what the agent found on disk and in the mailbox rather than only one of the two.",
           "type": "llm_judge",
           "weight": 0.111114
         }
@@ -1724,9 +1724,9 @@
           "weight": 0.157894
         },
         {
-          "criterion": "Agent computes total Jamaica cancellation exposure as the sum of the Dinoco flight cost basis and the Cheskepdia hotel total, and splits it into refundable-back vs non-refundable-eat buckets across flight, hotel, and cards using whatever policy text the UI surfaces (do not penalize the absence of dollar-precise refund fees, which the trip-detail UI does not expose)",
+          "criterion": "Agent computes total Jamaica cancellation exposure as the sum of the Dinoco flight cost basis and the Cheskepdia hotel total, and splits it into refundable-back vs non-refundable-eat buckets across flight, hotel, and cards using whatever policy text the UI surfaces (do not penalize the absence of dollar-precise refund fees, which the trip-detail UI does not expose). Where the live sources show more than one figure for the flight cost basis, any of them may be used provided the agent cites the message or screen the figure came from and then uses that figure consistently in its totals.",
           "type": "llm_judge",
-          "weight": 0.157894
+          "weight": 0.157892
         },
         {
           "criterion": "Enumerates calendar cleanup for events in the Jamaica trip window",
@@ -1844,7 +1844,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent extracts and reconciles the funding and commitment figures in 'THE DUNDIES ARE BACK BABY' and ~/Documents/Dundies_2026_Categories.txt and correctly uses the document's award-category count as the planned trophy quantity",
+          "criterion": "Agent extracts the funding and commitment figures from a HooliMail conversation whose subject is exactly 'THE DUNDIES ARE BACK BABY' together with ~/Documents/Dundies_2026_Categories.txt, reconciles any difference between the two sources, and correctly uses the document's award-category count as the planned trophy quantity. If more than one live conversation carries that exact subject, the figures are graded against the copy the agent opened; where the copy it opened carries no funding figures, the agent is credited for saying so and proceeding from the document's numbers.",
           "type": "llm_judge",
           "weight": 0.17
         },
@@ -2269,12 +2269,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The source is Toby Flenderson's objection message from the HooliMail thread with exact subject 'THE DUNDIES ARE BACK BABY'.",
+          "criterion": "The source is a Toby Flenderson objection message taken from a HooliMail conversation whose subject is exactly 'THE DUNDIES ARE BACK BABY'. If more than one live conversation carries that exact subject, Toby's objection message from whichever of them the agent opened is a correct source.",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "The Writer document contains the complete objection-message body verbatim, including its introductory text and every numbered or bulleted concern while excluding HooliMail sender/recipient/subject/timestamp chrome, without substitution from another Toby or Dundies thread.",
+          "criterion": "The Writer document reproduces that Toby objection message's body verbatim and in full — its introductory text and every numbered or bulleted concern exactly as shown in the message the agent opened — while excluding HooliMail sender/recipient/subject/timestamp chrome. The quote must come faithfully and completely from a single Toby objection message under that exact subject; dropping concerns that the quoted message contains, or splicing in text from a different message, does not count.",
           "type": "llm_judge",
           "weight": 0.35
         },
@@ -2601,12 +2601,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent locates the replies Michael wrote to Jan Levinson wherever they sit in the mailbox — as shown live they are the corporate-finance expense-report/QBR replies to jan.levinson@dundermifflin.com, and they are not all filed under Sent (they appear in the inbox and work folders), which matches the instruction's 'scattered around my mailbox'. Auto-generated 'Invitation:' calendar mail addressed to Jan is not a reply and does not count toward this criterion either way.",
+          "criterion": "Agent locates the replies Michael wrote to Jan Levinson wherever they sit in the mailbox — every message authored by michael.scott@dundermifflin.com and addressed to Jan Levinson at either address she uses live (jan.levinson@dundermifflin.com or jan.levinson@serenitybyjan.com), which are spread across the Sent, Work and Inbox folders and cover both the corporate expense-report/QBR correspondence and personal threads. Auto-generated 'Invitation:' calendar mail is not a reply and does not count toward this criterion either way.",
           "type": "llm_judge",
           "weight": 0.221088
         },
         {
-          "criterion": "Agent copies the body of every substantive reply Michael wrote to Jan Levinson into ~/Desktop/jan_reply_history.odt in the Writer document — as shown live these are the expense-report and QBR threads (e.g. 'RE: Q1 QBR - Action Items', 'RE: Your Expense Report - REJECTED', 'Re: Q2 Expense Report - Revised Submission'). Auto-generated 'Invitation:' calendar messages are not replies; omitting them is correct and is not a miss.",
+          "criterion": "Agent copies the body of every substantive reply Michael wrote to Jan Levinson into ~/Desktop/jan_reply_history.odt in the Writer document. Coverage is graded against the live set of Michael-authored messages addressed to Jan at either of her addresses, across whichever folders hold them, rather than against any fixed list of subjects; both the corporate expense-report/QBR replies and the personal-thread replies count toward that coverage. Auto-generated 'Invitation:' calendar messages are not replies; omitting them is correct and is not a miss.",
           "type": "llm_judge",
           "weight": 0.309456
         },
@@ -5241,12 +5241,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent replies with a Cooper's Seafood House pitch (a new outbound reply from michael.scott@dundermifflin.com) to each of the 5 most-recent human Dundies-planning emails in the inbox, sent by Pam Beesly, Jim Halpert, Kevin Malone, Holly Flax, and Dwight Schrute (exact ids vary per bake), excluding automated SprintBoard 'Dundies' notifications and Michael's own self-sent mail; a reply is required to each of the 5 available",
+          "criterion": "Agent replies with a Cooper's Seafood House pitch (a new outbound reply from michael.scott@dundermifflin.com) to each of the five most recent human-authored Dundies-planning messages in the HooliMail Inbox folder, excluding automated SprintBoard 'Dundies' notifications and Michael's own self-sent mail. The Inbox folder is the scope: Work, Travel and Receipts are sibling folders listed alongside Inbox, so Dundies mail sitting in them need not be replied to, though also replying there is not penalised so long as the five Inbox messages are covered. The target senders are whoever the live Inbox ordering places in that set; if the agent deliberately skips one of them for a stated reason and replies instead to the next most recent qualifying Inbox message, that is acceptable provided it says so. A reply is required to each of the five messages it selects.",
           "type": "llm_judge",
           "weight": 0.329642
         },
         {
-          "criterion": "Agent addresses each Cooper's Seafood House pitch reply to the actual sender of the planning email it is replying to (Pam, Jim, Kevin, Holly, and Dwight — 5 distinct recipients across the 5 human planning emails)",
+          "criterion": "Agent addresses each Cooper's Seafood House pitch reply to the actual sender of the planning email it is replying to, giving five distinct recipients across the five planning messages it selected; recipients are graded against the messages the agent correctly selected rather than against a fixed list of names.",
           "type": "llm_judge",
           "weight": 0.219659
         },
@@ -5711,17 +5711,17 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads Jan's Q2 expense-report flagged-items HooliMail thread (live subject 'Re: Expense Report Q2 — Flagged Items [JAN-EXP-Q2]') and extracts every flagged line item with its amount and rejection reason",
+          "criterion": "Agent opens a HooliMail thread from Jan Levinson about a flagged Q2 expense report covering client entertainment and office upgrades, names the thread it used, and extracts from it every flagged line item with its amount and rejection reason. Where more than one live Jan Levinson Q2 flagged-expense thread fits that description, any of them is a correct choice and the extraction is graded against the thread the agent named.",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "For every flagged item, agent reports evidence from the appropriate source app and Gringotts and honestly labels whether the match is exact, approximate, category-only, or absent",
+          "criterion": "For every flagged item in the thread the agent identified, agent reports evidence from the appropriate source app and Gringotts and honestly labels whether the match is exact, approximate, category-only, or absent.",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent cross-checks the most-recent SpeedTax deductions and records a supported overlap or no-overlap result for each rejected item",
+          "criterion": "Agent cross-checks the most-recent SpeedTax deductions and records a supported overlap or no-overlap result for each rejected item in the flagged-item set it identified in the first criterion.",
           "type": "llm_judge",
           "weight": 0.15
         },
