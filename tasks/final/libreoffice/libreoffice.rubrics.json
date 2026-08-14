@@ -5,11 +5,12 @@
     "persona": "michael_scott",
     "instruction": "Open my Dundies 2026 categories doc in Writer, bold the 'Whitest Sneakers' line, then add a new category called 'Fine Work Outfit' right after it. Save it when you're done.",
     "required_subtasks": [
-      "Open ~/Documents/Dundies_2026_Categories.txt in LibreOffice Writer",
-      "Create or save an editable Writer-format copy in ~/Documents",
-      "Bold the complete 'Whitest Sneakers' line",
-      "Insert a 'Fine Work Outfit' category immediately after it",
-      "Save the edited .odt copy, verify both edits persist, and leave the original .txt file unchanged in place"
+      "Launch LibreOffice Writer",
+      "Open ~/Documents/Dundies_2026_Categories.txt",
+      "Find the 'Whitest Sneakers' line and select it",
+      "Apply bold formatting (Ctrl+B)",
+      "Place cursor at end of line and press Enter, type 'Fine Work Outfit'",
+      "Save the file (keep format if prompted)"
     ],
     "apps_involved": [
       "LibreOffice Writer"
@@ -54,11 +55,13 @@
     "persona": "michael_scott",
     "instruction": "Write me a one-page Dundies 2026 invitation in Writer. I want a big bold title at the top, a bulleted list of this year's categories pulled from my Dundies categories doc, and a signature block that says 'Michael Scott, World's Best Boss'. Save it to my desktop so I can print a stack.",
     "required_subtasks": [
-      "Read ~/Documents/Dundies_2026_Categories.txt for the saved 2026 event categories",
-      "Create a one-page LibreOffice Writer invitation",
-      "Add a large bold Dundies 2026 title and a bulleted list of the source categories",
-      "Add the exact signature block 'Michael Scott, World's Best Boss'",
-      "Save the invitation as a Desktop .odt file"
+      "Open ~/Documents/Dundies_2026_Categories.txt to read category names",
+      "Open LibreOffice Writer and create a new document",
+      "Add a centered large title (e.g., 'THE DUNDIES 2026')",
+      "Add a short invitation intro paragraph",
+      "Insert a bulleted list of Dundies categories",
+      "Add a signature block: 'Michael Scott, World's Best Boss'",
+      "Save as ~/Desktop/dundies_invite.odt"
     ],
     "apps_involved": [
       "LibreOffice Writer"
@@ -113,11 +116,13 @@
     "persona": "michael_scott",
     "instruction": "Throw together a three-slide Impress deck for my Jamaica trip: one slide for the flight info, one for the Sandals hotel info, and one with a rough daily schedule. Save it into my Trips documents folder.",
     "required_subtasks": [
-      "Open LibreOffice Impress and create exactly three slides",
-      "Populate the flight slide from live Dinoco Airlines or HooliMail trip details",
-      "Populate the Sandals hotel slide from the live Cheskepdia booking",
-      "Create a rough daily schedule covering the live hotel stay",
-      "Save the deck as a clearly named .odp file anywhere inside ~/Documents/Trips"
+      "Open Dinoco Airlines (or the HooliMail Jamaica confirmation thread) and read the Jamaica flight number, departure time, confirmation code, and fare",
+      "Open Cheskepdia and read the Sandals Montego Bay booking (confirmation code, check-in/check-out dates, total)",
+      "Open LibreOffice Impress",
+      "Slide 1: Flight info populated from the live Dinoco/HooliMail values",
+      "Slide 2: Hotel info populated from the live Cheskepdia booking",
+      "Slide 3: Day-by-day schedule spanning the live check-in/check-out window",
+      "Save as ~/Documents/Trips/jamaica_itinerary.odp"
     ],
     "apps_involved": [
       "LibreOffice Impress",

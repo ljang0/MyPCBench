@@ -78,13 +78,14 @@
     "persona": "michael_scott",
     "instruction": "Book me Cotogna for ten people for the Dundies after-party next Friday. While you're in TableFind, pull up three other Scranton-area restaurants as a fallback plan in case Cotogna is full, and favorite the top two. Once that's done, confirm the Cotogna reservation with a note that it's the Dundies after-party so they can prep the vibe.",
     "required_subtasks": [
-      "Open TableFind and search for Cooper's Seafood House in Scranton",
-      "Check availability for ten people on next Friday relative to the task date",
-      "Book Cooper's Seafood House for ten on that next-Friday date with a 'Dundies after-party' note",
+      "Open TableFind and search for Cotogna",
+      "Check availability for a 10-person reservation for the Dundies after-party night",
+      "Book Cotogna for 10 with a 'Dundies after-party' note",
       "Record the confirmation number",
-      "Review Alfredo's Pizza Cafe, Cugino's, and Cara Mia Bistro as the three Scranton fallback restaurants",
-      "Favorite the top two fallback restaurants",
-      "Verify the next-Friday Cooper's Seafood House booking and two favorites persist"
+      "Search TableFind for 3 other Scranton-area restaurants as fallbacks",
+      "Compare the 3 fallbacks (open compare view or one-by-one)",
+      "Favorite 2 of the Scranton fallback restaurants",
+      "Verify the Cotogna booking and 2 favorites persist"
     ],
     "apps_involved": [
       "TableFind"

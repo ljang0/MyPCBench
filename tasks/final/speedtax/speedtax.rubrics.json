@@ -12,11 +12,12 @@
     "time_limit_seconds": 600,
     "cua_required": true,
     "required_subtasks": [
-      "Open SpeedTax and locate the in-progress, unfiled tax-year 2025 return",
-      "Inspect its W-2 wages and freelance/1099 income steps",
-      "Inspect the seeded deductions on the deductions step",
-      "Continue through the completed steps until step 6 is active",
-      "Leave the 2025 return unfiled at the review step"
+      "Open SpeedTax and locate the in-progress current-year tax return",
+      "Open the wages step and inspect the W-2 documents pre-loaded into the return",
+      "Open the freelance/1099 income step and inspect any income documents pre-loaded into the return",
+      "Open the deductions step and inspect the seeded deduction values (mortgage interest, state/local tax, charitable, medical)",
+      "Click Continue / Save & Continue from each completed step until the return reaches the review step (step 6)",
+      "Confirm the return is parked at the review step (step 6) in 'review' or 'in_progress' status (not filed)"
     ],
     "grading": {
       "type": "llm_judge",

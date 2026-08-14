@@ -66,10 +66,11 @@
     "cua_required": false,
     "required_subtasks": [
       "Open Dinoco Airlines and pull the flight history",
-      "Filter to completed, non-cancelled flights in the rolling past-12-month window",
-      "Record each qualifying completed trip and its mileage and compute the cumulative mileage",
-      "Record upcoming trips and their mileage in a separate section",
-      "Create the requested LibreOffice Calc spreadsheet with a cumulative total row"
+      "Filter to flights whose status is completed (not cancelled, not upcoming) within the past 12 months",
+      "Sum miles_flown (or miles_earned) across those completed flights",
+      "Report the total miles flown with the count of contributing flights",
+      "Include upcoming trips and their mileage in the output",
+      "Produce a per-trip table or spreadsheet with a cumulative total row"
     ],
     "grading": {
       "type": "llm_judge",

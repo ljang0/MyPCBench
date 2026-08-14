@@ -6,12 +6,13 @@
     "instruction": "Reorder my last run from a Kwik-E-Mart store I've used recently — pick a store I've ordered from most often OR most recently in my order history. If anything's out of stock, swap in reasonable substitutes (otherwise just keep what's available). Do a quick price check against another store in the app so I know I'm not getting fleeced, and schedule delivery for before end of day today.",
     "required_subtasks": [
       "Open Kwik-E-Mart and navigate to order history",
-      "Choose a prior order from a top-frequency store or the most recent order",
-      "Start the reorder and substitute only items shown as out of stock",
-      "Compare the reordered items' prices with another store in the app",
-      "Proceed with the cheaper available option",
-      "Choose an available delivery slot before 11:59 PM local time today, or explicitly record that none exists",
-      "Place and verify the order when a qualifying slot exists; otherwise leave the cheaper cart ready without ordering"
+      "Locate the reorder anchor (most recent order at one of Michael's top-frequency Kwik-E-Mart stores by order count, OR the most recent order overall)",
+      "Start a reorder flow",
+      "If any items surface as out-of-stock, pick explicit substitutions; otherwise keep the original items",
+      "Open a second store and view the same items' prices",
+      "Return to the top-store cart if it remains cheapest",
+      "Checkout and schedule delivery before end of day Thursday",
+      "Place the order and verify in recent orders"
     ],
     "apps_involved": [
       "Kwik-E-Mart"
@@ -139,11 +140,11 @@
     "persona": "michael_scott",
     "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores and give me a quick profile of my shopping habits in LibreOffice Writer. ",
     "required_subtasks": [
-      "Open Kwik-E-Mart and count orders for every store in the live order history",
-      "Rank the stores by order count and identify the plurality store",
-      "Review line items bought at the plurality store",
-      "Write a concise shopping-habits profile grounded in those line items",
-      "Create a LibreOffice Writer document containing the ranking and profile"
+      "Open Kwik-E-Mart and list all stores Michael has ordered from",
+      "Count orders per store and rank them",
+      "Identify the top store by Michael's Kwik-E-Mart order count (plurality, not necessarily majority) from /api/orders",
+      "Scan the line items at the top store to characterize what Michael typically buys there",
+      "Give a one-paragraph profile of Michael's Kwik-E-Mart shopping preference"
     ],
     "apps_involved": [
       "Kwik-E-Mart",

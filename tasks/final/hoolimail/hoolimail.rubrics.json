@@ -175,11 +175,11 @@
     "date_policy": "narrative_absolute",
     "instruction": "Start a draft email to David Wallace with my most recent quarter's sales summary. Pull a ballpark from my ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt so the numbers actually have a basis. Save it as a draft; do NOT hit send. I want to review it first. Do some analysis in LibreOffice Calc so I have some empirical analysis to send him as well.",
     "required_subtasks": [
-      "Read ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt for the fixed Q2 2026 forecast figures",
-      "Create and save a LibreOffice Calc analysis using the forecast figures",
+      "Open Files and read ~/Downloads/DunderMifflin_Q2_Sales_Forecast.txt for sales figures",
+      "Open LibreOffice Calc and perform sales analysis using figures from the forecast file",
       "Open HooliMail and start a new message",
       "Address it to david.wallace@dundermifflin.com",
-      "Summarize the fixed Q2 2026 forecast in the body and label its figures as projections rather than recent actuals",
+      "Summarize the most recent quarter's sales in the body (numbers grounded in the forecast doc)",
       "Save as draft without sending"
     ],
     "apps_involved": [

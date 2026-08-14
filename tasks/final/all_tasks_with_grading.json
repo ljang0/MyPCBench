@@ -7313,52 +7313,47 @@
         {
           "criterion": "Agent derives a trip budget from live Gringotts balances and chooses compatible future lodging and flight dates for a destination outside the excluded set (not Jamaica, Barbados, New York, or Philadelphia); the live Dinoco catalog seeds round trips from AVP to Portland and from AVP to Barcelona, and Cheskepdia lists stays in both cities",
           "type": "llm_judge",
-          "weight": 0.1
+          "weight": 0.105263
         },
         {
           "criterion": "Agent books a future Cheskepdia accommodation in the chosen non-excluded destination, reports its confirmation, and keeps it within the stated combined budget",
           "type": "llm_judge",
-          "weight": 0.15
+          "weight": 0.157894
         },
         {
           "criterion": "Agent books round-trip Dinoco flights between AVP and the chosen non-excluded destination, reports both confirmations, and keeps them within the stated combined budget",
           "type": "llm_judge",
-          "weight": 0.15
+          "weight": 0.157895
         },
         {
           "criterion": "Agent scopes eTaxi transportation between home and AVP for the booked flight times",
           "type": "llm_judge",
-          "weight": 0.08
+          "weight": 0.084211
         },
         {
           "criterion": "Agent saves a day-by-day LibreOffice itinerary under ~/Documents/Trips/ based on the booked dates",
           "type": "llm_judge",
-          "weight": 0.12
+          "weight": 0.126316
         },
         {
           "criterion": "Agent blocks the booked trip dates in HooliCalendar",
           "type": "llm_judge",
-          "weight": 0.1
+          "weight": 0.105263
         },
         {
           "criterion": "Agent sends Pam, Jim, and Holly a group HooliMail invitation containing the itinerary",
           "type": "llm_judge",
-          "weight": 0.1
+          "weight": 0.105263
         },
         {
           "criterion": "Agent publishes a future-tense 'big trip coming' LockedIn teaser",
           "type": "llm_judge",
-          "weight": 0.08
-        },
-        {
-          "criterion": "Agent does not use TableFind or HangryDash or create any action in either app",
-          "type": "llm_judge",
-          "weight": 0.05
+          "weight": 0.084211
         },
         {
           "criterion": "Agent verifies the lodging, flights, calendar block, itinerary, email, and post persist",
           "type": "llm_judge",
-          "weight": 0.07
+          "weight": 0.073684
         }
       ]
     }

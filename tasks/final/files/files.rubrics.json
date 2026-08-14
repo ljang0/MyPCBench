@@ -13,10 +13,10 @@
     "cua_required": false,
     "required_subtasks": [
       "Open Files and navigate to ~/Documents/Projects",
-      "Locate the Threat Level Midnight sequel notes file and report its absolute path",
-      "Summarize the plot, cast, and other plans in the notes",
-      "Draft a script grounded in the notes",
-      "Include Holly, Jim, and Dwight as characters in the draft script"
+      "Locate the Threat Level Midnight sequel notes file",
+      "Report the absolute path",
+      "Summarize what the document is about",
+      "Draft a script using the notes as a starting point that casts coworkers as characters"
     ],
     "grading": {
       "type": "llm_judge",
@@ -67,11 +67,11 @@
     "time_limit_seconds": 300,
     "cua_required": false,
     "required_subtasks": [
-      "Open Files and locate ~/Documents/Dundies_2026_Categories.txt",
-      "Read and enumerate the categories in the saved 2026 planning document",
-      "Create a LibreOffice Impress presentation containing those categories",
-      "Message Jim, Kevin, and Darryl to ask them to attend the Dundies",
-      "Do not message Toby because the source document says he is not invited"
+      "Open Files and locate Dundies_2026_Categories.txt in ~/Documents",
+      "Open the file and read the category list",
+      "Report the path and enumerate the categories",
+      "Create a LibreOffice Impress presentation with the Dundies categories",
+      "Message each candidate listed in the categories to make sure they show up"
     ],
     "grading": {
       "type": "llm_judge",
@@ -165,10 +165,11 @@
     "persona": "michael_scott",
     "instruction": "Open my Threat Level Midnight sequel notes file and add five new plot points for me. Big ones. Michael Scarn's back. Send out the revised plot notes to a handful of my friends from work, who could be used for casting.",
     "required_subtasks": [
-      "Locate and open ~/Documents/Projects/Threat_Level_Midnight_Sequel_Notes.txt in Files",
-      "Add five new plot-point entries in the Threat Level Midnight tone",
-      "Save the revised notes to the same file",
-      "Send the saved revised file as an attachment, or its complete revised contents, to at least three Dunder Mifflin coworkers as casting candidates"
+      "Locate ~/Documents/Projects/Threat_Level_Midnight_Sequel_Notes.txt in the Files app",
+      "Open the existing Threat Level Midnight sequel notes file",
+      "Add 5 new plot-point entries in Michael's voice",
+      "Save the file",
+      "Send the revised plot notes to a handful of Dunder Mifflin coworkers via messaging or email"
     ],
     "apps_involved": [
       "Files",

@@ -55,11 +55,12 @@
     "persona": "michael_scott",
     "instruction": "Go into OddsMarket, find my worst-losing position, hit Close, and type CONFIRM in the modal when it pops up.",
     "required_subtasks": [
-      "Open OddsMarket and navigate to the open positions list",
-      "Compare the displayed unrealized dollar P&L for every open position",
-      "Identify the position with the largest unrealized dollar loss",
-      "Click Close for that position, type the literal string CONFIRM, and confirm",
-      "Verify the position is no longer in the open positions list"
+      "Open OddsMarket (localhost:3003) and sign in",
+      "Navigate to open positions",
+      "Identify the worst-losing position (largest per-position loss)",
+      "Click the Close button for that position",
+      "A confirmation modal appears; type CONFIRM into the modal input",
+      "Click the confirm button in the modal"
     ],
     "apps_involved": [
       "OddsMarket"
@@ -114,12 +115,12 @@
     "persona": "michael_scott",
     "instruction": "Clean up my OddsMarket account: exit any YES positions that are more than 10% underwater from cost basis (per-position P&L% < -10% — if no position is below that threshold, say so and skip the exit step), and put any freed-up money back into my existing NBC Office reboot/revival position (the one already in my open positions — that's the one I actually have conviction on). If the Office reboot position itself qualifies for the >10%-underwater exit, the reinvestment step is skipped — exit it and report the freed cash without reinvesting. Then add the markets I'm still holding to my watchlist so I can keep an eye on them.",
     "required_subtasks": [
-      "Open OddsMarket and enumerate all positions the app currently marks open with their displayed P&L percentages",
-      "Exit every open YES position with displayed P&L below -10%, or explicitly report that none qualify",
-      "If cash was freed and the NBC Office reboot/revival position remains open, reinvest the freed amount there",
-      "If the NBC Office position itself qualified for exit, report the freed cash and do not reinvest",
-      "Add every position still marked open to the OddsMarket watchlist",
-      "Verify the resulting positions, balance, and watchlist persist"
+      "Open OddsMarket and review every open YES position and its P&L%",
+      "Identify any positions with per-position P&L% < -10% (more than 10% underwater from cost basis), or determine that none qualify",
+      "Exit/sell any positions whose P&L% < -10% to free balance (skip if none qualify)",
+      "Buy additional YES shares in Michael's existing NBC Office reboot/revival position (already in his open positions) with the freed cash — ONLY if the Office reboot position was not itself exited in the previous step",
+      "Add the remaining open positions to the watchlist",
+      "Confirm the watchlist now contains the surviving markets and the closed positions are off the open-positions list"
     ],
     "apps_involved": [
       "OddsMarket"

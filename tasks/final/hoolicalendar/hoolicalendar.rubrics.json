@@ -6,14 +6,14 @@
     "date_policy": "relative",
     "instruction": "Check my Thursday for any improv conflicts. If there's a Thursday improv class window stomping on a work meeting (and I cannot skip improv), find a different Thursday slot for the work meeting that doesn't touch the improv window, and add fifteen-minute buffers on both sides so I can transition without looking frazzled. I think the meeting has Andy and Jim, message them on HooliWork and send them updated invites on Hoolicalendar if needed. If no Thursday meeting actually overlaps an improv block, just confirm the all-clear and move on.",
     "required_subtasks": [
-      "Resolve the next Thursday strictly after the VM date and open that date in HooliCalendar",
-      "Identify any improv-tagged event on that exact Thursday",
-      "Identify any work meeting on that exact date that conflicts with the improv window, or note that none does",
-      "If a conflict exists, pick a non-conflicting slot on that same Thursday for the work meeting",
-      "If a conflict exists, move the meeting to the new time",
-      "If a meeting is moved, protect a 15-minute buffer before it",
-      "If a meeting is moved, protect a 15-minute buffer after it",
-      "If a meeting is moved, send updated invites and notify the attendees",
+      "Open HooliCalendar and navigate to Thursday view",
+      "Identify any improv class event on the upcoming Thursday from live HooliCalendar Thursday events (Scranton Improv Workshop, Improv Class, or similar — read whatever improv-tagged event exists Thursday)",
+      "Identify any work meeting on Thursday that conflicts with the improv class window (or note that none does)",
+      "Pick a non-conflicting Thursday time slot for that work meeting",
+      "Move the meeting to the new time",
+      "Add a 15-minute buffer event before the new meeting",
+      "Add a 15-minute buffer event after the new meeting",
+      "Send updated invites to attendees",
       "Verify the new schedule visually shows no conflict"
     ],
     "apps_involved": [

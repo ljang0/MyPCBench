@@ -75,10 +75,11 @@
     "date_policy": "narrative_absolute",
     "instruction": "Post a Motivational Monday message in our #random channel at work. You know how I like it: World's Best Boss style, kick the team's week off right. Pull a quote or two from my Motivational Quotes Collection in ~/Documents/ as a starting point so it doesn't feel made up.",
     "required_subtasks": [
-      "Open ~/Documents/Motivational_Quotes_Collection.txt and read its quotes",
-      "Choose at least one quote from that file and incorporate it into the message",
-      "Compose a workweek-kickoff message in Michael's World's Best Boss voice",
-      "Post the completed message to the HooliWork #random channel"
+      "Open HooliWork and confirm Michael's #random channel membership",
+      "Navigate to the #random channel",
+      "Compose a Motivational Monday message in Michael's voice",
+      "Post the message to #random",
+      "Read ~/Documents/Motivational_Quotes_Collection.txt and pull at least one quote as inspiration"
     ],
     "apps_involved": [
       "HooliWork",
@@ -127,10 +128,10 @@
     "date_policy": "relative",
     "instruction": "Post a Pretzel Day countdown for next Monday at 8:00 AM EST in the #party-planning-committee channel at work. Build the hype.",
     "required_subtasks": [
-      "Open HooliWork and navigate to #party-planning-committee",
-      "Compose a hype-filled Pretzel Day planning-kickoff message that says planning starts today without inventing an event date",
-      "Post the kickoff in #party-planning-committee",
-      "Confirm the message appears in that channel"
+      "Open HooliWork",
+      "Navigate to the #party-planning-committee channel",
+      "Compose a Pretzel Day countdown message",
+      "Schedule or post the message for next Monday at 8:00 AM EST in #party-planning-committee"
     ],
     "apps_involved": [
       "HooliWork"

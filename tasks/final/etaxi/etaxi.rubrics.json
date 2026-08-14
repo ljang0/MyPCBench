@@ -13,10 +13,9 @@
     "time_limit_seconds": 300,
     "cua_required": false,
     "required_subtasks": [
-      "Open eTaxi and identify current-calendar-year rides whose drop-off is the Dunder Mifflin office",
-      "Record each qualifying commute ride and its cost",
-      "Compute the qualifying ride count and total cost",
-      "Create a LibreOffice Calc spreadsheet containing the qualifying rides, ride count, and total cost"
+      "Open eTaxi and filter rides to ones whose dropoff_address starts with 'Dunder Mifflin' (the prefix is unique to the office and disambiguates from any home rides on the same street)",
+      "Sum the totals of those rides across the current calendar year (YTD)",
+      "Report the commute-only spend with the ride count"
     ],
     "grading": {
       "type": "llm_judge",
