@@ -190,6 +190,69 @@ Standing rule that came out of all three passes: **a rubric may not assert an
 absence, a fixed count, or a fixed date.** Anchor on what the app displays at
 run time and accept any defensible reading.
 
+## Pass 4 — restoring the original instructions (2026-08-14)
+
+Passes 1-3 hardened rubrics. Pass 4 audited the *instructions*, and found that
+`827d86f` had rewritten 76 of them almost from scratch — text similarity 0.01
+to 0.05 against the pre-audit baseline, mean length 350 -> 403 characters. The
+rewrites moved consistently in the spec direction, folding the rubric's own
+grading criteria into the prompt:
+
+    was:  "a morning brief covering any priority email from this week"
+    became: "HooliMail received this week that is unread, starred, or from
+             David Wallace or Jan Levinson"
+
+That inverts what the benchmark measures. An agent no longer has to infer what
+"priority" means; it applies an enumerated filter. The owner's call was to keep
+the task set intact, restore the original wording, and fix the rubric — or the
+image — wherever the two disagree. A rubric may be edited or dropped to match
+its instruction; an instruction may not be rewritten to match its rubric.
+
+All 76 instructions are restored verbatim. **50 rubric items across 23 tasks**
+were realigned; none had to be dropped.
+
+Most were rubrics pinning down a choice the instruction deliberately leaves
+open — f031's "a few months ago" fixed to one exact three-month window,
+preference_inference-f012's "last few months" fixed to 90 days,
+contradiction-f005's "if the lie is big enough" fixed to an explicit numeric
+threshold, cua_only-f008's "worst-losing" fixed to dollars rather than percent,
+DM tasks fixed to one of the two apps that both support DMs. These now accept
+any defensible reading the agent states and makes evident.
+
+Four were the rubric flatly contradicting its own instruction. In every case
+the live image sided with the instruction, so the rubric was simply wrong:
+
+| task | instruction says | rubric demanded | live image |
+|---|---|---|---|
+| `hard_app-f016` | book **Cotogna** | Cooper's Seafood House | Cotogna is one of TableFind's 37 restaurants |
+| `long_horizon-f060` | "**not** NYC" | NYC lodging + AVP-JFK | `TRIP_OFFSETS` seeds AVP-PDX and AVP-BCN *for this task* |
+| `long_horizon-f058` | move **closer to the office** | NYC listings, no commute claim | Cheskepdia lists 4 Scranton properties |
+| `situated_action-f013` | announce Dundies "to build buzz" | a "throwback or completed event" | nothing requires it to be past |
+
+The fifth, `situated_action-f040`, was graded "archival and past-tense" for an
+out-of-office covering an **upcoming** trip — because the seeded trip document
+had drifted a month behind its own booking. That one was a genuine image
+defect, fixed in the bake rather than in the task (see below).
+
+### The trip-document skew
+
+Every database trip date is recomputed from `trip_anchor()` on each boot, but
+`~/Documents/Trips/*.txt` is written from literal dates at **bake** time and
+nothing re-anchored it. On the 2026-08-14 bake:
+
+    trip note:  Dates: 2026-07-31 to 2026-08-07     (a week in the PAST)
+    Cheskepdia: SM-88431  2026-08-29 -> 2026-09-05  (jamaica_out=+15/+22)
+    Dinoco:     DN1562 +15d, DN1563 +22d
+
+A month of skew between the documents and the apps describing one trip. Nine
+tasks reference the Jamaica trip and five only make sense while it is upcoming,
+so an agent following `situated_action-f040`'s "pull the dates from my Jamaica
+trip doc" got a trip that had already happened.
+`scripts/patch_persona_canon_trip_docs.py` now re-anchors those documents from
+the same `TRIP_OFFSETS` the database patchers use, shifting by a delta derived
+from the file's own contents so an aligned file is a byte-for-byte no-op.
+`tests/test_trip_doc_reanchor.py` proves it across 12 bake anchors.
+
 ## Not done / next
 
 - No eval-agent execution, no judge scoring (out of scope by design).

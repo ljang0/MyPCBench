@@ -185,17 +185,25 @@ What was not done:
 Therefore the correct release statement is:
 
 > All 184 tasks pass static task/rubric/date-contract validation, and every
-> rubric item has been empirically verified against a live VM across three
+> rubric item has been empirically verified against a live VM across four
 > passes: the published image (2026-08-12), a rollover-stress bake with the
-> clock advanced a day, and a cold-booted **rebaked** image built from
-> `fix/bake-invariance` (2026-08-13). 138 rubric items across 73 tasks were
-> repaired in total, rubric-only except for 8 owner-approved instruction
-> fixes. The rebaked image passes the 58-probe data gate 58/0/0 on a cold
-> boot, and `verify_bake_invariance.py` passes 1056/1056 across 22 bake
-> anchors, so task feasibility is now proven invariant to the bake date
-> rather than checked on one day's data. The benchmark is still not certified
-> as 184/184 executable end-to-end by a computer-use agent, because no
-> eval-agent runs or judge scoring were performed.
+> clock advanced a day, a cold-booted **rebaked** image built from
+> `fix/bake-invariance` (2026-08-13), and an instruction-integrity pass
+> (2026-08-14). The fourth pass restored **76 task instructions** that had
+> been rewritten in the spec direction — folding the rubric's own grading
+> criteria into the prompt — and realigned **50 rubric items across 23 tasks**
+> to grade the original wording instead. No rubric item had to be dropped and
+> the task set is unchanged at 184 tasks / 1,133 items. Where a rubric
+> contradicted its own instruction the live image sided with the instruction
+> every time, except one real image defect — seeded trip documents drifting a
+> month behind their own bookings — which was fixed in the bake rather than in
+> the task. The final image passes the 58-probe data gate 58/0/0 on a cold
+> boot with the trip documents byte-matching the live booking window, and
+> `verify_bake_invariance.py` passes 1056/1056 across 22 bake anchors, so task
+> feasibility is proven invariant to the bake date rather than checked on one
+> day's data. The benchmark is still not certified as 184/184 executable
+> end-to-end by a computer-use agent, because no eval-agent runs or judge
+> scoring were performed.
 
 ## Image and daily regeneration boundary
 
