@@ -518,7 +518,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent confirms the cancellation confirmation email was received and pulls it up as requested",
+          "criterion": "Agent confirms the email Dinoco sends when a booking is cancelled — the app titles it 'Dinoco Airlines travel credit issued' — was received, and pulls it up as the instruction asks",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -2424,7 +2424,7 @@
           "weight": 0.15
         },
         {
-          "criterion": "The report gives a ranked top-five recipient list with frequencies for the most recent 12-month span represented in the authoritative sent-mail source, and the reported frequencies agree with that source. Where several recipients tie at the rank-five boundary, any of the tied recipients may occupy the final slot. Either treatment of Jan Levinson's two live addresses is acceptable — counting jan.levinson@dundermifflin.com and jan.levinson@serenitybyjan.com as separate recipients, or merging them into a single person-level entry — provided the report is consistent about the treatment it chose.",
+          "criterion": "The report gives a ranked top-five recipient list with frequencies for the most recent 12-month span represented in the authoritative sent-mail source, and the reported frequencies agree with that source. Where recipients tie at any rank boundary, any ordering among the tied recipients is acceptable.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -4496,12 +4496,12 @@
           "type": "llm_judge"
         },
         {
-          "criterion": "Agent entered the Dunder Mifflin W-2 numbers into SpeedTax exactly as written in Documents/Tax_2025/w2_summary.txt (gross / federal withholding / state withholding)",
+          "criterion": "Agent enters the Dunder Mifflin W-2 numbers into SpeedTax exactly as written in Documents/Tax_2025/w2_summary.txt (gross / federal withholding / state withholding) — or, where the return already carries those exact values, confirms them and leaves them unchanged",
           "weight": 0.2,
           "type": "llm_judge"
         },
         {
-          "criterion": "Agent entered the 1099-NEC freelance consulting payer and amount into SpeedTax exactly as listed in Documents/Tax_2025/1099s.txt",
+          "criterion": "Agent enters the 1099-NEC freelance consulting payer and amount into SpeedTax exactly as listed in Documents/Tax_2025/1099s.txt — or, where the return already carries those exact values, confirms them and leaves them unchanged",
           "weight": 0.15,
           "type": "llm_judge"
         },
@@ -5464,7 +5464,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The agent accurately lists the monthly recurring auto-charges shown in Gringotts without adding non-monthly or fabricated charges. The live list distinguishes autopay-enabled payees from other monthly lines (including a credit-card autopay line) and carries no explicit active/cancelled flag, so listing only the autopay payees or every monthly line are both acceptable, provided every charge listed actually appears live and the agent states which set it counted.",
+          "criterion": "The agent accurately lists the monthly recurring auto-charges shown in Gringotts without adding non-monthly or fabricated charges. The live list mixes autopay-enabled payees with other monthly lines (including a monthly credit-card payment line that the app does not flag as autopay) and carries no explicit active/cancelled flag, so listing the monthly recurring set with or without that card line is acceptable provided the agent is consistent.",
           "type": "llm_judge",
           "weight": 0.45
         },
@@ -6201,7 +6201,7 @@
           "weight": 0.35
         },
         {
-          "criterion": "Agent saves the completed message as a HooliMail draft, does not send or activate it, and re-reads the draft to verify the required content persisted",
+          "criterion": "The completed message is saved as a HooliMail draft and is neither sent nor activated, and the saved draft contains the required content",
           "type": "llm_judge",
           "weight": 0.4
         }
@@ -8522,7 +8522,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent confirms the status change + new sub-tasks persisted (refresh / re-read board state)",
+          "criterion": "The status change and both new sub-tasks are still present when the board is re-read, so the edits persisted rather than being lost",
           "type": "llm_judge",
           "weight": 0.1
         }

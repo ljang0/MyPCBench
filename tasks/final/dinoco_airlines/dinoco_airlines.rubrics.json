@@ -234,7 +234,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent confirms the cancellation confirmation email was received and pulls it up as requested",
+          "criterion": "Agent confirms the email Dinoco sends when a booking is cancelled — the app titles it 'Dinoco Airlines travel credit issued' — was received, and pulls it up as the instruction asks",
           "type": "llm_judge",
           "weight": 0.25
         },

@@ -263,7 +263,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent confirms the status change + new sub-tasks persisted (refresh / re-read board state)",
+          "criterion": "The status change and both new sub-tasks are still present when the board is re-read, so the edits persisted rather than being lost",
           "type": "llm_judge",
           "weight": 0.1
         }
