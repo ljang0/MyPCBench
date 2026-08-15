@@ -28,7 +28,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent groups the messages it read by sender email address and counts how many messages each sender is filling the mailbox with, with the per-sender counts consistent with the folder scope the agent stated in the first criterion. The counts are graded against that stated scope rather than against a fixed sender list, since the two permitted scopes yield materially different rankings.",
+          "criterion": "Agent groups the messages it read by sender email address and counts how many messages each sender contributes, with the per-sender counts consistent with the folder scope it stated in the first criterion",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -155,7 +155,7 @@
           "weight": 0.1578
         },
         {
-          "criterion": "Agent derives the fast-vs-days reply pattern from Maildir timestamps rather than guessing, and names Michael as the sender of record",
+          "criterion": "Agent derives the fast-versus-days reply pattern from actual message timestamps in the source it chose rather than guessing, and names Michael as the sender of record",
           "type": "llm_judge",
           "weight": 0.1052
         },

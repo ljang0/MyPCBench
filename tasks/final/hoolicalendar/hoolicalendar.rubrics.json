@@ -63,7 +63,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "If a meeting was moved, agent sends updated HooliCalendar invites to the meeting attendees (Andy and Jim) after the move — OR, if the moved meeting has no attendees listed, agent explicitly notes that no attendees existed so no invites were needed",
+          "criterion": "If a meeting was moved, agent notifies Andy and Jim of the new time through HooliCalendar where the app offers a way to do so, or states that the calendar exposes no re-invite action and notifies them by another channel — OR, if the moved meeting has no attendees listed, notes that no invites were needed",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -190,7 +190,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads HooliCalendar visually (cua) for the current week to gather the AM vs PM event data",
+          "criterion": "Agent reads the current week's HooliCalendar events from the live app to gather the AM vs PM data",
           "type": "llm_judge",
           "weight": 0.22
         },

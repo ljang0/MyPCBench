@@ -110,7 +110,7 @@
           "weight": 0.189562
         },
         {
-          "criterion": "Agent confirms new holdings row shows GME=0 and VTI shares increased",
+          "criterion": "Agent confirms GME no longer appears among the BatBucks holdings — the app removes a fully liquidated position rather than showing it at zero — and that VTI shares increased",
           "type": "llm_judge",
           "weight": 0.157768
         },

@@ -83,7 +83,7 @@
           "weight": 0.189562
         },
         {
-          "criterion": "Agent confirms new holdings row shows GME=0 and VTI shares increased",
+          "criterion": "Agent confirms GME no longer appears among the BatBucks holdings — the app removes a fully liquidated position rather than showing it at zero — and that VTI shares increased",
           "type": "llm_judge",
           "weight": 0.157768
         },
@@ -290,7 +290,7 @@
           "weight": 0.21
         },
         {
-          "criterion": "Agent identifies the Philadelphia Radisson booking as the business-travel outlier among Michael's luxury-hotels pattern",
+          "criterion": "Agent identifies the Philadelphia Radisson stay as the non-Sandals outlier in the pattern and characterizes it consistently with what the live records show about that trip",
           "type": "llm_judge",
           "weight": 0.16
         },
@@ -1017,7 +1017,7 @@
           "weight": 0.1
         },
         {
-          "criterion": "If a meeting was moved, agent sends updated HooliCalendar invites to the meeting attendees (Andy and Jim) after the move — OR, if the moved meeting has no attendees listed, agent explicitly notes that no attendees existed so no invites were needed",
+          "criterion": "If a meeting was moved, agent notifies Andy and Jim of the new time through HooliCalendar where the app offers a way to do so, or states that the calendar exposes no re-invite action and notifies them by another channel — OR, if the moved meeting has no attendees listed, notes that no invites were needed",
           "type": "llm_judge",
           "weight": 0.1
         },
@@ -1113,7 +1113,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads HooliCalendar visually (cua) for the current week to gather the AM vs PM event data",
+          "criterion": "Agent reads the current week's HooliCalendar events from the live app to gather the AM vs PM data",
           "type": "llm_judge",
           "weight": 0.22
         },
@@ -1293,7 +1293,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "Agent groups the messages it read by sender email address and counts how many messages each sender is filling the mailbox with, with the per-sender counts consistent with the folder scope the agent stated in the first criterion. The counts are graded against that stated scope rather than against a fixed sender list, since the two permitted scopes yield materially different rankings.",
+          "criterion": "Agent groups the messages it read by sender email address and counts how many messages each sender contributes, with the per-sender counts consistent with the folder scope it stated in the first criterion",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -1393,7 +1393,7 @@
           "weight": 0.1578
         },
         {
-          "criterion": "Agent derives the fast-vs-days reply pattern from Maildir timestamps rather than guessing, and names Michael as the sender of record",
+          "criterion": "Agent derives the fast-versus-days reply pattern from actual message timestamps in the source it chose rather than guessing, and names Michael as the sender of record",
           "type": "llm_judge",
           "weight": 0.1052
         },
@@ -2065,7 +2065,7 @@
           "weight": 0.2
         },
         {
-          "criterion": "The Writer brief accurately summarizes messages received since local midnight in both HooliChat and HooliWork, including an explicit none-found result where applicable.",
+          "criterion": "The Writer brief accurately summarizes recent HooliChat and HooliWork traffic under an overnight window the agent states or makes evident — since the previous evening or since local midnight are both defensible readings — including an explicit none-found result where applicable.",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -2235,7 +2235,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The agent accurately reports any HooliShop trophy or award orders tied by product or context to the fixed Dundies 2026 project, including totals, or explicitly records that none exist, without excluding a match merely because its displayed order year differs.",
+          "criterion": "The agent accurately reports the HooliShop trophy or award orders it ties to the 2026 Dundies, including totals, or explicitly records that none exist",
           "type": "llm_judge",
           "weight": 0.18
         },
@@ -2429,7 +2429,7 @@
           "weight": 0.25
         },
         {
-          "criterion": "The report gives an accurate ranked top-five recurring-subject list with frequencies, treating ordinary reply/forward prefixes consistently. Where several subjects tie at the rank-five boundary, any of the tied subjects may occupy the final slot.",
+          "criterion": "The report gives an accurate ranked top-five recurring-subject list with frequencies, treating ordinary reply/forward prefixes consistently. Where subjects tie at any rank boundary, any ordering among the tied subjects is acceptable.",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -4337,7 +4337,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "The agent actually updates and saves the LockedIn headline — the saved text differs from the pre-existing baked headline rather than being left untouched — while still clearly reflecting both Michael's current Regional Manager role and Somehow I Manage authorship in a voice appropriate to Michael.",
+          "criterion": "The saved LockedIn headline clearly reflects both Michael's current Regional Manager role and his Somehow I Manage authorship in a voice appropriate to Michael. Rewriting the existing headline and deliberately keeping it are both acceptable, provided the agent says which it did and the headline is saved.",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -5741,7 +5741,7 @@
           "weight": 0.2499
         },
         {
-          "criterion": "eTaxi pickup is scheduled for the live Jamaica departure date from Dinoco with at least 2.5h buffer before the flight",
+          "criterion": "eTaxi pickup is scheduled for the live Jamaica departure date with a cushion the agent states and justifies as adequate for security. A pre-seeded airport ride already exists at roughly a 1.5-hour cushion; booking a new ride or adjusting that one are both acceptable.",
           "type": "llm_judge",
           "weight": 0.2499
         },
@@ -5984,7 +5984,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent compares the live markets list with Michael's open positions and selects exactly 3 on-brand markets that are not currently owned",
+          "criterion": "Agent compares the live markets list with Michael's open positions and selects 3 markets it judges on-brand that are not currently owned; any defensible on-brand reading is acceptable, including the instruction's own catch-all",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -6092,7 +6092,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "Agent sends the email and verifies it appears in Sent addressed to Pam with the attachment present",
+          "criterion": "The email is sent and appears in Sent addressed to Pam with the attachment present",
           "type": "llm_judge",
           "weight": 0.4
         }
@@ -6160,7 +6160,7 @@
           "weight": 0.1176
         },
         {
-          "criterion": "Email references the Jamaica trip as the reason for needing a makeup class, with a date window tied to the trip the agent establishes",
+          "criterion": "Email references the Jamaica trip as the reason for needing a makeup class, with a date window tied to the live Cheskepdia booking and Dinoco flights; where an older artifact on disk carries a different window, the live booking governs",
           "type": "llm_judge",
           "weight": 0.2944
         },
@@ -6236,7 +6236,7 @@
           "weight": 0.23
         },
         {
-          "criterion": "Agent writes the kill-list memo in LibreOffice Writer naming the 3-4 most expensive subscriptions and saves it under ~/Documents",
+          "criterion": "Agent writes the kill-list memo in LibreOffice Writer naming the 3-4 most expensive recurring charges it identified and saves it under ~/Documents",
           "type": "llm_judge",
           "weight": 0.19
         },
@@ -6478,7 +6478,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens a HooliMail thread from Jan Levinson about a flagged Q2 expense report covering client entertainment and office upgrades, names the thread it used, and extracts from it every flagged line item with its amount and rejection reason. Where more than one live Jan Levinson Q2 flagged-expense thread fits that description, any of them is a correct choice and the extraction is graded against the thread the agent named.",
+          "criterion": "Agent opens the HooliMail rejection thread from Jan Levinson about a flagged expense report, names the thread it used, and extracts from it every flagged line item with its amount and rejection reason",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -6493,7 +6493,7 @@
           "weight": 0.15
         },
         {
-          "criterion": "Agent saves under ~/Documents/ a reasonably named Q2 LibreOffice Calc reconciliation whose per-item rows include source, amount, evidence quality, correction, and deduction status",
+          "criterion": "Agent saves the line-item reconciliation as a LibreOffice Calc file at ~/Documents/Q1_expense_resubmit.ods, the path the instruction names, with per-item rows covering source, amount, evidence quality, correction, and deduction status",
           "type": "llm_judge",
           "weight": 0.25
         },
@@ -7824,7 +7824,7 @@
           "weight": 0.06
         },
         {
-          "criterion": "Agent scopes matching eTaxi airport pickup and return transfers for the selected AVP-to-JFK itinerary without creating a past-dated ride",
+          "criterion": "Agent scopes matching eTaxi airport pickup and return transfers for the itinerary it selected in the previous criterion, without creating a past-dated ride",
           "type": "llm_judge",
           "weight": 0.05
         },

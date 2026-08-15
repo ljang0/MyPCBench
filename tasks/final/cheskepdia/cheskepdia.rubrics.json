@@ -37,7 +37,7 @@
           "weight": 0.21
         },
         {
-          "criterion": "Agent identifies the Philadelphia Radisson booking as the business-travel outlier among Michael's luxury-hotels pattern",
+          "criterion": "Agent identifies the Philadelphia Radisson stay as the non-Sandals outlier in the pattern and characterizes it consistently with what the live records show about that trip",
           "type": "llm_judge",
           "weight": 0.16
         },
