@@ -66,3 +66,11 @@ which runs the Gemini full-trajectory per-rubric judge
 (`gemini-3.1-flash-lite-preview`) and writes `scores.json`. See the root
 [README](../../README.md) "Grading" section and
 [docs/NO_DOCKER.md](../../docs/NO_DOCKER.md).
+
+## `mypcbench_clean.json` (rubric alignment, August 2026)
+
+`tasks/final/mypcbench_clean.json` is the full 184-task set with the same frozen instructions and the
+rubrics re-aligned after a live, per-item feasibility verification against the daily image (every rubric
+item checked on a fresh bake; items that graded something the instruction never asked were dropped, and
+criteria that contradicted the instruction, a sibling, or the live world were reworded — instructions were
+never edited). Use it directly: `--tasks_dir tasks/final/mypcbench_clean.json`.
