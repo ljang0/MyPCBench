@@ -24,34 +24,34 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent uses Thunar (not terminal mv) to move the file via left_click_drag",
+          "criterion": "Agent moves the file using a GUI file manager (Thunar or Files/Nautilus) — e.g. via left_click_drag or the file manager's own move — not with a terminal mv command",
           "type": "llm_judge",
-          "weight": 0.295716
+          "weight": 0.3
         },
         {
           "criterion": "Agent saves the Jamaica boarding pass file into ~/Documents/Trips/Jamaica/ renamed to jamaica_boarding_pass with whatever extension the seeded file uses (.pdf or .txt both accepted)",
           "type": "llm_judge",
-          "weight": 0.25885
+          "weight": 0.26
         },
         {
           "criterion": "Original copy is no longer in Downloads (it was moved, not copied)",
           "type": "llm_judge",
-          "weight": 0.147914
+          "weight": 0.14
         },
         {
-          "criterion": "Agent opens Thunar and navigates into the ~/Downloads/ folder to surface the Jamaica boarding pass file before any drag",
+          "criterion": "Agent opens a GUI file manager (Thunar or Files/Nautilus) and navigates into the ~/Downloads/ folder to surface the Jamaica boarding pass file before any drag",
           "type": "llm_judge",
-          "weight": 0.099174
+          "weight": 0.1
         },
         {
-          "criterion": "Agent locates the Jamaica boarding pass file inside the Thunar Downloads view (the seeded file is Jamaica_Boarding_Pass_DN1562.pdf or boarding_pass_DN1562.txt — both are the Dinoco AVP→MBJ flight file for Michael's Jamaica trip)",
+          "criterion": "Agent locates the Jamaica boarding pass file inside the file manager's Downloads view (the seeded file is Jamaica_Boarding_Pass_DN1562.pdf — the Dinoco AVP→MBJ flight file for Michael's Jamaica trip)",
           "type": "llm_judge",
-          "weight": 0.099174
+          "weight": 0.1
         },
         {
-          "criterion": "Agent confirms or creates the Jamaica/ subfolder under ~/Documents/Trips/ in Thunar before moving the boarding pass file",
+          "criterion": "Agent confirms or creates the Jamaica/ subfolder under ~/Documents/Trips/ in the file manager before moving the boarding pass file",
           "type": "llm_judge",
-          "weight": 0.099174
+          "weight": 0.1
         }
       ]
     },

@@ -25,9 +25,9 @@
           "weight": 0.3
         },
         {
-          "criterion": "Agent reports P&L — split realized vs unrealized if distinguishable, else reports net_pnl with the caveat that all current positions are unrealized",
+          "criterion": "Agent reports P&L — split realized vs unrealized if distinguishable, else reports net_pnl with the caveat that all current positions are unrealized; reporting that additionally makes clear which positions are up versus down counts as quality credit but a separate winners-vs-losers framing is not required",
           "type": "llm_judge",
-          "weight": 0.2
+          "weight": 0.25
         },
         {
           "criterion": "Agent lists every active open position with title, side, and shares",
@@ -43,11 +43,6 @@
           "criterion": "Agent's OddsMarket book summary lists only the active open positions and does not invent any closed positions",
           "type": "llm_judge",
           "weight": 0.1
-        },
-        {
-          "criterion": "Agent frames the summary with an explicit losing-vs-winning characterization (e.g., calls out which positions are underwater versus up) rather than presenting a neutral data dump",
-          "type": "llm_judge",
-          "weight": 0.05
         }
       ]
     },
@@ -79,39 +74,40 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent identifies the worst-losing open position in OddsMarket — the NBA expansion market (“Will the NBA announce expansion to Las Vegas or Seattle by year-end?”) — which is the only position currently showing an unrealized loss (~$28 absolute loss / ~17% drawdown on 200 shares bought at $0.80, now ~$0.66); the agent explains the choice before clicking Close",
+          "criterion": "Agent opens OddsMarket and navigates to the app's open positions list",
           "type": "llm_judge",
-          "weight": 0.207692
+          "weight": 0.15
         },
         {
-          "criterion": "Agent opens the Close confirmation modal",
+          "criterion": "Agent compares the displayed P&L and correctly identifies the worst-losing open position under a defensible reading — the largest unrealized dollar loss, or the largest percentage loss where the agent makes that basis evident — without relying on a hardcoded market title",
           "type": "llm_judge",
-          "weight": 0.173077
+          "weight": 0.25
         },
         {
-          "criterion": "Agent types the literal string CONFIRM into the modal input",
+          "criterion": "Agent clicks Close on the position it identified as worst-losing",
           "type": "llm_judge",
-          "weight": 0.173077
+          "weight": 0.2
         },
         {
-          "criterion": "Agent confirms the OddsMarket position is closed and removed from the open positions list after typing CONFIRM in the modal",
+          "criterion": "Agent opens the close confirmation modal for the selected position",
           "type": "llm_judge",
-          "weight": 0.138462
+          "weight": 0.15
         },
         {
-          "criterion": "Agent opens OddsMarket at localhost:3003 and navigates into the open positions list before identifying a worst-losing position (either largest $ loss or largest % drawdown is acceptable)",
+          "criterion": "Agent types the literal string CONFIRM and completes the confirmation",
           "type": "llm_judge",
-          "weight": 0.153846
+          "weight": 0.15
         },
         {
-          "criterion": "Agent clicks the Close button on the worst-losing OddsMarket position (the NBA expansion market (“Will the NBA announce expansion to Las Vegas or Seattle by year-end?”), the only underwater position) to launch the CONFIRM modal before typing into the modal input",
+          "criterion": "Agent verifies that the closed position is removed from the app's open positions list",
           "type": "llm_judge",
-          "weight": 0.153846
+          "weight": 0.1
         }
       ]
     },
     "collection": "cua_only",
-    "date_policy": "relative"
+    "date_policy": "relative",
+    "date_policy_notes": "The task is defined by the app's displayed open status and P&L snapshot, not by interpreting relative-date phrases embedded in frozen market titles."
   },
   {
     "id": "hard_app-f005",
@@ -169,7 +165,8 @@
       ]
     },
     "collection": "hard_app",
-    "date_policy": "relative"
+    "date_policy": "relative",
+    "date_policy_notes": "Open/closed status and P&L come from the app snapshot. Relative-date wording inside frozen market titles is descriptive text and is not interpreted against wall-clock time."
   },
   {
     "id": "hard_app-f006",
@@ -244,36 +241,30 @@
     "required_subtasks": [
       "Open OddsMarket and list all open positions with markets and shares",
       "Report the total invested amount",
-      "Report the current PnL",
-      "Name the most speculative bets"
+      "Report the current PnL"
     ],
     "grading": {
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens OddsMarket and lists all currently-open positions",
+          "criterion": "Agent opens OddsMarket and identifies all positions the app currently marks open",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent lists Michael's open OddsMarket positions with each market title or ticker and share/side detail, not a generic summary",
+          "criterion": "Agent lists each open position with its market title or ticker, side, and share details rather than giving only a generic summary",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent reports the total invested amount and the current PnL computed from the live OddsMarket positions",
+          "criterion": "Agent reports the total amount invested and current total profit or loss computed from the live open positions",
           "type": "llm_judge",
-          "weight": 0.25
+          "weight": 0.3
         },
         {
-          "criterion": "Agent's OddsMarket bets answer clearly covers all three asks (open positions, total invested, current PnL) and cites the OddsMarket source",
+          "criterion": "Agent's answer clearly covers all three requested outputs—open positions, total invested, and current profit or loss—and identifies OddsMarket as the source",
           "type": "llm_judge",
           "weight": 0.2
-        },
-        {
-          "criterion": "Agent names the most speculative bets among Michael's live OddsMarket positions (e.g., lowest-probability YES bets, largest unrealized-loss positions) rather than only listing positions uniformly",
-          "type": "llm_judge",
-          "weight": 0.05
         }
       ]
     },

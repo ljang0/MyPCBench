@@ -24,39 +24,30 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens LibreOffice Writer before loading the Dundies 2026 categories document for the bold and append edits",
+          "criterion": "Agent opens ~/Documents/Dundies_2026_Categories.txt in LibreOffice Writer and works from that source document",
           "type": "llm_judge",
-          "weight": 0.166667
+          "weight": 0.1
         },
         {
-          "criterion": "Agent opens the Dundies_2026_Categories.txt file in LibreOffice Writer (not a terminal editor)",
+          "criterion": "In the Writer-format copy, the complete 'Whitest Sneakers' line is bold",
           "type": "llm_judge",
-          "weight": 0.166667
+          "weight": 0.3
         },
         {
-          "criterion": "Agent finds the 'Whitest Sneakers' line in the Dundies 2026 categories doc and selects it before applying formatting",
+          "criterion": "The Writer-format copy contains a new 'Fine Work Outfit' category immediately after the 'Whitest Sneakers' line",
           "type": "llm_judge",
-          "weight": 0.166667
+          "weight": 0.35
         },
         {
-          "criterion": "Agent applies bold formatting to the 'Whitest Sneakers' line during the editing session via Ctrl+B or the toolbar bold button (visible in screenshots; bold attribute will not persist when the .txt source file is saved back as plain text — accept screenshot evidence of the formatting being applied at any point in the session)",
+          "criterion": "Agent saves the edited document in a format that preserves the bold run (for example .odt), both edits persist in the saved file, and the original ~/Documents/Dundies_2026_Categories.txt is left present",
           "type": "llm_judge",
-          "weight": 0.166667
-        },
-        {
-          "criterion": "Agent inserts a new 'Fine Work Outfit' category line immediately after the 'Whitest Sneakers' line in the Dundies 2026 categories doc",
-          "type": "llm_judge",
-          "weight": 0.166667
-        },
-        {
-          "criterion": "Agent saves the edited Dundies_2026_Categories.txt file back to the same ~/Documents path in Writer, keeping the original text format if prompted",
-          "type": "llm_judge",
-          "weight": 0.166667
+          "weight": 0.25
         }
       ]
     },
     "collection": "cua_only",
-    "date_policy": "narrative_absolute"
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "Dundies 2026 is the fixed name of the source planning document, not a claim about the current year."
   },
   {
     "id": "cua_only-f021",
@@ -84,39 +75,40 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent reads ~/Documents/Dundies_2026_Categories.txt to retrieve this year's Dundies category names for the invitation",
+          "criterion": "Agent reads ~/Documents/Dundies_2026_Categories.txt to retrieve the category names for the saved 2026 event invitation",
           "type": "llm_judge",
-          "weight": 0.152174
+          "weight": 0.15
         },
         {
-          "criterion": "Agent opens LibreOffice Writer and creates a new document for the Dundies 2026 invitation",
+          "criterion": "Agent creates a new one-page invitation document in LibreOffice Writer",
           "type": "llm_judge",
-          "weight": 0.152174
+          "weight": 0.15
         },
         {
-          "criterion": "Agent writes a big bold centered top-of-page title referencing the Dundies 2026 (e.g. 'THE DUNDIES 2026' — any clear Dundies 2026 title satisfies) in the Writer invitation document",
+          "criterion": "The invitation has a large bold top-of-page title that clearly references the Dundies 2026 event",
           "type": "llm_judge",
-          "weight": 0.173913
+          "weight": 0.175
         },
         {
-          "criterion": "Agent inserts a bulleted list of this year's Dundies categories pulled from Dundies_2026_Categories.txt into the Writer invitation document",
+          "criterion": "The invitation contains a bulleted list of the categories from Dundies_2026_Categories.txt",
           "type": "llm_judge",
-          "weight": 0.173913
+          "weight": 0.175
         },
         {
-          "criterion": "Agent adds a signature block reading 'Michael Scott, World's Best Boss' at the bottom of the Writer invitation document",
+          "criterion": "The invitation contains the exact signature block 'Michael Scott, World's Best Boss'",
           "type": "llm_judge",
-          "weight": 0.173913
+          "weight": 0.175
         },
         {
-          "criterion": "Agent saves the Dundies 2026 invitation to the Desktop as an .odt fitting on a single page (e.g. ~/Desktop/dundies_invite.odt — any clearly-named Desktop .odt satisfies)",
+          "criterion": "Agent saves the one-page invitation to the Desktop as a clearly named .odt file",
           "type": "llm_judge",
-          "weight": 0.173913
+          "weight": 0.175
         }
       ]
     },
     "collection": "cua_only",
-    "date_policy": "narrative_absolute"
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "Dundies 2026 and the filename are fixed saved-event artifacts; the task no longer describes them as this year's event."
   },
   {
     "id": "cua_only-f024",
@@ -147,29 +139,29 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent creates an Impress deck for Michael's Jamaica trip that contains exactly 3 slides (flight, hotel, daily schedule)",
+          "criterion": "Agent creates an Impress deck for Michael's Jamaica trip containing exactly three slides: flight, hotel, and daily schedule",
           "type": "llm_judge",
-          "weight": 0.183333
+          "weight": 0.18
         },
         {
-          "criterion": "Agent writes the Jamaica trip flight slide showing the flight number, departure time, confirmation code, and fare, all pulled from Michael's live Dinoco and/or HooliMail Jamaica trip sources (not invented)",
+          "criterion": "The flight slide shows the flight number, departure time, confirmation code, and fare from Michael's live Dinoco and/or HooliMail Jamaica sources",
           "type": "llm_judge",
-          "weight": 0.266667
+          "weight": 0.27
         },
         {
-          "criterion": "Agent writes the Sandals hotel slide showing Sandals Montego Bay, the live Cheskepdia confirmation number, the live check-in and check-out dates, and the live total price — all read from Michael's Cheskepdia booking",
+          "criterion": "The hotel slide shows Sandals Montego Bay, its live Cheskepdia confirmation number, check-in and check-out dates, and total price",
           "type": "llm_judge",
-          "weight": 0.266667
+          "weight": 0.27
         },
         {
-          "criterion": "Agent writes the third Jamaica trip slide as a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window",
+          "criterion": "The third slide is a rough day-by-day schedule spanning the live Sandals Montego Bay check-in/check-out window as shown in the live Cheskepdia booking. Dates taken from a HooliMail travel-folder receipt are acceptable only where that receipt agrees with the live Cheskepdia booking window.",
           "type": "llm_judge",
-          "weight": 0.141667
+          "weight": 0.14
         },
         {
-          "criterion": "Agent saves the three-slide Jamaica trip Impress deck to ~/Documents/Trips/jamaica_itinerary.odp inside Michael's Trips documents folder",
+          "criterion": "Agent saves the three-slide deck as any clearly named .odp file inside ~/Documents/Trips; no particular filename is required",
           "type": "llm_judge",
-          "weight": 0.141667
+          "weight": 0.14
         }
       ]
     },

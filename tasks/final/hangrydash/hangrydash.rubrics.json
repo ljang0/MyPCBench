@@ -50,14 +50,9 @@
           "weight": 0.224
         },
         {
-          "criterion": "Agent reviews HangryDash order history to confirm the chosen restaurant is salad-forward and one Michael has ordered from before",
+          "criterion": "Agent actually reviews Michael's HangryDash order history before choosing where to order, using it to establish that the restaurant it picks is salad-forward and one he has ordered from before",
           "type": "llm_judge",
-          "weight": 0.074336
-        },
-        {
-          "criterion": "Agent reviews HangryDash order history highlights to identify a salad-forward restaurant Michael has ordered from before picking the lunch order target",
-          "type": "llm_judge",
-          "weight": 0.106195
+          "weight": 0.180423
         },
         {
           "criterion": "Agent adds the picked salad-forward lunch item (priced within Michael's usual HangryDash budget) from the chosen salad-forward restaurant into the cart before proceeding to checkout",
@@ -131,7 +126,7 @@
         {
           "criterion": "Agent places the order and verifies it in history",
           "type": "llm_judge",
-          "weight": 0.170522
+          "weight": 0.170521
         }
       ]
     },
@@ -172,7 +167,7 @@
           "weight": 0.21
         },
         {
-          "criterion": "Agent identifies the modal tip percent (15%, 18%, 20%, or custom) from the HangryDash order history",
+          "criterion": "Agent characterizes the typical tip percent from the HangryDash order history, grounded in the observed distribution (e.g. an average around a given percent, or noting that no single preset percent clearly dominates); any characterization consistent with the data is acceptable — naming one exact modal percent is not required",
           "type": "llm_judge",
           "weight": 0.12
         },

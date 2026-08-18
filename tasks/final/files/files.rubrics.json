@@ -22,27 +22,27 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent locates the Threat_Level_Midnight_Sequel_Notes.txt file in ~/Documents/Projects and reports its absolute path",
+          "criterion": "Agent locates Threat_Level_Midnight_Sequel_Notes.txt under ~/Documents/Projects and reports its absolute path",
+          "type": "llm_judge",
+          "weight": 0.15
+        },
+        {
+          "criterion": "Agent reads the file and accurately summarizes its plot, cast, and other planning details",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "Agent reads the file and provides a quick rundown of the plot, cast, and other elements from the sequel notes",
+          "criterion": "Agent produces a draft script grounded in the sequel notes rather than a generic action script",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent produces a draft script grounded in the sequel notes (not a generic action script) that uses the notes as a starting point",
+          "criterion": "The draft script includes the coworkers named in the source notes' cast — Holly, Jim, and Dwight — as characters; including further Dunder Mifflin coworkers as additional characters is acceptable",
           "type": "llm_judge",
-          "weight": 0.25
+          "weight": 0.3
         },
         {
-          "criterion": "Agent's draft script includes multiple Dunder Mifflin coworkers as named characters (casting reason requirement)",
-          "type": "llm_judge",
-          "weight": 0.2
-        },
-        {
-          "criterion": "Agent opens the Files app and navigates to ~/Documents/Projects to locate the file before summarizing or drafting",
+          "criterion": "Agent locates and opens the notes file (via any file manager, terminal, or equivalent navigation) before summarizing or drafting",
           "type": "llm_judge",
           "weight": 0.1
         }
@@ -77,29 +77,35 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent locates Dundies_2026_Categories.txt in ~/Documents, reports its absolute path, and enumerates the Dundies 2026 categories from the document",
-          "type": "llm_judge",
-          "weight": 0.3
-        },
-        {
-          "criterion": "Agent creates a LibreOffice Impress presentation (.odp or .pptx) that includes the Dundies categories as slide content",
-          "type": "llm_judge",
-          "weight": 0.3
-        },
-        {
-          "criterion": "Agent sends messages (via HooliWork, HooliMail, or BuzzChat) to the Dundies candidates found in the document asking them to show up to the Dundies",
+          "criterion": "Agent locates ~/Documents/Dundies_2026_Categories.txt, reports its absolute path, and accurately enumerates its Dundies 2026 categories",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent opens the Dundies_2026_Categories.txt doc in the Files app and reads its content before producing the presentation or messages",
+          "criterion": "Agent creates a LibreOffice Impress presentation (.odp or .pptx) containing the categories from the saved Dundies 2026 document",
           "type": "llm_judge",
-          "weight": 0.15
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent sends an attendance message to the Dundies nominees the source document names, excluding anyone the document explicitly rules out; any defensible reading of that list is acceptable provided the agent is consistent with the document",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Agent opens and reads Dundies_2026_Categories.txt before creating the presentation or candidate messages",
+          "type": "llm_judge",
+          "weight": 0.1
+        },
+        {
+          "criterion": "Agent's recipient list follows the candidates recorded in the source document rather than adding people the document does not name",
+          "type": "llm_judge",
+          "weight": 0.05
         }
       ]
     },
     "collection": "retrieval",
-    "date_policy": "narrative_absolute"
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "Dundies 2026 and the filename are explicit saved-event artifacts; the task does not claim that 2026 is the current year."
   },
   {
     "id": "retrieval-f033",
@@ -129,7 +135,7 @@
           "weight": 0.3
         },
         {
-          "criterion": "Agent provides a faithful, coherent summary of Chapter 1's content in Michael's voice and tone",
+          "criterion": "Agent provides a faithful, coherent summary of Chapter 1's content",
           "type": "llm_judge",
           "weight": 0.3
         },
@@ -178,27 +184,27 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent locates and opens the existing Threat Level Midnight sequel notes file at ~/Documents/Projects/Threat_Level_Midnight_Sequel_Notes.txt via the Files app before adding new plot points",
+          "criterion": "Agent locates and opens ~/Documents/Projects/Threat_Level_Midnight_Sequel_Notes.txt (via any file manager, text editor, or equivalent) before editing it",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent adds at least 5 new plot points to the existing file and saves it so the additions persist on disk",
+          "criterion": "Agent adds at least five new plot points to the existing file and saves the additions so they persist on disk",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent writes the 5 new plot points in Michael Scarn's Threat Level Midnight sequel tone (over-the-top action voice, big dramatic beats)",
+          "criterion": "The five new plot points use Michael Scarn's over-the-top Threat Level Midnight action tone",
           "type": "llm_judge",
           "weight": 0.2
         },
         {
-          "criterion": "Agent sends the revised plot notes (or a summary/link) to at least a handful of Dunder Mifflin coworkers via HooliWork, HooliMail, or BuzzChat as potential casting candidates",
+          "criterion": "Agent sends the saved revised notes file as an attachment, or pastes its complete revised contents, to at least three Dunder Mifflin coworkers; a summary or bare link alone does not satisfy this",
           "type": "llm_judge",
           "weight": 0.3
         },
         {
-          "criterion": "Agent addresses the outreach to coworkers explicitly as potential casting candidates for the Threat Level Midnight sequel",
+          "criterion": "Agent explicitly frames the recipients as potential casting candidates for the Threat Level Midnight sequel",
           "type": "llm_judge",
           "weight": 0.1
         }

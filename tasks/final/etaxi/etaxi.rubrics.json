@@ -5,7 +5,8 @@
     "persona": "michael_scott",
     "instruction": "How much have I actually spent taking eTaxi to the Dunder Mifflin office this year? Just the commute rides. Sum up and report the total cost in a LibreOffice Calc sheet.",
     "apps_involved": [
-      "eTaxi"
+      "eTaxi",
+      "LibreOffice Calc"
     ],
     "difficulty": "medium",
     "horizon": "H2",
@@ -20,24 +21,24 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent filters eTaxi to rides whose dropoff_address starts with 'Dunder Mifflin' (the unique-to-Office prefix that disambiguates the office from any home rides on the same street)",
+          "criterion": "Agent filters the live eTaxi history to rides in the current calendar year whose dropoff_address starts with 'Dunder Mifflin', excluding non-office rides",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent sums those rides to a YTD commute spend number",
+          "criterion": "Agent creates a LibreOffice Calc spreadsheet, rather than only reporting in chat, that lists each qualifying commute ride and its individual cost",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent reports the Dunder Mifflin eTaxi commute ride count alongside the current-year YTD commute-only spend total",
-          "type": "llm_judge",
-          "weight": 0.3
-        },
-        {
-          "criterion": "Agent answers the how-much-spent question for Dunder Mifflin eTaxi commute rides with a single YTD dollar figure for the current year",
+          "criterion": "The Calc spreadsheet reports a count of qualifying Dunder Mifflin commute rides consistent with the rides it lists; counts that include or exclude any cancelled ($0-cost) ride are both acceptable, as long as the treatment is consistent with the listed rides and the reported total",
           "type": "llm_judge",
           "weight": 0.2
+        },
+        {
+          "criterion": "The Calc spreadsheet reports a single correct current-calendar-year total equal to the sum of the listed qualifying ride costs",
+          "type": "llm_judge",
+          "weight": 0.3
         }
       ]
     },
@@ -66,29 +67,24 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opened eTaxi and actually looked at the saved work/office location entry (whichever label the app uses — 'Work' or 'Office')",
+          "criterion": "Agent opens eTaxi saved locations and inspects the existing work/office entry before deciding whether any edit is needed",
           "type": "llm_judge",
-          "weight": 0.350133
+          "weight": 0.15
         },
         {
-          "criterion": "Agent reported the current saved work/office address to Michael, explicitly confirming whether it matches Dunder Mifflin at 1725 Slough Ave (with or without Suite 200 / Scranton, PA suffix)",
+          "criterion": "Agent reports the exact work/office address currently found and explicitly says whether it matches Dunder Mifflin at 1725 Slough Ave",
           "type": "llm_judge",
-          "weight": 0.350133
+          "weight": 0.2
         },
         {
-          "criterion": "Agent explicitly states whether the saved work/office address already matches '1725 Slough Ave' (in which case no action is needed) or required a correction, and applies the update only if a mismatch was found",
+          "criterion": "Agent correctly decides that an entry matching 1725 Slough Ave needs no change, or that a wrong or missing entry needs correction",
           "type": "llm_judge",
-          "weight": 0.099733
+          "weight": 0.25
         },
         {
-          "criterion": "If the agent applied any correction, it explicitly saves/commits the updated work/office location entry so the change persists (not just a temporary edit); if no correction was needed, the agent explicitly says so and does not modify the entry",
+          "criterion": "The agent's action matches the entry it found: an existing work/office entry whose address contains 1725 Slough Ave counts as matching even when it omits the 'Suite 200' or 'PA' portion, so the correct outcome there is to leave it unchanged and explicitly report that no action was needed — rewriting it to the full 'Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA' is acceptable only if the agent first states that the entry already matched. If the live entry is missing or shows a different street address, the agent corrects it to Dunder Mifflin, 1725 Slough Ave, Suite 200, Scranton, PA and saves the change.",
           "type": "llm_judge",
-          "weight": 0.1
-        },
-        {
-          "criterion": "Agent navigates into the eTaxi saved locations screen and inspects the existing work/office entry (labeled 'Work' or 'Office' in the app) before deciding whether to update it to Dunder Mifflin 1725 Slough Ave",
-          "type": "llm_judge",
-          "weight": 0.1
+          "weight": 0.4
         }
       ]
     },

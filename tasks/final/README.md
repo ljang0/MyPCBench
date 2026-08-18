@@ -69,8 +69,8 @@ which runs the Gemini full-trajectory per-rubric judge
 
 ## `mypcbench_clean.json` (rubric alignment, August 2026)
 
-`tasks/final/mypcbench_clean.json` is the full 184-task set with the same frozen instructions and the
+`tasks/final/all_tasks_with_grading.json` (the runner default; `mypcbench_clean.json` is an identical copy) is now the full 184-task set with the same frozen instructions and the
 rubrics re-aligned after a live, per-item feasibility verification against the daily image (every rubric
 item checked on a fresh bake; items that graded something the instruction never asked were dropped, and
 criteria that contradicted the instruction, a sibling, or the live world were reworded — instructions were
-never edited). Use it directly: `--tasks_dir tasks/final/mypcbench_clean.json`.
+never edited). The previous rubric set is kept as `tasks/final/mypcbench_legacy.json` (`--tasks_dir tasks/final/mypcbench_legacy.json` to run it). The per-app `*.rubrics.json` shards match the new default.

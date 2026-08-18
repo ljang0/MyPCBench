@@ -22,7 +22,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight by departure_date in the live booking list",
+          "criterion": "Agent opens Dinoco Airlines and locates the next upcoming (non-cancelled) flight in the live booking list — the one with the earliest departure date and, among flights sharing that earliest date, the earliest departure time (equivalently, the upcoming flight the app shows as check-in open); if the live list displays more than one upcoming flight on that earliest date, any of them may be credited so long as the agent works with the same flight throughout",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -57,7 +57,8 @@
     "persona": "michael_scott",
     "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Give me a spreadsheet of each trip, and the miles for each one with a final row of the cumulative miles. Also include the upcoming trips and their milage.",
     "apps_involved": [
-      "Dinoco Airlines"
+      "Dinoco Airlines",
+      "LibreOffice Calc"
     ],
     "difficulty": "medium",
     "horizon": "H2",
@@ -75,27 +76,27 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent filters Dinoco flight history to flights that are completed (not cancelled and not still-upcoming) within the past 12 months and sums their miles from the live flight history",
+          "criterion": "Agent identifies every completed, non-cancelled Dinoco flight in the rolling past-12-month window and uses the mileage shown in the live flight history",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent also lists upcoming Dinoco flights and their mileage alongside the completed-flight data, as explicitly requested",
-          "type": "llm_judge",
-          "weight": 0.2
-        },
-        {
-          "criterion": "Agent produces a per-trip table or spreadsheet-style breakdown with each trip and its miles, ending with a cumulative total row",
-          "type": "llm_judge",
-          "weight": 0.3
-        },
-        {
-          "criterion": "Agent reports the count of completed Dinoco flights in the past 12 months (reconciling to the ~6 completed flights seeded in the live flight history, not a partial 1-2 subset) and the total miles for that window",
+          "criterion": "Agent lists the upcoming Dinoco trips and their mileage in a clearly separate upcoming-trips section",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent delivers a single answer covering completed-flight totals, upcoming-flight mileage, and the per-trip breakdown together",
+          "criterion": "Agent creates a LibreOffice Calc spreadsheet, rather than only a chat table or prose response, with one row for each qualifying completed trip and its mileage",
+          "type": "llm_judge",
+          "weight": 0.3
+        },
+        {
+          "criterion": "The Calc spreadsheet states a completed-flight count that is internally consistent with the completed trips it lists, and a final cumulative mileage row whose total matches the mileage of those listed trips. Where the live flight history shows flights labelled completed whose departure date still falls after the current date, either treatment — counting them or excluding them from the past-12-month total — is acceptable, provided the sheet is consistent about the treatment it chose.",
+          "type": "llm_judge",
+          "weight": 0.2
+        },
+        {
+          "criterion": "The spreadsheet clearly distinguishes completed flights used in the past-12-month total from upcoming flights that are not included in that total. Any consistent treatment of flights whose live status reads completed but whose departure date falls after the current date is acceptable — listing them, labelling them as a separate case, or omitting them — as long as the sheet's totals agree with the treatment chosen.",
           "type": "llm_judge",
           "weight": 0.1
         }
@@ -129,7 +130,7 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent creates a new one-way Dinoco booking with origin AVP and destination JFK in the Economy fare class for next Friday",
+          "criterion": "Agent creates a new one-way Dinoco booking with origin AVP and destination JFK in the Economy fare class for next Friday (either the first or the second upcoming Friday relative to the VM date is an acceptable reading of 'next Friday')",
           "type": "llm_judge",
           "weight": 0.2
         },
@@ -228,12 +229,12 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent picks the next upcoming Dinoco booking that is still cancellable (not already past or cancelled) and cancels it through the Dinoco UI",
+          "criterion": "Agent picks the next upcoming Dinoco booking that is still cancellable (not already past or cancelled) — the earliest displayed departure date and, among bookings sharing that earliest date, the earliest departure time; if the live list displays more than one cancellable booking on that earliest date, cancelling either is acceptable so long as the agent reports the same booking it cancelled — and cancels it through the Dinoco UI",
           "type": "llm_judge",
           "weight": 0.25
         },
         {
-          "criterion": "Agent confirms the cancellation confirmation email was received and pulls it up as requested",
+          "criterion": "Agent confirms the email Dinoco sends when a booking is cancelled — the app titles it 'Dinoco Airlines travel credit issued' — was received, and pulls it up as the instruction asks",
           "type": "llm_judge",
           "weight": 0.25
         },

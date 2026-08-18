@@ -25,37 +25,37 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens Kwik-E-Mart and navigates to the order history view to surface a prior run at one of Michael's top-frequency stores or his most-recent store",
+          "criterion": "Agent opens Kwik-E-Mart order history and surfaces a prior order from a top-frequency store or the most-recent store",
           "type": "llm_judge",
           "weight": 0.12
         },
         {
-          "criterion": "Agent picks a reorder anchor at one of Michael's top-frequency Kwik-E-Mart stores by order count (any store tied at the top by order count is acceptable) OR his most-recent Kwik-E-Mart order, and bases the reorder on that order's line items",
+          "criterion": "Agent bases the reorder on the line items from a qualifying prior order",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent starts a reorder and handles out-of-stock items appropriately — picks substitutions if any items are flagged OOS, or notes that all original items were available and proceeds without substitutions",
+          "criterion": "Agent handles availability correctly by substituting items shown as out of stock or retaining the original items when they are available",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent opens a second store and compares prices",
+          "criterion": "Agent opens a second Kwik-E-Mart store and attempts a price comparison against the reordered items; because the second store's live catalog may carry none of the anchor order's exact items, comparing the closest available equivalents, or explicitly reporting that the other store stocks no comparable items so no meaningful comparison is possible, both earn full credit",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent completes the price comparison and proceeds with the cheaper option (returns to the original store's cart if it is cheapest, or switches to the cheaper store)",
+          "criterion": "Agent completes the comparison and proceeds with the cheaper available option — or, if the second store carries no comparable items, states that and proceeds with the original store's cart",
           "type": "llm_judge",
           "weight": 0.13
         },
         {
-          "criterion": "Agent selects the earliest available delivery slot at Kwik-E-Mart checkout for the chosen-store reorder",
+          "criterion": "Agent selects any available delivery slot scheduled before 11:59 PM local time today, with no earliest-slot requirement; if no qualifying slot exists, the agent explicitly records that result and does not select a later slot",
           "type": "llm_judge",
           "weight": 0.15
         },
         {
-          "criterion": "Agent places the Kwik-E-Mart reorder and verifies it appears in the recent-orders history after checkout",
+          "criterion": "When a before-end-of-day slot exists, agent places the reorder and verifies it in recent-order history; otherwise agent leaves the cheaper cart ready, does not place the order, and reports the unavailable qualifying window",
           "type": "llm_judge",
           "weight": 0.15
         }
@@ -147,7 +147,8 @@
       "Give a one-paragraph profile of Michael's Kwik-E-Mart shopping preference"
     ],
     "apps_involved": [
-      "Kwik-E-Mart"
+      "Kwik-E-Mart",
+      "LibreOffice Writer"
     ],
     "difficulty": "easy",
     "horizon": "H1",
@@ -157,34 +158,34 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent explicitly names Michael's favorite Kwik-E-Mart grocery store — the plurality store, Wegmans (top by order count in the live /api/orders history) — in its written output or the LibreOffice Writer deliverable; merely opening or scrolling the orders page without naming the store does not satisfy this",
+          "criterion": "Agent identifies the favorite grocery store from the live Kwik-E-Mart order history under a basis it states or makes evident — order count or total spend are both defensible readings of 'favorite'",
           "type": "llm_judge",
-          "weight": 0.2632
+          "weight": 0.2
         },
         {
-          "criterion": "Agent reports the live order counts per store from Michael's Kwik-E-Mart order history (/api/orders), confirming the top-by-order-count store is ranked first ahead of the other stores Michael has used",
+          "criterion": "Agent reports the live per-store figures for that basis across every store and ranks the stores by it",
           "type": "llm_judge",
-          "weight": 0.2106
+          "weight": 0.2
         },
         {
-          "criterion": "Agent characterizes the typical line items Michael buys there",
+          "criterion": "Agent accurately characterizes the typical line items bought at the top-ranked store",
           "type": "llm_judge",
-          "weight": 0.2106
+          "weight": 0.15
         },
         {
-          "criterion": "Agent writes a one-paragraph profile of Michael's Kwik-E-Mart grocery shopping habits at his favorite store",
+          "criterion": "Agent writes a concise shopping-habits profile grounded in the favorite store's order history",
           "type": "llm_judge",
-          "weight": 0.1578
+          "weight": 0.15
         },
         {
-          "criterion": "Agent reads Kwik-E-Mart order-history line items and states them as the data source backing the favorite grocery store ranking and buying profile",
+          "criterion": "Agent uses the Kwik-E-Mart order-history rows and line items as the evidence source rather than inventing a preference",
           "type": "llm_judge",
-          "weight": 0.0842
+          "weight": 0.1
         },
         {
-          "criterion": "Agent delivers the favorite Kwik-E-Mart grocery store ranking and the buying-habits profile before ending the task",
+          "criterion": "Agent creates a LibreOffice Writer document containing the complete store ranking and shopping-habits profile",
           "type": "llm_judge",
-          "weight": 0.0736
+          "weight": 0.2
         }
       ]
     },

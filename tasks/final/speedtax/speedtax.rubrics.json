@@ -23,39 +23,40 @@
       "type": "llm_judge",
       "rubrics": [
         {
-          "criterion": "Agent opens SpeedTax and identifies the current-year unfiled return for the persona (labeled 'In progress' or 'Ready for review' in the UI), not a prior-year filed return",
+          "criterion": "Agent opens SpeedTax and selects the unfiled tax-year 2025 return labeled 'In progress' or 'Ready for review', not a filed return",
           "type": "llm_judge",
           "weight": 0.18
         },
         {
-          "criterion": "Agent reviews the wages step (step 2) and reports the W-2 wage amount loaded from the persona's seeded W-2 documents",
+          "criterion": "Agent reviews step 2 and reports the W-2 wage amount loaded in the 2025 return",
           "type": "llm_judge",
           "weight": 0.18
         },
         {
-          "criterion": "Agent reviews the freelance/1099 income step (step 3) and notes whether any 1099 income was seeded for the persona, instead of inventing a number",
+          "criterion": "Agent reviews step 3 and accurately reports whether any freelance/1099 income is loaded, without inventing a number",
           "type": "llm_judge",
           "weight": 0.16
         },
         {
-          "criterion": "Agent reviews the deductions step (step 4) and reads any seeded deduction inputs available (charitable is the canonical seeded category; mortgage interest, state/local tax, and medical may or may not have values populated — partial coverage suffices, and flagging any uncovered categories is also acceptable) rather than skipping past it",
+          "criterion": "Agent reviews step 4 and reports the seeded deduction inputs that are present rather than skipping the section",
           "type": "llm_judge",
           "weight": 0.16
         },
         {
-          "criterion": "Agent advances the return through Continue / Save & Continue actions until SpeedTax shows the review step (step 6) as the active step",
+          "criterion": "Agent advances the 2025 return using SpeedTax's own step controls until the review step is reached",
           "type": "llm_judge",
           "weight": 0.18
         },
         {
-          "criterion": "Agent leaves the return at the review step without submitting or filing it (status is 'review' or 'in_progress', filed_at is null), matching the persona's request to get it ready to eyeball",
+          "criterion": "Agent leaves the 2025 return at review step 6 without submitting or filing it",
           "type": "llm_judge",
           "weight": 0.14
         }
       ]
     },
     "collection": "cua_only",
-    "date_policy": "relative"
+    "date_policy": "narrative_absolute",
+    "date_policy_notes": "Tax year 2025 is an explicit fixed property of the seeded return; the task no longer calls it the current-year return."
   },
   {
     "id": "aggregation-f003",
