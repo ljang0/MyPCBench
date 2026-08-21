@@ -10,4 +10,7 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    # requirements.txt declares compatibility floors rather than a lock set;
+    # do not raise a floor when its existing range already admits the update.
+    versioning-strategy: increase-if-necessary
     open-pull-requests-limit: 5
