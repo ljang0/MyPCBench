@@ -5,7 +5,7 @@
 # Install:  pip install -r requirements.txt
 
 # ── LLM clients (agents) ────────────────────────────────────────────
-anthropic>=0.39.0     # Claude agents (claude-opus-4-6 / claude-sonnet-4-6)
+anthropic>=0.122.0     # Claude agents (claude-opus-4-6 / claude-sonnet-4-6)
 openai>=1.55.0        # GPT agents + Qwen via vLLM; needs the Responses API
 
 # ── Rubric judge ────────────────────────────────────────────────────
