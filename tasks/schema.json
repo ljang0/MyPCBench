@@ -27,6 +27,7 @@
     },
     "instruction": {
       "type": "string",
+      "minLength": 1,
       "description": "The natural-language task instruction given to the agent"
     },
     "persona": {
@@ -45,8 +46,10 @@
         },
         "rubrics": {
           "type": "array",
+          "minItems": 1,
           "items": {
             "type": "object",
+            "required": ["type", "weight"],
             "anyOf": [
               { "required": ["criterion"] },
               { "required": ["requirement"] }
@@ -55,14 +58,16 @@
               "rubric_id": { "type": "string" },
               "criterion": {
                 "type": "string",
+                "minLength": 1,
                 "description": "Natural-language criterion the judge evaluates over the full trajectory"
               },
               "requirement": {
                 "type": "string",
+                "minLength": 1,
                 "description": "Alias for criterion used in some buckets"
               },
               "type": { "type": "string", "enum": ["llm_judge"], "default": "llm_judge" },
-              "weight": { "type": "number", "minimum": 0, "maximum": 1 }
+              "weight": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
             }
           },
           "description": "LLM-as-judge rubric criteria"
@@ -83,7 +88,7 @@
     },
     "apps_involved": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": { "type": "string", "minLength": 1 },
       "description": "Apps the task is expected to touch (analysis only, not enforced)"
     },
     "difficulty": {

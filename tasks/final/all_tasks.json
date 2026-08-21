@@ -35,7 +35,9 @@
     "app": "batbucks",
     "instruction": "Take a look at my brokerage portfolio. How bad is my meme-stock problem, and what would a sensible rebalance look like that doesn't totally abandon the names I actually like? Use cost basis, not market prices. While you're at it, peek at my old WUPHF investment agreement in ~/Downloads/ \u2014 that one was the OG mistake, and it sets the pattern for how I get into these things. Return the review of my portfolio in LibreOffice Writer.",
     "apps_involved": [
-      "BatBucks"
+      "BatBucks",
+      "Files",
+      "LibreOffice Writer"
     ],
     "category": "preference_inference",
     "difficulty": "medium"
@@ -95,7 +97,8 @@
     "app": "dinoco_airlines",
     "instruction": "How many miles have I actually flown on Dinoco over the past 12 months? Add up the miles from every completed Dinoco flight in that window. Give me a spreadsheet of each trip, and the miles for each one with a final row of the cumulative miles. Also include the upcoming trips and their milage.",
     "apps_involved": [
-      "Dinoco Airlines"
+      "Dinoco Airlines",
+      "LibreOffice Calc"
     ],
     "category": "aggregation",
     "difficulty": "medium"
@@ -137,7 +140,8 @@
     "app": "etaxi",
     "instruction": "How much have I actually spent taking eTaxi to the Dunder Mifflin office this year? Just the commute rides. Sum up and report the total cost in a LibreOffice Calc sheet.",
     "apps_involved": [
-      "eTaxi"
+      "eTaxi",
+      "LibreOffice Calc"
     ],
     "category": "aggregation",
     "difficulty": "medium"
@@ -429,7 +433,8 @@
     "app": "kwik_e_mart",
     "instruction": "What's my favorite grocery store, and what do I actually buy there? Rank my stores and give me a quick profile of my shopping habits in LibreOffice Writer. ",
     "apps_involved": [
-      "Kwik-E-Mart"
+      "Kwik-E-Mart",
+      "LibreOffice Writer"
     ],
     "category": "preference_inference",
     "difficulty": "easy"
@@ -486,7 +491,8 @@
       "HooliCalendar",
       "HooliChat",
       "HooliWork",
-      "Gringotts"
+      "Gringotts",
+      "LibreOffice Writer"
     ],
     "category": "aggregation",
     "difficulty": "hard"
@@ -584,8 +590,8 @@
     "app": "multi_app",
     "instruction": "Who am I sending mail to the most? Give me my top 5 recipients and my top 5 recurring thread subjects over the past year in a LibreOffice Writer. Heads up: I think my sent mail is filed in the new folder, not Sent.",
     "apps_involved": [
-      "HooliMail",
-      "Files"
+      "Files",
+      "LibreOffice Writer"
     ],
     "category": "aggregation",
     "difficulty": "hard"
@@ -595,7 +601,8 @@
     "app": "multi_app",
     "instruction": "Compare how I was ordering HangryDash a few months ago to how I'm ordering it now. Monthly spend, top restaurants, and any trend I should know about. Report the numbers to me in a LibreOffice Calc SpreadSheet.",
     "apps_involved": [
-      "HangryDash"
+      "HangryDash",
+      "LibreOffice Calc"
     ],
     "category": "aggregation",
     "difficulty": "hard"
@@ -654,7 +661,8 @@
     "apps_involved": [
       "BatBucks",
       "HooliChat",
-      "HooliWork"
+      "HooliWork",
+      "LibreOffice Calc"
     ],
     "category": "contradiction",
     "difficulty": "hard"
@@ -702,7 +710,8 @@
     "apps_involved": [
       "HooliShop",
       "HooliMail",
-      "SprintBoard"
+      "SprintBoard",
+      "Files"
     ],
     "category": "contradiction",
     "difficulty": "hard"
@@ -857,7 +866,6 @@
     "apps_involved": [
       "HooliMail",
       "HooliShop",
-      "HangryDash",
       "Gringotts",
       "Files"
     ],
@@ -1021,8 +1029,7 @@
     "app": "multi_app",
     "instruction": "Go into HangryDash and build my usual Sweetgreen order, but stop at the cart preview. Do NOT submit it. Pull it up so I can confirm it's exactly right before I pull the trigger.",
     "apps_involved": [
-      "HangryDash",
-      "Files"
+      "HangryDash"
     ],
     "category": "situated_action",
     "difficulty": "medium"
@@ -1032,8 +1039,7 @@
     "app": "multi_app",
     "instruction": "Draft me a new LockedIn post about 'Somehow I Manage' \u2014 two or three paragraphs about leadership. Get it fully typed into the Start a post composer so I can see what it looks like before I send it. Do NOT click Post. I want to look at it first.",
     "apps_involved": [
-      "LockedIn",
-      "Files"
+      "LockedIn"
     ],
     "category": "long_horizon",
     "difficulty": "hard"
@@ -1043,6 +1049,7 @@
     "app": "multi_app",
     "instruction": "Book me a round-trip eTaxi for my Jamaica trip. I need a ride from my place to AVP in the wee hours of departure day and a return ride back from AVP when I land. Go with the cheapest option that has a driver wait under five minutes. While you're in eTaxi, add two new saved locations for me: the Dundies venue (1901 Mulberry St, Scranton, PA 18510) and the improv academy (its address is on the calendar event location).",
     "apps_involved": [
+      "Dinoco Airlines",
       "eTaxi",
       "HooliCalendar"
     ],
@@ -1647,8 +1654,7 @@
       "Gringotts",
       "HooliCalendar",
       "LibreOffice",
-      "Files",
-      "LockedIn"
+      "Files"
     ],
     "category": "long_horizon",
     "difficulty": "hard"
@@ -1744,7 +1750,6 @@
     "apps_involved": [
       "HooliMail",
       "HooliChat",
-      "LibreOffice",
       "Cheskepdia",
       "TableFind",
       "HangryDash",
@@ -1804,7 +1809,6 @@
       "Dinoco Airlines",
       "LibreOffice Calc",
       "Files",
-      "Kwik-E-Mart",
       "HooliShop"
     ],
     "category": "long_horizon",
@@ -1817,7 +1821,6 @@
     "apps_involved": [
       "LockedIn",
       "HooliMail",
-      "HooliChat",
       "SprintBoard",
       "LibreOffice",
       "Gringotts",
@@ -1898,8 +1901,6 @@
       "HooliCalendar",
       "HooliMail",
       "Files",
-      "TableFind",
-      "HangryDash",
       "LibreOffice",
       "LockedIn"
     ],
@@ -1922,9 +1923,7 @@
       "HangryDash",
       "Gringotts",
       "HooliCalendar",
-      "Files",
-      "SpeedTax",
-      "HooliShop"
+      "Files"
     ],
     "category": "long_horizon",
     "difficulty": "hard"
@@ -1940,7 +1939,6 @@
       "SpeedTax",
       "LockedIn",
       "HooliMail",
-      "Cheskepdia",
       "Dinoco Airlines",
       "HangryDash",
       "SprintBoard",
@@ -1965,8 +1963,7 @@
       "LockedIn",
       "SprintBoard",
       "OddsMarket",
-      "LibreOffice",
-      "HooliWork"
+      "LibreOffice"
     ],
     "category": "long_horizon",
     "difficulty": "hard"
@@ -1999,9 +1996,7 @@
     "app": "multi_app",
     "instruction": "Emma's coming up to Scranton next month for a college-visit weekend (she's looking at U Scranton). I want to make this perfect. Book her a Cheskepdia stay near campus, reserve us a TableFind dinner Friday night + Saturday brunch, order welcome-snacks via HangryDash for her first night, pre-fill her Kwik-E-Mart pickup with stuff she likes, Zelle her some spending money via Gringotts, block the whole weekend on my HooliCalendar, send her a confirming HooliMail with the itinerary, give Holly a heads-up via HooliChat that I'm taking PTO, write Emma a 'welcome to Scranton' card in LibreOffice and save under ~/Documents/Personal/, and post a public 'proud big-brother moment' update on LockedIn (Emma is my younger sister).",
     "apps_involved": [
-      "Cheskepdia",
       "TableFind",
-      "eTaxi",
       "HangryDash",
       "Kwik-E-Mart",
       "Gringotts",
@@ -2025,7 +2020,6 @@
       "SpeedTax",
       "LockedIn",
       "HooliMail",
-      "Cheskepdia",
       "Dinoco Airlines",
       "eTaxi",
       "HooliShop",
