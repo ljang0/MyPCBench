@@ -9,7 +9,7 @@ anthropic>=0.39.0     # Claude agents (claude-opus-4-6 / claude-sonnet-4-6)
 openai>=1.55.0        # GPT agents + Qwen via vLLM; needs the Responses API
 
 # ── Rubric judge ────────────────────────────────────────────────────
-google-genai>=1.0.0   # Gemini judge (gemini-3.1-flash-lite-preview); the
+google-genai>=2.18.1   # Gemini judge (gemini-3.1-flash-lite-preview); the
                       # stable Client/types surface lands at 1.0
 
 # ── HTTP + transport ────────────────────────────────────────────────
